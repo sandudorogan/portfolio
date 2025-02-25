@@ -46,7 +46,7 @@ yarn install
 pnpm install
 ```
 
-# Development 
+## Development 
 
 Start the development server on `http://localhost:3000`:
 ```bash
@@ -60,7 +60,7 @@ yarn dev
 pnpm dev
 ```
 
-# Building for Production
+## Building for Production
 
 Build the project for production:
 
@@ -88,7 +88,7 @@ yarn preview
 pnpm preview
 ```
 
-# Project Structure
+## Project Structure
  - `app.vue` - Main application component
  - `assets/` - Static assets like CSS
  - `components/` - Vue components
@@ -96,8 +96,8 @@ pnpm preview
  - `public/` - Public static files
  - `nuxt.config.ts` - Nuxt configuration
  
-# License
+## License
 This project is licensed under a custom license. See the LICENSE file for details.
 
-# Author
+## Author
 Sandu Dorogan
