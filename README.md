@@ -9,7 +9,6 @@ This project is a personal portfolio website that showcases interactive elements
 - Nuxt 3 framework for Vue.js
 - Tailwind CSS for styling
 - Interactive UI components
-- Confetti animations
 - Responsive design
 
 ## Technologies Used
@@ -19,7 +18,6 @@ This project is a personal portfolio website that showcases interactive elements
 - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
 - [Nuxt UI](https://ui.nuxt.com/) - UI components for Nuxt
 - [VueUse](https://vueuse.org/) - Collection of Vue composition utilities
-- [Vue Confetti Explosion](https://github.com/valgeirb/vue-confetti-explosion) - Confetti animation component
 
 ## Prerequisites
 
