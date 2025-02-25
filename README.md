@@ -1,75 +1,105 @@
-# Nuxt Minimal Starter
+# Personal Portfolio
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A modern, interactive portfolio website built with Nuxt 3, Vue.js, and Tailwind CSS.
+
+## Overview
+
+This project is a personal portfolio website that showcases interactive elements and modern web development practices. It features:
+
+- Nuxt 3 framework for Vue.js
+- Tailwind CSS for styling
+- Interactive UI components
+- Confetti animations
+- Responsive design
+
+## Technologies Used
+
+- [Nuxt 3](https://nuxt.com/) - The Vue.js framework
+- [Vue.js](https://vuejs.org/) - Progressive JavaScript framework
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [Nuxt UI](https://ui.nuxt.com/) - UI components for Nuxt
+- [VueUse](https://vueuse.org/) - Collection of Vue composition utilities
+- [Vue Confetti Explosion](https://github.com/valgeirb/vue-confetti-explosion) - Confetti animation component
+
+## Prerequisites
+
+- Node.js (v16 or newer)
+- npm, yarn, or pnpm
 
 ## Setup
 
-Make sure to install dependencies:
+1. Clone the repository:
 
 ```bash
-# npm
+git clone https://github.com/yourusername/portfolio.git
+cd portfolio
+```
+
+## Install dependencies:
+
+```bash
+# Using npm
 npm install
 
-# pnpm
-pnpm install
-
-# yarn
+# Using yarn
 yarn install
 
-# bun
-bun install
+# Using pnpm
+pnpm install
 ```
 
-## Development Server
+# Development 
 
 Start the development server on `http://localhost:3000`:
-
 ```bash
-# npm
+# Using npm
 npm run dev
 
-# pnpm
-pnpm dev
-
-# yarn
+# Using yarn
 yarn dev
 
-# bun
-bun run dev
+# Using pnpm
+pnpm dev
 ```
 
-## Production
+# Building for Production
 
-Build the application for production:
+Build the project for production:
 
 ```bash
-# npm
+# Using npm
 npm run build
 
-# pnpm
-pnpm build
-
-# yarn
+# Using yarn
 yarn build
 
-# bun
-bun run build
+# Using pnpm
+pnpm build
 ```
 
-Locally preview production build:
+Preview the production build:
 
 ```bash
-# npm
+# Using npm
 npm run preview
 
-# pnpm
-pnpm preview
-
-# yarn
+# Using yarn
 yarn preview
 
-# bun
-bun run preview
+# Using pnpm
+pnpm preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+# Project Structure
+ - `app.vue` - Main application component
+ - `assets/` - Static assets like CSS
+ - `components/` - Vue components
+ - `pages/` - Application pages and routes
+ - `public/` - Public static files
+ - `nuxt.config.ts` - Nuxt configuration
+ 
+# License
+This project is licensed under a custom license. See the LICENSE file for details.
+
+# Author
+Sandu Dorogan
