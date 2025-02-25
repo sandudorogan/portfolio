@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     'nuxt-schema-org',
     '@nuxt/fonts',
     '@nuxtjs/tailwindcss',
+    'motion-v/nuxt'
   ],
   tailwindcss: {
     exposeConfig: true,
