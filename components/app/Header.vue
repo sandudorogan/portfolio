@@ -3,7 +3,7 @@
     <div class="container flex items-center justify-between h-16 px-4 mx-auto">
       <!-- Logo -->
       <NuxtLink to="/" class="text-xl font-bold">
-        <span class="text-transparent bg-gradient-to-r from-primary to-secondary bg-clip-text">Portfolio</span>
+        <span class="text-transparent bg-gradient-to-r from-primary to-secondary bg-clip-text w-[102px] h-[35px] inline-block">Portfolio</span>
       </NuxtLink>
 
       <!-- Navigation Links -->

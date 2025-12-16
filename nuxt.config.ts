@@ -20,6 +20,15 @@ export default defineNuxtConfig({
     exposeConfig: true,
     viewer: true,
   },
+  fonts: {
+    families: [
+      {
+        name: 'Mukta Mahee',
+        provider: 'google',
+        weights: [400, 700],
+      },
+    ],
+  },
   ui: {
     global: true,
     disableGlobalStyles: false
