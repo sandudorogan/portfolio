@@ -21,8 +21,7 @@ This project is a personal portfolio website that showcases interactive elements
 
 ## Prerequisites
 
-- Node.js (v16 or newer)
-- npm, yarn, or pnpm
+- [Bun](https://bun.sh/) (v1.3 or newer)
 
 ## Setup
 
@@ -33,31 +32,18 @@ git clone https://github.com/yourusername/portfolio.git
 cd portfolio
 ```
 
-## Install dependencies:
+2. Install dependencies:
 
 ```bash
-# Using npm
-npm install
-
-# Using yarn
-yarn install
-
-# Using pnpm
-pnpm install
+bun install
 ```
 
-## Development 
+## Development
 
 Start the development server on `http://localhost:3000`:
+
 ```bash
-# Using npm
-npm run dev
-
-# Using yarn
-yarn dev
-
-# Using pnpm
-pnpm dev
+bun run dev
 ```
 
 ## Building for Production
@@ -65,39 +51,28 @@ pnpm dev
 Build the project for production:
 
 ```bash
-# Using npm
-npm run build
-
-# Using yarn
-yarn build
-
-# Using pnpm
-pnpm build
+bun run build
 ```
 
 Preview the production build:
 
 ```bash
-# Using npm
-npm run preview
-
-# Using yarn
-yarn preview
-
-# Using pnpm
-pnpm preview
+bun run preview
 ```
 
 ## Project Structure
- - `app.vue` - Main application component
- - `assets/` - Static assets like CSS
- - `components/` - Vue components
- - `pages/` - Application pages and routes
- - `public/` - Public static files
- - `nuxt.config.ts` - Nuxt configuration
- 
+
+- `app.vue` - Main application component
+- `assets/` - Static assets like CSS
+- `components/` - Vue components
+- `pages/` - Application pages and routes
+- `public/` - Public static files
+- `nuxt.config.ts` - Nuxt configuration
+
 ## License
+
 This project is licensed under a custom license. See the LICENSE file for details.
 
 ## Author
+
 Sandu Dorogan
