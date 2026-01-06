@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// Developer's information
 const developerInfo = {
     name: 'John Doe',
     title: 'Full Stack Web Developer',
@@ -20,21 +19,21 @@ const developerInfo = {
     ],
     experience: [
         {
-            role: 'Senior Web Developer',
-            company: 'Tech Innovations Inc.',
-            period: '2020 - Present',
+            date: '2020 - Present',
+            title: 'Senior Web Developer',
+            subtitle: 'Tech Innovations Inc.',
             description: 'Lead developer for enterprise-level web applications using NuxtJS, VueJS, and AWS. Implemented CI/CD pipelines and optimized application performance.'
         },
         {
-            role: 'Full Stack Developer',
-            company: 'Digital Solutions LLC',
-            period: '2018 - 2020',
+            date: '2018 - 2020',
+            title: 'Full Stack Developer',
+            subtitle: 'Digital Solutions LLC',
             description: 'Developed and maintained multiple client projects using VueJS and Clojure. Collaborated with design teams to implement responsive UI/UX.'
         },
         {
-            role: 'Web Developer',
-            company: 'Creative Web Agency',
-            period: '2016 - 2018',
+            date: '2016 - 2018',
+            title: 'Web Developer',
+            subtitle: 'Creative Web Agency',
             description: 'Created custom web solutions for clients across various industries. Utilized Docker for consistent deployment environments.'
         }
     ],
@@ -48,7 +47,6 @@ const developerInfo = {
     ]
 };
 
-// Meta for SEO
 useHead({
     title: 'About Me | Portfolio',
     meta: [
@@ -59,30 +57,55 @@ useHead({
 
 <template>
     <div class="pt-16">
-        <!-- Hero Section -->
-        <section class="py-20 bg-gradient-to-b from-background to-background/80">
-            <div class="container px-4 mx-auto">
+        <!-- Hero Section with Aurora Background -->
+        <section class="relative py-24 overflow-hidden">
+            <UiAuroraBg class="absolute inset-0" :show-radial-gradient="true" />
+            <div class="absolute inset-0 bg-black/30" />
+
+            <div class="relative z-10 mx-auto px-4 container">
                 <div class="flex flex-col items-center gap-8 md:flex-row md:items-start">
-                    <div
-                        class="flex items-center justify-center w-40 h-40 overflow-hidden border rounded-full md:w-48 md:h-48 bg-primary/5">
-                        <UIcon name="i-heroicons-user" class="w-24 h-24 text-primary/30" />
-                    </div>
+                    <!-- Profile Image with 3D effect -->
+                    <UiBlurReveal :delay="0.2">
+                        <UiCard3D :rotation-factor="12" :show-glare="true" :glare-opacity="0.2">
+                            <div class="relative">
+                                <div class="flex items-center justify-center w-48 h-48 overflow-hidden rounded-2xl bg-gradient-to-br from-violet-500/20 to-pink-500/20 border border-neutral-700/50">
+                                    <UIcon name="i-heroicons-user" class="w-24 h-24 text-violet-400/50" />
+                                </div>
+                                <UiBorderBeam :size="150" :duration="8" color-from="#8b5cf6" color-to="#ec4899" />
+                            </div>
+                        </UiCard3D>
+                    </UiBlurReveal>
 
                     <div class="flex-1 text-center md:text-left">
-                        <UiBlurReveal :delay="0.2">
-                            <h1 class="mb-2 text-3xl font-bold md:text-4xl">{{ developerInfo.name }}</h1>
-                            <p class="mb-4 text-xl text-primary">{{ developerInfo.title }}</p>
-                            <p class="max-w-2xl mb-6 text-neutral-300">{{ developerInfo.bio }}</p>
+                        <UiBlurReveal :delay="0.3">
+                            <UiSparklesText :sparkle-count="10" :colors="['#8b5cf6', '#ec4899']">
+                                <h1 class="mb-2 text-4xl md:text-5xl font-bold bg-clip-text bg-gradient-to-r from-white to-neutral-300 text-transparent">
+                                    {{ developerInfo.name }}
+                                </h1>
+                            </UiSparklesText>
+
+                            <p class="mb-4 text-xl bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400 text-transparent font-medium">
+                                {{ developerInfo.title }}
+                            </p>
+
+                            <p class="max-w-2xl mb-6 text-neutral-300 text-lg">
+                                {{ developerInfo.bio }}
+                            </p>
 
                             <div class="flex flex-wrap justify-center gap-4 md:justify-start">
-                                <div class="flex items-center gap-1 text-sm">
-                                    <UIcon name="i-heroicons-map-pin" class="w-4 h-4 text-primary" />
-                                    <span>{{ developerInfo.location }}</span>
-                                </div>
-                                <div class="flex items-center gap-1 text-sm">
-                                    <UIcon name="i-heroicons-envelope" class="w-4 h-4 text-primary" />
-                                    <span>{{ developerInfo.email }}</span>
-                                </div>
+                                <UiGlareCard :glare-opacity="0.2" class="group">
+                                    <div class="flex items-center gap-2 px-4 py-2 bg-neutral-900/80 rounded-lg border border-neutral-700/50">
+                                        <UIcon name="i-heroicons-map-pin" class="w-4 h-4 text-violet-400" />
+                                        <span class="text-neutral-300">{{ developerInfo.location }}</span>
+                                    </div>
+                                </UiGlareCard>
+
+                                <UiGlareCard :glare-opacity="0.2" class="group">
+                                    <div class="flex items-center gap-2 px-4 py-2 bg-neutral-900/80 rounded-lg border border-neutral-700/50">
+                                        <UIcon name="i-heroicons-envelope" class="w-4 h-4 text-pink-400" />
+                                        <span class="text-neutral-300">{{ developerInfo.email }}</span>
+                                    </div>
+                                </UiGlareCard>
                             </div>
                         </UiBlurReveal>
                     </div>
@@ -90,105 +113,169 @@ useHead({
             </div>
         </section>
 
-        <!-- Skills Section -->
-        <section class="py-16 bg-gradient-to-b from-background/80 to-background">
-            <div class="container px-4 mx-auto">
-                <UiBlurReveal :delay="0.3">
-                    <h2 class="mb-12 text-2xl font-bold text-center md:text-3xl">
-                        <UiTextHighlight class="py-1 rounded-xl bg-gradient-to-r from-primary to-secondary">
-                            Professional Skills
-                        </UiTextHighlight>
-                    </h2>
+        <!-- Skills Section with Animated Progress Bars -->
+        <section class="relative py-24 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-background via-neutral-900/50 to-background" />
 
-                    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-                        <div v-for="(skill, index) in developerInfo.skills" :key="index" class="space-y-2">
-                            <div class="flex items-center justify-between">
-                                <span class="font-medium">{{ skill.name }}</span>
-                                <span class="text-sm text-neutral-400">{{ skill.level }}%</span>
-                            </div>
-                            <div class="w-full h-2 overflow-hidden rounded-full bg-background/50">
-                                <div class="h-full rounded-full bg-gradient-to-r from-primary to-secondary"
-                                    :style="{ width: `${skill.level}%` }" />
-                            </div>
-                        </div>
+            <div class="relative z-10 mx-auto px-4 container">
+                <UiBlurReveal :delay="0.3">
+                    <div class="text-center mb-16">
+                        <h2 class="mb-4 text-3xl md:text-4xl font-bold">
+                            <UiSparklesText :sparkle-count="8" :colors="['#8b5cf6', '#ec4899']">
+                                <span class="bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400 text-transparent">
+                                    Professional Skills
+                                </span>
+                            </UiSparklesText>
+                        </h2>
+                    </div>
+
+                    <!-- Skills with Circular Progress -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-12">
+                        <ClientOnly>
+                            <UiBlurReveal v-for="(skill, index) in developerInfo.skills" :key="index" :delay="0.2 + index * 0.1">
+                                <UiCardSpotlight
+                                    class="flex flex-col items-center p-4"
+                                    spotlight-color="rgba(139, 92, 246, 0.15)"
+                                >
+                                    <UiAnimatedCircularProgressBar
+                                        :value="skill.level"
+                                        :size="100"
+                                        :stroke-width="6"
+                                        track-color="rgba(255, 255, 255, 0.1)"
+                                        progress-color="url(#gradient)"
+                                    />
+                                    <span class="mt-3 text-sm text-center text-neutral-300 font-medium">{{ skill.name }}</span>
+
+                                    <!-- SVG Gradient Definition -->
+                                    <svg class="absolute w-0 h-0">
+                                        <defs>
+                                            <linearGradient :id="`gradient-${index}`" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                <stop offset="0%" stop-color="#8b5cf6" />
+                                                <stop offset="100%" stop-color="#ec4899" />
+                                            </linearGradient>
+                                        </defs>
+                                    </svg>
+                                </UiCardSpotlight>
+                            </UiBlurReveal>
+                        </ClientOnly>
                     </div>
                 </UiBlurReveal>
             </div>
         </section>
 
-        <!-- Experience Section -->
-        <section class="py-16 bg-gradient-to-b from-background to-background/80">
-            <div class="container px-4 mx-auto">
-                <UiBlurReveal :delay="0.3">
-                    <h2 class="mb-12 text-2xl font-bold text-center md:text-3xl">
-                        <UiTextHighlight class="py-1 rounded-xl bg-gradient-to-r from-blue-500 to-emerald-500">
-                            Work Experience
-                        </UiTextHighlight>
-                    </h2>
+        <!-- Experience Section with Timeline -->
+        <section class="relative py-24 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+            <UiMeteorEffect :count="10" color="#8b5cf6" class="absolute inset-0" />
 
-                    <div class="space-y-8">
-                        <div v-for="(exp, index) in developerInfo.experience" :key="index"
-                            class="p-6 transition-all duration-300 border rounded-lg bg-background/50 hover:border-primary">
-                            <div class="flex flex-col justify-between gap-2 mb-4 md:flex-row md:items-center">
-                                <div>
-                                    <h3 class="text-xl font-semibold">{{ exp.role }}</h3>
-                                    <p class="text-primary">{{ exp.company }}</p>
-                                </div>
-                                <span class="px-3 py-1 text-sm border rounded-full bg-background/80">{{ exp.period
-                                    }}</span>
-                            </div>
-                            <p class="text-neutral-300">{{ exp.description }}</p>
-                        </div>
+            <div class="relative z-10 mx-auto px-4 container">
+                <UiBlurReveal :delay="0.3">
+                    <div class="text-center mb-16">
+                        <h2 class="mb-4 text-3xl md:text-4xl font-bold">
+                            <UiSparklesText :sparkle-count="8" :colors="['#3b82f6', '#10b981']">
+                                <span class="bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400 text-transparent">
+                                    Work Experience
+                                </span>
+                            </UiSparklesText>
+                        </h2>
                     </div>
                 </UiBlurReveal>
+
+                <UiTimeline :items="developerInfo.experience" class="max-w-4xl mx-auto" />
             </div>
         </section>
 
         <!-- Education Section -->
-        <section class="py-16 bg-gradient-to-b from-background/80 to-background">
-            <div class="container px-4 mx-auto">
-                <UiBlurReveal :delay="0.3">
-                    <h2 class="mb-12 text-2xl font-bold text-center md:text-3xl">
-                        <UiTextHighlight class="py-1 rounded-xl bg-gradient-to-r from-pink-500 to-violet-500">
-                            Education
-                        </UiTextHighlight>
-                    </h2>
+        <section class="relative py-24 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-background/95 via-neutral-900/50 to-background" />
 
-                    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-                        <div v-for="(edu, index) in developerInfo.education" :key="index"
-                            class="p-6 transition-all duration-300 border rounded-lg bg-background/50 hover:border-primary">
-                            <div class="flex items-center justify-between mb-2">
-                                <h3 class="text-lg font-semibold">{{ edu.degree }}</h3>
-                                <span class="text-sm text-neutral-400">{{ edu.year }}</span>
-                            </div>
-                            <p class="text-primary">{{ edu.school }}</p>
-                        </div>
+            <div class="relative z-10 mx-auto px-4 container">
+                <UiBlurReveal :delay="0.3">
+                    <div class="text-center mb-16">
+                        <h2 class="mb-4 text-3xl md:text-4xl font-bold">
+                            <UiSparklesText :sparkle-count="8" :colors="['#ec4899', '#8b5cf6']">
+                                <span class="bg-clip-text bg-gradient-to-r from-pink-400 to-violet-400 text-transparent">
+                                    Education
+                                </span>
+                            </UiSparklesText>
+                        </h2>
                     </div>
                 </UiBlurReveal>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    <UiBlurReveal v-for="(edu, index) in developerInfo.education" :key="index" :delay="0.3 + index * 0.1">
+                        <UiCard3D :rotation-factor="8" :show-glare="true" :glare-opacity="0.15" class="h-full">
+                            <UiCardSpotlight
+                                class="h-full"
+                                spotlight-color="rgba(236, 72, 153, 0.15)"
+                            >
+                                <div class="p-6">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <div class="p-3 rounded-xl bg-gradient-to-br from-pink-500/20 to-violet-500/20">
+                                            <UIcon name="i-heroicons-academic-cap" class="w-6 h-6 text-pink-400" />
+                                        </div>
+                                        <span class="text-sm text-neutral-400 bg-neutral-800/50 px-3 py-1 rounded-full">
+                                            {{ edu.year }}
+                                        </span>
+                                    </div>
+                                    <h3 class="text-xl font-semibold text-white mb-2">{{ edu.degree }}</h3>
+                                    <p class="text-pink-400">{{ edu.school }}</p>
+                                </div>
+                            </UiCardSpotlight>
+                        </UiCard3D>
+                    </UiBlurReveal>
+                </div>
             </div>
         </section>
 
         <!-- CTA Section -->
-        <section class="py-16 bg-gradient-to-t from-background to-background/90">
-            <div class="container px-4 mx-auto">
-                <div class="relative p-8 overflow-hidden border rounded-lg md:p-12 bg-background/40">
-                    <UiBlurReveal :delay="0.3">
-                        <div class="max-w-3xl mx-auto text-center">
-                            <h2 class="mb-4 text-2xl font-bold md:text-3xl">Interested in working together?</h2>
-                            <p class="max-w-2xl mx-auto mb-8 text-neutral-300">
-                                Let's discuss how I can help bring your project to life. I'm always open to new
-                                opportunities and challenges.
-                            </p>
-                            <UButton to="/contact" size="lg" class="px-8">Contact Me</UButton>
+        <section class="relative py-24 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-background" />
+
+            <div class="relative z-10 mx-auto px-4 container">
+                <UiBlurReveal :delay="0.3">
+                    <UiNeonBorder color="#10b981" :glow-intensity="15" class="mx-auto max-w-3xl">
+                        <div class="relative p-8 md:p-12 overflow-hidden rounded-xl">
+                            <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-blue-500/5" />
+
+                            <div class="relative z-10 text-center">
+                                <UiSparklesText :sparkle-count="10" :colors="['#10b981', '#3b82f6']">
+                                    <h2 class="mb-4 text-2xl md:text-3xl font-bold text-white">
+                                        Interested in working together?
+                                    </h2>
+                                </UiSparklesText>
+
+                                <p class="max-w-2xl mx-auto mb-8 text-neutral-400">
+                                    Let's discuss how I can help bring your project to life. I'm always open to new
+                                    opportunities and challenges.
+                                </p>
+
+                                <UiGradientButton
+                                    as="NuxtLink"
+                                    to="/contact"
+                                    from-color="#10b981"
+                                    via-color="#3b82f6"
+                                    to-color="#10b981"
+                                >
+                                    <span class="flex items-center gap-2">
+                                        <UIcon name="i-heroicons-envelope" class="w-5 h-5" />
+                                        Contact Me
+                                    </span>
+                                </UiGradientButton>
+                            </div>
+
+                            <UiBorderBeam :size="350" :duration="12" color-from="#10b981" color-to="#3b82f6" />
                         </div>
-                    </UiBlurReveal>
-                    <UiBorderBeam :size="350" :duration="15" :delay="2" :border-width="2" />
-                </div>
+                    </UiNeonBorder>
+                </UiBlurReveal>
             </div>
         </section>
     </div>
 </template>
 
 <style scoped>
-/* Add any custom styles here */
+/* Custom gradient for progress bars */
+:deep(.animated-circular-progress circle:last-child) {
+    stroke: url(#gradient) !important;
+}
 </style>

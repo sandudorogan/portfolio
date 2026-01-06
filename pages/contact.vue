@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// Form data
 const form = reactive({
     name: '',
     email: '',
@@ -10,29 +9,32 @@ const form = reactive({
     error: false
 });
 
-// Contact information
+const showConfetti = ref(false);
+
 const contactInfo = [
     {
         icon: 'i-heroicons-envelope',
         title: 'Email',
         value: 'contact@example.com',
-        link: 'mailto:contact@example.com'
+        link: 'mailto:contact@example.com',
+        color: 'violet'
     },
     {
         icon: 'i-heroicons-phone',
         title: 'Phone',
         value: '+1 (555) 123-4567',
-        link: 'tel:+15551234567'
+        link: 'tel:+15551234567',
+        color: 'pink'
     },
     {
         icon: 'i-heroicons-map-pin',
         title: 'Location',
         value: 'San Francisco, CA',
-        link: null
+        link: null,
+        color: 'emerald'
     }
 ];
 
-// Social links
 const socialLinks = [
     {
         name: 'GitHub',
@@ -51,7 +53,6 @@ const socialLinks = [
     }
 ];
 
-// Handle form submission
 const handleSubmit = async () => {
     if (!form.name || !form.email || !form.message) {
         return;
@@ -59,10 +60,10 @@ const handleSubmit = async () => {
 
     form.loading = true;
 
-    // Simulate form submission (in a real application, you would send this to a server)
     try {
         await new Promise(resolve => setTimeout(resolve, 1500));
         form.success = true;
+        showConfetti.value = true;
         form.name = '';
         form.email = '';
         form.subject = '';
@@ -72,15 +73,14 @@ const handleSubmit = async () => {
     } finally {
         form.loading = false;
 
-        // Reset success/error messages after some time
         setTimeout(() => {
             form.success = false;
             form.error = false;
+            showConfetti.value = false;
         }, 5000);
     }
 };
 
-// Meta for SEO
 useHead({
     title: 'Contact Me | Portfolio',
     meta: [
@@ -91,13 +91,31 @@ useHead({
 
 <template>
     <div class="pt-16">
+        <!-- Confetti Effect -->
+        <ClientOnly>
+            <UiConfetti
+                :active="showConfetti"
+                :particle-count="100"
+                :colors="['#8b5cf6', '#ec4899', '#10b981', '#3b82f6', '#f59e0b']"
+                :duration="4000"
+            />
+        </ClientOnly>
+
         <!-- Hero Section -->
-        <section class="relative py-20 bg-gradient-to-b from-background to-background/80">
-            <div class="container px-4 mx-auto">
+        <section class="relative py-24 overflow-hidden">
+            <UiAuroraBg class="absolute inset-0" :show-radial-gradient="true" />
+            <div class="absolute inset-0 bg-black/30" />
+            <UiMeteorEffect :count="10" color="#8b5cf6" class="absolute inset-0 z-[1]" />
+
+            <div class="relative z-10 mx-auto px-4 container">
                 <UiBlurReveal :delay="0.2">
                     <div class="max-w-3xl mx-auto text-center">
-                        <h1 class="mb-4 text-3xl font-bold md:text-4xl">Get In Touch</h1>
-                        <p class="max-w-xl mx-auto mb-8 text-neutral-300">
+                        <UiSparklesText :sparkle-count="12" :colors="['#8b5cf6', '#ec4899', '#10b981']">
+                            <h1 class="mb-4 text-4xl md:text-5xl font-bold bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-neutral-400 text-transparent">
+                                Get In Touch
+                            </h1>
+                        </UiSparklesText>
+                        <p class="max-w-xl mx-auto text-neutral-300 text-lg">
                             Have a project in mind or want to discuss a potential collaboration? Feel free to reach out
                             through the form below or via any of my contact details.
                         </p>
@@ -107,38 +125,86 @@ useHead({
         </section>
 
         <!-- Contact Section -->
-        <section class="py-16 bg-gradient-to-b from-background/80 to-background">
-            <div class="container px-4 mx-auto">
-                <div class="grid grid-cols-1 gap-10 md:grid-cols-3">
+        <section class="relative py-24 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-background via-neutral-900/50 to-background" />
+
+            <div class="relative z-10 mx-auto px-4 container">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                     <!-- Contact Information -->
-                    <div class="space-y-10 md:col-span-1">
+                    <div class="space-y-8 md:col-span-1">
                         <UiBlurReveal :delay="0.3">
-                            <h2 class="mb-6 text-xl font-semibold">Contact Information</h2>
+                            <h2 class="mb-6 text-xl font-semibold">
+                                <span class="bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400 text-transparent">
+                                    Contact Information
+                                </span>
+                            </h2>
 
                             <div class="space-y-4">
-                                <div v-for="(item, index) in contactInfo" :key="index"
-                                    class="flex items-start p-4 transition-all duration-300 border rounded-lg hover:border-primary bg-background/50">
-                                    <div
-                                        class="flex items-center justify-center w-10 h-10 mr-4 rounded-full bg-primary/10">
-                                        <UIcon :name="item.icon" class="w-5 h-5 text-primary" />
-                                    </div>
-                                    <div>
-                                        <h3 class="text-sm font-medium text-neutral-400">{{ item.title }}</h3>
-                                        <p v-if="item.link" class="mt-1 transition-colors hover:text-primary">
-                                            <a :href="item.link">{{ item.value }}</a>
-                                        </p>
-                                        <p v-else class="mt-1">{{ item.value }}</p>
-                                    </div>
-                                </div>
+                                <UiCard3D
+                                    v-for="(item, index) in contactInfo"
+                                    :key="index"
+                                    :rotation-factor="6"
+                                    :show-glare="true"
+                                    :glare-opacity="0.1"
+                                >
+                                    <UiCardSpotlight
+                                        :spotlight-color="item.color === 'violet' ? 'rgba(139, 92, 246, 0.15)' : item.color === 'pink' ? 'rgba(236, 72, 153, 0.15)' : 'rgba(16, 185, 129, 0.15)'"
+                                        class="p-0"
+                                    >
+                                        <div class="flex items-start p-4">
+                                            <div
+                                                class="flex items-center justify-center w-12 h-12 mr-4 rounded-xl"
+                                                :class="{
+                                                    'bg-gradient-to-br from-violet-500/20 to-violet-500/10': item.color === 'violet',
+                                                    'bg-gradient-to-br from-pink-500/20 to-pink-500/10': item.color === 'pink',
+                                                    'bg-gradient-to-br from-emerald-500/20 to-emerald-500/10': item.color === 'emerald'
+                                                }"
+                                            >
+                                                <UIcon
+                                                    :name="item.icon"
+                                                    class="w-6 h-6"
+                                                    :class="{
+                                                        'text-violet-400': item.color === 'violet',
+                                                        'text-pink-400': item.color === 'pink',
+                                                        'text-emerald-400': item.color === 'emerald'
+                                                    }"
+                                                />
+                                            </div>
+                                            <div>
+                                                <h3 class="text-sm font-medium text-neutral-400">{{ item.title }}</h3>
+                                                <p v-if="item.link" class="mt-1 text-white hover:text-violet-400 transition-colors">
+                                                    <a :href="item.link">{{ item.value }}</a>
+                                                </p>
+                                                <p v-else class="mt-1 text-white">{{ item.value }}</p>
+                                            </div>
+                                        </div>
+                                    </UiCardSpotlight>
+                                </UiCard3D>
                             </div>
                         </UiBlurReveal>
 
                         <UiBlurReveal :delay="0.4">
-                            <h2 class="mb-6 text-xl font-semibold">Follow Me</h2>
+                            <h2 class="mb-6 text-xl font-semibold">
+                                <span class="bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400 text-transparent">
+                                    Follow Me
+                                </span>
+                            </h2>
 
                             <div class="flex flex-wrap gap-3">
-                                <UButton v-for="link in socialLinks" :key="link.name" :icon="link.icon" color="gray"
-                                    variant="ghost" :to="link.url" target="_blank" class="hover:text-primary" />
+                                <UiGlareCard
+                                    v-for="link in socialLinks"
+                                    :key="link.name"
+                                    :glare-opacity="0.2"
+                                    class="group"
+                                >
+                                    <a
+                                        :href="link.url"
+                                        target="_blank"
+                                        class="flex items-center justify-center w-12 h-12 rounded-xl bg-neutral-900/80 border border-neutral-700/50 hover:border-violet-500/50 transition-all duration-300"
+                                    >
+                                        <UIcon :name="link.icon" class="w-5 h-5 text-neutral-400 group-hover:text-violet-400 transition-colors" />
+                                    </a>
+                                </UiGlareCard>
                             </div>
                         </UiBlurReveal>
                     </div>
@@ -146,73 +212,160 @@ useHead({
                     <!-- Contact Form -->
                     <div class="relative md:col-span-2">
                         <UiBlurReveal :delay="0.3">
-                            <div class="p-6 border rounded-lg md:p-8 bg-background/50">
-                                <h2 class="mb-6 text-xl font-semibold">Send a Message</h2>
+                            <UiNeonBorder color="#8b5cf6" :glow-intensity="10" class="relative">
+                                <div class="p-6 md:p-8 rounded-xl bg-neutral-900/50 backdrop-blur-sm">
+                                    <h2 class="mb-6 text-xl font-semibold">
+                                        <UiSparklesText :sparkle-count="6" :colors="['#8b5cf6', '#ec4899']">
+                                            <span class="text-white">Send a Message</span>
+                                        </UiSparklesText>
+                                    </h2>
 
-                                <form @submit.prevent="handleSubmit">
-                                    <div class="grid grid-cols-1 gap-6 mb-6 md:grid-cols-2">
-                                        <UFormGroup label="Your Name">
-                                            <UInput v-model="form.name" placeholder="John Doe" required />
+                                    <form @submit.prevent="handleSubmit" class="space-y-6">
+                                        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                                            <UFormGroup label="Your Name">
+                                                <UInput
+                                                    v-model="form.name"
+                                                    placeholder="John Doe"
+                                                    required
+                                                    class="bg-neutral-800/50 border-neutral-700 focus:border-violet-500 transition-colors"
+                                                />
+                                            </UFormGroup>
+
+                                            <UFormGroup label="Your Email">
+                                                <UInput
+                                                    v-model="form.email"
+                                                    type="email"
+                                                    placeholder="john@example.com"
+                                                    required
+                                                    class="bg-neutral-800/50 border-neutral-700 focus:border-violet-500 transition-colors"
+                                                />
+                                            </UFormGroup>
+                                        </div>
+
+                                        <UFormGroup label="Subject">
+                                            <UInput
+                                                v-model="form.subject"
+                                                placeholder="Project Inquiry"
+                                                class="bg-neutral-800/50 border-neutral-700 focus:border-violet-500 transition-colors"
+                                            />
                                         </UFormGroup>
 
-                                        <UFormGroup label="Your Email">
-                                            <UInput v-model="form.email" type="email" placeholder="john@example.com"
-                                                required />
+                                        <UFormGroup label="Message">
+                                            <UTextarea
+                                                v-model="form.message"
+                                                placeholder="Tell me about your project..."
+                                                :rows="5"
+                                                required
+                                                class="bg-neutral-800/50 border-neutral-700 focus:border-violet-500 transition-colors"
+                                            />
                                         </UFormGroup>
-                                    </div>
 
-                                    <UFormGroup label="Subject" class="mb-6">
-                                        <UInput v-model="form.subject" placeholder="Project Inquiry" />
-                                    </UFormGroup>
+                                        <div>
+                                            <UiShimmerButton
+                                                type="submit"
+                                                :disabled="form.loading"
+                                                class="w-full md:w-auto !px-8"
+                                                shimmer-color="rgba(139, 92, 246, 0.3)"
+                                            >
+                                                <span v-if="form.loading" class="flex items-center gap-2">
+                                                    <UIcon name="i-heroicons-arrow-path" class="w-4 h-4 animate-spin" />
+                                                    Sending...
+                                                </span>
+                                                <span v-else class="flex items-center gap-2">
+                                                    <UIcon name="i-heroicons-paper-airplane" class="w-4 h-4" />
+                                                    Send Message
+                                                </span>
+                                            </UiShimmerButton>
 
-                                    <UFormGroup label="Message" class="mb-6">
-                                        <UTextarea v-model="form.message" placeholder="Tell me about your project..."
-                                            :rows="5" required />
-                                    </UFormGroup>
+                                            <!-- Success Message -->
+                                            <ClientOnly>
+                                                <Motion
+                                                    v-if="form.success"
+                                                    :initial="{ opacity: 0, y: -10 }"
+                                                    :animate="{ opacity: 1, y: 0 }"
+                                                    :exit="{ opacity: 0, y: -10 }"
+                                                    class="mt-4 p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/30"
+                                                >
+                                                    <div class="flex items-center gap-3">
+                                                        <div class="p-2 rounded-full bg-emerald-500/20">
+                                                            <UIcon name="i-heroicons-check-circle" class="w-5 h-5 text-emerald-400" />
+                                                        </div>
+                                                        <div>
+                                                            <h4 class="font-medium text-emerald-400">Message Sent!</h4>
+                                                            <p class="text-sm text-neutral-400">Thanks for reaching out. I'll get back to you soon.</p>
+                                                        </div>
+                                                    </div>
+                                                </Motion>
 
-                                    <div>
-                                        <UButton type="submit" :loading="form.loading" :disabled="form.loading"
-                                            class="w-full md:w-auto">
-                                            Send Message
-                                        </UButton>
+                                                <Motion
+                                                    v-if="form.error"
+                                                    :initial="{ opacity: 0, y: -10 }"
+                                                    :animate="{ opacity: 1, y: 0 }"
+                                                    :exit="{ opacity: 0, y: -10 }"
+                                                    class="mt-4 p-4 rounded-lg bg-red-500/10 border border-red-500/30"
+                                                >
+                                                    <div class="flex items-center gap-3">
+                                                        <div class="p-2 rounded-full bg-red-500/20">
+                                                            <UIcon name="i-heroicons-exclamation-circle" class="w-5 h-5 text-red-400" />
+                                                        </div>
+                                                        <div>
+                                                            <h4 class="font-medium text-red-400">Error</h4>
+                                                            <p class="text-sm text-neutral-400">Something went wrong. Please try again later.</p>
+                                                        </div>
+                                                    </div>
+                                                </Motion>
+                                            </ClientOnly>
+                                        </div>
+                                    </form>
+                                </div>
 
-                                        <UAlert v-if="form.success" class="mt-4" color="green" variant="soft"
-                                            icon="i-heroicons-check-circle" title="Message Sent!"
-                                            description="Thanks for reaching out. I'll get back to you as soon as possible." />
-
-                                        <UAlert v-if="form.error" class="mt-4" color="red" variant="soft"
-                                            icon="i-heroicons-exclamation-circle" title="Error"
-                                            description="Something went wrong. Please try again later." />
-                                    </div>
-                                </form>
-                            </div>
+                                <UiBorderBeam :size="300" :duration="12" color-from="#8b5cf6" color-to="#ec4899" />
+                            </UiNeonBorder>
                         </UiBlurReveal>
-
-                        <UiBorderBeam :size="300" :duration="15" :delay="2" :border-width="2" />
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Map Section (Placeholder) -->
-        <section class="py-16 bg-gradient-to-t from-background to-background/80">
-            <div class="container px-4 mx-auto">
+        <!-- Map Section -->
+        <section class="relative py-24 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-background" />
+
+            <div class="relative z-10 mx-auto px-4 container">
                 <UiBlurReveal :delay="0.3">
-                    <div class="overflow-hidden border rounded-lg h-80 bg-background/30">
-                        <div
-                            class="flex items-center justify-center h-full bg-gradient-to-br from-primary/5 to-secondary/5">
-                            <div class="text-center">
-                                <UIcon name="i-heroicons-map" class="w-12 h-12 mx-auto mb-4 text-primary/20" />
-                                <p class="text-neutral-400">Map Placeholder</p>
+                    <UiCard3D :rotation-factor="5" :show-glare="true" :glare-opacity="0.1">
+                        <div class="overflow-hidden rounded-xl border border-neutral-700/50 h-80">
+                            <div class="flex items-center justify-center h-full bg-gradient-to-br from-violet-500/5 via-neutral-900/80 to-pink-500/5">
+                                <div class="text-center">
+                                    <div class="mb-4 p-4 rounded-full bg-neutral-800/50 inline-block">
+                                        <UIcon name="i-heroicons-map" class="w-12 h-12 text-violet-400/50" />
+                                    </div>
+                                    <p class="text-neutral-400">Interactive Map Coming Soon</p>
+                                    <p class="text-sm text-neutral-500 mt-2">San Francisco, CA</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </UiCard3D>
                 </UiBlurReveal>
             </div>
         </section>
     </div>
 </template>
 
+<script lang="ts">
+import {Motion} from 'motion-v'
+
+export default {
+    components: {
+        Motion
+    }
+}
+</script>
+
 <style scoped>
-/* Add any custom styles here */
+/* Input focus styles */
+:deep(.ui-input:focus) {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+}
 </style>
