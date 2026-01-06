@@ -7,11 +7,10 @@ interface Project {
 }
 
 interface Testimonial {
-  name: string;
-  position: string;
-  company: string;
-  content: string;
-  image?: string;
+  name: string
+  designation: string
+  quote: string
+  image: string
 }
 
 const projects: Project[] = [
@@ -35,23 +34,23 @@ const projects: Project[] = [
 const testimonials: Testimonial[] = [
   {
     name: 'Jane Smith',
-    position: 'CEO',
-    company: 'TechSolutions Inc.',
-    content: 'Working with this developer was a game-changer for our company. They transformed our initial idea into a polished product that exceeded our expectations.',
+    designation: 'CEO at TechSolutions Inc.',
+    quote: 'Working with this developer was a game-changer for our company. They transformed our initial idea into a polished product that exceeded our expectations.',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=500&fit=crop',
   },
   {
     name: 'Mark Johnson',
-    position: 'CTO',
-    company: 'InnovateCorp',
-    content: 'Exceptional communication skills combined with technical expertise. Our project was delivered on time and with outstanding quality.',
+    designation: 'CTO at InnovateCorp',
+    quote: 'Exceptional communication skills combined with technical expertise. Our project was delivered on time and with outstanding quality.',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&h=500&fit=crop',
   },
   {
     name: 'Sarah Wilson',
-    position: 'Product Manager',
-    company: 'Nexus Systems',
-    content: 'The ability to take our vague concepts and turn them into functional, beautiful web applications is truly remarkable. Highly recommended!',
-  }
-];
+    designation: 'Product Manager at Nexus Systems',
+    quote: 'The ability to take our vague concepts and turn them into functional, beautiful web applications is truly remarkable. Highly recommended!',
+    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&h=500&fit=crop',
+  },
+]
 
 const techStack = [
   { name: 'JavaScript', icon: 'i-logos-javascript' },
@@ -380,9 +379,8 @@ const scrollToElement = (elementId: string) => {
         <UiAnimatedTestimonials
           :testimonials="testimonials"
           :autoplay="true"
-          :autoplay-interval="5000"
-          :show-navigation="true"
-          class="mx-auto max-w-3xl"
+          :duration="5000"
+          class="mx-auto max-w-5xl"
         />
       </ClientOnly>
     </div>
