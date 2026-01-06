@@ -394,36 +394,11 @@ const scrollToElement = (elementId: string) => {
 
     <div class="z-10 relative mx-auto px-4 container">
       <UiBlurReveal :delay="0.3">
-        <div class="relative bg-neutral-900/50 mx-auto p-8 md:p-12 border border-neutral-800 rounded-xl max-w-3xl overflow-hidden text-center">
-          <UiBorderBeam :size="300" :duration="10" :border-width="1.5" color-from="rgb(var(--primary-500))" color-to="rgb(var(--accent-500))" />
-
-          <h2 class="mb-4 font-bold text-white text-3xl md:text-4xl">
-            Ready to bring your ideas to life?
-          </h2>
-
-          <p class="mx-auto mb-8 max-w-2xl text-neutral-400 text-lg">
-            Let's collaborate to transform your vision into a reality. From concept to completion, I'm here to guide
-            you through every step of the development process.
-          </p>
-
-          <div class="flex justify-center">
-            <UiGlowBorder
-              :border-radius="9999"
-              :color="['rgb(var(--primary-500))', 'rgb(var(--accent-500))']"
-              :border-width="2"
-              :duration="15"
-              class="!bg-transparent !p-0 !min-w-fit !min-h-fit hover:scale-105 transition-transform duration-300"
-            >
-              <NuxtLink
-                to="/contact"
-                class="flex items-center gap-2 bg-neutral-900/80 px-8 py-3 rounded-full font-semibold text-white"
-              >
-                <UIcon name="i-heroicons-envelope" class="w-5 h-5" />
-                Get in Touch
-              </NuxtLink>
-            </UiGlowBorder>
-          </div>
-        </div>
+        <AppContactCta
+          title="Ready to bring your ideas to life?"
+          description="Let's collaborate to transform your vision into a reality. From concept to completion, I'm here to guide you through every step of the development process."
+          button-label="Get in Touch"
+        />
       </UiBlurReveal>
     </div>
   </section>
