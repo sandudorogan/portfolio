@@ -2,7 +2,7 @@
   <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-neutral-900/80 border-b border-neutral-800/50">
     <div class="container flex items-center justify-between h-16 px-4 mx-auto">
       <!-- Logo -->
-      <NuxtLink to="/" class="text-xl font-bold text-white hover:text-neutral-300 transition-colors">
+      <NuxtLink to="/" class="text-xl font-bold bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400 text-transparent hover:opacity-80 transition-opacity">
         Portfolio
       </NuxtLink>
 

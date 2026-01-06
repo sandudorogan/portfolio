@@ -54,6 +54,8 @@ const testimonials: Testimonial[] = [
 ];
 
 const techStack = [
+  { name: 'JavaScript', icon: 'i-logos-javascript' },
+  { name: 'TypeScript', icon: 'i-logos-typescript-icon' },
   { name: 'NuxtJS', icon: 'i-logos-nuxt-icon' },
   { name: 'VueJS', icon: 'i-logos-vue' },
   { name: 'React', icon: 'i-logos-react' },
@@ -143,15 +145,21 @@ const scrollToElement = (elementId: string) => {
             </span>
           </NuxtLink>
 
-          <NuxtLink
-            to="/contact"
-            class="group bg-white/5 backdrop-blur-sm px-8 py-3 border-2 border-neutral-500/50 hover:border-violet-500 rounded-full font-semibold text-white hover:scale-105 transition-all duration-300"
+          <UiGlowBorder
+            :border-radius="9999"
+            :color="['#8b5cf6', '#ec4899']"
+            :border-width="2"
+            :duration="15"
+            class="!bg-transparent !p-0 !min-w-fit !min-h-fit hover:scale-105 transition-transform duration-300"
           >
-            <span class="flex items-center gap-2">
+            <NuxtLink
+              to="/contact"
+              class="flex items-center gap-2 bg-neutral-900/80 px-8 py-3 rounded-full font-semibold text-white"
+            >
               Get in Touch
-              <UIcon name="i-heroicons-arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </span>
-          </NuxtLink>
+              <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" />
+            </NuxtLink>
+          </UiGlowBorder>
         </div>
 
         <!-- Safari Mockup with Border Beam -->
@@ -386,37 +394,36 @@ const scrollToElement = (elementId: string) => {
 
     <div class="z-10 relative mx-auto px-4 container">
       <UiBlurReveal :delay="0.3">
-        <UiNeonBorder color="#8b5cf6" :glow-intensity="15" class="mx-auto max-w-4xl">
-          <div class="relative p-8 md:p-12 rounded-xl overflow-hidden">
-            <!-- Background gradient -->
-            <div class="absolute inset-0 bg-gradient-to-br from-violet-500/5 via-transparent to-pink-500/5" />
+        <div class="relative bg-neutral-900/50 mx-auto p-8 md:p-12 border border-neutral-800 rounded-xl max-w-3xl overflow-hidden text-center">
+          <UiBorderBeam :size="300" :duration="10" :border-width="1.5" color-from="#8b5cf6" color-to="#ec4899" />
 
-            <div class="z-10 relative text-center">
-              <h2 class="mb-4 font-bold text-white text-3xl md:text-4xl">
-                Ready to bring your ideas to life?
-              </h2>
+          <h2 class="mb-4 font-bold text-white text-3xl md:text-4xl">
+            Ready to bring your ideas to life?
+          </h2>
 
-              <p class="mx-auto mb-8 max-w-2xl text-neutral-400 text-lg">
-                Let's collaborate to transform your vision into a reality. From concept to completion, I'm here to guide
-                you through every step of the development process.
-              </p>
+          <p class="mx-auto mb-8 max-w-2xl text-neutral-400 text-lg">
+            Let's collaborate to transform your vision into a reality. From concept to completion, I'm here to guide
+            you through every step of the development process.
+          </p>
 
-              <UiShimmerButton
-                as="NuxtLink"
+          <div class="flex justify-center">
+            <UiGlowBorder
+              :border-radius="9999"
+              :color="['#8b5cf6', '#ec4899']"
+              :border-width="2"
+              :duration="15"
+              class="!bg-transparent !p-0 !min-w-fit !min-h-fit hover:scale-105 transition-transform duration-300"
+            >
+              <NuxtLink
                 to="/contact"
-                class="!px-8 !py-4 !text-lg"
-                shimmer-color="rgba(139, 92, 246, 0.3)"
+                class="flex items-center gap-2 bg-neutral-900/80 px-8 py-3 rounded-full font-semibold text-white"
               >
-                <span class="flex items-center gap-2">
-                  <UIcon name="i-heroicons-envelope" class="w-5 h-5" />
-                  Get in Touch
-                </span>
-              </UiShimmerButton>
-            </div>
-
-            <UiBorderBeam :size="400" :duration="12" :delay="2" :border-width="2" color-from="#8b5cf6" color-to="#ec4899" />
+                <UIcon name="i-heroicons-envelope" class="w-5 h-5" />
+                Get in Touch
+              </NuxtLink>
+            </UiGlowBorder>
           </div>
-        </UiNeonBorder>
+        </div>
       </UiBlurReveal>
     </div>
   </section>

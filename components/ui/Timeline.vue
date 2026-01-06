@@ -9,7 +9,7 @@
         :key="index"
         as="div"
         :initial="{ opacity: 0, y: 50 }"
-        :in-view="{ opacity: 1, y: 0 }"
+        :while-in-view="{ opacity: 1, y: 0 }"
         :transition="{ duration: 0.5, delay: index * 0.1 }"
         :class="cn(
           'timeline-item relative flex items-start',

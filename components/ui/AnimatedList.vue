@@ -5,7 +5,7 @@
       :key="item.id || index"
       as="div"
       :initial="{ opacity: 0, y: 20, scale: 0.95 }"
-      :in-view="{ opacity: 1, y: 0, scale: 1 }"
+      :while-in-view="{ opacity: 1, y: 0, scale: 1 }"
       :transition="{
         duration: 0.4,
         delay: index * staggerDelay,
