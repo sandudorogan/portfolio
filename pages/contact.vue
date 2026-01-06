@@ -17,21 +17,21 @@ const contactInfo = [
         title: 'Email',
         value: 'contact@example.com',
         link: 'mailto:contact@example.com',
-        color: 'violet'
+        color: 'primary'
     },
     {
         icon: 'i-heroicons-phone',
         title: 'Phone',
         value: '+1 (555) 123-4567',
         link: 'tel:+15551234567',
-        color: 'pink'
+        color: 'accent'
     },
     {
         icon: 'i-heroicons-map-pin',
         title: 'Location',
         value: 'San Francisco, CA',
         link: null,
-        color: 'emerald'
+        color: 'secondary'
     }
 ];
 
@@ -96,7 +96,7 @@ useHead({
             <UiConfetti
                 :active="showConfetti"
                 :particle-count="100"
-                :colors="['#8b5cf6', '#ec4899', '#10b981', '#3b82f6', '#f59e0b']"
+                :colors="['rgb(var(--primary-500))', 'rgb(var(--accent-500))', 'rgb(var(--secondary-500))']"
                 :duration="4000"
             />
         </ClientOnly>
@@ -105,12 +105,12 @@ useHead({
         <section class="relative py-24 overflow-hidden">
             <UiAuroraBg class="absolute inset-0" :show-radial-gradient="true" />
             <div class="absolute inset-0 bg-black/30" />
-            <UiMeteorEffect :count="10" color="#8b5cf6" class="absolute inset-0 z-[1]" />
+            <UiMeteorEffect :count="10" color="rgb(var(--primary-500))" class="absolute inset-0 z-[1]" />
 
             <div class="relative z-10 mx-auto px-4 container">
                 <UiBlurReveal :delay="0.2">
                     <div class="max-w-3xl mx-auto text-center">
-                        <UiSparklesText :sparkle-count="12" :colors="['#8b5cf6', '#ec4899', '#10b981']">
+                        <UiSparklesText :sparkle-count="12" :colors="['rgb(var(--primary-500))', 'rgb(var(--accent-500))']">
                             <h1 class="mb-4 text-4xl md:text-5xl font-bold bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-neutral-400 text-transparent">
                                 Get In Touch
                             </h1>
@@ -134,7 +134,7 @@ useHead({
                     <div class="space-y-8 md:col-span-1">
                         <UiBlurReveal :delay="0.3">
                             <h2 class="mb-6 text-xl font-semibold">
-                                <span class="bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400 text-transparent">
+                                <span class="bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400 text-transparent">
                                     Contact Information
                                 </span>
                             </h2>
@@ -148,31 +148,31 @@ useHead({
                                     :glare-opacity="0.1"
                                 >
                                     <UiCardSpotlight
-                                        :spotlight-color="item.color === 'violet' ? 'rgba(139, 92, 246, 0.15)' : item.color === 'pink' ? 'rgba(236, 72, 153, 0.15)' : 'rgba(16, 185, 129, 0.15)'"
+                                        :spotlight-color="item.color === 'primary' ? 'rgb(var(--primary-500) / 0.15)' : item.color === 'accent' ? 'rgb(var(--accent-500) / 0.15)' : 'rgb(var(--secondary-500) / 0.15)'"
                                         class="p-0"
                                     >
                                         <div class="flex items-start p-4">
                                             <div
                                                 class="flex items-center justify-center w-12 h-12 mr-4 rounded-xl"
                                                 :class="{
-                                                    'bg-gradient-to-br from-violet-500/20 to-violet-500/10': item.color === 'violet',
-                                                    'bg-gradient-to-br from-pink-500/20 to-pink-500/10': item.color === 'pink',
-                                                    'bg-gradient-to-br from-emerald-500/20 to-emerald-500/10': item.color === 'emerald'
+                                                    'bg-gradient-to-br from-primary-500/20 to-primary-500/10': item.color === 'primary',
+                                                    'bg-gradient-to-br from-accent-500/20 to-accent-500/10': item.color === 'accent',
+                                                    'bg-gradient-to-br from-secondary-500/20 to-secondary-500/10': item.color === 'secondary'
                                                 }"
                                             >
                                                 <UIcon
                                                     :name="item.icon"
                                                     class="w-6 h-6"
                                                     :class="{
-                                                        'text-violet-400': item.color === 'violet',
-                                                        'text-pink-400': item.color === 'pink',
-                                                        'text-emerald-400': item.color === 'emerald'
+                                                        'text-primary-400': item.color === 'primary',
+                                                        'text-accent-400': item.color === 'accent',
+                                                        'text-secondary-400': item.color === 'secondary'
                                                     }"
                                                 />
                                             </div>
                                             <div>
                                                 <h3 class="text-sm font-medium text-neutral-400">{{ item.title }}</h3>
-                                                <p v-if="item.link" class="mt-1 text-white hover:text-violet-400 transition-colors">
+                                                <p v-if="item.link" class="mt-1 text-white hover:text-primary-400 transition-colors">
                                                     <a :href="item.link">{{ item.value }}</a>
                                                 </p>
                                                 <p v-else class="mt-1 text-white">{{ item.value }}</p>
@@ -185,7 +185,7 @@ useHead({
 
                         <UiBlurReveal :delay="0.4">
                             <h2 class="mb-6 text-xl font-semibold">
-                                <span class="bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400 text-transparent">
+                                <span class="bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400 text-transparent">
                                     Follow Me
                                 </span>
                             </h2>
@@ -200,9 +200,9 @@ useHead({
                                     <a
                                         :href="link.url"
                                         target="_blank"
-                                        class="flex items-center justify-center w-12 h-12 rounded-xl bg-neutral-900/80 border border-neutral-700/50 hover:border-violet-500/50 transition-all duration-300"
+                                        class="flex items-center justify-center w-12 h-12 rounded-xl bg-neutral-900/80 border border-neutral-700/50 hover:border-primary-500/50 transition-all duration-300"
                                     >
-                                        <UIcon :name="link.icon" class="w-5 h-5 text-neutral-400 group-hover:text-violet-400 transition-colors" />
+                                        <UIcon :name="link.icon" class="w-5 h-5 text-neutral-400 group-hover:text-primary-400 transition-colors" />
                                     </a>
                                 </UiGlareCard>
                             </div>
@@ -212,10 +212,10 @@ useHead({
                     <!-- Contact Form -->
                     <div class="relative md:col-span-2">
                         <UiBlurReveal :delay="0.3">
-                            <UiNeonBorder color="#8b5cf6" :glow-intensity="10" class="relative">
+                            <UiNeonBorder color="rgb(var(--primary-500))" :glow-intensity="10" class="relative">
                                 <div class="p-6 md:p-8 rounded-xl bg-neutral-900/50 backdrop-blur-sm">
                                     <h2 class="mb-6 text-xl font-semibold">
-                                        <UiSparklesText :sparkle-count="6" :colors="['#8b5cf6', '#ec4899']">
+                                        <UiSparklesText :sparkle-count="6" :colors="['rgb(var(--primary-500))', 'rgb(var(--accent-500))']">
                                             <span class="text-white">Send a Message</span>
                                         </UiSparklesText>
                                     </h2>
@@ -227,7 +227,7 @@ useHead({
                                                     v-model="form.name"
                                                     placeholder="John Doe"
                                                     required
-                                                    class="bg-neutral-800/50 border-neutral-700 focus:border-violet-500 transition-colors"
+                                                    class="bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors"
                                                 />
                                             </UFormGroup>
 
@@ -237,7 +237,7 @@ useHead({
                                                     type="email"
                                                     placeholder="john@example.com"
                                                     required
-                                                    class="bg-neutral-800/50 border-neutral-700 focus:border-violet-500 transition-colors"
+                                                    class="bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors"
                                                 />
                                             </UFormGroup>
                                         </div>
@@ -246,7 +246,7 @@ useHead({
                                             <UInput
                                                 v-model="form.subject"
                                                 placeholder="Project Inquiry"
-                                                class="bg-neutral-800/50 border-neutral-700 focus:border-violet-500 transition-colors"
+                                                class="bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors"
                                             />
                                         </UFormGroup>
 
@@ -256,7 +256,7 @@ useHead({
                                                 placeholder="Tell me about your project..."
                                                 :rows="5"
                                                 required
-                                                class="bg-neutral-800/50 border-neutral-700 focus:border-violet-500 transition-colors"
+                                                class="bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors"
                                             />
                                         </UFormGroup>
 
@@ -265,7 +265,7 @@ useHead({
                                                 type="submit"
                                                 :disabled="form.loading"
                                                 class="w-full md:w-auto !px-8"
-                                                shimmer-color="rgba(139, 92, 246, 0.3)"
+                                                shimmer-color="rgb(var(--primary-500) / 0.3)"
                                             >
                                                 <span v-if="form.loading" class="flex items-center gap-2">
                                                     <UIcon name="i-heroicons-arrow-path" class="w-4 h-4 animate-spin" />
@@ -319,7 +319,7 @@ useHead({
                                     </form>
                                 </div>
 
-                                <UiBorderBeam :size="300" :duration="12" color-from="#8b5cf6" color-to="#ec4899" />
+                                <UiBorderBeam :size="300" :duration="12" color-from="rgb(var(--primary-500))" color-to="rgb(var(--accent-500))" />
                             </UiNeonBorder>
                         </UiBlurReveal>
                     </div>
@@ -335,10 +335,10 @@ useHead({
                 <UiBlurReveal :delay="0.3">
                     <UiCard3D :rotation-factor="5" :show-glare="true" :glare-opacity="0.1">
                         <div class="overflow-hidden rounded-xl border border-neutral-700/50 h-80">
-                            <div class="flex items-center justify-center h-full bg-gradient-to-br from-violet-500/5 via-neutral-900/80 to-pink-500/5">
+                            <div class="flex items-center justify-center h-full bg-gradient-to-br from-primary-500/5 via-neutral-900/80 to-accent-500/5">
                                 <div class="text-center">
                                     <div class="mb-4 p-4 rounded-full bg-neutral-800/50 inline-block">
-                                        <UIcon name="i-heroicons-map" class="w-12 h-12 text-violet-400/50" />
+                                        <UIcon name="i-heroicons-map" class="w-12 h-12 text-primary-400/50" />
                                     </div>
                                     <p class="text-neutral-400">Interactive Map Coming Soon</p>
                                     <p class="text-sm text-neutral-500 mt-2">San Francisco, CA</p>
@@ -365,7 +365,7 @@ export default {
 <style scoped>
 /* Input focus styles */
 :deep(.ui-input:focus) {
-    border-color: #8b5cf6;
-    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+    border-color: rgb(var(--primary-500));
+    box-shadow: 0 0 0 2px rgb(var(--primary-500) / 0.2);
 }
 </style>

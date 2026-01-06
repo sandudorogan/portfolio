@@ -106,7 +106,7 @@ const scrollToElement = (elementId: string) => {
 
     <!-- Meteor Effect -->
     <ClientOnly>
-      <UiMeteorEffect :count="15" color="#8b5cf6" class="z-[1]" />
+      <UiMeteorEffect :count="15" color="rgb(var(--primary-500))" class="z-[1]" />
     </ClientOnly>
 
     <!-- Overlay for better text readability -->
@@ -118,7 +118,7 @@ const scrollToElement = (elementId: string) => {
         <!-- Main Heading -->
         <h1 class="flex flex-col justify-center items-center bg-clip-text bg-gradient-to-b from-white via-neutral-200 to-neutral-400 font-bold text-transparent text-5xl md:text-7xl text-center leading-tight">
           Building
-          <UiTextHighlight class="bg-gradient-to-r from-violet-600 to-pink-600 py-2 rounded-xl">
+          <UiTextHighlight class="bg-gradient-to-r from-primary-500 py-2 rounded-xl to-accent-500">
             <UiFlipWords
               :words="['beautiful', 'stunning', 'immersive', 'scalable']"
               :duration="3000"
@@ -137,7 +137,7 @@ const scrollToElement = (elementId: string) => {
         <div class="flex flex-row flex-wrap justify-center items-center gap-4 mt-4">
           <NuxtLink
             to="/about"
-            class="group bg-gradient-to-r from-violet-600 to-pink-600 hover:opacity-90 px-5 py-2 rounded-full font-medium text-white text-sm hover:scale-105 transition-all duration-300"
+            class="group bg-gradient-to-r from-primary-500 hover:opacity-90 px-5 py-2 rounded-full font-medium text-white text-sm hover:scale-105 transition-all duration-300 to-accent-500"
           >
             <span class="flex items-center gap-1.5">
               <UIcon name="i-heroicons-user" class="w-3.5 h-3.5" />
@@ -147,7 +147,7 @@ const scrollToElement = (elementId: string) => {
 
           <UiGlowBorder
             :border-radius="9999"
-            :color="['#8b5cf6', '#ec4899']"
+            :color="['rgb(var(--primary-500))', 'rgb(var(--accent-500))']"
             :border-width="2"
             :duration="15"
             class="!bg-transparent !p-0 !min-w-fit !min-h-fit hover:scale-105 transition-transform duration-300"
@@ -168,7 +168,7 @@ const scrollToElement = (elementId: string) => {
             <UiCard3D :rotation-factor="8" :show-glare="true" :glare-opacity="0.2">
               <div class="relative bg-neutral-900/80 backdrop-blur-xl p-1 border border-neutral-700/50 rounded-xl">
                 <UiSafariMockup url="inspira-ui.com" src="/images/inspira-ss.png" class="w-full" />
-                <UiBorderBeam :size="300" :duration="10" :delay="0" :border-width="2" color-from="#8b5cf6" color-to="#ec4899" />
+                <UiBorderBeam :size="300" :duration="10" :delay="0" :border-width="2" color-from="rgb(var(--primary-500))" color-to="rgb(var(--accent-500))" />
               </div>
             </UiCard3D>
           </div>
@@ -195,7 +195,7 @@ const scrollToElement = (elementId: string) => {
       <UiBlurReveal :delay="0.3">
         <div class="mb-16 text-center">
           <h2 class="mb-4 font-bold text-4xl md:text-5xl">
-            <span class="bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-500 text-transparent">
+            <span class="bg-clip-text bg-gradient-to-r from-primary-400 text-transparent to-accent-400">
               Services
             </span>
           </h2>
@@ -209,12 +209,12 @@ const scrollToElement = (elementId: string) => {
         <UiBlurReveal v-for="(service, index) in services" :key="index" :delay="0.3 + index * 0.1" class="h-full">
           <UiCardSpotlight
             class="h-full min-h-[220px]"
-            spotlight-color="rgba(16, 185, 129, 0.15)"
+            spotlight-color="rgb(var(--accent-500) / 0.15)"
             :spotlight-size="350"
           >
             <div class="flex flex-col p-4 h-full">
-              <div class="bg-gradient-to-br from-emerald-500/20 to-blue-500/20 mb-4 p-4 rounded-xl w-fit">
-                <UIcon :name="service.icon" class="w-8 h-8 text-emerald-400" />
+              <div class="bg-gradient-to-br from-primary-500/20 mb-4 p-4 rounded-xl w-fit to-accent-500/20">
+                <UIcon :name="service.icon" class="w-8 h-8 text-primary-400" />
               </div>
               <h3 class="mb-3 font-semibold text-white text-xl">{{ service.title }}</h3>
               <p class="flex-grow text-neutral-400">{{ service.description }}</p>
@@ -233,7 +233,7 @@ const scrollToElement = (elementId: string) => {
       <UiBlurReveal :delay="0.3">
         <div class="mb-16 text-center">
           <h2 class="mb-4 font-bold text-4xl md:text-5xl">
-            <span class="bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500 text-transparent">
+            <span class="bg-clip-text bg-gradient-to-r from-primary-400 text-transparent to-accent-400">
               Tech Stack
             </span>
           </h2>
@@ -253,9 +253,9 @@ const scrollToElement = (elementId: string) => {
           <UiGlareCard
             class="group"
             :glare-opacity="0.3"
-            glare-color="rgba(139, 92, 246, 0.4)"
+            glare-color="rgb(var(--primary-500) / 0.4)"
           >
-            <div class="flex flex-col items-center bg-neutral-900/80 p-6 border border-neutral-700/50 hover:border-violet-500/50 rounded-xl transition-colors duration-300">
+            <div class="flex flex-col items-center bg-neutral-900/80 p-6 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl transition-colors duration-300">
               <div class="flex justify-center items-center mb-3 w-16 h-16">
                 <UIcon :name="tech.icon" class="w-12 h-12 group-hover:scale-110 transition-transform duration-300" />
               </div>
@@ -274,9 +274,9 @@ const scrollToElement = (elementId: string) => {
           <UiGlareCard
             class="group"
             :glare-opacity="0.3"
-            glare-color="rgba(236, 72, 153, 0.4)"
+            glare-color="rgb(var(--accent-500) / 0.4)"
           >
-            <div class="flex flex-col items-center bg-neutral-900/80 p-6 border border-neutral-700/50 hover:border-pink-500/50 rounded-xl transition-colors duration-300">
+            <div class="flex flex-col items-center bg-neutral-900/80 p-6 border border-neutral-700/50 hover:border-accent-500/50 rounded-xl transition-colors duration-300">
               <div class="flex justify-center items-center mb-3 w-16 h-16">
                 <UIcon :name="tech.icon" class="w-12 h-12 group-hover:scale-110 transition-transform duration-300" />
               </div>
@@ -296,7 +296,7 @@ const scrollToElement = (elementId: string) => {
       <UiBlurReveal :delay="0.3">
         <div class="mb-16 text-center">
           <h2 class="mb-4 font-bold text-4xl md:text-5xl">
-            <span class="bg-clip-text bg-gradient-to-r from-amber-500 to-red-500 text-transparent">
+            <span class="bg-clip-text bg-gradient-to-r from-primary-400 text-transparent to-accent-400">
               Featured Projects
             </span>
           </h2>
@@ -312,7 +312,7 @@ const scrollToElement = (elementId: string) => {
             <div class="group bg-neutral-900/80 backdrop-blur-sm border border-neutral-700/50 rounded-xl h-full overflow-hidden">
               <!-- Project Image Placeholder -->
               <div class="relative h-52 overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-amber-500/20 via-red-500/20 to-orange-500/20" />
+                <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 via-accent-500/20" />
                 <div class="absolute inset-0 flex justify-center items-center">
                   <UIcon name="i-heroicons-photo" class="w-16 h-16 text-white/20 group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -321,7 +321,7 @@ const scrollToElement = (elementId: string) => {
               </div>
 
               <div class="p-6">
-                <h3 class="mb-3 font-semibold text-white group-hover:text-amber-400 text-xl transition-colors">
+                <h3 class="mb-3 font-semibold text-white group-hover:text-primary-400 text-xl transition-colors">
                   {{ project.title }}
                 </h3>
                 <p class="mb-4 text-neutral-400">{{ project.description }}</p>
@@ -329,7 +329,7 @@ const scrollToElement = (elementId: string) => {
                   <span
                     v-for="tag in project.tags"
                     :key="tag"
-                    class="bg-gradient-to-r from-amber-500/10 to-red-500/10 px-3 py-1 border border-amber-500/20 rounded-full font-medium text-amber-400 text-xs"
+                    class="bg-gradient-to-r from-secondary-500/10 to-secondary-400/10 px-3 py-1 border border-secondary-500/20 rounded-full font-medium text-secondary-400 text-xs"
                   >
                     {{ tag }}
                   </span>
@@ -345,9 +345,9 @@ const scrollToElement = (elementId: string) => {
           as="NuxtLink"
           to="/projects"
           variant="outline"
-          from-color="#f59e0b"
-          via-color="#ef4444"
-          to-color="#f59e0b"
+          from-color="rgb(var(--primary-500))"
+          via-color="rgb(var(--accent-500))"
+          to-color="rgb(var(--primary-500))"
         >
           <span class="flex items-center gap-2">
             View All Projects
@@ -366,7 +366,7 @@ const scrollToElement = (elementId: string) => {
       <UiBlurReveal :delay="0.3">
         <div class="mb-16 text-center">
           <h2 class="mb-4 font-bold text-4xl md:text-5xl">
-            <span class="bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-500 text-transparent">
+            <span class="bg-clip-text bg-gradient-to-r from-primary-400 text-transparent to-accent-400">
               Client Testimonials
             </span>
           </h2>
@@ -395,7 +395,7 @@ const scrollToElement = (elementId: string) => {
     <div class="z-10 relative mx-auto px-4 container">
       <UiBlurReveal :delay="0.3">
         <div class="relative bg-neutral-900/50 mx-auto p-8 md:p-12 border border-neutral-800 rounded-xl max-w-3xl overflow-hidden text-center">
-          <UiBorderBeam :size="300" :duration="10" :border-width="1.5" color-from="#8b5cf6" color-to="#ec4899" />
+          <UiBorderBeam :size="300" :duration="10" :border-width="1.5" color-from="rgb(var(--primary-500))" color-to="rgb(var(--accent-500))" />
 
           <h2 class="mb-4 font-bold text-white text-3xl md:text-4xl">
             Ready to bring your ideas to life?
@@ -409,7 +409,7 @@ const scrollToElement = (elementId: string) => {
           <div class="flex justify-center">
             <UiGlowBorder
               :border-radius="9999"
-              :color="['#8b5cf6', '#ec4899']"
+              :color="['rgb(var(--primary-500))', 'rgb(var(--accent-500))']"
               :border-width="2"
               :duration="15"
               class="!bg-transparent !p-0 !min-w-fit !min-h-fit hover:scale-105 transition-transform duration-300"
