@@ -117,15 +117,15 @@ defineOgImage({
                             </p>
 
                             <div class="flex flex-wrap justify-center md:justify-start gap-4">
-                                <UiGlareCard :glare-opacity="0.2" class="group">
-                                    <div class="flex items-center gap-2 bg-neutral-900/80 px-4 py-2 border border-neutral-700/50 rounded-lg">
+                                <UiGlareCard :glare-opacity="0.2" class="group bg-neutral-900/80 border border-neutral-700/50 !rounded-lg">
+                                    <div class="flex items-center gap-2 px-4 py-2">
                                         <UIcon name="i-heroicons-map-pin" class="w-4 h-4 text-primary-400" aria-hidden="true" />
                                         <span class="text-neutral-300">{{ developerInfo.location }}</span>
                                     </div>
                                 </UiGlareCard>
 
-                                <UiGlareCard :glare-opacity="0.2" class="group">
-                                    <div class="flex items-center gap-2 bg-neutral-900/80 px-4 py-2 border border-neutral-700/50 rounded-lg">
+                                <UiGlareCard :glare-opacity="0.2" class="group bg-neutral-900/80 border border-neutral-700/50 !rounded-lg">
+                                    <div class="flex items-center gap-2 px-4 py-2">
                                         <UIcon name="i-heroicons-envelope" class="w-4 h-4 text-accent-400" aria-hidden="true" />
                                         <span class="text-neutral-300">{{ developerInfo.email }}</span>
                                     </div>
