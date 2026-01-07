@@ -166,7 +166,7 @@ const scrollToElement = (elementId: string) => {
           <div class="relative mt-8 mb-32 w-full">
             <UiCard3D :rotation-factor="8" :show-glare="false">
               <div class="relative bg-neutral-900/80 backdrop-blur-xl p-1 border border-neutral-700/50 rounded-xl">
-                <UiSafariMockup url="inspira-ui.com" src="/images/inspira-ss.png" class="w-full" />
+                <UiSafariMockup url="app.iprally.com" src="/images/iprally.png" class="w-full" />
                 <UiBorderBeam :size="300" :duration="10" :delay="0" :border-width="2" color-from="rgb(var(--primary-500))" color-to="rgb(var(--accent-500))" />
               </div>
             </UiCard3D>
