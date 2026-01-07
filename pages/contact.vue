@@ -15,21 +15,21 @@ const contactInfo = [
     {
         icon: 'i-heroicons-envelope',
         title: 'Email',
-        value: 'contact@example.com',
-        link: 'mailto:contact@example.com',
+        value: 'sandu.dorogan@gmail.com',
+        link: 'mailto:sandu.dorogan@gmail.com',
         color: 'primary'
     },
     {
         icon: 'i-heroicons-phone',
         title: 'Phone',
-        value: '+1 (555) 123-4567',
-        link: 'tel:+15551234567',
+        value: '+40 726 666 388',
+        link: 'tel:+40726666388',
         color: 'accent'
     },
     {
         icon: 'i-heroicons-map-pin',
         title: 'Location',
-        value: 'San Francisco, CA',
+        value: 'Bucharest, Romania',
         link: null,
         color: 'secondary'
     }
@@ -39,17 +39,17 @@ const socialLinks = [
     {
         name: 'GitHub',
         icon: 'i-simple-icons-github',
-        url: 'https://github.com'
+        url: 'https://github.com/sandudorogan'
+    },
+    {
+        name: 'GitLab',
+        icon: 'i-simple-icons-gitlab',
+        url: 'https://gitlab.com/sdorogan-flexiana'
     },
     {
         name: 'LinkedIn',
         icon: 'i-simple-icons-linkedin',
-        url: 'https://linkedin.com'
-    },
-    {
-        name: 'Twitter',
-        icon: 'i-simple-icons-twitter',
-        url: 'https://twitter.com'
+        url: 'https://www.linkedin.com/in/sandu-dorogan'
     }
 ];
 
@@ -117,11 +117,9 @@ defineOgImage({
             <div class="z-10 relative mx-auto px-4 container">
                 <UiBlurReveal :delay="0.2">
                     <div class="mx-auto max-w-3xl text-center">
-                        <UiSparklesText :sparkle-count="12" :colors="['rgb(var(--primary-500))', 'rgb(var(--accent-500))']">
-                            <h1 class="bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-neutral-400 mb-4 font-bold text-transparent text-4xl md:text-5xl">
-                                Get In Touch
-                            </h1>
-                        </UiSparklesText>
+                        <h1 class="bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-neutral-400 mb-4 font-bold text-transparent text-4xl md:text-5xl">
+                            Get In Touch
+                        </h1>
                         <p class="mx-auto max-w-xl text-neutral-300 text-lg">
                             Have a project in mind or want to discuss a potential collaboration? Feel free to reach out
                             through the form below or via any of my contact details.
@@ -151,8 +149,7 @@ defineOgImage({
                                     v-for="(item, index) in contactInfo"
                                     :key="index"
                                     :rotation-factor="6"
-                                    :show-glare="true"
-                                    :glare-opacity="0.1"
+                                    :show-glare="false"
                                 >
                                     <UiCardSpotlight
                                         :spotlight-color="item.color === 'primary' ? 'rgb(var(--primary-500) / 0.15)' : item.color === 'accent' ? 'rgb(var(--accent-500) / 0.15)' : 'rgb(var(--secondary-500) / 0.15)'"
@@ -222,9 +219,7 @@ defineOgImage({
                             <UiNeonBorder color="rgb(var(--primary-500))" :glow-intensity="10" class="relative">
                                 <div class="bg-neutral-900/50 backdrop-blur-sm p-6 md:p-8 rounded-xl">
                                     <h2 class="mb-6 font-semibold text-xl">
-                                        <UiSparklesText :sparkle-count="6" :colors="['rgb(var(--primary-500))', 'rgb(var(--accent-500))']">
-                                            <span class="text-white">Send a Message</span>
-                                        </UiSparklesText>
+                                        <span class="text-white">Send a Message</span>
                                     </h2>
 
                                     <form @submit.prevent="handleSubmit" class="space-y-6">
@@ -348,7 +343,7 @@ defineOgImage({
                                         <UIcon name="i-heroicons-map" class="w-12 h-12 text-primary-400/50" />
                                     </div>
                                     <p class="text-neutral-400">Interactive Map Coming Soon</p>
-                                    <p class="mt-2 text-neutral-500 text-sm">San Francisco, CA</p>
+                                    <p class="mt-2 text-neutral-500 text-sm">Bucharest, Romania</p>
                                 </div>
                             </div>
                         </div>

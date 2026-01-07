@@ -1,5 +1,6 @@
 <template>
   <div
+    ref="containerRef"
     :class="cn('animated-circular-progress relative inline-flex items-center justify-center', props.class)"
     :style="{ width: `${size}px`, height: `${size}px` }"
   >
@@ -53,6 +54,7 @@ const props = withDefaults(defineProps<AnimatedCircularProgressBarProps>(), {
 
 const animatedValue = ref(0)
 const hasAnimated = ref(false)
+const containerRef = ref<HTMLElement | null>(null)
 
 const radius = computed(() => (props.size - props.strokeWidth) / 2)
 const circumference = computed(() => 2 * Math.PI * radius.value)
@@ -83,7 +85,7 @@ function animateProgress() {
 }
 
 const { stop } = useIntersectionObserver(
-  () => document.querySelector('.animated-circular-progress'),
+  containerRef,
   ([{ isIntersecting }]) => {
     if (isIntersecting && !hasAnimated.value) {
       animateProgress()

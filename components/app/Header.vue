@@ -36,17 +36,6 @@
             {{ item.name }}
           </span>
         </NuxtLink>
-
-        <!-- CTA Button -->
-        <NuxtLink
-          to="/contact"
-          class="ml-4 px-4 py-1.5 border border-neutral-600 hover:border-primary-500 rounded-lg text-neutral-300 hover:text-white text-sm transition-all duration-200"
-        >
-          <span class="flex items-center gap-1.5">
-            <UIcon name="i-heroicons-envelope" class="w-4 h-4" />
-            Hire Me
-          </span>
-        </NuxtLink>
       </nav>
 
       <!-- Mobile Menu Button -->
