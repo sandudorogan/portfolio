@@ -163,8 +163,8 @@ const scrollToElement = (elementId: string) => {
 
         <!-- Safari Mockup with Border Beam -->
         <ClientOnly>
-          <div class="relative mt-8 w-full max-w-2xl">
-            <UiCard3D :rotation-factor="8" :show-glare="true" :glare-opacity="0.2">
+          <div class="relative mt-8 mb-32 w-full">
+            <UiCard3D :rotation-factor="8" :show-glare="false">
               <div class="relative bg-neutral-900/80 backdrop-blur-xl p-1 border border-neutral-700/50 rounded-xl">
                 <UiSafariMockup url="inspira-ui.com" src="/images/inspira-ss.png" class="w-full" />
                 <UiBorderBeam :size="300" :duration="10" :delay="0" :border-width="2" color-from="rgb(var(--primary-500))" color-to="rgb(var(--accent-500))" />
@@ -306,11 +306,11 @@ const scrollToElement = (elementId: string) => {
       </UiBlurReveal>
 
       <div class="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <UiBlurReveal v-for="(project, index) in projects" :key="index" :delay="0.3 + index * 0.15">
-          <UiCard3D :rotation-factor="10" :show-glare="true" :glare-opacity="0.15" class="h-full">
-            <div class="group bg-neutral-900/80 backdrop-blur-sm border border-neutral-700/50 rounded-xl h-full overflow-hidden">
+        <UiBlurReveal v-for="(project, index) in projects" :key="index" :delay="0.3 + index * 0.15" class="h-full">
+          <UiCard3D :rotation-factor="10" :show-glare="false" class="h-full">
+            <div class="group flex flex-col bg-neutral-900/80 backdrop-blur-sm border border-neutral-700/50 rounded-xl h-full overflow-hidden">
               <!-- Project Image Placeholder -->
-              <div class="relative h-52 overflow-hidden">
+              <div class="relative h-52 overflow-hidden shrink-0">
                 <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 via-accent-500/20" />
                 <div class="absolute inset-0 flex justify-center items-center">
                   <UIcon name="i-heroicons-photo" class="w-16 h-16 text-white/20 group-hover:scale-110 transition-transform duration-300" />
@@ -319,11 +319,11 @@ const scrollToElement = (elementId: string) => {
                 <div class="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent" />
               </div>
 
-              <div class="p-6">
+              <div class="flex flex-col flex-grow p-6">
                 <h3 class="mb-3 font-semibold text-white group-hover:text-primary-400 text-xl transition-colors">
                   {{ project.title }}
                 </h3>
-                <p class="mb-4 text-neutral-400">{{ project.description }}</p>
+                <p class="flex-grow mb-4 text-neutral-400">{{ project.description }}</p>
                 <div class="flex flex-wrap gap-2">
                   <span
                     v-for="tag in project.tags"

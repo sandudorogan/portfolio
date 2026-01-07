@@ -9,22 +9,22 @@
     v-bind="$attrs"
   >
     <span
-      class="absolute inset-0 z-0 overflow-hidden rounded-lg"
+      class="z-0 absolute inset-0 rounded-lg overflow-hidden"
       :style="{ background: props.background }"
     >
       <span
-        class="shimmer-effect absolute inset-0 z-0"
+        class="z-0 absolute inset-0 shimmer-effect"
         :style="{
           background: `linear-gradient(to right, transparent, ${props.shimmerColor}, transparent)`,
           transform: 'translateX(-100%)',
         }"
       />
     </span>
-    <span class="relative z-10 flex items-center justify-center gap-2">
+    <span class="z-10 relative flex justify-center items-center gap-2">
       <slot />
     </span>
     <span
-      class="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-primary-400/0 via-primary-400/90 to-primary-400/0 transition-opacity duration-500 group-hover:opacity-40"
+      class="-bottom-0 left-[1.125rem] absolute bg-gradient-to-r from-primary-400/0 via-primary-400/90 to-primary-400/0 group-hover:opacity-40 w-[calc(100%-2.25rem)] h-px transition-opacity duration-500"
     />
   </component>
 </template>

@@ -8,14 +8,14 @@
     @mouseleave="handleMouseLeave"
   >
     <div
-      class="card-3d-inner relative z-10 transition-transform duration-200"
+      class="z-10 relative h-full transition-transform duration-200 card-3d-inner"
       :style="innerStyle"
     >
       <slot />
     </div>
     <div
       v-if="showGlare"
-      class="card-3d-glare pointer-events-none absolute inset-0 z-20 rounded-[inherit] opacity-0 transition-opacity duration-300"
+      class="z-20 absolute inset-0 opacity-0 rounded-[inherit] transition-opacity duration-300 pointer-events-none card-3d-glare"
       :style="glareStyle"
     />
   </div>
