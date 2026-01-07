@@ -6,7 +6,14 @@ export default {
   darkMode: 'selector',
   safelist: ['dark'],
   prefix: '',
-  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  content: [
+    './app.vue',
+    './components/**/*.{vue,js,ts}',
+    './layouts/**/*.{vue,js,ts}',
+    './pages/**/*.{vue,js,ts}',
+    './composables/**/*.{js,ts}',
+    './utils/**/*.{js,ts}',
+  ],
   theme: {
     extend: {
       fontSize: {

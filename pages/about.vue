@@ -47,12 +47,20 @@ const developerInfo = {
     ]
 };
 
-useHead({
-    title: 'About Me | Portfolio',
-    meta: [
-        { name: 'description', content: 'Learn more about my skills, experience, and background as a web developer.' }
-    ]
-});
+usePageSeo({
+    title: 'About | Sandu Dorogan',
+    description: 'Learn more about Sandu Dorogan - Full Stack Developer specializing in Clojure, ClojureScript, React, and Vue.',
+    ogType: 'profile'
+})
+
+// OG image must be defined at page level for static generation
+defineOgImage({
+  component: 'Default',
+  props: {
+    title: 'About Sandu Dorogan',
+    description: 'Full Stack Developer at IPRally. Based in Bucharest, Romania.'
+  }
+})
 </script>
 
 <template>

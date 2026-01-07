@@ -1,4 +1,18 @@
 <script setup lang="ts">
+usePageSeo({
+  title: 'Sandu Dorogan | Full Stack Developer',
+  description: 'Full Stack Developer specializing in Clojure, ClojureScript, Vue.js, and React. Building beautiful, scalable web experiences.'
+})
+
+// OG image must be defined at page level for static generation
+defineOgImage({
+  component: 'Default',
+  props: {
+    title: 'Sandu Dorogan — Full Stack Developer',
+    description: "Focused, driven and creative. Will bring your ideas to life. Tell me the what and I'll show you the how."
+  }
+})
+
 interface Project {
   title: string;
   description: string;

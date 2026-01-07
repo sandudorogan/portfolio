@@ -12,10 +12,20 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/ui',
     'nuxt-schema-org',
+    'nuxt-og-image',
     '@nuxt/fonts',
     '@nuxtjs/tailwindcss',
     'motion-v/nuxt'
   ],
+  site: {
+    url: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+    name: 'Sandu Dorogan'
+  },
+  runtimeConfig: {
+    public: {
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || ''
+    }
+  },
   tailwindcss: {
     exposeConfig: true,
     viewer: true,

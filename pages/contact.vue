@@ -81,12 +81,19 @@ const handleSubmit = async () => {
     }
 };
 
-useHead({
-    title: 'Contact Me | Portfolio',
-    meta: [
-        { name: 'description', content: 'Get in touch with me to discuss your project or collaboration opportunities.' }
-    ]
-});
+usePageSeo({
+    title: 'Contact | Sandu Dorogan',
+    description: "Get in touch with Sandu Dorogan - Full Stack Developer. Let's discuss your project or collaboration opportunities."
+})
+
+// OG image must be defined at page level for static generation
+defineOgImage({
+  component: 'Default',
+  props: {
+    title: 'Get In Touch',
+    description: "Have a project in mind? Let's collaborate and build something amazing together."
+  }
+})
 </script>
 
 <template>
