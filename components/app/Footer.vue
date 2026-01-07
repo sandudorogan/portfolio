@@ -1,5 +1,5 @@
 <template>
-  <footer class="relative bg-neutral-900/80 backdrop-blur-xl py-12 border-neutral-800/50 border-t overflow-hidden">
+  <footer class="relative bg-neutral-900/80 backdrop-blur-xl py-6 border-neutral-800/50 border-t overflow-hidden">
     <!-- Background gradient -->
     <div class="absolute inset-0 bg-gradient-to-t from-primary-500/5 via-transparent to-transparent" />
 
@@ -29,36 +29,21 @@
 
         <!-- Social Links -->
         <div class="flex items-center gap-3">
-          <UiGlareCard
+          <a
             v-for="link in socialLinks"
             :key="link.name"
-            :glare-opacity="0.2"
-            class="group"
+            :href="link.url"
+            target="_blank"
+            class="group flex justify-center items-center bg-neutral-900/80 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl w-10 h-10 transition-all duration-300"
           >
-            <a
-              :href="link.url"
-              target="_blank"
-              class="flex justify-center items-center bg-neutral-800/50 border border-neutral-700/50 hover:border-primary-500/50 rounded-lg w-10 h-10 transition-all duration-300"
-            >
-              <UIcon
-                :name="link.icon"
-                class="w-4 h-4 text-neutral-400 group-hover:text-primary-400 transition-colors"
-              />
-            </a>
-          </UiGlareCard>
+            <UIcon
+              :name="link.icon"
+              class="w-5 h-5 text-neutral-400 group-hover:text-primary-400 transition-colors"
+            />
+          </a>
         </div>
       </div>
 
-      <!-- Bottom Bar -->
-      <div class="mt-8 pt-6 border-neutral-800/50 border-t">
-        <div class="flex md:flex-row flex-col justify-between items-center gap-4 text-neutral-500 text-xs">
-          <p>Crafted with passion using Vue, Nuxt, and Inspira UI</p>
-          <div class="flex items-center gap-4">
-            <a href="#" class="hover:text-primary-400 transition-colors">Privacy Policy</a>
-            <a href="#" class="hover:text-primary-400 transition-colors">Terms of Service</a>
-          </div>
-        </div>
-      </div>
     </div>
   </footer>
 </template>
@@ -74,17 +59,17 @@ const socialLinks = [
   {
     name: 'GitHub',
     icon: 'i-simple-icons-github',
-    url: 'https://github.com'
+    url: 'https://github.com/sandudorogan'
+  },
+  {
+    name: 'GitLab',
+    icon: 'i-simple-icons-gitlab',
+    url: 'https://gitlab.com/sdorogan-flexiana'
   },
   {
     name: 'LinkedIn',
     icon: 'i-simple-icons-linkedin',
-    url: 'https://linkedin.com'
-  },
-  {
-    name: 'Twitter',
-    icon: 'i-simple-icons-twitter',
-    url: 'https://twitter.com'
+    url: 'https://www.linkedin.com/in/sandu-dorogan'
   }
 ];
 </script>
