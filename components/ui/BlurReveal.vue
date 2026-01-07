@@ -8,6 +8,7 @@
       :key="index"
       ref="childElements"
       as="div"
+      class="h-full"
       :initial="getInitial()"
       :while-in-view="getAnimate()"
       :in-view-options="{ once: true }"

@@ -62,13 +62,13 @@ useHead({
             <UiAuroraBg class="absolute inset-0" :show-radial-gradient="true" />
             <div class="absolute inset-0 bg-black/30" />
 
-            <div class="relative z-10 mx-auto px-4 container">
-                <div class="flex flex-col items-center gap-8 md:flex-row md:items-start">
+            <div class="z-10 relative mx-auto px-4 container">
+                <div class="flex md:flex-row flex-col items-center md:items-start gap-8">
                     <!-- Profile Image with 3D effect -->
                     <UiBlurReveal :delay="0.2">
                         <UiCard3D :rotation-factor="12" :show-glare="true" :glare-opacity="0.2">
                             <div class="relative">
-                                <div class="flex items-center justify-center w-48 h-48 overflow-hidden rounded-2xl bg-gradient-to-br from-primary-500/20 to-accent-500/20 border border-neutral-700/50">
+                                <div class="flex justify-center items-center bg-gradient-to-br from-primary-500/20 border border-neutral-700/50 rounded-2xl w-48 h-48 overflow-hidden to-accent-500/20">
                                     <UIcon name="i-heroicons-user" class="w-24 h-24 text-primary-400/50" />
                                 </div>
                                 <UiBorderBeam :size="150" :duration="8" color-from="rgb(var(--primary-500))" color-to="rgb(var(--accent-500))" />
@@ -76,32 +76,32 @@ useHead({
                         </UiCard3D>
                     </UiBlurReveal>
 
-                    <div class="flex-1 text-center md:text-left">
+                    <div class="flex-1 md:text-left text-center">
                         <UiBlurReveal :delay="0.3">
                             <UiSparklesText :sparkle-count="10" :colors="['rgb(var(--primary-500))', 'rgb(var(--accent-500))']">
-                                <h1 class="mb-2 text-4xl md:text-5xl font-bold bg-clip-text bg-gradient-to-r from-white to-neutral-300 text-transparent">
+                                <h1 class="bg-clip-text bg-gradient-to-r from-white to-neutral-300 mb-2 font-bold text-transparent text-4xl md:text-5xl">
                                     {{ developerInfo.name }}
                                 </h1>
                             </UiSparklesText>
 
-                            <p class="mb-4 text-xl bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400 text-transparent font-medium">
+                            <p class="bg-clip-text bg-gradient-to-r from-primary-400 mb-4 font-medium text-transparent text-xl to-accent-400">
                                 {{ developerInfo.title }}
                             </p>
 
-                            <p class="max-w-2xl mb-6 text-neutral-300 text-lg">
+                            <p class="mb-6 max-w-2xl text-neutral-300 text-lg">
                                 {{ developerInfo.bio }}
                             </p>
 
-                            <div class="flex flex-wrap justify-center gap-4 md:justify-start">
+                            <div class="flex flex-wrap justify-center md:justify-start gap-4">
                                 <UiGlareCard :glare-opacity="0.2" class="group">
-                                    <div class="flex items-center gap-2 px-4 py-2 bg-neutral-900/80 rounded-lg border border-neutral-700/50">
+                                    <div class="flex items-center gap-2 bg-neutral-900/80 px-4 py-2 border border-neutral-700/50 rounded-lg">
                                         <UIcon name="i-heroicons-map-pin" class="w-4 h-4 text-primary-400" />
                                         <span class="text-neutral-300">{{ developerInfo.location }}</span>
                                     </div>
                                 </UiGlareCard>
 
                                 <UiGlareCard :glare-opacity="0.2" class="group">
-                                    <div class="flex items-center gap-2 px-4 py-2 bg-neutral-900/80 rounded-lg border border-neutral-700/50">
+                                    <div class="flex items-center gap-2 bg-neutral-900/80 px-4 py-2 border border-neutral-700/50 rounded-lg">
                                         <UIcon name="i-heroicons-envelope" class="w-4 h-4 text-accent-400" />
                                         <span class="text-neutral-300">{{ developerInfo.email }}</span>
                                     </div>
@@ -117,12 +117,12 @@ useHead({
         <section class="relative py-24 overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-b from-background via-neutral-900/50 to-background" />
 
-            <div class="relative z-10 mx-auto px-4 container">
+            <div class="z-10 relative mx-auto px-4 container">
                 <UiBlurReveal :delay="0.3">
-                    <div class="text-center mb-16">
-                        <h2 class="mb-4 text-3xl md:text-4xl font-bold">
+                    <div class="mb-16 text-center">
+                        <h2 class="mb-4 font-bold text-3xl md:text-4xl">
                             <UiSparklesText :sparkle-count="8" :colors="['rgb(var(--primary-500))', 'rgb(var(--accent-500))']">
-                                <span class="bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400 text-transparent">
+                                <span class="bg-clip-text bg-gradient-to-r from-primary-400 text-transparent to-accent-400">
                                     Professional Skills
                                 </span>
                             </UiSparklesText>
@@ -130,7 +130,7 @@ useHead({
                     </div>
 
                     <!-- Skills with Circular Progress -->
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-12">
+                    <div class="gap-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 mb-12">
                         <ClientOnly>
                             <UiBlurReveal v-for="(skill, index) in developerInfo.skills" :key="index" :delay="0.2 + index * 0.1">
                                 <UiCardSpotlight
@@ -144,7 +144,7 @@ useHead({
                                         track-color="rgba(255, 255, 255, 0.1)"
                                         progress-color="rgb(var(--primary-500))"
                                     />
-                                    <span class="mt-3 text-sm text-center text-neutral-300 font-medium">{{ skill.name }}</span>
+                                    <span class="mt-3 font-medium text-neutral-300 text-sm text-center">{{ skill.name }}</span>
                                 </UiCardSpotlight>
                             </UiBlurReveal>
                         </ClientOnly>
@@ -158,12 +158,12 @@ useHead({
             <div class="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
             <UiMeteorEffect :count="10" color="rgb(var(--primary-500))" class="absolute inset-0" />
 
-            <div class="relative z-10 mx-auto px-4 container">
+            <div class="z-10 relative mx-auto px-4 container">
                 <UiBlurReveal :delay="0.3">
-                    <div class="text-center mb-16">
-                        <h2 class="mb-4 text-3xl md:text-4xl font-bold">
+                    <div class="mb-16 text-center">
+                        <h2 class="mb-4 font-bold text-3xl md:text-4xl">
                             <UiSparklesText :sparkle-count="8" :colors="['rgb(var(--primary-500))', 'rgb(var(--accent-500))']">
-                                <span class="bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400 text-transparent">
+                                <span class="bg-clip-text bg-gradient-to-r from-primary-400 text-transparent to-accent-400">
                                     Work Experience
                                 </span>
                             </UiSparklesText>
@@ -171,7 +171,7 @@ useHead({
                     </div>
                 </UiBlurReveal>
 
-                <UiTimeline :items="developerInfo.experience" class="max-w-4xl mx-auto" />
+                <UiTimeline :items="developerInfo.experience" class="mx-auto max-w-4xl" />
             </div>
         </section>
 
@@ -179,12 +179,12 @@ useHead({
         <section class="relative py-24 overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-b from-background/95 via-neutral-900/50 to-background" />
 
-            <div class="relative z-10 mx-auto px-4 container">
+            <div class="z-10 relative mx-auto px-4 container">
                 <UiBlurReveal :delay="0.3">
-                    <div class="text-center mb-16">
-                        <h2 class="mb-4 text-3xl md:text-4xl font-bold">
+                    <div class="mb-16 text-center">
+                        <h2 class="mb-4 font-bold text-3xl md:text-4xl">
                             <UiSparklesText :sparkle-count="8" :colors="['rgb(var(--accent-500))', 'rgb(var(--primary-500))']">
-                                <span class="bg-clip-text bg-gradient-to-r from-accent-400 to-primary-400 text-transparent">
+                                <span class="bg-clip-text bg-gradient-to-r to-primary-400 text-transparent from-accent-400">
                                     Education
                                 </span>
                             </UiSparklesText>
@@ -192,7 +192,7 @@ useHead({
                     </div>
                 </UiBlurReveal>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="gap-6 grid grid-cols-1 md:grid-cols-2 mx-auto max-w-4xl">
                     <UiBlurReveal v-for="(edu, index) in developerInfo.education" :key="index" :delay="0.3 + index * 0.1">
                         <UiCard3D :rotation-factor="8" :show-glare="true" :glare-opacity="0.15" class="h-full">
                             <UiCardSpotlight
@@ -200,15 +200,15 @@ useHead({
                                 spotlight-color="rgb(var(--accent-500) / 0.15)"
                             >
                                 <div class="p-6">
-                                    <div class="flex items-center justify-between mb-3">
-                                        <div class="p-3 rounded-xl bg-gradient-to-br from-accent-500/20 to-primary-500/20">
+                                    <div class="flex justify-between items-center mb-3">
+                                        <div class="bg-gradient-to-br to-primary-500/20 p-3 rounded-xl from-accent-500/20">
                                             <UIcon name="i-heroicons-academic-cap" class="w-6 h-6 text-accent-400" />
                                         </div>
-                                        <span class="text-sm text-neutral-400 bg-neutral-800/50 px-3 py-1 rounded-full">
+                                        <span class="bg-neutral-800/50 px-3 py-1 rounded-full text-neutral-400 text-sm">
                                             {{ edu.year }}
                                         </span>
                                     </div>
-                                    <h3 class="text-xl font-semibold text-white mb-2">{{ edu.degree }}</h3>
+                                    <h3 class="mb-2 font-semibold text-white text-xl">{{ edu.degree }}</h3>
                                     <p class="text-secondary-400">{{ edu.school }}</p>
                                 </div>
                             </UiCardSpotlight>
@@ -222,7 +222,7 @@ useHead({
         <section class="relative py-24 overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-background" />
 
-            <div class="relative z-10 mx-auto px-4 container">
+            <div class="z-10 relative mx-auto px-4 container">
                 <UiBlurReveal :delay="0.3">
                     <AppContactCta
                         title="Interested in working together?"

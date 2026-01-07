@@ -105,17 +105,17 @@ useHead({
         <section class="relative py-24 overflow-hidden">
             <UiAuroraBg class="absolute inset-0" :show-radial-gradient="true" />
             <div class="absolute inset-0 bg-black/30" />
-            <UiMeteorEffect :count="10" color="rgb(var(--primary-500))" class="absolute inset-0 z-[1]" />
+            <UiMeteorEffect :count="10" color="rgb(var(--primary-500))" class="z-[1] absolute inset-0" />
 
-            <div class="relative z-10 mx-auto px-4 container">
+            <div class="z-10 relative mx-auto px-4 container">
                 <UiBlurReveal :delay="0.2">
-                    <div class="max-w-3xl mx-auto text-center">
+                    <div class="mx-auto max-w-3xl text-center">
                         <UiSparklesText :sparkle-count="12" :colors="['rgb(var(--primary-500))', 'rgb(var(--accent-500))']">
-                            <h1 class="mb-4 text-4xl md:text-5xl font-bold bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-neutral-400 text-transparent">
+                            <h1 class="bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-neutral-400 mb-4 font-bold text-transparent text-4xl md:text-5xl">
                                 Get In Touch
                             </h1>
                         </UiSparklesText>
-                        <p class="max-w-xl mx-auto text-neutral-300 text-lg">
+                        <p class="mx-auto max-w-xl text-neutral-300 text-lg">
                             Have a project in mind or want to discuss a potential collaboration? Feel free to reach out
                             through the form below or via any of my contact details.
                         </p>
@@ -128,13 +128,13 @@ useHead({
         <section class="relative py-24 overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-b from-background via-neutral-900/50 to-background" />
 
-            <div class="relative z-10 mx-auto px-4 container">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="z-10 relative mx-auto px-4 container">
+                <div class="gap-10 grid grid-cols-1 md:grid-cols-3">
                     <!-- Contact Information -->
                     <div class="space-y-8 md:col-span-1">
                         <UiBlurReveal :delay="0.3">
-                            <h2 class="mb-6 text-xl font-semibold">
-                                <span class="bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400 text-transparent">
+                            <h2 class="mb-6 font-semibold text-xl">
+                                <span class="bg-clip-text bg-gradient-to-r from-primary-400 text-transparent to-accent-400">
                                     Contact Information
                                 </span>
                             </h2>
@@ -153,7 +153,7 @@ useHead({
                                     >
                                         <div class="flex items-start p-4">
                                             <div
-                                                class="flex items-center justify-center w-12 h-12 mr-4 rounded-xl"
+                                                class="flex justify-center items-center mr-4 rounded-xl w-12 h-12"
                                                 :class="{
                                                     'bg-gradient-to-br from-primary-500/20 to-primary-500/10': item.color === 'primary',
                                                     'bg-gradient-to-br from-accent-500/20 to-accent-500/10': item.color === 'accent',
@@ -171,7 +171,7 @@ useHead({
                                                 />
                                             </div>
                                             <div>
-                                                <h3 class="text-sm font-medium text-neutral-400">{{ item.title }}</h3>
+                                                <h3 class="font-medium text-neutral-400 text-sm">{{ item.title }}</h3>
                                                 <p v-if="item.link" class="mt-1 text-white hover:text-primary-400 transition-colors">
                                                     <a :href="item.link">{{ item.value }}</a>
                                                 </p>
@@ -184,8 +184,8 @@ useHead({
                         </UiBlurReveal>
 
                         <UiBlurReveal :delay="0.4">
-                            <h2 class="mb-6 text-xl font-semibold">
-                                <span class="bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400 text-transparent">
+                            <h2 class="mb-6 font-semibold text-xl">
+                                <span class="bg-clip-text bg-gradient-to-r from-primary-400 text-transparent to-accent-400">
                                     Follow Me
                                 </span>
                             </h2>
@@ -200,7 +200,7 @@ useHead({
                                     <a
                                         :href="link.url"
                                         target="_blank"
-                                        class="flex items-center justify-center w-12 h-12 rounded-xl bg-neutral-900/80 border border-neutral-700/50 hover:border-primary-500/50 transition-all duration-300"
+                                        class="flex justify-center items-center bg-neutral-900/80 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl w-12 h-12 transition-all duration-300"
                                     >
                                         <UIcon :name="link.icon" class="w-5 h-5 text-neutral-400 group-hover:text-primary-400 transition-colors" />
                                     </a>
@@ -213,15 +213,15 @@ useHead({
                     <div class="relative md:col-span-2">
                         <UiBlurReveal :delay="0.3">
                             <UiNeonBorder color="rgb(var(--primary-500))" :glow-intensity="10" class="relative">
-                                <div class="p-6 md:p-8 rounded-xl bg-neutral-900/50 backdrop-blur-sm">
-                                    <h2 class="mb-6 text-xl font-semibold">
+                                <div class="bg-neutral-900/50 backdrop-blur-sm p-6 md:p-8 rounded-xl">
+                                    <h2 class="mb-6 font-semibold text-xl">
                                         <UiSparklesText :sparkle-count="6" :colors="['rgb(var(--primary-500))', 'rgb(var(--accent-500))']">
                                             <span class="text-white">Send a Message</span>
                                         </UiSparklesText>
                                     </h2>
 
                                     <form @submit.prevent="handleSubmit" class="space-y-6">
-                                        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                                        <div class="gap-6 grid grid-cols-1 md:grid-cols-2">
                                             <UFormGroup label="Your Name">
                                                 <UInput
                                                     v-model="form.name"
@@ -264,7 +264,7 @@ useHead({
                                             <UiShimmerButton
                                                 type="submit"
                                                 :disabled="form.loading"
-                                                class="w-full md:w-auto !px-8"
+                                                class="!px-8 w-full md:w-auto"
                                                 shimmer-color="rgb(var(--primary-500) / 0.3)"
                                             >
                                                 <span v-if="form.loading" class="flex items-center gap-2">
@@ -284,15 +284,15 @@ useHead({
                                                     :initial="{ opacity: 0, y: -10 }"
                                                     :animate="{ opacity: 1, y: 0 }"
                                                     :exit="{ opacity: 0, y: -10 }"
-                                                    class="mt-4 p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/30"
+                                                    class="bg-emerald-500/10 mt-4 p-4 border border-emerald-500/30 rounded-lg"
                                                 >
                                                     <div class="flex items-center gap-3">
-                                                        <div class="p-2 rounded-full bg-emerald-500/20">
+                                                        <div class="bg-emerald-500/20 p-2 rounded-full">
                                                             <UIcon name="i-heroicons-check-circle" class="w-5 h-5 text-emerald-400" />
                                                         </div>
                                                         <div>
                                                             <h4 class="font-medium text-emerald-400">Message Sent!</h4>
-                                                            <p class="text-sm text-neutral-400">Thanks for reaching out. I'll get back to you soon.</p>
+                                                            <p class="text-neutral-400 text-sm">Thanks for reaching out. I'll get back to you soon.</p>
                                                         </div>
                                                     </div>
                                                 </Motion>
@@ -302,15 +302,15 @@ useHead({
                                                     :initial="{ opacity: 0, y: -10 }"
                                                     :animate="{ opacity: 1, y: 0 }"
                                                     :exit="{ opacity: 0, y: -10 }"
-                                                    class="mt-4 p-4 rounded-lg bg-red-500/10 border border-red-500/30"
+                                                    class="bg-red-500/10 mt-4 p-4 border border-red-500/30 rounded-lg"
                                                 >
                                                     <div class="flex items-center gap-3">
-                                                        <div class="p-2 rounded-full bg-red-500/20">
+                                                        <div class="bg-red-500/20 p-2 rounded-full">
                                                             <UIcon name="i-heroicons-exclamation-circle" class="w-5 h-5 text-red-400" />
                                                         </div>
                                                         <div>
                                                             <h4 class="font-medium text-red-400">Error</h4>
-                                                            <p class="text-sm text-neutral-400">Something went wrong. Please try again later.</p>
+                                                            <p class="text-neutral-400 text-sm">Something went wrong. Please try again later.</p>
                                                         </div>
                                                     </div>
                                                 </Motion>
@@ -331,17 +331,17 @@ useHead({
         <section class="relative py-24 overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-background" />
 
-            <div class="relative z-10 mx-auto px-4 container">
+            <div class="z-10 relative mx-auto px-4 container">
                 <UiBlurReveal :delay="0.3">
                     <UiCard3D :rotation-factor="5" :show-glare="true" :glare-opacity="0.1">
-                        <div class="overflow-hidden rounded-xl border border-neutral-700/50 h-80">
-                            <div class="flex items-center justify-center h-full bg-gradient-to-br from-primary-500/5 via-neutral-900/80 to-accent-500/5">
+                        <div class="border border-neutral-700/50 rounded-xl h-80 overflow-hidden">
+                            <div class="flex justify-center items-center bg-gradient-to-br from-primary-500/5 via-neutral-900/80 h-full to-accent-500/5">
                                 <div class="text-center">
-                                    <div class="mb-4 p-4 rounded-full bg-neutral-800/50 inline-block">
+                                    <div class="inline-block bg-neutral-800/50 mb-4 p-4 rounded-full">
                                         <UIcon name="i-heroicons-map" class="w-12 h-12 text-primary-400/50" />
                                     </div>
                                     <p class="text-neutral-400">Interactive Map Coming Soon</p>
-                                    <p class="text-sm text-neutral-500 mt-2">San Francisco, CA</p>
+                                    <p class="mt-2 text-neutral-500 text-sm">San Francisco, CA</p>
                                 </div>
                             </div>
                         </div>
