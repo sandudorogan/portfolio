@@ -1,17 +1,21 @@
 <template>
   <div
+    ref="marqueeRef"
     :class="cn(
       'marquee group flex overflow-hidden p-2 [--duration:40s] [--gap:1rem] [gap:var(--gap)]',
       vertical ? 'flex-col' : 'flex-row',
       props.class
     )"
     :style="{ '--duration': `${duration}s` }"
+    @focusin="handleFocusIn"
+    @focusout="handleFocusOut"
   >
     <div
       :class="cn(
         'flex shrink-0 justify-around [gap:var(--gap)]',
         vertical ? 'animate-marquee-vertical flex-col' : 'animate-marquee flex-row',
-        pauseOnHover && 'group-hover:[animation-play-state:paused]',
+        (pauseOnHover || shouldReduceMotion) && 'group-hover:[animation-play-state:paused]',
+        shouldPause && '[animation-play-state:paused]',
         reverse && '[animation-direction:reverse]'
       )"
     >
@@ -21,7 +25,8 @@
       :class="cn(
         'flex shrink-0 justify-around [gap:var(--gap)]',
         vertical ? 'animate-marquee-vertical flex-col' : 'animate-marquee flex-row',
-        pauseOnHover && 'group-hover:[animation-play-state:paused]',
+        (pauseOnHover || shouldReduceMotion) && 'group-hover:[animation-play-state:paused]',
+        shouldPause && '[animation-play-state:paused]',
         reverse && '[animation-direction:reverse]'
       )"
       aria-hidden="true"
@@ -32,6 +37,8 @@
 </template>
 
 <script setup lang="ts">
+import { usePreferredReducedMotion } from '@vueuse/core'
+
 interface MarqueeProps {
   class?: string;
   reverse?: boolean;
@@ -46,6 +53,24 @@ const props = withDefaults(defineProps<MarqueeProps>(), {
   vertical: false,
   duration: 40,
 })
+
+const marqueeRef = ref<HTMLElement | null>(null)
+const reducedMotion = usePreferredReducedMotion()
+const isFocusedWithin = ref(false)
+
+const shouldReduceMotion = computed(() => reducedMotion.value === 'reduce')
+const shouldPause = computed(() => shouldReduceMotion.value || isFocusedWithin.value)
+
+function handleFocusIn() {
+  isFocusedWithin.value = true
+}
+
+function handleFocusOut(e: FocusEvent) {
+  // Only unfocus if focus moved outside the marquee
+  if (marqueeRef.value && !marqueeRef.value.contains(e.relatedTarget as Node)) {
+    isFocusedWithin.value = false
+  }
+}
 </script>
 
 <style scoped>

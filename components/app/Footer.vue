@@ -7,7 +7,7 @@
       <div class="flex md:flex-row flex-col justify-between items-center gap-6">
         <!-- Logo and Copyright -->
         <div class="flex flex-col items-center md:items-start gap-2">
-          <NuxtLink to="/" class="bg-clip-text bg-gradient-to-r from-primary-400 font-bold text-transparent text-lg to-accent-400">
+          <NuxtLink to="/" class="bg-clip-text bg-gradient-to-r from-primary-400 font-bold text-transparent text-lg to-accent-400 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900">
             Portfolio
           </NuxtLink>
           <p class="text-neutral-500 text-sm">
@@ -16,16 +16,16 @@
         </div>
 
         <!-- Quick Links -->
-        <div class="flex items-center gap-6">
+        <nav aria-label="Footer navigation" class="flex items-center gap-6">
           <NuxtLink
             v-for="link in quickLinks"
             :key="link.path"
             :to="link.path"
-            class="text-neutral-400 hover:text-primary-400 text-sm transition-colors duration-300"
+            class="text-neutral-400 hover:text-primary-400 text-sm transition-colors duration-300 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
           >
             {{ link.name }}
           </NuxtLink>
-        </div>
+        </nav>
 
         <!-- Social Links -->
         <div class="flex items-center gap-3">
@@ -34,11 +34,14 @@
             :key="link.name"
             :href="link.url"
             target="_blank"
-            class="group flex justify-center items-center bg-neutral-900/80 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl w-10 h-10 transition-all duration-300"
+            rel="noopener noreferrer"
+            :aria-label="`Visit my ${link.name} profile (opens in new tab)`"
+            class="group flex justify-center items-center bg-neutral-900/80 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl w-10 h-10 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
           >
             <UIcon
               :name="link.icon"
               class="w-5 h-5 text-neutral-400 group-hover:text-primary-400 transition-colors"
+              aria-hidden="true"
             />
           </a>
         </div>

@@ -39,8 +39,16 @@ useSchemaOrg([
 
 <template>
   <div class="flex flex-col bg-background min-h-screen text-foreground">
+    <!-- Skip to main content link for keyboard/screen reader users -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:bg-primary-500 focus:text-white focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-white"
+    >
+      Skip to main content
+    </a>
+
     <AppHeader />
-    <main class="flex-grow">
+    <main id="main-content" tabindex="-1" class="flex-grow outline-none">
       <slot />
     </main>
     <AppFooter />

@@ -4,6 +4,7 @@
     :class="cn(
       'shimmer-button group relative z-0 inline-flex cursor-pointer items-center justify-center overflow-hidden whitespace-nowrap rounded-lg border border-white/10 px-6 py-3 text-white',
       'transform-gpu transition-transform duration-300 ease-in-out active:translate-y-px',
+      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900',
       props.class
     )"
     v-bind="$attrs"

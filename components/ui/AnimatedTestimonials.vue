@@ -7,17 +7,12 @@
           v-for="(testimonial, index) in testimonials"
           :key="index"
           as="div"
-          :initial="{ opacity: 0, scale: 0.9, rotate: randomRotation }"
+          :initial="imageInitial"
           :animate="activeIndex === index
-            ? { opacity: 1, scale: 1, rotate: 0, y: 0 }
-            : { opacity: 0, scale: 0.9, rotate: randomRotation, y: 40 }"
-          :exit="{ opacity: 0, scale: 0.9, rotate: randomRotation }"
-          :transition="{
-            type: 'spring',
-            stiffness: 300,
-            damping: 20,
-            duration: 0.5
-          }"
+            ? imageAnimateActive
+            : imageAnimateInactive"
+          :exit="imageInitial"
+          :transition="imageTransition"
           :class="cn(
             'absolute inset-0 origin-bottom',
             activeIndex === index ? 'z-10' : 'z-0'
@@ -38,9 +33,9 @@
           <Motion
             :key="`name-${activeIndex}`"
             as="h3"
-            :initial="{ opacity: 0, y: 20, filter: 'blur(10px)' }"
-            :animate="{ opacity: 1, y: 0, filter: 'blur(0px)' }"
-            :transition="{ duration: 0.4, ease: 'easeOut' }"
+            :initial="textInitial"
+            :animate="textAnimate"
+            :transition="textTransition(0)"
             class="text-2xl font-bold text-text-50 md:text-4xl"
           >
             {{ activeTestimonial.name }}
@@ -48,9 +43,9 @@
           <Motion
             :key="`designation-${activeIndex}`"
             as="p"
-            :initial="{ opacity: 0, y: 20, filter: 'blur(10px)' }"
-            :animate="{ opacity: 1, y: 0, filter: 'blur(0px)' }"
-            :transition="{ duration: 0.4, delay: 0.1, ease: 'easeOut' }"
+            :initial="textInitial"
+            :animate="textAnimate"
+            :transition="textTransition(0.1)"
             class="mt-1 text-sm text-neutral-400 md:text-base"
           >
             {{ activeTestimonial.designation }}
@@ -58,9 +53,9 @@
           <Motion
             :key="`quote-${activeIndex}`"
             as="blockquote"
-            :initial="{ opacity: 0, y: 20, filter: 'blur(10px)' }"
-            :animate="{ opacity: 1, y: 0, filter: 'blur(0px)' }"
-            :transition="{ duration: 0.4, delay: 0.2, ease: 'easeOut' }"
+            :initial="textInitial"
+            :animate="textAnimate"
+            :transition="textTransition(0.2)"
             class="mt-8 text-lg text-neutral-300 md:text-xl"
           >
             "{{ activeTestimonial.quote }}"
@@ -68,23 +63,29 @@
         </div>
 
         <!-- Navigation Buttons -->
-        <div class="mt-8 flex gap-4">
+        <div class="mt-8 flex gap-4" role="group" aria-label="Testimonial navigation">
           <button
-            class="group flex h-10 w-10 items-center justify-center rounded-full bg-neutral-800 transition-colors hover:bg-neutral-700"
+            type="button"
+            aria-label="Previous testimonial"
+            class="group flex h-10 w-10 items-center justify-center rounded-full bg-neutral-800 transition-colors hover:bg-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
             @click="prev"
           >
             <UIcon
               name="i-heroicons-arrow-left"
               class="h-5 w-5 text-neutral-400 transition-transform group-hover:-translate-x-0.5 group-hover:text-white"
+              aria-hidden="true"
             />
           </button>
           <button
-            class="group flex h-10 w-10 items-center justify-center rounded-full bg-neutral-800 transition-colors hover:bg-neutral-700"
+            type="button"
+            aria-label="Next testimonial"
+            class="group flex h-10 w-10 items-center justify-center rounded-full bg-neutral-800 transition-colors hover:bg-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
             @click="next"
           >
             <UIcon
               name="i-heroicons-arrow-right"
               class="h-5 w-5 text-neutral-400 transition-transform group-hover:translate-x-0.5 group-hover:text-white"
+              aria-hidden="true"
             />
           </button>
         </div>
@@ -95,6 +96,7 @@
 
 <script setup lang="ts">
 import { Motion } from 'motion-v'
+import { usePreferredReducedMotion } from '@vueuse/core'
 
 interface Testimonial {
   name: string
@@ -115,14 +117,55 @@ const props = withDefaults(defineProps<AnimatedTestimonialsProps>(), {
   duration: 5000,
 })
 
+const reducedMotion = usePreferredReducedMotion()
+const shouldReduceMotion = computed(() => reducedMotion.value === 'reduce')
+
 const activeIndex = ref(0)
 const randomRotation = ref(getRandomRotation())
 
 function getRandomRotation() {
-  return Math.floor(Math.random() * 13) - 6 // -6 to 6 degrees
+  return shouldReduceMotion.value ? 0 : Math.floor(Math.random() * 13) - 6
 }
 
 const activeTestimonial = computed(() => props.testimonials[activeIndex.value])
+
+// Animation states for images
+const imageInitial = computed(() => shouldReduceMotion.value
+  ? { opacity: 0 }
+  : { opacity: 0, scale: 0.9, rotate: randomRotation.value }
+)
+
+const imageAnimateActive = computed(() => shouldReduceMotion.value
+  ? { opacity: 1 }
+  : { opacity: 1, scale: 1, rotate: 0, y: 0 }
+)
+
+const imageAnimateInactive = computed(() => shouldReduceMotion.value
+  ? { opacity: 0 }
+  : { opacity: 0, scale: 0.9, rotate: randomRotation.value, y: 40 }
+)
+
+const imageTransition = computed(() => shouldReduceMotion.value
+  ? { duration: 0.01 }
+  : { type: 'spring', stiffness: 300, damping: 20, duration: 0.5 }
+)
+
+// Animation states for text
+const textInitial = computed(() => shouldReduceMotion.value
+  ? { opacity: 1 }
+  : { opacity: 0, y: 20, filter: 'blur(10px)' }
+)
+
+const textAnimate = computed(() => shouldReduceMotion.value
+  ? { opacity: 1 }
+  : { opacity: 1, y: 0, filter: 'blur(0px)' }
+)
+
+function textTransition(delay: number) {
+  return shouldReduceMotion.value
+    ? { duration: 0.01 }
+    : { duration: 0.4, delay, ease: 'easeOut' }
+}
 
 function next() {
   randomRotation.value = getRandomRotation()
@@ -137,7 +180,18 @@ function prev() {
 let intervalId: ReturnType<typeof setInterval> | null = null
 
 onMounted(() => {
-  if (props.autoplay) {
+  // Don't autoplay if user prefers reduced motion
+  if (props.autoplay && !shouldReduceMotion.value) {
+    intervalId = setInterval(next, props.duration)
+  }
+})
+
+// Watch for reduced motion changes to stop autoplay
+watch(shouldReduceMotion, (newValue) => {
+  if (newValue && intervalId) {
+    clearInterval(intervalId)
+    intervalId = null
+  } else if (!newValue && props.autoplay && !intervalId) {
     intervalId = setInterval(next, props.duration)
   }
 })

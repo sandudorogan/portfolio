@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { usePreferredReducedMotion } from '@vueuse/core'
+
 usePageSeo({
   title: 'Sandu Dorogan | Full Stack Developer',
   description: 'Full Stack Developer specializing in Clojure, ClojureScript, Vue.js, and React. Building beautiful, scalable web experiences.'
@@ -103,10 +105,17 @@ const services = [
   },
 ];
 
+const reducedMotion = usePreferredReducedMotion();
+
 const scrollToElement = (elementId: string) => {
   const element = document.getElementById(elementId);
   if (element) {
-    element.scrollIntoView({ behavior: 'smooth' });
+    // Respect reduced motion preference
+    const behavior = reducedMotion.value === 'reduce' ? 'instant' : 'smooth';
+    element.scrollIntoView({ behavior });
+    // Move focus to the section for keyboard/screen reader users
+    element.setAttribute('tabindex', '-1');
+    element.focus({ preventScroll: true });
   }
 };
 </script>
@@ -150,10 +159,10 @@ const scrollToElement = (elementId: string) => {
         <div class="flex flex-row flex-wrap justify-center items-center gap-4 mt-4">
           <NuxtLink
             to="/about"
-            class="group bg-gradient-to-r from-primary-500 hover:opacity-90 px-5 py-2 rounded-full font-medium text-white text-sm hover:scale-105 transition-all duration-300 to-accent-500"
+            class="group bg-gradient-to-r from-primary-500 hover:opacity-90 px-5 py-2 rounded-full font-medium text-white text-sm hover:scale-105 transition-all duration-300 to-accent-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
           >
             <span class="flex items-center gap-1.5">
-              <UIcon name="i-heroicons-user" class="w-3.5 h-3.5" />
+              <UIcon name="i-heroicons-user" class="w-3.5 h-3.5" aria-hidden="true" />
               About Me
             </span>
           </NuxtLink>
@@ -167,10 +176,10 @@ const scrollToElement = (elementId: string) => {
           >
             <NuxtLink
               to="/contact"
-              class="flex items-center gap-2 bg-neutral-900/80 px-8 py-3 rounded-full font-semibold text-white"
+              class="flex items-center gap-2 bg-neutral-900/80 px-8 py-3 rounded-full font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
             >
               Get in Touch
-              <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" />
+              <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" aria-hidden="true" />
             </NuxtLink>
           </UiGlowBorder>
         </div>
@@ -193,9 +202,10 @@ const scrollToElement = (elementId: string) => {
     <div class="bottom-8 z-[3] absolute animate-bounce">
       <UiShimmerButton
         class="!px-4 !py-2 !rounded-full"
+        aria-label="Scroll down to services section"
         @click="() => scrollToElement('services')"
       >
-        <UIcon name="i-heroicons-chevron-down" class="w-5 h-5" />
+        <UIcon name="i-heroicons-chevron-down" class="w-5 h-5" aria-hidden="true" />
       </UiShimmerButton>
     </div>
   </section>
@@ -226,7 +236,7 @@ const scrollToElement = (elementId: string) => {
             :spotlight-size="350"
           >
             <div class="flex flex-col p-4 h-full">
-              <div class="bg-gradient-to-br from-primary-500/20 mb-4 p-4 rounded-xl w-fit to-accent-500/20">
+              <div class="bg-gradient-to-br from-primary-500/20 mb-4 p-4 rounded-xl w-fit to-accent-500/20" aria-hidden="true">
                 <UIcon :name="service.icon" class="w-8 h-8 text-primary-400" />
               </div>
               <h3 class="mb-3 font-semibold text-white text-xl">{{ service.title }}</h3>
@@ -269,7 +279,7 @@ const scrollToElement = (elementId: string) => {
             glare-color="rgb(var(--primary-500) / 0.4)"
           >
             <div class="flex flex-col items-center bg-neutral-900/80 p-6 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl transition-colors duration-300">
-              <div class="flex justify-center items-center mb-3 w-16 h-16">
+              <div class="flex justify-center items-center mb-3 w-16 h-16" aria-hidden="true">
                 <UIcon :name="tech.icon" class="w-12 h-12 group-hover:scale-110 transition-transform duration-300" />
               </div>
               <span class="font-medium text-neutral-300 text-sm">{{ tech.name }}</span>
@@ -290,7 +300,7 @@ const scrollToElement = (elementId: string) => {
             glare-color="rgb(var(--accent-500) / 0.4)"
           >
             <div class="flex flex-col items-center bg-neutral-900/80 p-6 border border-neutral-700/50 hover:border-accent-500/50 rounded-xl transition-colors duration-300">
-              <div class="flex justify-center items-center mb-3 w-16 h-16">
+              <div class="flex justify-center items-center mb-3 w-16 h-16" aria-hidden="true">
                 <UIcon :name="tech.icon" class="w-12 h-12 group-hover:scale-110 transition-transform duration-300" />
               </div>
               <span class="font-medium text-neutral-300 text-sm">{{ tech.name }}</span>
@@ -327,7 +337,7 @@ const scrollToElement = (elementId: string) => {
               <div class="relative h-52 overflow-hidden shrink-0">
                 <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 via-accent-500/20" />
                 <div class="absolute inset-0 flex justify-center items-center">
-                  <UIcon name="i-heroicons-photo" class="w-16 h-16 text-white/20 group-hover:scale-110 transition-transform duration-300" />
+                  <UIcon name="i-heroicons-photo" class="w-16 h-16 text-white/20 group-hover:scale-110 transition-transform duration-300" aria-hidden="true" />
                 </div>
                 <!-- Glow effect on hover -->
                 <div class="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent" />
@@ -364,7 +374,7 @@ const scrollToElement = (elementId: string) => {
         >
           <span class="flex items-center gap-2">
             View All Projects
-            <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" />
+            <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" aria-hidden="true" />
           </span>
         </UiGradientButton>
       </div>

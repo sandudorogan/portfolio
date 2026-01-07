@@ -1,5 +1,6 @@
 <template>
-  <div v-if="isActive" class="confetti-container pointer-events-none fixed inset-0 z-50">
+  <!-- Confetti is suppressed when user prefers reduced motion -->
+  <div v-if="isActive && !shouldReduceMotion" class="confetti-container pointer-events-none fixed inset-0 z-50">
     <div
       v-for="(piece, index) in confettiPieces"
       :key="index"
@@ -10,6 +11,8 @@
 </template>
 
 <script setup lang="ts">
+import { usePreferredReducedMotion } from '@vueuse/core'
+
 interface ConfettiProps {
   active?: boolean;
   particleCount?: number;
@@ -23,6 +26,9 @@ const props = withDefaults(defineProps<ConfettiProps>(), {
   colors: () => ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'],
   duration: 3000,
 })
+
+const reducedMotion = usePreferredReducedMotion()
+const shouldReduceMotion = computed(() => reducedMotion.value === 'reduce')
 
 const isActive = ref(props.active)
 
@@ -40,7 +46,7 @@ interface ConfettiPiece {
 }
 
 const confettiPieces = computed<ConfettiPiece[]>(() => {
-  if (!isActive.value) return []
+  if (!isActive.value || shouldReduceMotion.value) return []
 
   return Array.from({ length: props.particleCount }, () => {
     const color = props.colors[Math.floor(Math.random() * props.colors.length)]

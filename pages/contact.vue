@@ -172,6 +172,7 @@ defineOgImage({
                                                         'text-accent-400': item.color === 'accent',
                                                         'text-secondary-400': item.color === 'secondary'
                                                     }"
+                                                    aria-hidden="true"
                                                 />
                                             </div>
                                             <div>
@@ -204,9 +205,11 @@ defineOgImage({
                                     <a
                                         :href="link.url"
                                         target="_blank"
-                                        class="flex justify-center items-center bg-neutral-900/80 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl w-12 h-12 transition-all duration-300"
+                                        rel="noopener noreferrer"
+                                        :aria-label="`Visit my ${link.name} profile (opens in new tab)`"
+                                        class="flex justify-center items-center bg-neutral-900/80 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl w-12 h-12 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                                     >
-                                        <UIcon :name="link.icon" class="w-5 h-5 text-neutral-400 group-hover:text-primary-400 transition-colors" />
+                                        <UIcon :name="link.icon" class="w-5 h-5 text-neutral-400 group-hover:text-primary-400 transition-colors" aria-hidden="true" />
                                     </a>
                                 </UiGlareCard>
                             </div>
@@ -270,11 +273,11 @@ defineOgImage({
                                                 shimmer-color="rgb(var(--primary-500) / 0.3)"
                                             >
                                                 <span v-if="form.loading" class="flex items-center gap-2">
-                                                    <UIcon name="i-heroicons-arrow-path" class="w-4 h-4 animate-spin" />
+                                                    <UIcon name="i-heroicons-arrow-path" class="w-4 h-4 animate-spin" aria-hidden="true" />
                                                     Sending...
                                                 </span>
                                                 <span v-else class="flex items-center gap-2">
-                                                    <UIcon name="i-heroicons-paper-airplane" class="w-4 h-4" />
+                                                    <UIcon name="i-heroicons-paper-airplane" class="w-4 h-4" aria-hidden="true" />
                                                     Send Message
                                                 </span>
                                             </UiShimmerButton>
@@ -289,7 +292,7 @@ defineOgImage({
                                                     class="bg-emerald-500/10 mt-4 p-4 border border-emerald-500/30 rounded-lg"
                                                 >
                                                     <div class="flex items-center gap-3">
-                                                        <div class="bg-emerald-500/20 p-2 rounded-full">
+                                                        <div class="bg-emerald-500/20 p-2 rounded-full" aria-hidden="true">
                                                             <UIcon name="i-heroicons-check-circle" class="w-5 h-5 text-emerald-400" />
                                                         </div>
                                                         <div>
@@ -307,7 +310,7 @@ defineOgImage({
                                                     class="bg-red-500/10 mt-4 p-4 border border-red-500/30 rounded-lg"
                                                 >
                                                     <div class="flex items-center gap-3">
-                                                        <div class="bg-red-500/20 p-2 rounded-full">
+                                                        <div class="bg-red-500/20 p-2 rounded-full" aria-hidden="true">
                                                             <UIcon name="i-heroicons-exclamation-circle" class="w-5 h-5 text-red-400" />
                                                         </div>
                                                         <div>
@@ -339,7 +342,7 @@ defineOgImage({
                         <div class="border border-neutral-700/50 rounded-xl h-80 overflow-hidden">
                             <div class="flex justify-center items-center bg-gradient-to-br from-primary-500/5 via-neutral-900/80 h-full to-accent-500/5">
                                 <div class="text-center">
-                                    <div class="inline-block bg-neutral-800/50 mb-4 p-4 rounded-full">
+                                    <div class="inline-block bg-neutral-800/50 mb-4 p-4 rounded-full" aria-hidden="true">
                                         <UIcon name="i-heroicons-map" class="w-12 h-12 text-primary-400/50" />
                                     </div>
                                     <p class="text-neutral-400">Interactive Map Coming Soon</p>

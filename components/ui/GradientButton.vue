@@ -3,6 +3,7 @@
     :is="props.as"
     :class="cn(
       'gradient-button group relative inline-flex items-center justify-center overflow-hidden rounded-lg p-[2px] font-medium transition-all duration-300',
+      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900',
       props.class
     )"
     v-bind="$attrs"
