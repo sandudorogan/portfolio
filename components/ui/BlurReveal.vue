@@ -10,6 +10,7 @@
       as="div"
       :initial="getInitial()"
       :while-in-view="getAnimate()"
+      :in-view-options="{ once: true }"
       :transition="{
         duration: props.duration,
         easing: 'easeInOut',
