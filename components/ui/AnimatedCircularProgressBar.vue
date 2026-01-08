@@ -27,9 +27,8 @@
         class="transition-all duration-1000 ease-out"
       />
     </svg>
-    <div class="absolute inset-0 flex flex-col items-center justify-center">
-      <span class="text-2xl font-bold">{{ Math.round(animatedValue) }}%</span>
-      <span v-if="label" class="text-xs text-neutral-400">{{ label }}</span>
+    <div class="absolute inset-0 flex justify-center items-center">
+      <span class="font-bold text-2xl">{{ Math.round(animatedValue) }}%</span>
     </div>
   </div>
 </template>
@@ -42,25 +41,27 @@ interface AnimatedCircularProgressBarProps {
   strokeWidth?: number;
   trackColor?: string;
   progressColor?: string;
-  label?: string;
+  startDelayMs?: number;
 }
 
 const props = withDefaults(defineProps<AnimatedCircularProgressBarProps>(), {
+  class: undefined,
   size: 120,
   strokeWidth: 8,
   trackColor: 'rgba(255, 255, 255, 0.1)',
   progressColor: 'rgb(var(--primary-500))',
+  startDelayMs: 0,
 })
 
 const animatedValue = ref(0)
 const hasAnimated = ref(false)
+const isInView = ref(false)
 const containerRef = ref<HTMLElement | null>(null)
+let delayTimeout: ReturnType<typeof setTimeout> | null = null
 
 const radius = computed(() => (props.size - props.strokeWidth) / 2)
 const circumference = computed(() => 2 * Math.PI * radius.value)
-const strokeDashoffset = computed(() => {
-  return circumference.value - (animatedValue.value / 100) * circumference.value
-})
+const strokeDashoffset = computed(() => circumference.value - (animatedValue.value / 100) * circumference.value)
 
 function animateProgress() {
   if (hasAnimated.value) return
@@ -84,23 +85,52 @@ function animateProgress() {
   requestAnimationFrame(update)
 }
 
+function scheduleAnimation() {
+  if (hasAnimated.value) return
+  cancelScheduledAnimation()
+
+  if (props.startDelayMs > 0) {
+    delayTimeout = setTimeout(() => {
+      if (isInView.value) {
+        animateProgress()
+      }
+    }, props.startDelayMs)
+  } else {
+    animateProgress()
+  }
+}
+
+function cancelScheduledAnimation() {
+  if (delayTimeout !== null) {
+    clearTimeout(delayTimeout)
+    delayTimeout = null
+  }
+}
+
 const { stop } = useIntersectionObserver(
   containerRef,
   ([{ isIntersecting }]) => {
+    isInView.value = isIntersecting
     if (isIntersecting && !hasAnimated.value) {
-      animateProgress()
+      scheduleAnimation()
+    } else if (!isIntersecting) {
+      cancelScheduledAnimation()
     }
   },
-  { threshold: 0.5 }
+  { threshold: 0.5 },
 )
 
 onUnmounted(() => {
   stop()
+  cancelScheduledAnimation()
 })
 
 watch(() => props.value, () => {
   hasAnimated.value = false
-  animateProgress()
-})
+  if (isInView.value) {
+    scheduleAnimation()
+  }
+},
+)
 </script>
 

@@ -152,19 +152,28 @@ defineOgImage({
                     <!-- Skills with Circular Progress -->
                     <div class="gap-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 mb-12">
                         <ClientOnly>
-                            <UiBlurReveal v-for="(skill, index) in developerInfo.skills" :key="index" :delay="0.2 + index * 0.1">
+                            <UiBlurReveal
+                                v-for="(skill, index) in developerInfo.skills"
+                                :key="index"
+                                :delay="0.2 + index * 0.1"
+                                :duration="1"
+                                class="h-full"
+                            >
                                 <UiCardSpotlight
-                                    class="flex flex-col items-center p-4"
+                                    class="!p-4 h-full"
                                     spotlight-color="rgb(var(--primary-500) / 0.15)"
                                 >
-                                    <UiAnimatedCircularProgressBar
-                                        :value="skill.level"
-                                        :size="100"
-                                        :stroke-width="6"
-                                        track-color="rgba(255, 255, 255, 0.1)"
-                                        progress-color="rgb(var(--primary-500))"
-                                    />
-                                    <span class="mt-3 font-medium text-neutral-300 text-sm text-center">{{ skill.name }}</span>
+                                    <div class="flex flex-col items-center h-full">
+                                        <UiAnimatedCircularProgressBar
+                                            :value="skill.level"
+                                            :size="100"
+                                            :stroke-width="6"
+                                            track-color="rgba(255, 255, 255, 0.1)"
+                                            progress-color="rgb(var(--primary-500))"
+                                            :start-delay-ms="1000"
+                                        />
+                                        <span class="mt-auto pt-4 font-medium text-neutral-300 text-sm text-center">{{ skill.name }}</span>
+                                    </div>
                                 </UiCardSpotlight>
                             </UiBlurReveal>
                         </ClientOnly>

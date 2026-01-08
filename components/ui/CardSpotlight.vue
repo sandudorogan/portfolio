@@ -12,7 +12,7 @@
       class="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300"
       :style="spotlightStyle"
     />
-    <div class="relative z-10">
+    <div class="relative z-10 h-full">
       <slot />
     </div>
   </div>
