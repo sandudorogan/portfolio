@@ -366,7 +366,7 @@ const scrollToElement = (elementId: string) => {
       <div class="flex justify-center mt-12">
         <UiGradientButton
           as="NuxtLink"
-          to="/projects"
+          to="/about#work-experience"
           variant="outline"
           from-color="rgb(var(--primary-500))"
           via-color="rgb(var(--accent-500))"

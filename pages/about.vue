@@ -216,7 +216,7 @@ defineOgImage({
         </section>
 
         <!-- Experience Section with Timeline -->
-        <section class="relative py-24 overflow-hidden">
+        <section id="work-experience" class="relative py-24 overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
             <UiMeteorEffect :count="10" color="rgb(var(--primary-500))" class="absolute inset-0" />
 
