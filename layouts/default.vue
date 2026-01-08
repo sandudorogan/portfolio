@@ -24,11 +24,11 @@ useHead({
 })
 
 // Person structured data for Google (via nuxt-schema-org)
+// Note: email intentionally omitted to prevent scraping
 useSchemaOrg([
   definePerson({
     name: 'Sandu Dorogan',
     jobTitle: 'Full Stack Developer',
-    email: 'sandu.dorogan@gmail.com',
     address: {
       addressLocality: 'Bucharest',
       addressCountry: 'RO'

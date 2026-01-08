@@ -4,7 +4,6 @@ const developerInfo = {
     title: 'Full Stack Developer at IPRally',
     bio: 'Focused, driven and creative. Will bring your ideas to life. Tell me the what and I\'ll show you the how.',
     location: 'Bucharest, Romania',
-    email: 'sandu.dorogan@gmail.com',
     experience: [
         {
             date: 'May 2025 - Present',
@@ -127,7 +126,11 @@ defineOgImage({
                                 <UiGlareCard :glare-opacity="0.2" class="group bg-neutral-900/80 border border-neutral-700/50 !rounded-lg">
                                     <div class="flex items-center gap-2 px-4 py-2">
                                         <UIcon name="i-heroicons-envelope" class="w-4 h-4 text-accent-400" aria-hidden="true" />
-                                        <span class="text-neutral-300">{{ developerInfo.email }}</span>
+                                        <AppRevealContactValue
+                                            endpoint="/api/reveal/email"
+                                            placeholder="email@example.com"
+                                            class="text-neutral-300"
+                                        />
                                     </div>
                                 </UiGlareCard>
                             </div>
