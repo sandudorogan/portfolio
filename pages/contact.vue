@@ -89,11 +89,11 @@ usePageSeo({
 
 // OG image must be defined at page level for static generation
 defineOgImage({
-  component: 'Default',
-  props: {
-    title: 'Get In Touch',
-    description: "Have a project in mind? Let's collaborate and build something amazing together."
-  }
+    component: 'Default',
+    props: {
+        title: 'Get In Touch',
+        description: "Have a project in mind? Let's collaborate and build something amazing together."
+    }
 })
 </script>
 
@@ -101,12 +101,9 @@ defineOgImage({
     <div class="pt-16">
         <!-- Confetti Effect -->
         <ClientOnly>
-            <UiConfetti
-                :active="showConfetti"
-                :particle-count="100"
+            <UiConfetti :active="showConfetti" :particle-count="100"
                 :colors="['rgb(var(--primary-500))', 'rgb(var(--accent-500))', 'rgb(var(--secondary-500))']"
-                :duration="4000"
-            />
+                :duration="4000" />
         </ClientOnly>
 
         <!-- Hero Section -->
@@ -118,7 +115,8 @@ defineOgImage({
             <div class="z-10 relative mx-auto px-4 container">
                 <UiBlurReveal :delay="0.2">
                     <div class="mx-auto max-w-3xl text-center">
-                        <h1 class="bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-neutral-400 mb-4 font-bold text-transparent text-4xl md:text-5xl">
+                        <h1
+                            class="bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-neutral-400 mb-4 font-bold text-transparent text-4xl md:text-5xl">
                             Get In Touch
                         </h1>
                         <p class="mx-auto max-w-xl text-neutral-300 text-lg">
@@ -140,51 +138,38 @@ defineOgImage({
                     <div class="space-y-8 md:col-span-1">
                         <UiBlurReveal :delay="0.3">
                             <h2 class="mb-6 font-semibold text-xl">
-                                <span class="bg-clip-text bg-gradient-to-r from-primary-400 text-transparent to-accent-400">
+                                <span
+                                    class="bg-clip-text bg-gradient-to-r from-primary-400 text-transparent to-accent-400">
                                     Contact Information
                                 </span>
                             </h2>
 
                             <div class="space-y-4">
-                                <UiCard3D
-                                    v-for="(item, index) in contactInfo"
-                                    :key="index"
-                                    :rotation-factor="6"
-                                    :show-glare="false"
-                                >
+                                <UiCard3D v-for="(item, index) in contactInfo" :key="index" :rotation-factor="6"
+                                    :show-glare="false">
                                     <UiCardSpotlight
                                         :spotlight-color="item.color === 'primary' ? 'rgb(var(--primary-500) / 0.15)' : item.color === 'accent' ? 'rgb(var(--accent-500) / 0.15)' : 'rgb(var(--secondary-500) / 0.15)'"
-                                        class="p-0"
-                                    >
+                                        class="p-0">
                                         <div class="flex items-start p-4">
-                                            <div
-                                                class="flex justify-center items-center mr-4 rounded-xl w-12 h-12"
+                                            <div class="flex justify-center items-center mr-4 rounded-xl w-12 h-12"
                                                 :class="{
                                                     'bg-gradient-to-br from-primary-500/20 to-primary-500/10': item.color === 'primary',
                                                     'bg-gradient-to-br from-accent-500/20 to-accent-500/10': item.color === 'accent',
                                                     'bg-gradient-to-br from-secondary-500/20 to-secondary-500/10': item.color === 'secondary'
-                                                }"
-                                            >
-                                                <UIcon
-                                                    :name="item.icon"
-                                                    class="w-6 h-6"
-                                                    :class="{
-                                                        'text-primary-400': item.color === 'primary',
-                                                        'text-accent-400': item.color === 'accent',
-                                                        'text-secondary-400': item.color === 'secondary'
-                                                    }"
-                                                    aria-hidden="true"
-                                                />
+                                                }">
+                                                <UIcon :name="item.icon" class="w-6 h-6" :class="{
+                                                    'text-primary-400': item.color === 'primary',
+                                                    'text-accent-400': item.color === 'accent',
+                                                    'text-secondary-400': item.color === 'secondary'
+                                                }" aria-hidden="true" />
                                             </div>
                                             <div>
                                                 <h3 class="font-medium text-neutral-400 text-sm">{{ item.title }}</h3>
                                                 <p class="mt-1">
                                                     <!-- Reveal-on-click for email/phone (anti-scraper) -->
-                                                    <AppRevealContactValue
-                                                        v-if="item.revealEndpoint"
+                                                    <AppRevealContactValue v-if="item.revealEndpoint"
                                                         :endpoint="item.revealEndpoint"
-                                                        :placeholder="item.placeholder"
-                                                    />
+                                                        :placeholder="item.placeholder" />
                                                     <!-- Static value for location -->
                                                     <span v-else class="text-white">{{ item.value }}</span>
                                                 </p>
@@ -197,26 +182,21 @@ defineOgImage({
 
                         <UiBlurReveal :delay="0.4">
                             <h2 class="mb-6 font-semibold text-xl">
-                                <span class="bg-clip-text bg-gradient-to-r from-primary-400 text-transparent to-accent-400">
+                                <span
+                                    class="bg-clip-text bg-gradient-to-r from-primary-400 text-transparent to-accent-400">
                                     Follow Me
                                 </span>
                             </h2>
 
                             <div class="flex flex-wrap gap-3">
-                                <UiGlareCard
-                                    v-for="link in socialLinks"
-                                    :key="link.name"
-                                    :glare-opacity="0.2"
-                                    class="group"
-                                >
-                                    <a
-                                        :href="link.url"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                <UiGlareCard v-for="link in socialLinks" :key="link.name" :glare-opacity="0.2"
+                                    class="group">
+                                    <a :href="link.url" target="_blank" rel="noopener noreferrer"
                                         :aria-label="`Visit my ${link.name} profile (opens in new tab)`"
-                                        class="flex justify-center items-center bg-neutral-900/80 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset w-12 h-12 transition-all duration-300"
-                                    >
-                                        <UIcon :name="link.icon" class="w-5 h-5 text-neutral-400 group-hover:text-primary-400 transition-colors" aria-hidden="true" />
+                                        class="flex justify-center items-center bg-neutral-900/80 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset w-12 h-12 transition-all duration-300">
+                                        <UIcon :name="link.icon"
+                                            class="w-5 h-5 text-neutral-400 group-hover:text-primary-400 transition-colors"
+                                            aria-hidden="true" />
                                     </a>
                                 </UiGlareCard>
                             </div>
@@ -235,98 +215,77 @@ defineOgImage({
                                     <form @submit.prevent="handleSubmit" class="space-y-6">
                                         <div class="gap-6 grid grid-cols-1 md:grid-cols-2">
                                             <UFormGroup label="Your Name">
-                                                <UInput
-                                                    v-model="form.name"
-                                                    placeholder="John Doe"
-                                                    required
-                                                    class="bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors"
-                                                />
+                                                <UInput v-model="form.name" placeholder="John Doe" required
+                                                    class="bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors" />
                                             </UFormGroup>
 
                                             <UFormGroup label="Your Email">
-                                                <UInput
-                                                    v-model="form.email"
-                                                    type="email"
-                                                    placeholder="john@example.com"
+                                                <UInput v-model="form.email" type="email" placeholder="john@example.com"
                                                     required
-                                                    class="bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors"
-                                                />
+                                                    class="bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors" />
                                             </UFormGroup>
                                         </div>
 
                                         <UFormGroup label="Subject">
-                                            <UInput
-                                                v-model="form.subject"
-                                                placeholder="Project Inquiry"
-                                                class="bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors"
-                                            />
+                                            <UInput v-model="form.subject" placeholder="Project Inquiry"
+                                                class="bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors" />
                                         </UFormGroup>
 
                                         <UFormGroup label="Message">
-                                            <UTextarea
-                                                v-model="form.message"
-                                                placeholder="Tell me about your project..."
-                                                :rows="5"
-                                                required
-                                                class="bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors"
-                                            />
+                                            <UTextarea v-model="form.message"
+                                                placeholder="Tell me about your project..." :rows="5" required
+                                                class="bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors" />
                                         </UFormGroup>
 
                                         <div>
-                                            <UiShimmerButton
-                                                type="submit"
-                                                :disabled="form.loading"
+                                            <UiShimmerButton type="submit" :disabled="form.loading"
                                                 class="!px-8 w-full md:w-auto"
-                                                shimmer-color="rgb(var(--primary-500) / 0.3)"
-                                            >
+                                                shimmer-color="rgb(var(--primary-500) / 0.3)">
                                                 <span v-if="form.loading" class="flex items-center gap-2">
-                                                    <UIcon name="i-heroicons-arrow-path" class="w-4 h-4 animate-spin" aria-hidden="true" />
+                                                    <UIcon name="i-heroicons-arrow-path" class="w-4 h-4 animate-spin"
+                                                        aria-hidden="true" />
                                                     Sending...
                                                 </span>
                                                 <span v-else class="flex items-center gap-2">
-                                                    <UIcon name="i-heroicons-paper-airplane" class="w-4 h-4" aria-hidden="true" />
+                                                    <UIcon name="i-heroicons-paper-airplane" class="w-4 h-4"
+                                                        aria-hidden="true" />
                                                     Send Message
                                                 </span>
                                             </UiShimmerButton>
 
                                             <!-- Success Message -->
                                             <ClientOnly>
-                                                <Motion
-                                                    v-if="form.success"
-                                                    tabindex="-1"
-                                                    role="status"
-                                                    :initial="{ opacity: 0, y: -10 }"
-                                                    :animate="{ opacity: 1, y: 0 }"
+                                                <Motion v-if="form.success" tabindex="-1" role="status"
+                                                    :initial="{ opacity: 0, y: -10 }" :animate="{ opacity: 1, y: 0 }"
                                                     :exit="{ opacity: 0, y: -10 }"
-                                                    class="bg-emerald-500/10 mt-4 p-4 border border-emerald-500/30 rounded-lg"
-                                                >
+                                                    class="bg-emerald-500/10 mt-4 p-4 border border-emerald-500/30 rounded-lg">
                                                     <div class="flex items-center gap-3">
-                                                        <div class="bg-emerald-500/20 p-2 rounded-full" aria-hidden="true">
-                                                            <UIcon name="i-heroicons-check-circle" class="w-5 h-5 text-emerald-400" />
+                                                        <div class="bg-emerald-500/20 p-2 rounded-full"
+                                                            aria-hidden="true">
+                                                            <UIcon name="i-heroicons-check-circle"
+                                                                class="w-5 h-5 text-emerald-400" />
                                                         </div>
                                                         <div>
                                                             <h4 class="font-medium text-emerald-400">Message Sent!</h4>
-                                                            <p class="text-neutral-400 text-sm">Thanks for reaching out. I'll get back to you soon.</p>
+                                                            <p class="text-neutral-400 text-sm">Thanks for reaching out.
+                                                                I'll get back to you soon.</p>
                                                         </div>
                                                     </div>
                                                 </Motion>
 
-                                                <Motion
-                                                    v-if="form.error"
-                                                    tabindex="-1"
-                                                    role="alert"
-                                                    :initial="{ opacity: 0, y: -10 }"
-                                                    :animate="{ opacity: 1, y: 0 }"
+                                                <Motion v-if="form.error" tabindex="-1" role="alert"
+                                                    :initial="{ opacity: 0, y: -10 }" :animate="{ opacity: 1, y: 0 }"
                                                     :exit="{ opacity: 0, y: -10 }"
-                                                    class="bg-red-500/10 mt-4 p-4 border border-red-500/30 rounded-lg"
-                                                >
+                                                    class="bg-red-500/10 mt-4 p-4 border border-red-500/30 rounded-lg">
                                                     <div class="flex items-center gap-3">
                                                         <div class="bg-red-500/20 p-2 rounded-full" aria-hidden="true">
-                                                            <UIcon name="i-heroicons-exclamation-circle" class="w-5 h-5 text-red-400" />
+                                                            <UIcon name="i-heroicons-exclamation-circle"
+                                                                class="w-5 h-5 text-red-400" />
                                                         </div>
                                                         <div>
                                                             <h4 class="font-medium text-red-400">Error</h4>
-                                                            <p class="text-neutral-400 text-sm">Something went wrong. Please try again later.</p>
+                                                            <p class="text-neutral-400 text-sm">Something went wrong.
+                                                                Please try again later.</p>
                                                         </div>
                                                     </div>
                                                 </Motion>
@@ -335,7 +294,8 @@ defineOgImage({
                                     </form>
                                 </div>
 
-                                <UiBorderBeam :size="300" :duration="12" color-from="rgb(var(--primary-500))" color-to="rgb(var(--accent-500))" />
+                                <UiBorderBeam :size="300" :duration="12" color-from="rgb(var(--primary-500))"
+                                    color-to="rgb(var(--accent-500))" />
                             </UiNeonBorder>
                         </UiBlurReveal>
                     </div>
@@ -351,9 +311,11 @@ defineOgImage({
                 <UiBlurReveal :delay="0.3">
                     <UiCard3D :rotation-factor="5" :show-glare="true" :glare-opacity="0.1">
                         <div class="border border-neutral-700/50 rounded-xl h-80 overflow-hidden">
-                            <div class="flex justify-center items-center bg-gradient-to-br from-primary-500/5 via-neutral-900/80 h-full to-accent-500/5">
+                            <div
+                                class="flex justify-center items-center bg-gradient-to-br from-primary-500/5 via-neutral-900/80 h-full to-accent-500/5">
                                 <div class="text-center">
-                                    <div class="inline-block bg-neutral-800/50 mb-4 p-4 rounded-full" aria-hidden="true">
+                                    <div class="inline-block bg-neutral-800/50 mb-4 p-4 rounded-full"
+                                        aria-hidden="true">
                                         <UIcon name="i-heroicons-map" class="w-12 h-12 text-primary-400/50" />
                                     </div>
                                     <p class="text-neutral-400">Interactive Map Coming Soon</p>
@@ -369,7 +331,7 @@ defineOgImage({
 </template>
 
 <script lang="ts">
-import {Motion} from 'motion-v'
+import { Motion } from 'motion-v'
 
 export default {
     components: {

@@ -19,7 +19,8 @@ interface Project {
   title: string;
   description: string;
   tags: string[];
-  image?: string;
+  image: string;
+  url: string;
 }
 
 interface Testimonial {
@@ -31,19 +32,25 @@ interface Testimonial {
 
 const projects: Project[] = [
   {
-    title: 'E-commerce Platform',
-    description: 'A modern e-commerce solution with real-time inventory management',
-    tags: ['NuxtJS', 'VueJS', 'AWS'],
+    title: 'Newsroom AI - Stories Editor',
+    url: 'https://nws.ai',
+    image: '/images/nws-studio.png',
+    description: 'A modern stories editor for Newsroom AI. Built with ClojureScript and Django Python. Deployed on AWS.',
+    tags: ['ClojureScripe', 'Django Python', 'AWS'],
   },
   {
-    title: 'Financial Dashboard',
-    description: 'Interactive dashboard for visualizing complex financial data',
-    tags: ['ClojureScript', 'VueJS', 'Docker'],
+    title: 'Crossbeam - Partnerbase',
+    url: 'https://partnerbase.com',
+    image: '/images/partnerbase.png',
+    description: 'A database of partners and their products. Built with NuxtJS and Clojure. Deployed on AWS.',
+    tags: ['NuxtJS', 'Clojure', 'AWS'],
   },
   {
-    title: 'Content Management System',
-    description: 'Custom CMS with role-based access control and workflow automation',
-    tags: ['Clojure', 'NuxtJS', 'AWS'],
+    title: 'IPRally - Patents Search',
+    url: 'https://iprally.com',
+    image: '/images/iprally.png',
+    description: 'A patents search engine for IPRally. Built with Clojure and ClojureScript. Deployed on Google Cloud.',
+    tags: ['Clojure', 'ClojureScript', 'Google Cloud'],
   }
 ];
 
@@ -138,14 +145,12 @@ const scrollToElement = (elementId: string) => {
     <div class="z-[3] flex flex-col items-center gap-4 px-4 max-w-4xl">
       <UiBlurReveal :delay="0.3" class="flex flex-col justify-center items-center gap-6">
         <!-- Main Heading -->
-        <h1 class="flex flex-col justify-center items-center bg-clip-text bg-gradient-to-b from-white via-neutral-200 to-neutral-400 font-bold text-transparent text-5xl md:text-7xl text-center leading-tight">
+        <h1
+          class="flex flex-col justify-center items-center bg-clip-text bg-gradient-to-b from-white via-neutral-200 to-neutral-400 font-bold text-transparent text-5xl md:text-7xl text-center leading-tight">
           Building
           <UiTextHighlight class="bg-gradient-to-r from-primary-500 py-2 rounded-xl to-accent-500">
-            <UiFlipWords
-              :words="['beautiful', 'stunning', 'immersive', 'scalable']"
-              :duration="3000"
-              class="bg-clip-text bg-gradient-to-b from-white to-neutral-200 text-transparent"
-            />
+            <UiFlipWords :words="['beautiful', 'stunning', 'immersive', 'scalable']" :duration="3000"
+              class="bg-clip-text bg-gradient-to-b from-white to-neutral-200 text-transparent" />
           </UiTextHighlight>
           web experiences
         </h1>
@@ -157,27 +162,19 @@ const scrollToElement = (elementId: string) => {
 
         <!-- CTA Buttons -->
         <div class="flex flex-row flex-wrap justify-center items-center gap-4 mt-4">
-          <NuxtLink
-            to="/about"
-            class="group bg-gradient-to-r from-primary-500 hover:opacity-90 px-5 py-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 font-medium text-white text-sm hover:scale-105 transition-all duration-300 to-accent-500"
-          >
+          <NuxtLink to="/about"
+            class="group bg-gradient-to-r from-primary-500 hover:opacity-90 px-5 py-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 font-medium text-white text-sm hover:scale-105 transition-all duration-300 to-accent-500">
             <span class="flex items-center gap-1.5">
               <UIcon name="i-heroicons-user" class="w-3.5 h-3.5" aria-hidden="true" />
               About Me
             </span>
           </NuxtLink>
 
-          <UiGlowBorder
-            :border-radius="9999"
-            :color="['rgb(var(--primary-500))', 'rgb(var(--accent-500))']"
-            :border-width="2"
-            :duration="15"
-            class="!bg-transparent !p-0 !min-w-fit !min-h-fit hover:scale-105 transition-transform duration-300"
-          >
-            <NuxtLink
-              to="/contact"
-              class="flex items-center gap-2 bg-neutral-900/80 px-8 py-3 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 font-semibold text-white"
-            >
+          <UiGlowBorder :border-radius="9999" :color="['rgb(var(--primary-500))', 'rgb(var(--accent-500))']"
+            :border-width="2" :duration="15"
+            class="!bg-transparent !p-0 !min-w-fit !min-h-fit hover:scale-105 transition-transform duration-300">
+            <NuxtLink to="/contact"
+              class="flex items-center gap-2 bg-neutral-900/80 px-8 py-3 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 font-semibold text-white">
               Get in Touch
               <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" aria-hidden="true" />
             </NuxtLink>
@@ -190,7 +187,8 @@ const scrollToElement = (elementId: string) => {
             <UiCard3D :rotation-factor="8" :show-glare="false">
               <div class="relative bg-neutral-900/80 backdrop-blur-xl p-1 border border-neutral-700/50 rounded-xl">
                 <UiSafariMockup url="app.iprally.com" src="/images/iprally.png" class="w-full" />
-                <UiBorderBeam :size="300" :duration="10" :delay="0" :border-width="2" color-from="rgb(var(--primary-500))" color-to="rgb(var(--accent-500))" />
+                <UiBorderBeam :size="300" :duration="10" :delay="0" :border-width="2"
+                  color-from="rgb(var(--primary-500))" color-to="rgb(var(--accent-500))" />
               </div>
             </UiCard3D>
           </div>
@@ -200,11 +198,8 @@ const scrollToElement = (elementId: string) => {
 
     <!-- Scroll Indicator -->
     <div class="bottom-8 z-[3] absolute animate-bounce">
-      <UiShimmerButton
-        class="!px-4 !py-2 !rounded-full"
-        aria-label="Scroll down to services section"
-        @click="() => scrollToElement('services')"
-      >
+      <UiShimmerButton class="!px-4 !py-2 !rounded-full" aria-label="Scroll down to services section"
+        @click="() => scrollToElement('services')">
         <UIcon name="i-heroicons-chevron-down" class="w-5 h-5" aria-hidden="true" />
       </UiShimmerButton>
     </div>
@@ -230,13 +225,11 @@ const scrollToElement = (elementId: string) => {
 
       <div class="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         <UiBlurReveal v-for="(service, index) in services" :key="index" :delay="0.3 + index * 0.1" class="h-full">
-          <UiCardSpotlight
-            class="h-full min-h-[220px]"
-            spotlight-color="rgb(var(--accent-500) / 0.15)"
-            :spotlight-size="350"
-          >
+          <UiCardSpotlight class="h-full min-h-[220px]" spotlight-color="rgb(var(--accent-500) / 0.15)"
+            :spotlight-size="350">
             <div class="flex flex-col p-4 h-full">
-              <div class="bg-gradient-to-br from-primary-500/20 mb-4 p-4 rounded-xl w-fit to-accent-500/20" aria-hidden="true">
+              <div class="bg-gradient-to-br from-primary-500/20 mb-4 p-4 rounded-xl w-fit to-accent-500/20"
+                aria-hidden="true">
                 <UIcon :name="service.icon" class="w-8 h-8 text-primary-400" />
               </div>
               <h3 class="mb-3 font-semibold text-white text-xl">{{ service.title }}</h3>
@@ -268,17 +261,10 @@ const scrollToElement = (elementId: string) => {
 
       <!-- Marquee for tech icons -->
       <UiMarquee :duration="25" pause-on-hover class="py-8">
-        <div
-          v-for="(tech, index) in [...techStack, ...techStack]"
-          :key="index"
-          class="mx-6"
-        >
-          <UiGlareCard
-            class="group"
-            :glare-opacity="0.3"
-            glare-color="rgb(var(--primary-500) / 0.4)"
-          >
-            <div class="flex flex-col items-center bg-neutral-900/80 p-6 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl transition-colors duration-300">
+        <div v-for="(tech, index) in [...techStack, ...techStack]" :key="index" class="mx-6">
+          <UiGlareCard class="group" :glare-opacity="0.3" glare-color="rgb(var(--primary-500) / 0.4)">
+            <div
+              class="flex flex-col items-center bg-neutral-900/80 p-6 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl transition-colors duration-300">
               <div class="flex justify-center items-center mb-3 w-16 h-16" aria-hidden="true">
                 <UIcon :name="tech.icon" class="w-12 h-12 group-hover:scale-110 transition-transform duration-300" />
               </div>
@@ -289,17 +275,10 @@ const scrollToElement = (elementId: string) => {
       </UiMarquee>
 
       <UiMarquee :duration="30" reverse pause-on-hover class="py-8">
-        <div
-          v-for="(tech, index) in [...techStack, ...techStack].reverse()"
-          :key="index"
-          class="mx-6"
-        >
-          <UiGlareCard
-            class="group"
-            :glare-opacity="0.3"
-            glare-color="rgb(var(--accent-500) / 0.4)"
-          >
-            <div class="flex flex-col items-center bg-neutral-900/80 p-6 border border-neutral-700/50 hover:border-accent-500/50 rounded-xl transition-colors duration-300">
+        <div v-for="(tech, index) in [...techStack, ...techStack].reverse()" :key="index" class="mx-6">
+          <UiGlareCard class="group" :glare-opacity="0.3" glare-color="rgb(var(--accent-500) / 0.4)">
+            <div
+              class="flex flex-col items-center bg-neutral-900/80 p-6 border border-neutral-700/50 hover:border-accent-500/50 rounded-xl transition-colors duration-300">
               <div class="flex justify-center items-center mb-3 w-16 h-16" aria-hidden="true">
                 <UIcon :name="tech.icon" class="w-12 h-12 group-hover:scale-110 transition-transform duration-300" />
               </div>
@@ -331,47 +310,43 @@ const scrollToElement = (elementId: string) => {
 
       <div class="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <UiBlurReveal v-for="(project, index) in projects" :key="index" :delay="0.3 + index * 0.15" class="h-full">
-          <UiCard3D :rotation-factor="10" :show-glare="false" class="h-full">
-            <div class="group flex flex-col bg-neutral-900/80 backdrop-blur-sm border border-neutral-700/50 rounded-xl h-full overflow-hidden">
-              <!-- Project Image Placeholder -->
-              <div class="relative h-52 overflow-hidden shrink-0">
-                <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 via-accent-500/20" />
-                <div class="absolute inset-0 flex justify-center items-center">
-                  <UIcon name="i-heroicons-photo" class="w-16 h-16 text-white/20 group-hover:scale-110 transition-transform duration-300" aria-hidden="true" />
+          <NuxtLink :to="project.url" target="_blank" external>
+            <UiCard3D :rotation-factor="10" :show-glare="false" class="group">
+              <div
+                class="flex flex-col bg-neutral-900/80 backdrop-blur-sm border border-neutral-700/50 rounded-xl h-full overflow-hidden">
+                <!-- Project Image Placeholder -->
+                <div class="relative h-52 overflow-hidden shrink-0">
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 via-accent-500/20" />
+                  <div class="absolute inset-0 flex justify-center items-center">
+                    <img :src="project.image" alt="Project Image"
+                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+                  <!-- Glow effect on hover -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent" />
                 </div>
-                <!-- Glow effect on hover -->
-                <div class="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent" />
-              </div>
 
-              <div class="flex flex-col flex-grow p-6">
-                <h3 class="mb-3 font-semibold text-white group-hover:text-primary-400 text-xl transition-colors">
-                  {{ project.title }}
-                </h3>
-                <p class="flex-grow mb-4 text-neutral-400">{{ project.description }}</p>
-                <div class="flex flex-wrap gap-2">
-                  <span
-                    v-for="tag in project.tags"
-                    :key="tag"
-                    class="bg-gradient-to-r from-secondary-500/10 to-secondary-400/10 px-3 py-1 border border-secondary-500/20 rounded-full font-medium text-secondary-400 text-xs"
-                  >
-                    {{ tag }}
-                  </span>
+                <div class="flex flex-col flex-grow p-6">
+                  <h3 class="mb-3 font-semibold text-white group-hover:text-primary-400 text-xl transition-colors">
+                    {{ project.title }}
+                  </h3>
+                  <p class="flex-grow mb-4 text-neutral-400">{{ project.description }}</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span v-for="tag in project.tags" :key="tag"
+                      class="bg-gradient-to-r from-secondary-500/10 to-secondary-400/10 px-3 py-1 border border-secondary-500/20 rounded-full font-medium text-secondary-400 text-xs">
+                      {{ tag }}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </UiCard3D>
+            </UiCard3D>
+          </NuxtLink>
         </UiBlurReveal>
       </div>
 
       <div class="flex justify-center mt-12">
-        <UiGradientButton
-          as="NuxtLink"
-          to="/about#work-experience"
-          variant="outline"
-          from-color="rgb(var(--primary-500))"
-          via-color="rgb(var(--accent-500))"
-          to-color="rgb(var(--primary-500))"
-        >
+        <UiGradientButton as="NuxtLink" to="/about#work-experience" variant="outline"
+          from-color="rgb(var(--primary-500))" via-color="rgb(var(--accent-500))" to-color="rgb(var(--primary-500))">
           <span class="flex items-center gap-2">
             View All Projects
             <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" aria-hidden="true" />
@@ -382,7 +357,7 @@ const scrollToElement = (elementId: string) => {
   </section>
 
   <!-- Testimonials Section -->
-  <section class="relative py-24 overflow-hidden">
+  <section class="hidden relative py-24 overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-b from-background/95 via-neutral-900/50 to-background" />
 
     <div class="z-10 relative mx-auto px-4 container">
@@ -400,12 +375,8 @@ const scrollToElement = (elementId: string) => {
       </UiBlurReveal>
 
       <ClientOnly>
-        <UiAnimatedTestimonials
-          :testimonials="testimonials"
-          :autoplay="true"
-          :duration="5000"
-          class="mx-auto max-w-5xl"
-        />
+        <UiAnimatedTestimonials :testimonials="testimonials" :autoplay="true" :duration="5000"
+          class="mx-auto max-w-5xl" />
       </ClientOnly>
     </div>
   </section>
@@ -416,11 +387,9 @@ const scrollToElement = (elementId: string) => {
 
     <div class="z-10 relative mx-auto px-4 container">
       <UiBlurReveal :delay="0.3">
-        <AppContactCta
-          title="Ready to bring your ideas to life?"
+        <AppContactCta title="Ready to bring your ideas to life?"
           description="Let's collaborate to transform your vision into a reality. From concept to completion, I'm here to guide you through every step of the development process."
-          button-label="Get in Touch"
-        />
+          button-label="Get in Touch" />
       </UiBlurReveal>
     </div>
   </section>
@@ -429,9 +398,12 @@ const scrollToElement = (elementId: string) => {
 <style scoped>
 /* Custom animations */
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-10px);
   }

@@ -6,7 +6,7 @@ withDefaults(defineProps<{
 }>(), {
   title: 'Sandu Dorogan — Full Stack Developer',
   description: "Focused, driven and creative. Will bring your ideas to life. Tell me the what and I'll show you the how.",
-  emoji: '⚡'
+  emoji: '👨‍💻⚡💻'
 })
 </script>
 
