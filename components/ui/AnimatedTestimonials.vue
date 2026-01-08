@@ -1,8 +1,8 @@
 <template>
   <div :class="cn('animated-testimonials relative w-full', props.class)">
-    <div class="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-20">
+    <div class="gap-12 md:gap-20 grid grid-cols-1 md:grid-cols-2">
       <!-- Image Section -->
-      <div class="relative h-80 w-full md:h-[500px]">
+      <div class="relative w-full h-80 md:h-[500px]">
         <Motion
           v-for="(testimonial, index) in testimonials"
           :key="index"
@@ -21,7 +21,7 @@
           <img
             :src="testimonial.image"
             :alt="testimonial.name"
-            class="h-full w-full rounded-3xl object-cover object-center"
+            class="rounded-3xl w-full h-full object-center object-cover"
             draggable="false"
           />
         </Motion>
@@ -36,7 +36,7 @@
             :initial="textInitial"
             :animate="textAnimate"
             :transition="textTransition(0)"
-            class="text-2xl font-bold text-text-50 md:text-4xl"
+            class="font-bold text-text-50 text-2xl md:text-4xl"
           >
             {{ activeTestimonial.name }}
           </Motion>
@@ -46,7 +46,7 @@
             :initial="textInitial"
             :animate="textAnimate"
             :transition="textTransition(0.1)"
-            class="mt-1 text-sm text-neutral-400 md:text-base"
+            class="mt-1 text-neutral-400 text-sm md:text-base"
           >
             {{ activeTestimonial.designation }}
           </Motion>
@@ -56,35 +56,35 @@
             :initial="textInitial"
             :animate="textAnimate"
             :transition="textTransition(0.2)"
-            class="mt-8 text-lg text-neutral-300 md:text-xl"
+            class="mt-8 text-neutral-300 text-lg md:text-xl"
           >
             "{{ activeTestimonial.quote }}"
           </Motion>
         </div>
 
         <!-- Navigation Buttons -->
-        <div class="mt-8 flex gap-4" role="group" aria-label="Testimonial navigation">
+        <div class="flex gap-4 mt-8" role="group" aria-label="Testimonial navigation">
           <button
             type="button"
             aria-label="Previous testimonial"
-            class="group flex h-10 w-10 items-center justify-center rounded-full bg-neutral-800 transition-colors hover:bg-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+            class="group flex justify-center items-center bg-neutral-800 hover:bg-neutral-700 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 w-10 h-10 transition-colors"
             @click="prev"
           >
             <UIcon
               name="i-heroicons-arrow-left"
-              class="h-5 w-5 text-neutral-400 transition-transform group-hover:-translate-x-0.5 group-hover:text-white"
+              class="w-5 h-5 text-neutral-400 group-hover:text-white transition-transform group-hover:-translate-x-0.5"
               aria-hidden="true"
             />
           </button>
           <button
             type="button"
             aria-label="Next testimonial"
-            class="group flex h-10 w-10 items-center justify-center rounded-full bg-neutral-800 transition-colors hover:bg-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+            class="group flex justify-center items-center bg-neutral-800 hover:bg-neutral-700 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 w-10 h-10 transition-colors"
             @click="next"
           >
             <UIcon
               name="i-heroicons-arrow-right"
-              class="h-5 w-5 text-neutral-400 transition-transform group-hover:translate-x-0.5 group-hover:text-white"
+              class="w-5 h-5 text-neutral-400 group-hover:text-white transition-transform group-hover:translate-x-0.5"
               aria-hidden="true"
             />
           </button>

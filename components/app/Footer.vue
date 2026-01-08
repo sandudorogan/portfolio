@@ -7,7 +7,7 @@
       <div class="flex md:flex-row flex-col justify-between items-center gap-6">
         <!-- Logo and Copyright -->
         <div class="flex flex-col items-center md:items-start gap-2">
-          <NuxtLink to="/" class="bg-clip-text bg-gradient-to-r from-primary-400 font-bold text-transparent text-lg to-accent-400 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900">
+          <NuxtLink to="/" class="bg-clip-text bg-gradient-to-r from-primary-400 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 font-bold text-transparent text-lg to-accent-400">
             Portfolio
           </NuxtLink>
           <p class="text-neutral-500 text-sm">
@@ -21,7 +21,7 @@
             v-for="link in quickLinks"
             :key="link.path"
             :to="link.path"
-            class="text-neutral-400 hover:text-primary-400 text-sm transition-colors duration-300 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+            class="rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 text-neutral-400 hover:text-primary-400 text-sm transition-colors duration-300"
           >
             {{ link.name }}
           </NuxtLink>
@@ -36,7 +36,7 @@
             target="_blank"
             rel="noopener noreferrer"
             :aria-label="`Visit my ${link.name} profile (opens in new tab)`"
-            class="group flex justify-center items-center bg-neutral-900/80 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl w-10 h-10 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+            class="group flex justify-center items-center bg-neutral-900/80 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 w-10 h-10 transition-all duration-300"
           >
             <UIcon
               :name="link.icon"

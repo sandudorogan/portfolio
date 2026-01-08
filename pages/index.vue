@@ -159,7 +159,7 @@ const scrollToElement = (elementId: string) => {
         <div class="flex flex-row flex-wrap justify-center items-center gap-4 mt-4">
           <NuxtLink
             to="/about"
-            class="group bg-gradient-to-r from-primary-500 hover:opacity-90 px-5 py-2 rounded-full font-medium text-white text-sm hover:scale-105 transition-all duration-300 to-accent-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
+            class="group bg-gradient-to-r from-primary-500 hover:opacity-90 px-5 py-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 font-medium text-white text-sm hover:scale-105 transition-all duration-300 to-accent-500"
           >
             <span class="flex items-center gap-1.5">
               <UIcon name="i-heroicons-user" class="w-3.5 h-3.5" aria-hidden="true" />
@@ -176,7 +176,7 @@ const scrollToElement = (elementId: string) => {
           >
             <NuxtLink
               to="/contact"
-              class="flex items-center gap-2 bg-neutral-900/80 px-8 py-3 rounded-full font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+              class="flex items-center gap-2 bg-neutral-900/80 px-8 py-3 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 font-semibold text-white"
             >
               Get in Touch
               <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" aria-hidden="true" />

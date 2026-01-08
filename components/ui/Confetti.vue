@@ -1,10 +1,10 @@
 <template>
   <!-- Confetti is suppressed when user prefers reduced motion -->
-  <div v-if="isActive && !shouldReduceMotion" class="confetti-container pointer-events-none fixed inset-0 z-50">
+  <div v-if="isActive && !shouldReduceMotion" class="z-50 fixed inset-0 pointer-events-none confetti-container">
     <div
       v-for="(piece, index) in confettiPieces"
       :key="index"
-      class="confetti-piece absolute"
+      class="absolute confetti-piece"
       :style="piece.style"
     />
   </div>

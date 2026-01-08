@@ -2,7 +2,7 @@
   <header class="top-0 right-0 left-0 z-50 fixed bg-neutral-900/80 backdrop-blur-xl border-neutral-800/50 border-b">
     <div class="flex justify-between items-center mx-auto px-4 h-16 container">
       <!-- Logo -->
-      <NuxtLink to="/" class="bg-clip-text bg-gradient-to-r from-primary-400 hover:opacity-80 font-bold text-transparent text-xl transition-opacity to-accent-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 rounded">
+      <NuxtLink to="/" class="bg-clip-text bg-gradient-to-r from-primary-400 hover:opacity-80 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 font-bold text-transparent text-xl transition-opacity to-accent-400">
         Portfolio
       </NuxtLink>
 
@@ -12,7 +12,7 @@
           v-for="item in navigation"
           :key="item.name"
           :to="item.path"
-          class="group relative px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+          class="group relative px-4 py-2 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 font-medium text-sm transition-all duration-300"
           :class="[
             route.path === item.path
               ? 'text-white'
@@ -76,7 +76,7 @@
               v-for="item in navigation"
               :key="item.name"
               :to="item.path"
-              class="flex items-center gap-3 px-4 py-3 rounded-lg font-medium text-sm transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+              class="flex items-center gap-3 px-4 py-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 font-medium text-sm transition-all duration-300"
               :class="[
                 route.path === item.path
                   ? 'bg-gradient-to-r from-primary-500/20 to-accent-500/20 border border-primary-500/30 text-white'
@@ -90,7 +90,7 @@
 
             <NuxtLink
               to="/contact"
-              class="flex justify-center items-center gap-2 mt-4 px-4 py-3 border border-neutral-600 hover:border-primary-500 rounded-lg w-full text-neutral-300 hover:text-white text-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+              class="flex justify-center items-center gap-2 mt-4 px-4 py-3 border border-neutral-600 hover:border-primary-500 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 w-full text-neutral-300 hover:text-white text-sm transition-all duration-200"
               @click="mobileMenuOpen = false"
             >
               <UIcon name="i-heroicons-envelope" class="w-4 h-4" aria-hidden="true" />
