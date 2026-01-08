@@ -1,6 +1,6 @@
 <template>
   <component
-    :is="props.as"
+    :is="resolvedComponent"
     :class="cn(
       'gradient-button group relative inline-flex items-center justify-center overflow-hidden rounded-lg p-[2px] font-medium transition-all duration-300',
       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900',
@@ -39,6 +39,15 @@ const props = withDefaults(defineProps<GradientButtonProps>(), {
   viaColor: '#393BB2',
   toColor: '#E2CBFF',
   variant: 'filled',
+})
+
+// NuxtLink passed as a string isn't resolvable by Vue's dynamic <component :is> at runtime.
+// Explicitly resolve it so the rendered element is a proper <a> with router integration.
+const resolvedComponent = computed(() => {
+  if (typeof props.as === 'string' && props.as.toLowerCase() === 'nuxtlink') {
+    return resolveComponent('NuxtLink')
+  }
+  return props.as
 })
 </script>
 
