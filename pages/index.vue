@@ -114,6 +114,14 @@ const services = [
 
 const reducedMotion = usePreferredReducedMotion();
 
+// UA-based mobile detection (client-only)
+const isMobileDevice = ref(false);
+if (import.meta.client) {
+  const ua = navigator.userAgent;
+  // Detect mobile phones (not tablets like iPad)
+  isMobileDevice.value = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+}
+
 const scrollToElement = (elementId: string) => {
   const element = document.getElementById(elementId);
   if (element) {
@@ -181,11 +189,20 @@ const scrollToElement = (elementId: string) => {
           </UiGlowBorder>
         </div>
 
-        <!-- Safari Mockup with Border Beam -->
+        <!-- Device Mockup with Border Beam -->
         <ClientOnly>
           <div class="relative mt-8 mb-32 w-full">
             <UiCard3D :rotation-factor="8" :show-glare="false">
-              <div class="relative bg-neutral-900/80 backdrop-blur-xl p-1 border border-neutral-700/50 rounded-xl">
+              <!-- iPhone mockup for mobile devices -->
+              <div v-if="isMobileDevice"
+                class="relative flex justify-center bg-neutral-900/80 backdrop-blur-xl p-4 border border-neutral-700/50 rounded-xl">
+                <UiIPhone15ProMockup src="/images/pb-mobile.png" :width="280" :height="570" />
+                <UiBorderBeam :size="300" :duration="10" :delay="0" :border-width="2"
+                  color-from="rgb(var(--primary-500))" color-to="rgb(var(--accent-500))" />
+              </div>
+              <!-- Safari mockup for desktop -->
+              <div v-else
+                class="relative bg-neutral-900/80 backdrop-blur-xl p-1 border border-neutral-700/50 rounded-xl">
                 <UiSafariMockup url="app.iprally.com" src="/images/iprally.png" class="w-full" />
                 <UiBorderBeam :size="300" :duration="10" :delay="0" :border-width="2"
                   color-from="rgb(var(--primary-500))" color-to="rgb(var(--accent-500))" />
