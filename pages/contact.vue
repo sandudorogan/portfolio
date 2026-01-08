@@ -309,19 +309,9 @@ defineOgImage({
 
             <div class="z-10 relative mx-auto px-4 container">
                 <UiBlurReveal :delay="0.3">
-                    <UiCard3D :rotation-factor="5" :show-glare="true" :glare-opacity="0.1">
+                    <UiCard3D :rotation-factor="0" :show-glare="true" :glare-opacity="0.1">
                         <div class="border border-neutral-700/50 rounded-xl h-80 overflow-hidden">
-                            <div
-                                class="flex justify-center items-center bg-gradient-to-br from-primary-500/5 via-neutral-900/80 h-full to-accent-500/5">
-                                <div class="text-center">
-                                    <div class="inline-block bg-neutral-800/50 mb-4 p-4 rounded-full"
-                                        aria-hidden="true">
-                                        <UIcon name="i-heroicons-map" class="w-12 h-12 text-primary-400/50" />
-                                    </div>
-                                    <p class="text-neutral-400">Interactive Map Coming Soon</p>
-                                    <p class="mt-2 text-neutral-500 text-sm">Bucharest, Romania</p>
-                                </div>
-                            </div>
+                            <AppBucharestMap />
                         </div>
                     </UiCard3D>
                 </UiBlurReveal>
