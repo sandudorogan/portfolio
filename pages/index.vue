@@ -32,11 +32,11 @@ interface Testimonial {
 
 const projects: Project[] = [
   {
-    title: 'Newsroom AI - Stories Editor',
-    url: 'https://nws.ai',
-    image: '/images/nws-studio.png',
-    description: 'A modern stories editor for Newsroom AI. Built with ClojureScript and Django Python. Deployed on AWS.',
-    tags: ['ClojureScripe', 'Django Python', 'AWS'],
+    title: 'IPRally - Patents Search',
+    url: 'https://iprally.com',
+    image: '/images/iprally.png',
+    description: 'A patents search engine for IPRally. Built with Clojure and ClojureScript. Deployed on Google Cloud.',
+    tags: ['Clojure', 'ClojureScript', 'Google Cloud'],
   },
   {
     title: 'Crossbeam - Partnerbase',
@@ -46,11 +46,11 @@ const projects: Project[] = [
     tags: ['NuxtJS', 'Clojure', 'AWS'],
   },
   {
-    title: 'IPRally - Patents Search',
-    url: 'https://iprally.com',
-    image: '/images/iprally.png',
-    description: 'A patents search engine for IPRally. Built with Clojure and ClojureScript. Deployed on Google Cloud.',
-    tags: ['Clojure', 'ClojureScript', 'Google Cloud'],
+    title: 'Newsroom AI - Stories Editor',
+    url: 'https://nws.ai',
+    image: '/images/nws-studio.png',
+    description: 'A modern stories editor for Newsroom AI. Built with ClojureScript and Django Python. Deployed on AWS.',
+    tags: ['ClojureScripe', 'Django Python', 'AWS'],
   }
 ];
 
@@ -191,19 +191,17 @@ const scrollToElement = (elementId: string) => {
 
         <!-- Device Mockup with Border Beam -->
         <ClientOnly>
-          <div class="relative mt-8 mb-32 w-full">
+          <div class="relative mb-32 w-full">
             <UiCard3D :rotation-factor="8" :show-glare="false">
               <!-- iPhone mockup for mobile devices -->
-              <div v-if="isMobileDevice"
-                class="relative flex justify-center bg-neutral-900/80 backdrop-blur-xl p-4 border border-neutral-700/50 rounded-xl">
+              <div v-if="isMobileDevice" class="relative flex justify-center">
                 <UiIPhone15ProMockup src="/images/pb-mobile.png" :width="280" :height="570" />
                 <UiBorderBeam :size="300" :duration="10" :delay="0" :border-width="2"
                   color-from="rgb(var(--primary-500))" color-to="rgb(var(--accent-500))" />
               </div>
               <!-- Safari mockup for desktop -->
-              <div v-else
-                class="relative bg-neutral-900/80 backdrop-blur-xl p-1 border border-neutral-700/50 rounded-xl">
-                <UiSafariMockup url="app.iprally.com" src="/images/iprally.png" class="w-full" />
+              <div v-else class="relative">
+                <UiSafariMockup url="app.iprally.com" src="/images/iprally.png" class="w-full" :height="570" />
                 <UiBorderBeam :size="300" :duration="10" :delay="0" :border-width="2"
                   color-from="rgb(var(--primary-500))" color-to="rgb(var(--accent-500))" />
               </div>
