@@ -21,7 +21,7 @@ export default defineNuxtConfig({
     'motion-v/nuxt',
   ],
   site: {
-    url: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+    url: defaultSiteUrl,
     name: 'Sandu Dorogan',
   },
   runtimeConfig: {
@@ -29,7 +29,7 @@ export default defineNuxtConfig({
     contactEmail: '',
     contactPhone: '',
     public: {
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || '',
+      siteUrl: defaultSiteUrl,
     },
   },
   tailwindcss: {

@@ -17,17 +17,17 @@ export function usePageSeo(options: PageSeoOptions) {
   const requestUrl = import.meta.server ? useRequestURL() : null
 
   const siteUrl = computed(() => {
+    let url = ''
     if (runtimeConfig.public.siteUrl) {
-      return runtimeConfig.public.siteUrl
+      url = runtimeConfig.public.siteUrl
+    } else if (import.meta.server && requestUrl) {
+      // Fallback to request URL origin in SSR
+      url = requestUrl.origin
+    } else if (import.meta.client) {
+      url = window.location.origin
     }
-    // Fallback to request URL origin in SSR or window location in client
-    if (import.meta.server && requestUrl) {
-      return requestUrl.origin
-    }
-    if (import.meta.client) {
-      return window.location.origin
-    }
-    return ''
+    // Strip trailing slash to prevent double slashes in canonical URLs
+    return url.replace(/\/$/, '')
   })
 
   const canonicalUrl = computed(() => `${siteUrl.value}${route.path}`)
