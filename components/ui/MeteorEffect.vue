@@ -1,9 +1,13 @@
 <template>
-  <div :class="cn('meteor-effect pointer-events-none absolute inset-0 overflow-hidden', props.class)">
+  <!-- Decorative meteor effect - hidden from accessibility tree -->
+  <div
+    :class="cn('meteor-effect pointer-events-none absolute inset-0 overflow-hidden', props.class)"
+    aria-hidden="true"
+  >
     <div
       v-for="(meteor, index) in meteors"
       :key="index"
-      class="meteor absolute"
+      class="absolute meteor"
       :style="meteor.style"
     />
   </div>

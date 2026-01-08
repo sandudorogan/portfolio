@@ -3,12 +3,14 @@
     ref="container"
     :class="props.class"
   >
+    <!-- tabindex="-1" prevents animation wrapper from being a tab stop -->
     <Motion
       v-for="(child, index) in children"
       :key="index"
       ref="childElements"
       as="div"
       class="h-full"
+      tabindex="-1"
       :initial="getInitial()"
       :while-in-view="getAnimate()"
       :in-view-options="{ once: true }"

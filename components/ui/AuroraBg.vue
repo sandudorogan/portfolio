@@ -5,7 +5,8 @@
       props.class
     )"
   >
-    <div class="absolute inset-0 overflow-hidden">
+    <!-- Decorative background gradient - hidden from accessibility tree -->
+    <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
       <div
         class="aurora-gradient"
         :class="cn(

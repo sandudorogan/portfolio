@@ -4,11 +4,16 @@
     $props.class,
   )
     ">
-    <div :style="childStyles" :class="cn(
-      `glow-border before:absolute before:inset-0 before:aspect-square before:size-full before:rounded-[--border-radius] before:bg-[length:300%_300%] before:p-[--border-width] before:opacity-50 before:will-change-[background-position] before:content-['']`,
-      'before:![-webkit-mask-composite:xor] before:![mask-composite:exclude] before:[mask:--mask-linear-gradient]',
-    )
-      "></div>
+    <!-- Decorative glow effect - not keyboard accessible -->
+    <div
+      :style="childStyles"
+      :class="cn(
+        `glow-border before:absolute before:inset-0 before:aspect-square before:size-full before:rounded-[--border-radius] before:bg-[length:300%_300%] before:p-[--border-width] before:opacity-50 before:will-change-[background-position] before:content-['']`,
+        'before:![-webkit-mask-composite:xor] before:![mask-composite:exclude] before:[mask:--mask-linear-gradient]',
+      )"
+      aria-hidden="true"
+      tabindex="-1"
+    />
     <slot />
   </div>
 </template>

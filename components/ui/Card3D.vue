@@ -13,10 +13,12 @@
     >
       <slot />
     </div>
+    <!-- Decorative glare effect -->
     <div
       v-if="showGlare"
       class="z-20 absolute inset-0 opacity-0 rounded-[inherit] transition-opacity duration-300 pointer-events-none card-3d-glare"
       :style="glareStyle"
+      aria-hidden="true"
     />
   </div>
 </template>

@@ -8,11 +8,13 @@
     @mousemove="handleMouseMove"
     @mouseleave="handleMouseLeave"
   >
+    <!-- Decorative spotlight effect -->
     <div
-      class="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300"
+      class="absolute -inset-px opacity-0 rounded-xl transition-opacity duration-300 pointer-events-none"
       :style="spotlightStyle"
+      aria-hidden="true"
     />
-    <div class="relative z-10 h-full">
+    <div class="z-10 relative h-full">
       <slot />
     </div>
   </div>

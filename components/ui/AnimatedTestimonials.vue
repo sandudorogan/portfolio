@@ -3,10 +3,12 @@
     <div class="gap-12 md:gap-20 grid grid-cols-1 md:grid-cols-2">
       <!-- Image Section -->
       <div class="relative w-full h-80 md:h-[500px]">
+        <!-- tabindex="-1" prevents animation wrapper from being a tab stop -->
         <Motion
           v-for="(testimonial, index) in testimonials"
           :key="index"
           as="div"
+          tabindex="-1"
           :initial="imageInitial"
           :animate="activeIndex === index
             ? imageAnimateActive
@@ -33,6 +35,7 @@
           <Motion
             :key="`name-${activeIndex}`"
             as="h3"
+            tabindex="-1"
             :initial="textInitial"
             :animate="textAnimate"
             :transition="textTransition(0)"
@@ -43,6 +46,7 @@
           <Motion
             :key="`designation-${activeIndex}`"
             as="p"
+            tabindex="-1"
             :initial="textInitial"
             :animate="textAnimate"
             :transition="textTransition(0.1)"
@@ -53,6 +57,7 @@
           <Motion
             :key="`quote-${activeIndex}`"
             as="blockquote"
+            tabindex="-1"
             :initial="textInitial"
             :animate="textAnimate"
             :transition="textTransition(0.2)"

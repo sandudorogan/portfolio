@@ -1,9 +1,11 @@
 <template>
   <div :class="cn('animated-list', props.class)">
+    <!-- tabindex="-1" prevents animation wrapper from being a tab stop -->
     <Motion
       v-for="(item, index) in items"
       :key="item.id || index"
       as="div"
+      tabindex="-1"
       :initial="{ opacity: 0, y: 20, scale: 0.95 }"
       :while-in-view="{ opacity: 1, y: 0, scale: 1 }"
       :transition="{

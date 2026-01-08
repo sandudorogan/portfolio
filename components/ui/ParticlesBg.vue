@@ -4,7 +4,8 @@
     :class="$props.class"
     aria-hidden="true"
   >
-    <canvas ref="canvasRef"/>
+    <!-- tabindex="-1" prevents canvas tab stop in some browsers -->
+    <canvas ref="canvasRef" tabindex="-1" />
   </div>
 </template>
 

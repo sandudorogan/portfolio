@@ -177,8 +177,11 @@ defineOgImage({
                                             </div>
                                             <div>
                                                 <h3 class="font-medium text-neutral-400 text-sm">{{ item.title }}</h3>
-                                                <p v-if="item.link" class="mt-1 text-white hover:text-primary-400 transition-colors">
-                                                    <a :href="item.link">{{ item.value }}</a>
+                                                <p v-if="item.link" class="mt-1">
+                                                    <a
+                                                        :href="item.link"
+                                                        class="text-white hover:text-primary-400 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 transition-colors"
+                                                    >{{ item.value }}</a>
                                                 </p>
                                                 <p v-else class="mt-1 text-white">{{ item.value }}</p>
                                             </div>
@@ -207,7 +210,7 @@ defineOgImage({
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         :aria-label="`Visit my ${link.name} profile (opens in new tab)`"
-                                        class="flex justify-center items-center bg-neutral-900/80 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 w-12 h-12 transition-all duration-300"
+                                        class="flex justify-center items-center bg-neutral-900/80 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 w-12 h-12 transition-all duration-300"
                                     >
                                         <UIcon :name="link.icon" class="w-5 h-5 text-neutral-400 group-hover:text-primary-400 transition-colors" aria-hidden="true" />
                                     </a>
@@ -286,6 +289,8 @@ defineOgImage({
                                             <ClientOnly>
                                                 <Motion
                                                     v-if="form.success"
+                                                    tabindex="-1"
+                                                    role="status"
                                                     :initial="{ opacity: 0, y: -10 }"
                                                     :animate="{ opacity: 1, y: 0 }"
                                                     :exit="{ opacity: 0, y: -10 }"
@@ -304,6 +309,8 @@ defineOgImage({
 
                                                 <Motion
                                                     v-if="form.error"
+                                                    tabindex="-1"
+                                                    role="alert"
                                                     :initial="{ opacity: 0, y: -10 }"
                                                     :animate="{ opacity: 1, y: 0 }"
                                                     :exit="{ opacity: 0, y: -10 }"

@@ -9,12 +9,14 @@
     @mousemove="handleMouseMove"
     @mouseleave="handleMouseLeave"
   >
-    <div class="relative z-10">
+    <div class="z-10 relative">
       <slot />
     </div>
+    <!-- Decorative glare effect -->
     <div
-      class="glare-effect pointer-events-none absolute inset-0 z-20 transition-opacity duration-300"
+      class="z-20 absolute inset-0 transition-opacity duration-300 pointer-events-none glare-effect"
       :style="glareStyle"
+      aria-hidden="true"
     />
   </div>
 </template>

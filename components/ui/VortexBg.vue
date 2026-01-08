@@ -1,13 +1,16 @@
 <template>
   <div :class="cn('relative h-full w-full', props.containerClass)">
+    <!-- tabindex="-1" prevents animation wrapper from being a tab stop -->
     <Motion
       ref="containerRef"
       as="div"
+      tabindex="-1"
       :initial="{ opacity: 0 }"
       :animate="{ opacity: 1 }"
-      class="absolute inset-0 z-0 flex items-center justify-center bg-transparent size-full"
+      class="z-0 absolute inset-0 flex justify-center items-center bg-transparent size-full"
     >
-      <canvas ref="canvasRef"/>
+      <!-- tabindex="-1" prevents canvas tab stop in some browsers -->
+      <canvas ref="canvasRef" aria-hidden="true" tabindex="-1" />
     </Motion>
 
     <div :class="cn('relative z-10', props.class)">

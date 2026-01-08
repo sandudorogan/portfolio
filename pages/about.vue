@@ -92,10 +92,10 @@ defineOgImage({
                 <div class="flex md:flex-row flex-col items-center md:items-start gap-8">
                     <!-- Profile Image with 3D effect -->
                     <UiBlurReveal :delay="0.2">
-                        <UiCard3D :rotation-factor="12" :show-glare="true" :glare-opacity="0.2">
+                        <UiCard3D :rotation-factor="12" :show-glare="true">
                             <div class="relative">
                                 <div class="flex justify-center items-center bg-gradient-to-br from-primary-500/20 border border-neutral-700/50 rounded-2xl w-48 h-48 overflow-hidden to-accent-500/20" aria-hidden="true">
-                                    <UIcon name="i-heroicons-user" class="w-24 h-24 text-primary-400/50" />
+                                    <img src="/images/sandu-dorogan.jpg" alt="Sandu Dorogan" class="w-full h-full object-cover" />
                                 </div>
                                 <UiBorderBeam :size="150" :duration="8" color-from="rgb(var(--primary-500))" color-to="rgb(var(--accent-500))" />
                             </div>

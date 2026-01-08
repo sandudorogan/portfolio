@@ -1,5 +1,7 @@
 <template>
+  <!-- Decorative animated border effect -->
   <div
+    aria-hidden="true"
     :class="
       cn(
         'border-beam',

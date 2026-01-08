@@ -4,7 +4,15 @@
     :class="cn('animated-circular-progress relative inline-flex items-center justify-center', props.class)"
     :style="{ width: `${size}px`, height: `${size}px` }"
   >
-    <svg :width="size" :height="size" class="-rotate-90">
+    <!-- focusable="false" prevents SVG tab stop in Safari/legacy browsers -->
+    <svg
+      :width="size"
+      :height="size"
+      class="-rotate-90"
+      aria-hidden="true"
+      focusable="false"
+      tabindex="-1"
+    >
       <circle
         :cx="size / 2"
         :cy="size / 2"

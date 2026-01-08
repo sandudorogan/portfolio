@@ -1,5 +1,11 @@
 <template>
-  <canvas ref="starsCanvas" :class="cn('absolute inset-0 w-full h-full', $props.class)" />
+  <!-- Decorative background canvas - not keyboard accessible -->
+  <canvas
+    ref="starsCanvas"
+    :class="cn('absolute inset-0 w-full h-full', $props.class)"
+    aria-hidden="true"
+    tabindex="-1"
+  />
 </template>
 
 <script setup lang="ts">
