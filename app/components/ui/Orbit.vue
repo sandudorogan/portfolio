@@ -1,37 +1,26 @@
 <template>
-  <div
-    :class="cn('orbit relative flex items-center justify-center', props.class)"
-    :style="{ width: `${size}px`, height: `${size}px` }"
-  >
-    <div class="absolute inset-0 flex items-center justify-center">
+  <div :class="cn('orbit relative flex items-center justify-center', props.class)"
+    :style="{ width: `${size}px`, height: `${size}px` }">
+    <div class="absolute inset-0 flex justify-center items-center">
       <slot name="center" />
     </div>
 
-    <div
-      v-for="(ring, ringIndex) in rings"
-      :key="ringIndex"
-      class="orbit-ring absolute rounded-full border border-neutral-700/30"
-      :style="{
+    <div v-for="(ring, ringIndex) in rings" :key="ringIndex"
+      class="absolute border border-neutral-700/30 rounded-full orbit-ring" :style="{
         width: `${ring.radius * 2}px`,
         height: `${ring.radius * 2}px`,
         animationDuration: `${ring.duration}s`,
         animationDirection: ring.reverse ? 'reverse' : 'normal',
-      }"
-    >
-      <div
-        v-for="(item, itemIndex) in ring.items"
-        :key="itemIndex"
-        class="orbit-item absolute"
-        :style="getItemStyle(ring, itemIndex)"
-      >
+      }">
+      <div v-for="(item, itemIndex) in ring.items" :key="itemIndex" class="absolute orbit-item"
+        :style="getItemStyle(ring, itemIndex)">
         <div
-          class="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-800/80 backdrop-blur-sm transition-transform duration-300 hover:scale-125"
+          class="flex justify-center items-center bg-neutral-800/80 backdrop-blur-xs rounded-full w-10 h-10 hover:scale-125 transition-transform duration-300"
           :style="{
             animationDuration: `${ring.duration}s`,
             animationDirection: ring.reverse ? 'normal' : 'reverse',
-          }"
-        >
-          <UIcon v-if="typeof item === 'string'" :name="item" class="h-5 w-5" />
+          }">
+          <UIcon v-if="typeof item === 'string'" :name="item" class="w-5 h-5" />
           <component :is="item" v-else />
         </div>
       </div>
@@ -40,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import type {Component} from 'vue'
+import type { Component } from 'vue'
 
 interface OrbitRing {
   radius: number;
@@ -76,7 +65,7 @@ function getItemStyle(ring: OrbitRing, index: number) {
   animation: orbit-spin linear infinite;
 }
 
-.orbit-item > div {
+.orbit-item>div {
   animation: orbit-counter-spin linear infinite;
 }
 
@@ -84,6 +73,7 @@ function getItemStyle(ring: OrbitRing, index: number) {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -93,9 +83,9 @@ function getItemStyle(ring: OrbitRing, index: number) {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(-360deg);
   }
 }
 </style>
-

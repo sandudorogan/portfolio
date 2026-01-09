@@ -116,7 +116,7 @@ defineOgImage({
                 <UiBlurReveal :delay="0.2">
                     <div class="mx-auto max-w-3xl text-center">
                         <h1
-                            class="bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-neutral-400 mb-4 font-bold text-transparent text-4xl md:text-5xl">
+                            class="bg-clip-text bg-linear-to-r from-white via-neutral-200 to-neutral-400 mb-4 font-bold text-transparent text-4xl md:text-5xl">
                             Get In Touch
                         </h1>
                         <p class="mx-auto max-w-xl text-neutral-300 text-lg">
@@ -130,7 +130,7 @@ defineOgImage({
 
         <!-- Contact Section -->
         <section class="relative py-24 overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-b from-background via-neutral-900/50 to-background" />
+            <div class="absolute inset-0 bg-linear-to-b from-background via-neutral-900/50 to-background" />
 
             <div class="z-10 relative mx-auto px-4 container">
                 <div class="gap-10 grid grid-cols-1 md:grid-cols-3">
@@ -139,7 +139,7 @@ defineOgImage({
                         <UiBlurReveal :delay="0.3">
                             <h2 class="mb-6 font-semibold text-xl">
                                 <span
-                                    class="bg-clip-text bg-gradient-to-r from-primary-400 text-transparent to-accent-400">
+                                    class="bg-clip-text bg-linear-to-r from-primary-400 text-transparent to-accent-400">
                                     Contact Information
                                 </span>
                             </h2>
@@ -153,9 +153,9 @@ defineOgImage({
                                         <div class="flex items-start p-4">
                                             <div class="flex justify-center items-center mr-4 rounded-xl w-12 h-12"
                                                 :class="{
-                                                    'bg-gradient-to-br from-primary-500/20 to-primary-500/10': item.color === 'primary',
-                                                    'bg-gradient-to-br from-accent-500/20 to-accent-500/10': item.color === 'accent',
-                                                    'bg-gradient-to-br from-secondary-500/20 to-secondary-500/10': item.color === 'secondary'
+                                                    'bg-linear-to-br from-primary-500/20 to-primary-500/10': item.color === 'primary',
+                                                    'bg-linear-to-br from-accent-500/20 to-accent-500/10': item.color === 'accent',
+                                                    'bg-linear-to-br from-secondary-500/20 to-secondary-500/10': item.color === 'secondary'
                                                 }">
                                                 <UIcon :name="item.icon" class="w-6 h-6" :class="{
                                                     'text-primary-400': item.color === 'primary',
@@ -183,7 +183,7 @@ defineOgImage({
                         <UiBlurReveal :delay="0.4">
                             <h2 class="mb-6 font-semibold text-xl">
                                 <span
-                                    class="bg-clip-text bg-gradient-to-r from-primary-400 text-transparent to-accent-400">
+                                    class="bg-clip-text bg-linear-to-r from-primary-400 text-transparent to-accent-400">
                                     Follow Me
                                 </span>
                             </h2>
@@ -193,7 +193,7 @@ defineOgImage({
                                     class="group">
                                     <a :href="link.url" target="_blank" rel="noopener noreferrer"
                                         :aria-label="`Visit my ${link.name} profile (opens in new tab)`"
-                                        class="flex justify-center items-center bg-neutral-900/80 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset w-12 h-12 transition-all duration-300">
+                                        class="flex justify-center items-center bg-neutral-900/80 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset w-12 h-12 transition-all duration-300">
                                         <UIcon :name="link.icon"
                                             class="w-5 h-5 text-neutral-400 group-hover:text-primary-400 transition-colors"
                                             aria-hidden="true" />
@@ -207,7 +207,7 @@ defineOgImage({
                     <div class="relative md:col-span-2">
                         <UiBlurReveal :delay="0.3">
                             <UiNeonBorder color="var(--color-primary-500)" :glow-intensity="10" class="relative">
-                                <div class="bg-neutral-900/50 backdrop-blur-sm p-6 md:p-8 rounded-xl">
+                                <div class="bg-neutral-900/50 backdrop-blur-xs p-6 md:p-8 rounded-xl">
                                     <h2 class="mb-6 font-semibold text-xl">
                                         <span class="text-white">Send a Message</span>
                                     </h2>
@@ -307,7 +307,7 @@ defineOgImage({
 
         <!-- Map Section -->
         <section class="relative py-24 overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-background" />
+            <div class="absolute inset-0 bg-linear-to-t from-background via-background/95 to-background" />
 
             <div class="z-10 relative mx-auto px-4 container">
                 <UiBlurReveal :delay="0.3">

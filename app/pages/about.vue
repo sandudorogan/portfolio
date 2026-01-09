@@ -93,7 +93,7 @@ defineOgImage({
                     <UiBlurReveal :delay="0.2">
                         <UiCard3D :rotation-factor="12" :show-glare="true">
                             <div class="relative">
-                                <div class="flex justify-center items-center bg-gradient-to-br from-primary-500/20 border border-neutral-700/50 rounded-2xl w-48 h-48 overflow-hidden to-accent-500/20"
+                                <div class="flex justify-center items-center bg-linear-to-br from-primary-500/20 border border-neutral-700/50 rounded-2xl w-48 h-48 overflow-hidden to-accent-500/20"
                                     aria-hidden="true">
                                     <img src="/images/sandu-dorogan.jpg" alt="Sandu Dorogan"
                                         class="w-full h-full object-cover" />
@@ -107,12 +107,12 @@ defineOgImage({
                     <div class="flex-1 md:text-left text-center">
                         <UiBlurReveal :delay="0.3">
                             <h1
-                                class="bg-clip-text bg-gradient-to-r from-white to-neutral-300 mb-2 font-bold text-transparent text-4xl md:text-5xl">
+                                class="bg-clip-text bg-linear-to-r from-white to-neutral-300 mb-2 font-bold text-transparent text-4xl md:text-5xl">
                                 {{ developerInfo.name }}
                             </h1>
 
                             <p
-                                class="bg-clip-text bg-gradient-to-r from-primary-400 mb-4 font-medium text-transparent text-xl to-accent-400">
+                                class="bg-clip-text bg-linear-to-r from-primary-400 mb-4 font-medium text-transparent text-xl to-accent-400">
                                 {{ developerInfo.title }}
                             </p>
 
@@ -148,13 +148,13 @@ defineOgImage({
 
         <!-- Skills Section with Animated Progress Bars -->
         <section class="relative py-24 overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-b from-background via-neutral-900/50 to-background" />
+            <div class="absolute inset-0 bg-linear-to-b from-background via-neutral-900/50 to-background" />
 
             <div class="z-10 relative mx-auto px-4 container">
                 <UiBlurReveal :delay="0.3">
                     <div class="mb-16 text-center">
                         <h2
-                            class="bg-clip-text bg-gradient-to-r from-primary-400 mb-4 font-bold text-transparent text-3xl md:text-4xl to-accent-400">
+                            class="bg-clip-text bg-linear-to-r from-primary-400 mb-4 font-bold text-transparent text-3xl md:text-4xl to-accent-400">
                             Professional Skills
                         </h2>
                     </div>
@@ -183,13 +183,13 @@ defineOgImage({
 
         <!-- Languages Section -->
         <section class="relative py-24 overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+            <div class="absolute inset-0 bg-linear-to-b from-background via-background/95 to-background" />
 
             <div class="z-10 relative mx-auto px-4 container">
                 <UiBlurReveal :delay="0.3">
                     <div class="mb-16 text-center">
                         <h2
-                            class="bg-clip-text bg-gradient-to-r from-primary-400 mb-4 font-bold text-transparent text-3xl md:text-4xl to-accent-400">
+                            class="bg-clip-text bg-linear-to-r from-primary-400 mb-4 font-bold text-transparent text-3xl md:text-4xl to-accent-400">
                             Languages
                         </h2>
                     </div>
@@ -199,7 +199,7 @@ defineOgImage({
                             :delay="0.2 + index * 0.1">
                             <UiCardSpotlight class="flex flex-col items-center p-6"
                                 spotlight-color="color-mix(in oklch, var(--color-accent-500) 15%, transparent)">
-                                <div class="bg-gradient-to-br from-primary-500/20 mb-4 p-3 rounded-xl to-accent-500/20"
+                                <div class="bg-linear-to-br from-primary-500/20 mb-4 p-3 rounded-xl to-accent-500/20"
                                     aria-hidden="true">
                                     <UIcon name="i-heroicons-language" class="w-6 h-6 text-primary-400" />
                                 </div>
@@ -214,14 +214,14 @@ defineOgImage({
 
         <!-- Experience Section with Timeline -->
         <section id="work-experience" class="relative py-24 overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+            <div class="absolute inset-0 bg-linear-to-b from-background via-background/95 to-background" />
             <UiMeteorEffect :count="10" color="var(--color-primary-500)" class="absolute inset-0" />
 
             <div class="z-10 relative mx-auto px-4 container">
                 <UiBlurReveal :delay="0.3">
                     <div class="mb-16 text-center">
                         <h2
-                            class="bg-clip-text bg-gradient-to-r from-primary-400 mb-4 font-bold text-transparent text-3xl md:text-4xl to-accent-400">
+                            class="bg-clip-text bg-linear-to-r from-primary-400 mb-4 font-bold text-transparent text-3xl md:text-4xl to-accent-400">
                             Work Experience
                         </h2>
                     </div>
@@ -233,7 +233,7 @@ defineOgImage({
 
         <!-- CTA Section -->
         <section class="relative py-24 overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-background" />
+            <div class="absolute inset-0 bg-linear-to-t from-background via-background/95 to-background" />
 
             <div class="z-10 relative mx-auto px-4 container">
                 <UiBlurReveal :delay="0.3">

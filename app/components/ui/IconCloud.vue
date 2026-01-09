@@ -1,19 +1,11 @@
 <template>
-  <div
-    ref="containerRef"
-    :class="cn('icon-cloud relative flex items-center justify-center', props.class)"
-    :style="{ width: `${size}px`, height: `${size}px` }"
-  >
-    <div
-      v-for="(icon, index) in icons"
-      :key="index"
-      class="icon-cloud-item absolute transition-all duration-300"
-      :style="getIconStyle(index)"
-    >
+  <div ref="containerRef" :class="cn('icon-cloud relative flex items-center justify-center', props.class)"
+    :style="{ width: `${size}px`, height: `${size}px` }">
+    <div v-for="(icon, index) in icons" :key="index" class="absolute transition-all duration-300 icon-cloud-item"
+      :style="getIconStyle(index)">
       <div
-        class="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-800/50 backdrop-blur-sm transition-transform duration-300 hover:scale-125"
-      >
-        <UIcon :name="icon" class="h-6 w-6" />
+        class="flex justify-center items-center bg-neutral-800/50 backdrop-blur-xs rounded-full w-12 h-12 hover:scale-125 transition-transform duration-300">
+        <UIcon :name="icon" class="w-6 h-6" />
       </div>
     </div>
   </div>
@@ -78,4 +70,3 @@ onUnmounted(() => {
   transform-style: preserve-3d;
 }
 </style>
-

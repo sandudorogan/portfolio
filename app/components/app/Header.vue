@@ -3,14 +3,14 @@
     <div class="flex justify-between items-center mx-auto px-4 h-16 container">
       <!-- Logo -->
       <NuxtLink to="/"
-        class="bg-clip-text bg-gradient-to-r from-primary-400 hover:opacity-80 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 font-bold text-transparent text-xl transition-opacity to-accent-400">
+        class="bg-clip-text bg-linear-to-r from-primary-400 hover:opacity-80 rounded focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 font-bold text-transparent text-xl transition-opacity to-accent-400">
         Portfolio
       </NuxtLink>
 
       <!-- Navigation Links -->
       <nav aria-label="Main navigation" class="hidden md:flex items-center space-x-2">
         <NuxtLink v-for="item in navigation" :key="item.name" :to="item.path"
-          class="group relative px-4 py-2 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 font-medium text-sm transition-all duration-300"
+          class="group relative px-4 py-2 rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 font-medium text-sm transition-all duration-300"
           :class="[
             route.path === item.path
               ? 'text-white'
@@ -18,7 +18,7 @@
           ]">
           <!-- Active Background -->
           <span v-if="route.path === item.path"
-            class="absolute inset-0 bg-gradient-to-r from-primary-500/20 border border-primary-500/30 rounded-lg to-accent-500/20"
+            class="absolute inset-0 bg-linear-to-r from-primary-500/20 border border-primary-500/30 rounded-lg to-accent-500/20"
             aria-hidden="true" />
 
           <!-- Hover Effect -->
@@ -52,10 +52,10 @@
           @keydown.escape="closeMobileMenu">
           <nav aria-label="Mobile navigation" class="space-y-2 mx-auto px-4 py-4 container">
             <NuxtLink v-for="item in navigation" :key="item.name" :to="item.path"
-              class="flex items-center gap-3 px-4 py-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 font-medium text-sm transition-all duration-300"
+              class="flex items-center gap-3 px-4 py-3 rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 font-medium text-sm transition-all duration-300"
               :class="[
                 route.path === item.path
-                  ? 'bg-gradient-to-r from-primary-500/20 to-accent-500/20 border border-primary-500/30 text-white'
+                  ? 'bg-linear-to-r from-primary-500/20 to-accent-500/20 border border-primary-500/30 text-white'
                   : 'text-neutral-400 hover:bg-neutral-800/50 hover:text-white'
               ]" @click="mobileMenuOpen = false">
               <UIcon :name="item.icon" class="w-5 h-5" aria-hidden="true" />

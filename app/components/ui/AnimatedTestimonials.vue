@@ -4,94 +4,50 @@
       <!-- Image Section -->
       <div class="relative w-full h-80 md:h-[500px]">
         <!-- tabindex="-1" prevents animation wrapper from being a tab stop -->
-        <Motion
-          v-for="(testimonial, index) in testimonials"
-          :key="index"
-          as="div"
-          tabindex="-1"
-          :initial="imageInitial"
+        <Motion v-for="(testimonial, index) in testimonials" :key="index" as="div" tabindex="-1" :initial="imageInitial"
           :animate="activeIndex === index
             ? imageAnimateActive
-            : imageAnimateInactive"
-          :exit="imageInitial"
-          :transition="imageTransition"
-          :class="cn(
-            'absolute inset-0 origin-bottom',
-            activeIndex === index ? 'z-10' : 'z-0'
-          )"
-        >
-          <img
-            :src="testimonial.image"
-            :alt="testimonial.name"
-            class="rounded-3xl w-full h-full object-center object-cover"
-            draggable="false"
-          />
+            : imageAnimateInactive" :exit="imageInitial" :transition="imageTransition" :class="cn(
+              'absolute inset-0 origin-bottom',
+              activeIndex === index ? 'z-10' : 'z-0'
+            )">
+          <img :src="testimonial.image" :alt="testimonial.name"
+            class="rounded-3xl w-full h-full object-center object-cover" draggable="false" />
         </Motion>
       </div>
 
       <!-- Content Section -->
       <div class="flex flex-col justify-between py-4">
         <div>
-          <Motion
-            :key="`name-${activeIndex}`"
-            as="h3"
-            tabindex="-1"
-            :initial="textInitial"
-            :animate="textAnimate"
-            :transition="textTransition(0)"
-            class="font-bold text-text-50 text-2xl md:text-4xl"
-          >
+          <Motion :key="`name-${activeIndex}`" as="h3" tabindex="-1" :initial="textInitial" :animate="textAnimate"
+            :transition="textTransition(0)" class="font-bold text-text-50 text-2xl md:text-4xl">
             {{ activeTestimonial.name }}
           </Motion>
-          <Motion
-            :key="`designation-${activeIndex}`"
-            as="p"
-            tabindex="-1"
-            :initial="textInitial"
-            :animate="textAnimate"
-            :transition="textTransition(0.1)"
-            class="mt-1 text-neutral-400 text-sm md:text-base"
-          >
+          <Motion :key="`designation-${activeIndex}`" as="p" tabindex="-1" :initial="textInitial" :animate="textAnimate"
+            :transition="textTransition(0.1)" class="mt-1 text-neutral-400 text-sm md:text-base">
             {{ activeTestimonial.designation }}
           </Motion>
-          <Motion
-            :key="`quote-${activeIndex}`"
-            as="blockquote"
-            tabindex="-1"
-            :initial="textInitial"
-            :animate="textAnimate"
-            :transition="textTransition(0.2)"
-            class="mt-8 text-neutral-300 text-lg md:text-xl"
-          >
+          <Motion :key="`quote-${activeIndex}`" as="blockquote" tabindex="-1" :initial="textInitial"
+            :animate="textAnimate" :transition="textTransition(0.2)" class="mt-8 text-neutral-300 text-lg md:text-xl">
             "{{ activeTestimonial.quote }}"
           </Motion>
         </div>
 
         <!-- Navigation Buttons -->
         <div class="flex gap-4 mt-8" role="group" aria-label="Testimonial navigation">
-          <button
-            type="button"
-            aria-label="Previous testimonial"
-            class="group flex justify-center items-center bg-neutral-800 hover:bg-neutral-700 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 w-10 h-10 transition-colors"
-            @click="prev"
-          >
-            <UIcon
-              name="i-heroicons-arrow-left"
+          <button type="button" aria-label="Previous testimonial"
+            class="group flex justify-center items-center bg-neutral-800 hover:bg-neutral-700 rounded-full focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 w-10 h-10 transition-colors"
+            @click="prev">
+            <UIcon name="i-heroicons-arrow-left"
               class="w-5 h-5 text-neutral-400 group-hover:text-white transition-transform group-hover:-translate-x-0.5"
-              aria-hidden="true"
-            />
+              aria-hidden="true" />
           </button>
-          <button
-            type="button"
-            aria-label="Next testimonial"
-            class="group flex justify-center items-center bg-neutral-800 hover:bg-neutral-700 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 w-10 h-10 transition-colors"
-            @click="next"
-          >
-            <UIcon
-              name="i-heroicons-arrow-right"
+          <button type="button" aria-label="Next testimonial"
+            class="group flex justify-center items-center bg-neutral-800 hover:bg-neutral-700 rounded-full focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 w-10 h-10 transition-colors"
+            @click="next">
+            <UIcon name="i-heroicons-arrow-right"
               class="w-5 h-5 text-neutral-400 group-hover:text-white transition-transform group-hover:translate-x-0.5"
-              aria-hidden="true"
-            />
+              aria-hidden="true" />
           </button>
         </div>
       </div>

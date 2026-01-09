@@ -43,50 +43,29 @@ function handleKeydown(e: KeyboardEvent) {
   <span class="inline-block">
     <Transition name="reveal" mode="out-in">
       <!-- Revealed state: normal link -->
-      <a
-        v-if="revealed && data"
-        key="revealed"
-        :href="data.link"
-        class="rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 text-white hover:text-primary-400 transition-colors"
-      >
+      <a v-if="revealed && data" key="revealed" :href="data.link"
+        class="rounded focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 text-white hover:text-primary-400 transition-colors">
         {{ data.value }}
       </a>
 
       <!-- Loading state -->
-      <span
-        v-else-if="loading"
-        key="loading"
-        class="inline-flex items-center gap-1.5 text-neutral-400"
-        aria-live="polite"
-      >
+      <span v-else-if="loading" key="loading" class="inline-flex items-center gap-1.5 text-neutral-400"
+        aria-live="polite">
         <UIcon name="i-heroicons-arrow-path" class="w-3.5 h-3.5 animate-spin" aria-hidden="true" />
         <span class="text-sm">Revealing…</span>
       </span>
 
       <!-- Error state -->
-      <button
-        v-else-if="error"
-        key="error"
-        type="button"
-        class="rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 text-red-400 hover:text-red-300 transition-colors cursor-pointer"
-        title="Click to retry"
-        @click="reveal"
-        @keydown="handleKeydown"
-      >
+      <button v-else-if="error" key="error" type="button"
+        class="rounded focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-red-500 text-red-400 hover:text-red-300 transition-colors cursor-pointer"
+        title="Click to retry" @click="reveal" @keydown="handleKeydown">
         Failed – click to retry
       </button>
 
       <!-- Blurred placeholder (initial state) -->
-      <button
-        v-else
-        key="placeholder"
-        type="button"
-        title="Click to reveal"
-        class="blur-sm hover:blur-[3px] rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 text-white transition-all duration-200 cursor-pointer select-none"
-        :aria-label="'Click to reveal contact info'"
-        @click="reveal"
-        @keydown="handleKeydown"
-      >
+      <button v-else key="placeholder" type="button" title="Click to reveal"
+        class="blur-xs hover:blur-[3px] rounded focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 text-white transition-all duration-200 cursor-pointer select-none"
+        :aria-label="'Click to reveal contact info'" @click="reveal" @keydown="handleKeydown">
         {{ placeholder }}
       </button>
     </Transition>

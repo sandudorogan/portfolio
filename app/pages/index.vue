@@ -154,11 +154,11 @@ const scrollToElement = (elementId: string) => {
       <UiBlurReveal :delay="0.3" class="flex flex-col justify-center items-center gap-6">
         <!-- Main Heading -->
         <h1
-          class="flex flex-col justify-center items-center bg-clip-text bg-gradient-to-b from-white via-neutral-200 to-neutral-400 font-bold text-transparent text-5xl md:text-7xl text-center leading-tight">
+          class="flex flex-col justify-center items-center bg-clip-text bg-linear-to-b from-white via-neutral-200 to-neutral-400 font-bold text-transparent text-5xl md:text-7xl text-center leading-tight">
           Building
-          <UiTextHighlight class="bg-gradient-to-r from-primary-500 py-2 rounded-xl to-accent-500">
+          <UiTextHighlight class="bg-linear-to-r from-primary-500 py-2 rounded-xl to-accent-500">
             <UiFlipWords :words="['beautiful', 'stunning', 'immersive', 'scalable']" :duration="3000"
-              class="bg-clip-text bg-gradient-to-b from-white to-neutral-200 text-transparent" />
+              class="bg-clip-text bg-linear-to-b from-white to-neutral-200 text-transparent" />
           </UiTextHighlight>
           web experiences
         </h1>
@@ -171,7 +171,7 @@ const scrollToElement = (elementId: string) => {
         <!-- CTA Buttons -->
         <div class="flex flex-row flex-wrap justify-center items-center gap-4 mt-4">
           <NuxtLink to="/about"
-            class="group bg-gradient-to-r from-primary-500 hover:opacity-90 px-5 py-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 font-medium text-white text-sm hover:scale-105 transition-all duration-300 to-accent-500">
+            class="group bg-linear-to-r from-primary-500 hover:opacity-90 px-5 py-2 rounded-full focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 font-medium text-white text-sm hover:scale-105 transition-all duration-300 to-accent-500">
             <span class="flex items-center gap-1.5">
               <UIcon name="i-heroicons-user" class="w-3.5 h-3.5" aria-hidden="true" />
               About Me
@@ -182,7 +182,7 @@ const scrollToElement = (elementId: string) => {
             :border-width="2" :duration="15"
             class="!bg-transparent !p-0 !min-w-fit !min-h-fit hover:scale-105 transition-transform duration-300">
             <NuxtLink to="/contact"
-              class="flex items-center gap-2 bg-neutral-900/80 px-8 py-3 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 font-semibold text-white">
+              class="flex items-center gap-2 bg-neutral-900/80 px-8 py-3 rounded-full focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 font-semibold text-white">
               Get in Touch
               <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" aria-hidden="true" />
             </NuxtLink>
@@ -222,13 +222,13 @@ const scrollToElement = (elementId: string) => {
 
   <!-- Services Section -->
   <section id="services" class="relative py-24 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+    <div class="absolute inset-0 bg-linear-to-b from-background via-background/95 to-background" />
 
     <div class="z-10 relative mx-auto px-4 container">
       <UiBlurReveal :delay="0.3">
         <div class="mb-16 text-center">
           <h2 class="mb-4 font-bold text-4xl md:text-5xl">
-            <span class="bg-clip-text bg-gradient-to-r from-primary-400 text-transparent to-accent-400">
+            <span class="bg-clip-text bg-linear-to-r from-primary-400 text-transparent to-accent-400">
               Services
             </span>
           </h2>
@@ -243,12 +243,12 @@ const scrollToElement = (elementId: string) => {
           <UiCardSpotlight class="h-full min-h-[220px]"
             spotlight-color="color-mix(in oklch, var(--color-accent-500) 15%, transparent)" :spotlight-size="350">
             <div class="flex flex-col p-4 h-full">
-              <div class="bg-gradient-to-br from-primary-500/20 mb-4 p-4 rounded-xl w-fit to-accent-500/20"
+              <div class="bg-linear-to-br from-primary-500/20 mb-4 p-4 rounded-xl w-fit to-accent-500/20"
                 aria-hidden="true">
                 <UIcon :name="service.icon" class="w-8 h-8 text-primary-400" />
               </div>
               <h3 class="mb-3 font-semibold text-white text-xl">{{ service.title }}</h3>
-              <p class="flex-grow text-neutral-400">{{ service.description }}</p>
+              <p class="text-neutral-400 grow">{{ service.description }}</p>
             </div>
           </UiCardSpotlight>
         </UiBlurReveal>
@@ -258,13 +258,13 @@ const scrollToElement = (elementId: string) => {
 
   <!-- Tech Stack Section with Marquee -->
   <section class="relative py-24 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-background/95 via-neutral-900/50 to-background" />
+    <div class="absolute inset-0 bg-linear-to-b from-background/95 via-neutral-900/50 to-background" />
 
     <div class="z-10 relative mx-auto px-4 container">
       <UiBlurReveal :delay="0.3">
         <div class="mb-16 text-center">
           <h2 class="mb-4 font-bold text-4xl md:text-5xl">
-            <span class="bg-clip-text bg-gradient-to-r from-primary-400 text-transparent to-accent-400">
+            <span class="bg-clip-text bg-linear-to-r from-primary-400 text-transparent to-accent-400">
               Tech Stack
             </span>
           </h2>
@@ -309,13 +309,13 @@ const scrollToElement = (elementId: string) => {
 
   <!-- Projects Section -->
   <section class="relative py-24 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+    <div class="absolute inset-0 bg-linear-to-b from-background via-background/95 to-background" />
 
     <div class="z-10 relative mx-auto px-4 container">
       <UiBlurReveal :delay="0.3">
         <div class="mb-16 text-center">
           <h2 class="mb-4 font-bold text-4xl md:text-5xl">
-            <span class="bg-clip-text bg-gradient-to-r from-primary-400 text-transparent to-accent-400">
+            <span class="bg-clip-text bg-linear-to-r from-primary-400 text-transparent to-accent-400">
               Featured Projects
             </span>
           </h2>
@@ -330,27 +330,27 @@ const scrollToElement = (elementId: string) => {
           <NuxtLink :to="project.url" target="_blank" external>
             <UiCard3D :rotation-factor="10" :show-glare="false" class="group">
               <div
-                class="flex flex-col bg-neutral-900/80 backdrop-blur-sm border border-neutral-700/50 rounded-xl h-full overflow-hidden">
+                class="flex flex-col bg-neutral-900/80 backdrop-blur-xs border border-neutral-700/50 rounded-xl h-full overflow-hidden">
                 <!-- Project Image Placeholder -->
                 <div class="relative h-52 overflow-hidden shrink-0">
                   <div
-                    class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 via-accent-500/20" />
+                    class="absolute inset-0 bg-linear-to-br from-primary-500/20 to-secondary-500/20 via-accent-500/20" />
                   <div class="absolute inset-0 flex justify-center items-center">
                     <img :src="project.image" alt="Project Image"
                       class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <!-- Glow effect on hover -->
-                  <div class="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent" />
+                  <div class="absolute inset-0 bg-linear-to-t from-neutral-900 via-transparent to-transparent" />
                 </div>
 
-                <div class="flex flex-col flex-grow p-6">
+                <div class="flex flex-col p-6 grow">
                   <h3 class="mb-3 font-semibold text-white group-hover:text-primary-400 text-xl transition-colors">
                     {{ project.title }}
                   </h3>
-                  <p class="flex-grow mb-4 text-neutral-400">{{ project.description }}</p>
+                  <p class="mb-4 text-neutral-400 grow">{{ project.description }}</p>
                   <div class="flex flex-wrap gap-2">
                     <span v-for="tag in project.tags" :key="tag"
-                      class="bg-gradient-to-r from-secondary-500/10 to-secondary-400/10 px-3 py-1 border border-secondary-500/20 rounded-full font-medium text-secondary-400 text-xs">
+                      class="bg-linear-to-r from-secondary-500/10 to-secondary-400/10 px-3 py-1 border border-secondary-500/20 rounded-full font-medium text-secondary-400 text-xs">
                       {{ tag }}
                     </span>
                   </div>
@@ -375,13 +375,13 @@ const scrollToElement = (elementId: string) => {
 
   <!-- Testimonials Section -->
   <section class="hidden relative py-24 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-background/95 via-neutral-900/50 to-background" />
+    <div class="absolute inset-0 bg-linear-to-b from-background/95 via-neutral-900/50 to-background" />
 
     <div class="z-10 relative mx-auto px-4 container">
       <UiBlurReveal :delay="0.3">
         <div class="mb-16 text-center">
           <h2 class="mb-4 font-bold text-4xl md:text-5xl">
-            <span class="bg-clip-text bg-gradient-to-r from-primary-400 text-transparent to-accent-400">
+            <span class="bg-clip-text bg-linear-to-r from-primary-400 text-transparent to-accent-400">
               Client Testimonials
             </span>
           </h2>
@@ -400,7 +400,7 @@ const scrollToElement = (elementId: string) => {
 
   <!-- Contact CTA Section -->
   <section class="relative py-24 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-background" />
+    <div class="absolute inset-0 bg-linear-to-t from-background via-background/95 to-background" />
 
     <div class="z-10 relative mx-auto px-4 container">
       <UiBlurReveal :delay="0.3">
