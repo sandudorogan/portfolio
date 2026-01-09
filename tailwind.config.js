@@ -3,16 +3,12 @@ import { setupInspiraUI } from '@inspira-ui/plugins'
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: 'selector',
-  safelist: ['dark'],
+  // Nuxt UI uses @nuxtjs/color-mode (class-based dark mode by default).
+  // Keeping Tailwind on the standard strategy avoids mismatches in `dark:` variants.
+  darkMode: 'class',
   prefix: '',
   content: [
-    './app.vue',
-    './components/**/*.{vue,js,ts}',
-    './layouts/**/*.{vue,js,ts}',
-    './pages/**/*.{vue,js,ts}',
-    './composables/**/*.{js,ts}',
-    './utils/**/*.{js,ts}',
+    './app/**/*.{vue,js,ts}',
   ],
   theme: {
     extend: {

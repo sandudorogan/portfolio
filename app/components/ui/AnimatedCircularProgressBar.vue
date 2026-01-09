@@ -1,39 +1,13 @@
 <template>
-  <div
-    ref="containerRef"
+  <div ref="containerRef"
     :class="cn('animated-circular-progress relative inline-flex items-center justify-center', props.class)"
-    :style="{ width: `${size}px`, height: `${size}px` }"
-  >
+    :style="{ width: `${size}px`, height: `${size}px` }">
     <!-- focusable="false" prevents SVG tab stop in Safari/legacy browsers -->
-    <svg
-      :width="size"
-      :height="size"
-      class="-rotate-90"
-      aria-hidden="true"
-      focusable="false"
-      tabindex="-1"
-    >
-      <circle
-        :cx="size / 2"
-        :cy="size / 2"
-        :r="radius"
-        fill="none"
-        :stroke="trackColor"
-        :stroke-width="strokeWidth"
-      />
-      <circle
-        ref="progressCircle"
-        :cx="size / 2"
-        :cy="size / 2"
-        :r="radius"
-        fill="none"
-        :stroke="progressColor"
-        :stroke-width="strokeWidth"
-        stroke-linecap="round"
-        :stroke-dasharray="circumference"
-        :stroke-dashoffset="strokeDashoffset"
-        class="transition-all duration-1000 ease-out"
-      />
+    <svg :width="size" :height="size" class="-rotate-90" aria-hidden="true" focusable="false" tabindex="-1">
+      <circle :cx="size / 2" :cy="size / 2" :r="radius" fill="none" :stroke="trackColor" :stroke-width="strokeWidth" />
+      <circle ref="progressCircle" :cx="size / 2" :cy="size / 2" :r="radius" fill="none" :stroke="progressColor"
+        :stroke-width="strokeWidth" stroke-linecap="round" :stroke-dasharray="circumference"
+        :stroke-dashoffset="strokeDashoffset" class="transition-all duration-1000 ease-out" />
     </svg>
     <div class="absolute inset-0 flex justify-center items-center">
       <span class="font-bold text-2xl">{{ Math.round(animatedValue) }}%</span>
@@ -141,4 +115,3 @@ watch(() => props.value, () => {
 },
 )
 </script>
-
