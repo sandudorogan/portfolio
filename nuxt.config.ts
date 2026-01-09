@@ -6,7 +6,6 @@ export default defineNuxtConfig({
     'leaflet/dist/leaflet.css',
   ],
   modules: [
-    '@pinia/nuxt',
     '@nuxtjs/i18n',
     '@vueuse/nuxt',
     '@nuxt/test-utils',
