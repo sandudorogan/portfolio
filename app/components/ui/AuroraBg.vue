@@ -53,11 +53,11 @@ const props = withDefaults(defineProps<AuroraBgProps>(), {
   --white-gradient: repeating-linear-gradient(100deg, white 0%, white 7%, transparent 10%, transparent 12%, white 16%);
   --dark-gradient: repeating-linear-gradient(100deg, black 0%, black 7%, transparent 10%, transparent 12%, black 16%);
   --aurora: repeating-linear-gradient(100deg,
-      rgb(var(--primary-600)) 10%,
-      rgb(var(--primary-400)) 15%,
-      rgb(var(--accent-400)) 20%,
-      rgb(var(--accent-300)) 25%,
-      rgb(var(--primary-500)) 30%);
+      var(--color-primary-600) 10%,
+      var(--color-primary-400) 15%,
+      var(--color-accent-400) 20%,
+      var(--color-accent-300) 25%,
+      var(--color-primary-500) 30%);
   background-image: var(--white-gradient), var(--aurora);
 }
 

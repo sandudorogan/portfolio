@@ -15,12 +15,12 @@ withDefaults(defineProps<ContactCtaProps>(), {
 </script>
 
 <template>
-  <UiNeonBorder color="rgb(var(--primary-500))" :glow-intensity="15" class="mx-auto max-w-3xl">
+  <UiNeonBorder color="var(--color-primary-500)" :glow-intensity="15" class="mx-auto max-w-3xl">
     <div class="relative p-8 md:p-12 rounded-xl overflow-hidden">
       <div class="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-transparent to-accent-500/5" />
 
       <div class="z-10 relative text-center">
-        <UiSparklesText :sparkle-count="10" :colors="['rgb(var(--primary-500))', 'rgb(var(--accent-500))']">
+        <UiSparklesText :sparkle-count="10" :colors="['var(--color-primary-500)', 'var(--color-accent-500)']">
           <h2 class="mb-4 font-bold text-white text-2xl md:text-3xl">
             {{ title }}
           </h2>
@@ -30,13 +30,8 @@ withDefaults(defineProps<ContactCtaProps>(), {
           {{ description }}
         </p>
 
-        <UiGradientButton
-          as="NuxtLink"
-          :to="to"
-          from-color="rgb(var(--primary-500))"
-          via-color="rgb(var(--accent-500))"
-          to-color="rgb(var(--primary-500))"
-        >
+        <UiGradientButton as="NuxtLink" :to="to" from-color="var(--color-primary-500)"
+          via-color="var(--color-accent-500)" to-color="var(--color-primary-500)">
           <span class="flex items-center gap-2">
             <UIcon :name="buttonIcon" class="w-5 h-5" />
             {{ buttonLabel }}
@@ -44,7 +39,8 @@ withDefaults(defineProps<ContactCtaProps>(), {
         </UiGradientButton>
       </div>
 
-      <UiBorderBeam :size="350" :duration="12" color-from="rgb(var(--primary-500))" color-to="rgb(var(--accent-500))" />
+      <UiBorderBeam :size="350" :duration="12" color-from="var(--color-primary-500)"
+        color-to="var(--color-accent-500)" />
     </div>
   </UiNeonBorder>
 </template>

@@ -19,9 +19,8 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     'nuxt-schema-org',
     'nuxt-og-image',
-    '@nuxt/fonts',
     'motion-v/nuxt',
-    '@nuxt/ui',
+    '@nuxt/ui', // Automatically registers @nuxt/fonts
   ],
   site: {
     url: defaultSiteUrl,

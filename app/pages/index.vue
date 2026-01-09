@@ -143,7 +143,7 @@ const scrollToElement = (elementId: string) => {
 
     <!-- Meteor Effect -->
     <ClientOnly>
-      <UiMeteorEffect :count="15" color="rgb(var(--primary-500))" class="z-[1]" />
+      <UiMeteorEffect :count="15" color="var(--color-primary-500)" class="z-1" />
     </ClientOnly>
 
     <!-- Overlay for better text readability -->
@@ -178,7 +178,7 @@ const scrollToElement = (elementId: string) => {
             </span>
           </NuxtLink>
 
-          <UiGlowBorder :border-radius="9999" :color="['rgb(var(--primary-500))', 'rgb(var(--accent-500))']"
+          <UiGlowBorder :border-radius="9999" :color="['var(--color-primary-500)', 'var(--color-accent-500)']"
             :border-width="2" :duration="15"
             class="!bg-transparent !p-0 !min-w-fit !min-h-fit hover:scale-105 transition-transform duration-300">
             <NuxtLink to="/contact"
@@ -197,13 +197,13 @@ const scrollToElement = (elementId: string) => {
               <div v-if="isMobileDevice" class="relative flex justify-center">
                 <UiIPhone15ProMockup src="/images/pb-mobile.png" :width="280" :height="570" />
                 <UiBorderBeam :size="300" :duration="10" :delay="0" :border-width="2"
-                  color-from="rgb(var(--primary-500))" color-to="rgb(var(--accent-500))" />
+                  color-from="var(--color-primary-500)" color-to="var(--color-accent-500)" />
               </div>
               <!-- Safari mockup for desktop -->
               <div v-else class="relative">
                 <UiSafariMockup url="app.iprally.com" src="/images/iprally.png" class="w-full" :height="570" />
                 <UiBorderBeam :size="300" :duration="10" :delay="0" :border-width="2"
-                  color-from="rgb(var(--primary-500))" color-to="rgb(var(--accent-500))" />
+                  color-from="var(--color-primary-500)" color-to="var(--color-accent-500)" />
               </div>
             </UiCard3D>
           </div>
@@ -240,8 +240,8 @@ const scrollToElement = (elementId: string) => {
 
       <div class="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         <UiBlurReveal v-for="(service, index) in services" :key="index" :delay="0.3 + index * 0.1" class="h-full">
-          <UiCardSpotlight class="h-full min-h-[220px]" spotlight-color="rgb(var(--accent-500) / 0.15)"
-            :spotlight-size="350">
+          <UiCardSpotlight class="h-full min-h-[220px]"
+            spotlight-color="color-mix(in oklch, var(--color-accent-500) 15%, transparent)" :spotlight-size="350">
             <div class="flex flex-col p-4 h-full">
               <div class="bg-gradient-to-br from-primary-500/20 mb-4 p-4 rounded-xl w-fit to-accent-500/20"
                 aria-hidden="true">
@@ -277,7 +277,8 @@ const scrollToElement = (elementId: string) => {
       <!-- Marquee for tech icons -->
       <UiMarquee :duration="25" pause-on-hover class="py-8">
         <div v-for="(tech, index) in [...techStack, ...techStack]" :key="index" class="mx-6">
-          <UiGlareCard class="group" :glare-opacity="0.3" glare-color="rgb(var(--primary-500) / 0.4)">
+          <UiGlareCard class="group" :glare-opacity="0.3"
+            glare-color="color-mix(in oklch, var(--color-primary-500) 40%, transparent)">
             <div
               class="flex flex-col items-center bg-neutral-900/80 p-6 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl transition-colors duration-300">
               <div class="flex justify-center items-center mb-3 w-16 h-16" aria-hidden="true">
@@ -291,7 +292,8 @@ const scrollToElement = (elementId: string) => {
 
       <UiMarquee :duration="30" reverse pause-on-hover class="py-8">
         <div v-for="(tech, index) in [...techStack, ...techStack].reverse()" :key="index" class="mx-6">
-          <UiGlareCard class="group" :glare-opacity="0.3" glare-color="rgb(var(--accent-500) / 0.4)">
+          <UiGlareCard class="group" :glare-opacity="0.3"
+            glare-color="color-mix(in oklch, var(--color-accent-500) 40%, transparent)">
             <div
               class="flex flex-col items-center bg-neutral-900/80 p-6 border border-neutral-700/50 hover:border-accent-500/50 rounded-xl transition-colors duration-300">
               <div class="flex justify-center items-center mb-3 w-16 h-16" aria-hidden="true">
@@ -361,7 +363,7 @@ const scrollToElement = (elementId: string) => {
 
       <div class="flex justify-center mt-12">
         <UiGradientButton as="NuxtLink" to="/about#work-experience" variant="outline"
-          from-color="rgb(var(--primary-500))" via-color="rgb(var(--accent-500))" to-color="rgb(var(--primary-500))">
+          from-color="var(--color-primary-500)" via-color="var(--color-accent-500)" to-color="var(--color-primary-500)">
           <span class="flex items-center gap-2">
             View All Projects
             <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" aria-hidden="true" />

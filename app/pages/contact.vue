@@ -102,7 +102,7 @@ defineOgImage({
         <!-- Confetti Effect -->
         <ClientOnly>
             <UiConfetti :active="showConfetti" :particle-count="100"
-                :colors="['rgb(var(--primary-500))', 'rgb(var(--accent-500))', 'rgb(var(--secondary-500))']"
+                :colors="['var(--color-primary-500)', 'var(--color-accent-500)', 'var(--color-secondary-500)']"
                 :duration="4000" />
         </ClientOnly>
 
@@ -110,7 +110,7 @@ defineOgImage({
         <section class="relative py-24 overflow-hidden">
             <UiAuroraBg class="absolute inset-0" :show-radial-gradient="true" />
             <div class="absolute inset-0 bg-black/30" />
-            <UiMeteorEffect :count="10" color="rgb(var(--primary-500))" class="z-[1] absolute inset-0" />
+            <UiMeteorEffect :count="10" color="var(--color-primary-500)" class="z-1 absolute inset-0" />
 
             <div class="z-10 relative mx-auto px-4 container">
                 <UiBlurReveal :delay="0.2">
@@ -148,7 +148,7 @@ defineOgImage({
                                 <UiCard3D v-for="(item, index) in contactInfo" :key="index" :rotation-factor="6"
                                     :show-glare="false">
                                     <UiCardSpotlight
-                                        :spotlight-color="item.color === 'primary' ? 'rgb(var(--primary-500) / 0.15)' : item.color === 'accent' ? 'rgb(var(--accent-500) / 0.15)' : 'rgb(var(--secondary-500) / 0.15)'"
+                                        :spotlight-color="item.color === 'primary' ? 'color-mix(in oklch, var(--color-primary-500) 15%, transparent)' : item.color === 'accent' ? 'color-mix(in oklch, var(--color-accent-500) 15%, transparent)' : 'color-mix(in oklch, var(--color-secondary-500) 15%, transparent)'"
                                         class="p-0">
                                         <div class="flex items-start p-4">
                                             <div class="flex justify-center items-center mr-4 rounded-xl w-12 h-12"
@@ -206,7 +206,7 @@ defineOgImage({
                     <!-- Contact Form -->
                     <div class="relative md:col-span-2">
                         <UiBlurReveal :delay="0.3">
-                            <UiNeonBorder color="rgb(var(--primary-500))" :glow-intensity="10" class="relative">
+                            <UiNeonBorder color="var(--color-primary-500)" :glow-intensity="10" class="relative">
                                 <div class="bg-neutral-900/50 backdrop-blur-sm p-6 md:p-8 rounded-xl">
                                     <h2 class="mb-6 font-semibold text-xl">
                                         <span class="text-white">Send a Message</span>
@@ -214,33 +214,35 @@ defineOgImage({
 
                                     <form @submit.prevent="handleSubmit" class="space-y-6">
                                         <div class="gap-6 grid grid-cols-1 md:grid-cols-2">
-                                            <UFormGroup label="Your Name">
+                                            <UFormField label="Your Name" name="name">
                                                 <UInput v-model="form.name" placeholder="John Doe" required
-                                                    class="bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors" />
-                                            </UFormGroup>
+                                                    class="w-full"
+                                                    :ui="{ base: 'bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors' }" />
+                                            </UFormField>
 
-                                            <UFormGroup label="Your Email">
+                                            <UFormField label="Your Email" name="email">
                                                 <UInput v-model="form.email" type="email" placeholder="john@example.com"
-                                                    required
-                                                    class="bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors" />
-                                            </UFormGroup>
+                                                    required class="w-full"
+                                                    :ui="{ base: 'bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors' }" />
+                                            </UFormField>
                                         </div>
 
-                                        <UFormGroup label="Subject">
-                                            <UInput v-model="form.subject" placeholder="Project Inquiry"
-                                                class="bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors" />
-                                        </UFormGroup>
+                                        <UFormField label="Subject" name="subject">
+                                            <UInput v-model="form.subject" placeholder="Project Inquiry" class="w-full"
+                                                :ui="{ base: 'bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors' }" />
+                                        </UFormField>
 
-                                        <UFormGroup label="Message">
+                                        <UFormField label="Message" name="message">
                                             <UTextarea v-model="form.message"
                                                 placeholder="Tell me about your project..." :rows="5" required
-                                                class="bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors" />
-                                        </UFormGroup>
+                                                class="w-full"
+                                                :ui="{ base: 'bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors' }" />
+                                        </UFormField>
 
                                         <div>
                                             <UiShimmerButton type="submit" :disabled="form.loading"
                                                 class="!px-8 w-full md:w-auto"
-                                                shimmer-color="rgb(var(--primary-500) / 0.3)">
+                                                shimmer-color="color-mix(in oklch, var(--color-primary-500) 30%, transparent)">
                                                 <span v-if="form.loading" class="flex items-center gap-2">
                                                     <UIcon name="i-heroicons-arrow-path" class="w-4 h-4 animate-spin"
                                                         aria-hidden="true" />
@@ -294,8 +296,8 @@ defineOgImage({
                                     </form>
                                 </div>
 
-                                <UiBorderBeam :size="300" :duration="12" color-from="rgb(var(--primary-500))"
-                                    color-to="rgb(var(--accent-500))" />
+                                <UiBorderBeam :size="300" :duration="12" color-from="var(--color-primary-500)"
+                                    color-to="var(--color-accent-500)" />
                             </UiNeonBorder>
                         </UiBlurReveal>
                     </div>
@@ -329,11 +331,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-/* Input focus styles */
-:deep(.ui-input:focus) {
-    border-color: rgb(var(--primary-500));
-    box-shadow: 0 0 0 2px rgb(var(--primary-500) / 0.2);
-}
-</style>

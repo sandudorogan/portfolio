@@ -98,8 +98,8 @@ defineOgImage({
                                     <img src="/images/sandu-dorogan.jpg" alt="Sandu Dorogan"
                                         class="w-full h-full object-cover" />
                                 </div>
-                                <UiBorderBeam :size="150" :duration="8" color-from="rgb(var(--primary-500))"
-                                    color-to="rgb(var(--accent-500))" />
+                                <UiBorderBeam :size="150" :duration="8" color-from="var(--color-primary-500)"
+                                    color-to="var(--color-accent-500)" />
                             </div>
                         </UiCard3D>
                     </UiBlurReveal>
@@ -164,11 +164,12 @@ defineOgImage({
                         <ClientOnly>
                             <UiBlurReveal v-for="(skill, index) in developerInfo.skills" :key="index"
                                 :delay="0.2 + index * 0.1" :duration="1" class="h-full">
-                                <UiCardSpotlight class="!p-4 h-full" spotlight-color="rgb(var(--primary-500) / 0.15)">
+                                <UiCardSpotlight class="!p-4 h-full"
+                                    spotlight-color="color-mix(in oklch, var(--color-primary-500) 15%, transparent)">
                                     <div class="flex flex-col items-center h-full">
                                         <UiAnimatedCircularProgressBar :value="skill.level" :size="100"
                                             :stroke-width="6" track-color="rgba(255, 255, 255, 0.1)"
-                                            progress-color="rgb(var(--primary-500))" :start-delay-ms="1000" />
+                                            progress-color="var(--color-primary-500)" :start-delay-ms="1000" />
                                         <span class="mt-auto pt-4 font-medium text-neutral-300 text-sm text-center">{{
                                             skill.name }}</span>
                                     </div>
@@ -197,7 +198,7 @@ defineOgImage({
                         <UiBlurReveal v-for="(lang, index) in developerInfo.languages" :key="index"
                             :delay="0.2 + index * 0.1">
                             <UiCardSpotlight class="flex flex-col items-center p-6"
-                                spotlight-color="rgb(var(--accent-500) / 0.15)">
+                                spotlight-color="color-mix(in oklch, var(--color-accent-500) 15%, transparent)">
                                 <div class="bg-gradient-to-br from-primary-500/20 mb-4 p-3 rounded-xl to-accent-500/20"
                                     aria-hidden="true">
                                     <UIcon name="i-heroicons-language" class="w-6 h-6 text-primary-400" />
@@ -214,7 +215,7 @@ defineOgImage({
         <!-- Experience Section with Timeline -->
         <section id="work-experience" class="relative py-24 overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
-            <UiMeteorEffect :count="10" color="rgb(var(--primary-500))" class="absolute inset-0" />
+            <UiMeteorEffect :count="10" color="var(--color-primary-500)" class="absolute inset-0" />
 
             <div class="z-10 relative mx-auto px-4 container">
                 <UiBlurReveal :delay="0.3">
