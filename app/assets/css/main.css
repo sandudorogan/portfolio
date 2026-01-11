@@ -31,85 +31,103 @@
 }
 
 /*
- * Custom color palettes
- * Using @theme static to define color shades that integrate with Tailwind's color system.
- * These are then referenced in Nuxt UI's semantic CSS variables below.
+ * Theme color tokens
+ * Space-separated OKLCH components (lightness chroma hue) that flip between light/dark.
+ * These are the canonical source for the theme and used by --color-foreground/--color-background.
+ */
+:root {
+  --text: 16.50% 0.084 285.43;
+  --background: 96.42% 0.018 296.64;
+  --primary: 29.85% 0.174 277.33;
+  --secondary: 85.23% 0.133 87.81;
+  --accent: 79.38% 0.230 135.35;
+}
+
+.dark {
+  --text: 87.97% 0.061 295.54;
+  --background: 10.11% 0.043 298.59;
+  --primary: 67.21% 0.173 291.41;
+  --secondary: 59.65% 0.120 82.48;
+  --accent: 85.54% 0.238 134.42;
+}
+
+/*
+ * Tailwind color palettes
+ * Static palettes generate utilities like bg-primary-500, text-secondary-400, etc.
+ * Shades interpolated from light (50) to dark (950) around each base hue.
  */
 @theme static {
-  /* Primary palette (blue-ish) - base color + shades */
-  --color-primary: oklch(0.52 0.17 260);
-  --color-primary-50: oklch(0.95 0.02 260);
-  --color-primary-100: oklch(0.91 0.04 260);
-  --color-primary-200: oklch(0.82 0.07 260);
-  --color-primary-300: oklch(0.72 0.11 260);
-  --color-primary-400: oklch(0.62 0.14 260);
-  --color-primary-500: oklch(0.52 0.17 260);
-  --color-primary-600: oklch(0.45 0.15 260);
-  --color-primary-700: oklch(0.38 0.12 260);
-  --color-primary-800: oklch(0.30 0.09 260);
-  --color-primary-900: oklch(0.22 0.06 260);
-  --color-primary-950: oklch(0.15 0.04 260);
+  /* Primary palette (violet/purple, hue ~284 - midpoint of 277.33 and 291.41) */
+  --color-primary-50: oklch(0.97 0.025 284);
+  --color-primary-100: oklch(0.93 0.045 284);
+  --color-primary-200: oklch(0.86 0.080 284);
+  --color-primary-300: oklch(0.75 0.120 284);
+  --color-primary-400: oklch(0.67 0.173 284);
+  --color-primary-500: oklch(0.48 0.174 284);
+  --color-primary-600: oklch(0.40 0.160 284);
+  --color-primary-700: oklch(0.32 0.140 284);
+  --color-primary-800: oklch(0.25 0.110 284);
+  --color-primary-900: oklch(0.18 0.080 284);
+  --color-primary-950: oklch(0.12 0.050 284);
   --color-primary-foreground: white;
 
-  /* Secondary palette (orange/coral) - base color + shades */
-  --color-secondary: oklch(0.62 0.18 30);
-  --color-secondary-50: oklch(0.97 0.02 30);
-  --color-secondary-100: oklch(0.93 0.04 30);
-  --color-secondary-200: oklch(0.86 0.08 30);
-  --color-secondary-300: oklch(0.78 0.12 30);
-  --color-secondary-400: oklch(0.70 0.16 30);
-  --color-secondary-500: oklch(0.62 0.18 30);
-  --color-secondary-600: oklch(0.54 0.16 30);
-  --color-secondary-700: oklch(0.45 0.13 30);
-  --color-secondary-800: oklch(0.36 0.10 30);
-  --color-secondary-900: oklch(0.27 0.07 30);
-  --color-secondary-950: oklch(0.18 0.04 30);
-  --color-secondary-foreground: white;
+  /* Secondary palette (yellow/gold, hue ~85 - midpoint of 87.81 and 82.48) */
+  --color-secondary-50: oklch(0.97 0.030 85);
+  --color-secondary-100: oklch(0.93 0.055 85);
+  --color-secondary-200: oklch(0.88 0.085 85);
+  --color-secondary-300: oklch(0.85 0.133 85);
+  --color-secondary-400: oklch(0.75 0.130 85);
+  --color-secondary-500: oklch(0.65 0.125 85);
+  --color-secondary-600: oklch(0.60 0.120 85);
+  --color-secondary-700: oklch(0.50 0.100 85);
+  --color-secondary-800: oklch(0.40 0.080 85);
+  --color-secondary-900: oklch(0.30 0.060 85);
+  --color-secondary-950: oklch(0.18 0.040 85);
+  --color-secondary-foreground: oklch(0.15 0.030 85);
 
-  /* Accent palette (vivid blue) - base color + shades */
-  --color-accent: oklch(0.55 0.24 265);
-  --color-accent-50: oklch(0.96 0.02 265);
-  --color-accent-100: oklch(0.92 0.05 265);
-  --color-accent-200: oklch(0.84 0.10 265);
-  --color-accent-300: oklch(0.75 0.15 265);
-  --color-accent-400: oklch(0.65 0.20 265);
-  --color-accent-500: oklch(0.55 0.24 265);
-  --color-accent-600: oklch(0.48 0.21 265);
-  --color-accent-700: oklch(0.40 0.17 265);
-  --color-accent-800: oklch(0.32 0.13 265);
-  --color-accent-900: oklch(0.24 0.09 265);
-  --color-accent-950: oklch(0.16 0.05 265);
-  --color-accent-foreground: white;
+  /* Accent palette (vivid green, hue ~135) */
+  --color-accent-50: oklch(0.97 0.035 135);
+  --color-accent-100: oklch(0.93 0.070 135);
+  --color-accent-200: oklch(0.88 0.120 135);
+  --color-accent-300: oklch(0.85 0.180 135);
+  --color-accent-400: oklch(0.82 0.230 135);
+  --color-accent-500: oklch(0.79 0.230 135);
+  --color-accent-600: oklch(0.68 0.200 135);
+  --color-accent-700: oklch(0.55 0.170 135);
+  --color-accent-800: oklch(0.42 0.130 135);
+  --color-accent-900: oklch(0.30 0.090 135);
+  --color-accent-950: oklch(0.18 0.055 135);
+  --color-accent-foreground: oklch(0.15 0.030 135);
 
-  /* Text color palette */
-  --color-text-50: oklch(0.95 0.02 260);
-  --color-text-100: oklch(0.91 0.04 260);
-  --color-text-200: oklch(0.82 0.07 260);
-  --color-text-300: oklch(0.72 0.11 260);
-  --color-text-400: oklch(0.62 0.14 260);
-  --color-text-500: oklch(0.52 0.17 260);
-  --color-text-600: oklch(0.45 0.15 260);
-  --color-text-700: oklch(0.38 0.12 260);
-  --color-text-800: oklch(0.30 0.09 260);
-  --color-text-900: oklch(0.22 0.06 260);
-  --color-text-950: oklch(0.15 0.04 260);
+  /* Text palette (purple tones, hue ~290) */
+  --color-text-50: oklch(0.97 0.015 290);
+  --color-text-100: oklch(0.93 0.025 290);
+  --color-text-200: oklch(0.88 0.040 290);
+  --color-text-300: oklch(0.78 0.055 290);
+  --color-text-400: oklch(0.65 0.065 290);
+  --color-text-500: oklch(0.52 0.070 290);
+  --color-text-600: oklch(0.42 0.070 290);
+  --color-text-700: oklch(0.32 0.065 290);
+  --color-text-800: oklch(0.24 0.060 290);
+  --color-text-900: oklch(0.17 0.050 290);
+  --color-text-950: oklch(0.12 0.040 290);
 
-  /* Background palette (dark blue-ish for dark mode base) */
-  --color-background: oklch(0.15 0.02 260);
-  --color-background-50: oklch(0.95 0.01 260);
-  --color-background-100: oklch(0.91 0.02 260);
-  --color-background-200: oklch(0.82 0.04 260);
-  --color-background-300: oklch(0.72 0.06 260);
-  --color-background-400: oklch(0.62 0.08 260);
-  --color-background-500: oklch(0.52 0.10 260);
-  --color-background-600: oklch(0.45 0.09 260);
-  --color-background-700: oklch(0.38 0.07 260);
-  --color-background-800: oklch(0.30 0.05 260);
-  --color-background-900: oklch(0.22 0.04 260);
-  --color-background-950: oklch(0.15 0.02 260);
+  /* Background palette (purple-pink tones, hue ~297) */
+  --color-background-50: oklch(0.97 0.012 297);
+  --color-background-100: oklch(0.94 0.018 297);
+  --color-background-200: oklch(0.88 0.025 297);
+  --color-background-300: oklch(0.78 0.032 297);
+  --color-background-400: oklch(0.65 0.038 297);
+  --color-background-500: oklch(0.52 0.042 297);
+  --color-background-600: oklch(0.42 0.043 297);
+  --color-background-700: oklch(0.32 0.043 297);
+  --color-background-800: oklch(0.22 0.043 297);
+  --color-background-900: oklch(0.14 0.043 297);
+  --color-background-950: oklch(0.10 0.043 297);
 
-  /* Foreground (text) base color */
-  --color-foreground: oklch(0.95 0.02 260);
+  /* Dynamic foreground/background - reference theme tokens so they flip with light/dark */
+  --color-foreground: oklch(var(--text));
+  --color-background: oklch(var(--background));
 
   /* Border radius - ensure rounded utilities work properly */
   --radius-sm: calc(var(--ui-radius) - 4px);
@@ -121,63 +139,42 @@
 /*
  * Nuxt UI v4 semantic CSS variables
  * Override the default Nuxt UI theme to use our custom palette.
- * These variables control how Nuxt UI components look.
+ * Uses color-mix() to derive shades from the theme tokens automatically.
  */
 :root {
   /* Semantic colors point to our custom palette */
   --ui-primary: var(--color-primary-500);
   --ui-secondary: var(--color-secondary-500);
 
-  /* Background colors */
-  --ui-bg: var(--color-background-50);
-  --ui-bg-muted: var(--color-background-100);
-  --ui-bg-elevated: var(--color-background-100);
-  --ui-bg-accented: var(--color-background-200);
-  --ui-bg-inverted: var(--color-background-900);
+  /* Background colors - derived from theme tokens */
+  --ui-bg: oklch(var(--background));
+  --ui-bg-muted: color-mix(in oklch, oklch(var(--background)) 94%, oklch(var(--text)));
+  --ui-bg-elevated: color-mix(in oklch, oklch(var(--background)) 92%, oklch(var(--text)));
+  --ui-bg-accented: color-mix(in oklch, oklch(var(--background)) 88%, oklch(var(--text)));
+  --ui-bg-inverted: oklch(var(--text));
 
-  /* Text colors */
-  --ui-text: var(--color-text-900);
-  --ui-text-muted: var(--color-text-600);
-  --ui-text-dimmed: var(--color-text-400);
-  --ui-text-toned: var(--color-text-700);
-  --ui-text-highlighted: var(--color-text-950);
-  --ui-text-inverted: white;
+  /* Text colors - derived from theme tokens */
+  --ui-text: oklch(var(--text));
+  --ui-text-muted: color-mix(in oklch, oklch(var(--text)) 65%, oklch(var(--background)));
+  --ui-text-dimmed: color-mix(in oklch, oklch(var(--text)) 45%, oklch(var(--background)));
+  --ui-text-toned: color-mix(in oklch, oklch(var(--text)) 80%, oklch(var(--background)));
+  --ui-text-highlighted: oklch(var(--text));
+  --ui-text-inverted: oklch(var(--background));
 
-  /* Border colors */
-  --ui-border: var(--color-background-200);
-  --ui-border-muted: var(--color-background-200);
-  --ui-border-accented: var(--color-background-300);
-  --ui-border-inverted: var(--color-background-900);
+  /* Border colors - derived from theme tokens */
+  --ui-border: color-mix(in oklch, oklch(var(--background)) 82%, oklch(var(--text)));
+  --ui-border-muted: color-mix(in oklch, oklch(var(--background)) 88%, oklch(var(--text)));
+  --ui-border-accented: color-mix(in oklch, oklch(var(--background)) 75%, oklch(var(--text)));
+  --ui-border-inverted: oklch(var(--text));
 
   /* Radius */
   --ui-radius: 0.5rem;
 }
 
 .dark {
-  /* Semantic colors (slightly lighter shades in dark mode) */
+  /* Use lighter shades in dark mode for better visibility on dark backgrounds */
   --ui-primary: var(--color-primary-400);
   --ui-secondary: var(--color-secondary-400);
-
-  /* Background colors (dark mode uses darker shades) */
-  --ui-bg: var(--color-background-950);
-  --ui-bg-muted: var(--color-background-900);
-  --ui-bg-elevated: var(--color-background-800);
-  --ui-bg-accented: var(--color-background-700);
-  --ui-bg-inverted: white;
-
-  /* Text colors (inverted for dark mode) */
-  --ui-text: var(--color-text-100);
-  --ui-text-muted: var(--color-text-400);
-  --ui-text-dimmed: var(--color-text-500);
-  --ui-text-toned: var(--color-text-300);
-  --ui-text-highlighted: white;
-  --ui-text-inverted: var(--color-background-900);
-
-  /* Border colors (darker shades) */
-  --ui-border: var(--color-background-800);
-  --ui-border-muted: var(--color-background-700);
-  --ui-border-accented: var(--color-background-700);
-  --ui-border-inverted: white;
 }
 
 /*
