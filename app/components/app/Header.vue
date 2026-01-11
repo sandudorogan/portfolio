@@ -35,10 +35,12 @@
 
       <!-- Mobile Menu Button -->
       <UiGlareCard :glare-opacity="0.2" class="md:hidden">
-        <UButton ref="mobileMenuButtonRef" variant="ghost" icon="i-heroicons-bars-3"
+        <UButton ref="mobileMenuButtonRef" variant="ghost"
           class="!bg-transparent focus-visible:ring-2 focus-visible:ring-primary-500"
           aria-label="Toggle navigation menu" :aria-expanded="mobileMenuOpen" aria-controls="mobile-menu"
-          @click="toggleMobileMenu" />
+          @click="toggleMobileMenu">
+          <UIcon name="i-heroicons-bars-3" :size="20" />
+        </UButton>
       </UiGlareCard>
     </div>
 

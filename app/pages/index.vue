@@ -199,7 +199,7 @@ const scrollToElement = (elementId: string) => {
               </div>
               <!-- Safari mockup for desktop -->
               <div v-else class="relative">
-                <UiSafariMockup url="app.iprally.com" src="/images/iprally.png" class="w-full" />
+                <UiSafariMockup url="app.iprally.com" src="/images/iprally.png" class="block w-full h-auto" />
               </div>
             </UiCard3D>
           </div>
@@ -277,8 +277,8 @@ const scrollToElement = (elementId: string) => {
             glare-color="color-mix(in oklch, var(--color-primary-500) 40%, transparent)">
             <div
               class="flex flex-col items-center bg-neutral-900/80 p-6 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl transition-colors duration-300">
-              <div class="flex justify-center items-center mb-3 w-16 h-16" aria-hidden="true">
-                <UIcon :name="tech.icon" class="w-12 h-12 group-hover:scale-110 transition-transform duration-300" />
+              <div class="flex justify-center items-center mb-3 w-24 h-24" aria-hidden="true">
+                <UIcon :name="tech.icon" class="w-16 h-16 group-hover:scale-110 transition-transform duration-300" />
               </div>
               <span class="font-medium text-neutral-300 text-sm">{{ tech.name }}</span>
             </div>
@@ -292,8 +292,8 @@ const scrollToElement = (elementId: string) => {
             glare-color="color-mix(in oklch, var(--color-accent-500) 40%, transparent)">
             <div
               class="flex flex-col items-center bg-neutral-900/80 p-6 border border-neutral-700/50 hover:border-accent-500/50 rounded-xl transition-colors duration-300">
-              <div class="flex justify-center items-center mb-3 w-16 h-16" aria-hidden="true">
-                <UIcon :name="tech.icon" class="w-12 h-12 group-hover:scale-110 transition-transform duration-300" />
+              <div class="flex justify-center items-center mb-3 w-24 h-24" aria-hidden="true">
+                <UIcon :name="tech.icon" class="w-16 h-16 group-hover:scale-110 transition-transform duration-300" />
               </div>
               <span class="font-medium text-neutral-300 text-sm">{{ tech.name }}</span>
             </div>
