@@ -46,7 +46,7 @@ useSchemaOrg([
     </a>
 
     <AppHeader />
-    <main id="main-content" tabindex="-1" class="outline-hidden grow">
+    <main id="main-content" tabindex="-1" class="pt-16 outline-hidden grow">
       <slot />
     </main>
     <AppFooter />

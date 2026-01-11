@@ -137,7 +137,8 @@ const scrollToElement = (elementId: string) => {
 
 <template>
   <!-- Hero Section with Aurora Background -->
-  <section class="relative flex flex-col justify-center items-center pt-48 w-full min-h-screen overflow-hidden">
+  <section
+    class="relative flex flex-col justify-center items-center pt-24 md:pt-48 w-full min-h-screen overflow-hidden">
     <!-- Aurora Background -->
     <UiAuroraBg class="absolute inset-0 w-full h-full" :show-radial-gradient="true" />
 
@@ -234,8 +235,9 @@ const scrollToElement = (elementId: string) => {
         </div>
       </UiBlurReveal>
 
-      <div class="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-        <UiBlurReveal v-for="(service, index) in services" :key="index" :delay="0.3 + index * 0.1" class="h-full">
+      <div class="flex flex-col justify-center items-center gap-6 md:grid md:grid-cols-2 lg:grid-cols-4">
+        <UiBlurReveal v-for="(service, index) in services" :key="index" :delay="0.3 + index * 0.1"
+          class="w-full md:max-w-none max-w-md h-full">
           <UiCardSpotlight class="h-full min-h-[220px]"
             spotlight-color="color-mix(in oklch, var(--color-accent-500) 15%, transparent)" :spotlight-size="350">
             <div class="flex flex-col p-4 h-full">
@@ -278,7 +280,7 @@ const scrollToElement = (elementId: string) => {
             <div
               class="flex flex-col items-center bg-neutral-900/80 p-6 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl transition-colors duration-300">
               <div class="flex justify-center items-center mb-3 w-24 h-24" aria-hidden="true">
-                <UIcon :name="tech.icon" class="w-16 h-16 group-hover:scale-110 transition-transform duration-300" />
+                <UIcon :name="tech.icon" class="group-hover:scale-110 transition-transform duration-300" :size="24" />
               </div>
               <span class="font-medium text-neutral-300 text-sm">{{ tech.name }}</span>
             </div>
@@ -293,7 +295,7 @@ const scrollToElement = (elementId: string) => {
             <div
               class="flex flex-col items-center bg-neutral-900/80 p-6 border border-neutral-700/50 hover:border-accent-500/50 rounded-xl transition-colors duration-300">
               <div class="flex justify-center items-center mb-3 w-24 h-24" aria-hidden="true">
-                <UIcon :name="tech.icon" class="w-16 h-16 group-hover:scale-110 transition-transform duration-300" />
+                <UIcon :name="tech.icon" class="group-hover:scale-110 transition-transform duration-300" :size="24" />
               </div>
               <span class="font-medium text-neutral-300 text-sm">{{ tech.name }}</span>
             </div>

@@ -1,21 +1,9 @@
 <template>
-  <div
-    ref="container"
-    :class="props.class"
-  >
+  <div ref="container" :class="props.class">
     <!-- tabindex="-1" prevents animation wrapper from being a tab stop -->
-    <Motion
-      v-for="(child, index) in children"
-      :key="index"
-      ref="childElements"
-      as="div"
-      class="h-full"
-      tabindex="-1"
-      :initial="getInitial()"
-      :while-in-view="getAnimate()"
-      :in-view-options="{ once: true }"
-      :transition="getTransition(Number(index))"
-    >
+    <Motion v-for="(child, index) in children" :key="index" ref="childElements" as="div" tabindex="-1"
+      :initial="getInitial()" :while-in-view="getAnimate()" :in-view-options="{ once: true }"
+      :transition="getTransition(Number(index))">
       <component :is="child" />
     </Motion>
   </div>
@@ -24,6 +12,7 @@
 <script setup lang="ts">
 import { Motion } from 'motion-v'
 import { usePreferredReducedMotion } from '@vueuse/core'
+import { Text, Comment, Fragment, type VNode } from 'vue'
 
 interface Props {
   duration?: number;
@@ -40,8 +29,6 @@ const props = withDefaults(defineProps<Props>(), {
   yOffset: 20,
 })
 
-const container = ref(null)
-const childElements = ref([])
 const slots = useSlots()
 const reducedMotion = usePreferredReducedMotion()
 
@@ -50,10 +37,24 @@ const shouldReduceMotion = computed(() => reducedMotion.value === 'reduce')
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const children = ref<any>([])
 
+// Filter out text nodes and comments, flatten fragments
+function getElementChildren(vnodes: VNode[]): VNode[] {
+  const result: VNode[] = []
+  for (const vnode of vnodes) {
+    if (vnode.type === Text || vnode.type === Comment) continue
+    if (vnode.type === Fragment && Array.isArray(vnode.children)) {
+      result.push(...getElementChildren(vnode.children as VNode[]))
+    } else {
+      result.push(vnode)
+    }
+  }
+  return result
+}
+
 onMounted(() => {
-  // This will reactively capture all content provided in the default slot
   watchEffect(() => {
-    children.value = slots.default ? slots.default() : []
+    const rawChildren = slots.default ? slots.default() : []
+    children.value = getElementChildren(rawChildren)
   })
 })
 
