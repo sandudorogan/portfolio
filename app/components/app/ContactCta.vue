@@ -38,9 +38,6 @@ withDefaults(defineProps<ContactCtaProps>(), {
           </span>
         </UiGradientButton>
       </div>
-
-      <UiBorderBeam :size="350" :duration="12" color-from="var(--color-primary-500)"
-        color-to="var(--color-accent-500)" />
     </div>
   </UiNeonBorder>
 </template>

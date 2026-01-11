@@ -147,10 +147,10 @@ const scrollToElement = (elementId: string) => {
     </ClientOnly>
 
     <!-- Overlay for better text readability -->
-    <div class="z-[2] absolute inset-0 bg-black/40" />
+    <div class="z-2 absolute inset-0 bg-black/40" />
 
     <!-- Hero Content -->
-    <div class="z-[3] flex flex-col items-center gap-4 px-4 max-w-4xl">
+    <div class="z-3 flex flex-col items-center gap-4 px-4 max-w-4xl">
       <UiBlurReveal :delay="0.3" class="flex flex-col justify-center items-center gap-6">
         <!-- Main Heading -->
         <h1
@@ -196,14 +196,10 @@ const scrollToElement = (elementId: string) => {
               <!-- iPhone mockup for mobile devices -->
               <div v-if="isMobileDevice" class="relative flex justify-center">
                 <UiIPhone15ProMockup src="/images/pb-mobile.png" :width="280" :height="570" />
-                <UiBorderBeam :size="300" :duration="10" :delay="0" :border-width="2"
-                  color-from="var(--color-primary-500)" color-to="var(--color-accent-500)" />
               </div>
               <!-- Safari mockup for desktop -->
               <div v-else class="relative">
-                <UiSafariMockup url="app.iprally.com" src="/images/iprally.png" class="w-full" :height="570" />
-                <UiBorderBeam :size="300" :duration="10" :delay="0" :border-width="2"
-                  color-from="var(--color-primary-500)" color-to="var(--color-accent-500)" />
+                <UiSafariMockup url="app.iprally.com" src="/images/iprally.png" class="w-full" />
               </div>
             </UiCard3D>
           </div>
@@ -212,7 +208,7 @@ const scrollToElement = (elementId: string) => {
     </div>
 
     <!-- Scroll Indicator -->
-    <div class="bottom-8 z-[3] absolute animate-bounce">
+    <div class="bottom-8 z-3 absolute animate-bounce">
       <UiShimmerButton class="!px-4 !py-2 !rounded-full" aria-label="Scroll down to services section"
         @click="() => scrollToElement('services')">
         <UIcon name="i-heroicons-chevron-down" class="w-5 h-5" aria-hidden="true" />

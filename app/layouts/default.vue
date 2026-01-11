@@ -41,7 +41,7 @@ useSchemaOrg([
   <div class="flex flex-col bg-background min-h-screen text-foreground">
     <!-- Skip to main content link for keyboard/screen reader users -->
     <a href="#main-content"
-      class="sr-only focus:not-sr-only focus:top-4 focus:left-4 focus:z-[200] focus:fixed focus:bg-primary-500 focus:px-4 focus:py-2 focus:rounded-lg focus:outline-hidden focus:ring-2 focus:ring-white focus:text-white">
+      class="sr-only focus:not-sr-only focus:top-4 focus:left-4 focus:z-200 focus:fixed focus:bg-primary-500 focus:px-4 focus:py-2 focus:rounded-lg focus:outline-hidden focus:ring-2 focus:ring-white focus:text-white">
       Skip to main content
     </a>
 

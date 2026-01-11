@@ -98,8 +98,6 @@ defineOgImage({
                                     <img src="/images/sandu-dorogan.jpg" alt="Sandu Dorogan"
                                         class="w-full h-full object-cover" />
                                 </div>
-                                <UiBorderBeam :size="150" :duration="8" color-from="var(--color-primary-500)"
-                                    color-to="var(--color-accent-500)" />
                             </div>
                         </UiCard3D>
                     </UiBlurReveal>
@@ -197,14 +195,16 @@ defineOgImage({
                     <div class="gap-6 grid grid-cols-2 md:grid-cols-4 mx-auto max-w-4xl">
                         <UiBlurReveal v-for="(lang, index) in developerInfo.languages" :key="index"
                             :delay="0.2 + index * 0.1">
-                            <UiCardSpotlight class="flex flex-col items-center p-6"
+                            <UiCardSpotlight class="p-6 h-full"
                                 spotlight-color="color-mix(in oklch, var(--color-accent-500) 15%, transparent)">
-                                <div class="bg-linear-to-br from-primary-500/20 mb-4 p-3 rounded-xl to-accent-500/20"
-                                    aria-hidden="true">
-                                    <UIcon name="i-heroicons-language" class="w-6 h-6 text-primary-400" />
+                                <div class="flex flex-col justify-center items-center h-full">
+                                    <div class="flex flex-col justify-center items-center bg-linear-to-br from-primary-500/20 mb-4 p-6 rounded-xl h-full to-accent-500/20"
+                                        aria-hidden="true">
+                                        <UIcon name="i-heroicons-language" class="text-primary-400" :size="22" />
+                                    </div>
+                                    <h3 class="mb-1 font-semibold text-white text-lg">{{ lang.name }}</h3>
+                                    <p class="text-neutral-400 text-sm text-center">{{ lang.level }}</p>
                                 </div>
-                                <h3 class="mb-1 font-semibold text-white text-lg">{{ lang.name }}</h3>
-                                <p class="text-neutral-400 text-sm text-center">{{ lang.level }}</p>
                             </UiCardSpotlight>
                         </UiBlurReveal>
                     </div>
