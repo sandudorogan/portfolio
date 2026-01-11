@@ -1,19 +1,11 @@
 <template>
-  <div
-    ref="cardRef"
-    :class="cn(
-      'card-spotlight relative overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/50 p-8',
-      props.class
-    )"
-    @mousemove="handleMouseMove"
-    @mouseleave="handleMouseLeave"
-  >
+  <div ref="cardRef" :class="cn(
+    'card-spotlight relative overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/50 py-4 md:p-8',
+    props.class
+  )" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
     <!-- Decorative spotlight effect -->
-    <div
-      class="absolute -inset-px opacity-0 rounded-xl transition-opacity duration-300 pointer-events-none"
-      :style="spotlightStyle"
-      aria-hidden="true"
-    />
+    <div class="absolute -inset-px opacity-0 rounded-xl transition-opacity duration-300 pointer-events-none"
+      :style="spotlightStyle" aria-hidden="true" />
     <div class="z-10 relative h-full">
       <slot />
     </div>
@@ -55,4 +47,3 @@ function handleMouseLeave() {
   isHovering.value = false
 }
 </script>
-

@@ -152,7 +152,7 @@ const scrollToElement = (elementId: string) => {
 
     <!-- Hero Content -->
     <div class="z-3 flex flex-col items-center gap-4 px-4 max-w-4xl">
-      <UiBlurReveal :delay="0.3" class="flex flex-col justify-center items-center gap-6">
+      <UiBlurReveal :delay="0.3" class="flex flex-col justify-center items-center gap-16 md:gap-6">
         <!-- Main Heading -->
         <h1
           class="flex flex-col justify-center items-center bg-clip-text bg-linear-to-b from-white via-neutral-200 to-neutral-400 font-bold text-transparent text-5xl md:text-7xl text-center leading-tight">
@@ -192,7 +192,7 @@ const scrollToElement = (elementId: string) => {
 
         <!-- Device Mockup with Border Beam -->
         <ClientOnly>
-          <div class="relative mb-32 w-full">
+          <div class="relative mt-16 md:mb-32 w-full">
             <UiCard3D :rotation-factor="8" :show-glare="false">
               <!-- iPhone mockup for mobile devices -->
               <div v-if="isMobileDevice" class="relative flex justify-center">
@@ -209,7 +209,7 @@ const scrollToElement = (elementId: string) => {
     </div>
 
     <!-- Scroll Indicator -->
-    <div class="bottom-8 z-3 absolute animate-bounce">
+    <div class="hidden md:block bottom-8 z-3 absolute animate-bounce">
       <UiShimmerButton class="!px-4 !py-2 !rounded-full" aria-label="Scroll down to services section"
         @click="() => scrollToElement('services')">
         <UIcon name="i-heroicons-chevron-down" class="w-5 h-5" aria-hidden="true" />
@@ -240,9 +240,8 @@ const scrollToElement = (elementId: string) => {
           class="w-full md:max-w-none max-w-md h-full">
           <UiCardSpotlight class="h-full min-h-[220px]"
             spotlight-color="color-mix(in oklch, var(--color-accent-500) 15%, transparent)" :spotlight-size="350">
-            <div class="flex flex-col p-4 h-full">
-              <div class="bg-linear-to-br from-primary-500/20 mb-4 p-4 rounded-xl w-fit to-accent-500/20"
-                aria-hidden="true">
+            <div class="flex flex-col items-center p-4 h-full text-center">
+              <div class="bg-linear-to-br from-primary-500/20 mb-4 p-4 rounded-xl to-accent-500/20" aria-hidden="true">
                 <UIcon :name="service.icon" class="w-8 h-8 text-primary-400" />
               </div>
               <h3 class="mb-3 font-semibold text-white text-xl">{{ service.title }}</h3>
