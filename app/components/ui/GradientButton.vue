@@ -1,13 +1,13 @@
 <template>
   <component :is="resolvedComponent" :class="cn(
-    'gradient-button group relative inline-flex items-center justify-center overflow-hidden rounded-lg p-[2px] font-medium transition-all duration-300',
+    'gradient-button group relative inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-lg p-[2px] font-medium transition-all duration-300',
     'focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ui-bg)]',
     props.class
   )" v-bind="$attrs">
-    <span class="absolute inset-[-1000%] animate-spin-slow"
+    <span class="pointer-events-none absolute inset-[-1000%] animate-spin-slow"
       :style="{ background: `conic-gradient(from 90deg at 50% 50%, ${props.fromColor} 0%, ${props.viaColor} 50%, ${props.toColor} 100%)` }" />
     <span :class="cn(
-      'inline-flex h-full w-full cursor-pointer items-center justify-center rounded-[6px] px-6 py-2 text-sm font-medium backdrop-blur-3xl transition-all duration-300',
+      'inline-flex h-full w-full items-center justify-center rounded-[6px] px-6 py-2 text-sm font-medium backdrop-blur-3xl transition-all duration-300',
       props.variant === 'filled' ? 'bg-inverted text-inverted' : 'bg-background text-foreground group-hover:bg-inverted group-hover:text-inverted'
     )">
       <slot />

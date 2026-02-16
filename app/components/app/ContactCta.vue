@@ -19,7 +19,7 @@ const resolvedTo = computed(() => props.to ?? localePath('/contact'));
 <template>
   <UiNeonBorder color="var(--color-primary-500)" :glow-intensity="15" class="mx-auto max-w-3xl">
     <div class="relative p-8 md:p-12 rounded-xl overflow-hidden">
-      <div class="absolute inset-0 bg-linear-to-br from-primary-500/5 via-transparent to-accent-500/5" />
+      <div class="pointer-events-none absolute inset-0 bg-linear-to-br from-primary-500/5 via-transparent to-accent-500/5" />
 
       <div class="z-10 relative text-center">
         <UiSparklesText :sparkle-count="10" :colors="['var(--color-primary-500)', 'var(--color-accent-500)']">
