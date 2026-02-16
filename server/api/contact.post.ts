@@ -43,7 +43,7 @@ export default defineEventHandler(async (event) => {
   const displaySubject = subject || 'New Contact Form Submission'
 
   const { error } = await resend.emails.send({
-    from: 'onboarding@resend.dev',
+    from: 'Portfolio Contact <contact@dorogans.com>',
     to: config.contactEmail,
     replyTo: email,
     subject: `[Portfolio] ${displaySubject}`,
@@ -58,8 +58,10 @@ export default defineEventHandler(async (event) => {
     `.trim(),
   })
 
-  if (error)
+  if (error) {
+    console.error('[contact] Resend error:', error)
     throw createError({ statusCode: 500, statusMessage: 'Failed to send email' })
+  }
 
   return { success: true }
 })
