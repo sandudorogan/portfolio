@@ -1,0 +1,231 @@
+{
+  "nav": {
+    "home": "Acasă",
+    "about": "Despre",
+    "contact": "Contact"
+  },
+  "theme": {
+    "switchToLight": "Mod luminos",
+    "switchToDark": "Mod întunecat"
+  },
+  "lang": {
+    "switchTo": "EN"
+  },
+  "layout": {
+    "skipToContent": "Sari la conținut",
+    "footer": {
+      "portfolio": "Portofoliu",
+      "rights": "© {year} Toate drepturile rezervate.",
+      "visitProfile": "Profilul meu de {name} (se deschide într-un tab nou)"
+    }
+  },
+  "schema": {
+    "jobTitle": "Dezvoltator Full Stack"
+  },
+  "home": {
+    "seo": {
+      "title": "Sandu Dorogan | Dezvoltator Full Stack",
+      "description": "Dezvoltator Full Stack cu experiență în Clojure, ClojureScript, Vue.js și React. Transform idei în experiențe web de calitate."
+    },
+    "og": {
+      "title": "Sandu Dorogan — Dezvoltator Full Stack",
+      "description": "Concentrat, creativ, cu simț practic. Tu îmi spui ce vrei, eu îți arăt cum se face."
+    },
+    "hero": {
+      "building": "Experiențe web",
+      "webExperiences": "",
+      "flipWords": ["deosebite", "captivante", "memorabile", "scalabile"],
+      "subtitle": "Hai să construim ceva de care să fim mândri.",
+      "aboutMe": "Despre mine",
+      "getInTouch": "Scrie-mi",
+      "scrollDown": "Derulează la secțiunea de servicii"
+    },
+    "services": {
+      "title": "Servicii",
+      "subtitle": "De la idee la lansare — dezvoltare web completă, pe măsura nevoilor tale",
+      "items": [
+        {
+          "title": "Dezvoltare Web",
+          "description": "Aplicații web rapide, responsive și gândite să scaleze, cu tehnologii moderne"
+        },
+        {
+          "title": "Design UX/UI",
+          "description": "Interfețe clare și plăcute, care fac produsul ușor de folosit și memorabil"
+        },
+        {
+          "title": "DevOps & Deployment",
+          "description": "Pipeline-uri CI/CD și infrastructură cloud — ca deployment-ul să meargă ca pe roate"
+        },
+        {
+          "title": "Consultanță Tehnică",
+          "description": "Te ajut să alegi arhitectura potrivită, stack-ul corect și strategia de implementare"
+        }
+      ]
+    },
+    "techStack": {
+      "title": "Tehnologii",
+      "subtitle": "Stack-ul cu care lucrez zi de zi pentru aplicații web performante"
+    },
+    "projects": {
+      "title": "Proiecte",
+      "subtitle": "Câteva din proiectele la care am lucrat recent",
+      "viewAll": "Vezi toate proiectele",
+      "items": [
+        {
+          "title": "IPRally — Căutare Brevete",
+          "description": "Motor de căutare de brevete. Clojure + ClojureScript, hostat pe Google Cloud."
+        },
+        {
+          "title": "Crossbeam — Partnerbase",
+          "description": "Platformă de gestionare a parteneriatelor. NuxtJS + Clojure, pe AWS."
+        },
+        {
+          "title": "Newsroom AI — Editor de Stories",
+          "description": "Editor de web stories pentru Newsroom AI. ClojureScript + Django, pe AWS."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Ce spun clienții",
+      "subtitle": "Păreri din colaborările anterioare"
+    },
+    "cta": {
+      "title": "Ai o idee? Hai s-o facem realitate.",
+      "description": "De la concept la produs finit, sunt aici să te ajut în fiecare pas. Scrie-mi și vedem cum putem lucra împreună.",
+      "button": "Scrie-mi"
+    }
+  },
+  "about": {
+    "seo": {
+      "title": "Despre | Sandu Dorogan",
+      "description": "Află mai multe despre Sandu Dorogan — dezvoltator Full Stack cu experiență în Clojure, ClojureScript, React și Vue."
+    },
+    "og": {
+      "title": "Despre Sandu Dorogan",
+      "description": "Dezvoltator Full Stack la IPRally. Din București, România."
+    },
+    "hero": {
+      "name": "Sandu Dorogan",
+      "title": "Full Stack Developer la IPRally",
+      "bio": "Concentrat, creativ, cu simț practic. Tu îmi spui ce vrei, eu îți arăt cum se face.",
+      "location": "București, România"
+    },
+    "skills": {
+      "title": "Competențe"
+    },
+    "languages": {
+      "title": "Limbi vorbite",
+      "items": [
+        { "name": "Română", "level": "Nativ" },
+        { "name": "Rusă", "level": "Nativ" },
+        { "name": "Engleză", "level": "Avansat" },
+        { "name": "Ucraineană", "level": "Conversațional" }
+      ]
+    },
+    "experience": {
+      "title": "Experiență",
+      "items": [
+        {
+          "date": "Mai 2025 – Prezent",
+          "title": "Full Stack Developer",
+          "subtitle": "IPRally",
+          "description": "Lucrez cu Clojure și ClojureScript la interfața dintre AI și utilizatori. Front-end: Reagent (React) + re-frame. Am implementat un server MCP și am îmbunătățit scorul de performanță cu 50%."
+        },
+        {
+          "date": "Aug 2024 – Iul 2025",
+          "title": "Full Stack Engineer",
+          "subtitle": "Crossbeam",
+          "description": "Dezvoltator senior pe platforma Crossbeam — backend Clojure, frontend VueJS."
+        },
+        {
+          "date": "Mar 2022 – Ian 2025",
+          "title": "Lead Developer — Partnerbase",
+          "subtitle": "Flexiana (pentru Crossbeam)",
+          "description": "Am migrat platforma de la Nuxt 2 la Nuxt 3 cu ~30% câștig de performanță. Am refăcut UI/UX-ul pentru accesibilitate, am construit sistemul de notificări de la zero, am integrat OneTrust, am pus la punct testare E2E cu Docker Compose + Cypress și am crescut traficul organic cu ~15% prin optimizări SEO."
+        },
+        {
+          "date": "Sep 2021 – Iul 2025",
+          "title": "Full Stack Developer",
+          "subtitle": "Flexiana",
+          "description": "Dezvoltare web full-stack: backend Clojure, frontend ClojureScript cu Reagent și re-frame."
+        },
+        {
+          "date": "Sep 2019 – Aug 2021",
+          "title": "Web Development Engineer",
+          "subtitle": "Newsroom AI",
+          "description": "Am construit un editor WYSIWYG pentru web stories (gen Instagram Stories, dar pe web). Am proiectat un sistem de elemente dinamice cu 9 puncte de ancorare pentru aliniere consistentă pe orice ecran, plus un algoritm de stivuire și optimizări semnificative de performanță. Stack: ClojureScript, Re-Frame, Reagent, Django, NodeJS."
+        },
+        {
+          "date": "Apr 2019 – Iul 2019",
+          "title": "Junior Programmer",
+          "subtitle": "Ubisoft",
+          "description": "Am lucrat la UI-ul unui editor de cod în C# + WPF. Am implementat find & replace global și highlight pe toate aparițiile textului selectat, la fel ca în VSCode."
+        },
+        {
+          "date": "Iun 2018 – Mar 2019",
+          "title": "Ubisoft Coding Campus",
+          "subtitle": "Ubisoft",
+          "description": "Game dev și online services. Am făcut un shooter 2D top-down multiplayer local în C++ cu arhitectură client-server și sincronizare Lockstep. Servicii de matchmaking, leaderboard și autentificare cu Redis, MySQL, MongoDB pe Docker Swarm/AWS."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Vrei să lucrăm împreună?",
+      "description": "Sunt mereu deschis la proiecte noi și provocări interesante. Scrie-mi și discutăm.",
+      "button": "Contactează-mă"
+    }
+  },
+  "contact": {
+    "seo": {
+      "title": "Contact | Sandu Dorogan",
+      "description": "Ia legătura cu Sandu Dorogan, dezvoltator Full Stack. Hai să discutăm despre proiectul tău."
+    },
+    "og": {
+      "title": "Hai să vorbim",
+      "description": "Ai un proiect în minte? Scrie-mi și vedem ce putem construi împreună."
+    },
+    "hero": {
+      "title": "Hai să vorbim",
+      "subtitle": "Ai un proiect sau vrei să explorăm o colaborare? Scrie-mi prin formularul de mai jos sau folosește datele de contact."
+    },
+    "info": {
+      "title": "Date de contact",
+      "email": "Email",
+      "phone": "Telefon",
+      "location": "Locație",
+      "locationValue": "București, România"
+    },
+    "social": {
+      "title": "Online",
+      "visitProfile": "Profilul meu de {name} (se deschide într-un tab nou)"
+    },
+    "form": {
+      "title": "Trimite un mesaj",
+      "name": "Nume",
+      "namePlaceholder": "Ion Popescu",
+      "email": "Email",
+      "emailPlaceholder": "ion{'@'}exemplu.com",
+      "subject": "Subiect",
+      "subjectPlaceholder": "Despre ce e vorba",
+      "message": "Mesaj",
+      "messagePlaceholder": "Povestește-mi pe scurt despre proiectul tău...",
+      "sending": "Se trimite...",
+      "send": "Trimite"
+    },
+    "success": {
+      "title": "Trimis!",
+      "description": "Mulțumesc! Revin cu un răspuns cât de curând."
+    },
+    "error": {
+      "title": "Eroare",
+      "description": "Ceva n-a mers. Încearcă din nou mai târziu."
+    }
+  },
+  "reveal": {
+    "clickToReveal": "Click pentru a vedea",
+    "clickToRevealAria": "Click pentru a vedea datele de contact",
+    "revealing": "Se încarcă…",
+    "retry": "Încearcă din nou",
+    "failed": "Nu a mers – încearcă din nou"
+  }
+}

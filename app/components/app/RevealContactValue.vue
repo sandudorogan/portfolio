@@ -10,6 +10,8 @@ const props = withDefaults(defineProps<Props>(), {
   placeholder: '••••••••••••'
 })
 
+const { t } = useI18n()
+
 const revealed = ref(false)
 const loading = ref(false)
 const error = ref(false)
@@ -52,20 +54,20 @@ function handleKeydown(e: KeyboardEvent) {
       <span v-else-if="loading" key="loading" class="inline-flex items-center gap-1.5 text-dimmed"
         aria-live="polite">
         <UIcon name="i-heroicons-arrow-path" class="w-3.5 h-3.5 animate-spin" aria-hidden="true" />
-        <span class="text-sm">Revealing…</span>
+        <span class="text-sm">{{ t('reveal.revealing') }}</span>
       </span>
 
       <!-- Error state -->
       <button v-else-if="error" key="error" type="button"
         class="rounded focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-red-500 text-red-400 hover:text-red-300 transition-colors cursor-pointer"
-        title="Click to retry" @click="reveal" @keydown="handleKeydown">
-        Failed – click to retry
+        :title="t('reveal.retry')" @click="reveal" @keydown="handleKeydown">
+        {{ t('reveal.failed') }}
       </button>
 
       <!-- Blurred placeholder (initial state) -->
-      <button v-else key="placeholder" type="button" title="Click to reveal"
+      <button v-else key="placeholder" type="button" :title="t('reveal.clickToReveal')"
         class="blur-xs hover:blur-[3px] rounded focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 text-highlighted transition-all duration-200 cursor-pointer select-none"
-        :aria-label="'Click to reveal contact info'" @click="reveal" @keydown="handleKeydown">
+        :aria-label="t('reveal.clickToRevealAria')" @click="reveal" @keydown="handleKeydown">
         {{ placeholder }}
       </button>
     </Transition>

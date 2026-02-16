@@ -1,6 +1,6 @@
 interface PageSeoOptions {
-  title: string
-  description: string
+  title: MaybeRefOrGetter<string>
+  description: MaybeRefOrGetter<string>
   ogType?: 'website' | 'article' | 'profile'
 }
 

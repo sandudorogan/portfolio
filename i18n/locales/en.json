@@ -1,0 +1,231 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "theme": {
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode"
+  },
+  "lang": {
+    "switchTo": "RO"
+  },
+  "layout": {
+    "skipToContent": "Skip to main content",
+    "footer": {
+      "portfolio": "Portfolio",
+      "rights": "© {year} All rights reserved.",
+      "visitProfile": "Visit my {name} profile (opens in new tab)"
+    }
+  },
+  "schema": {
+    "jobTitle": "Full Stack Developer"
+  },
+  "home": {
+    "seo": {
+      "title": "Sandu Dorogan | Full Stack Developer",
+      "description": "Full Stack Developer specializing in Clojure, ClojureScript, Vue.js, and React. Building beautiful, scalable web experiences."
+    },
+    "og": {
+      "title": "Sandu Dorogan — Full Stack Developer",
+      "description": "Focused, driven and creative. Will bring your ideas to life. Tell me the what and I'll show you the how."
+    },
+    "hero": {
+      "building": "Building",
+      "webExperiences": "web experiences",
+      "flipWords": ["beautiful", "stunning", "immersive", "scalable"],
+      "subtitle": "Together, let's create something extraordinary!",
+      "aboutMe": "About Me",
+      "getInTouch": "Get in Touch",
+      "scrollDown": "Scroll down to services section"
+    },
+    "services": {
+      "title": "Services",
+      "subtitle": "From concept to deployment, I offer comprehensive web development services tailored to your specific needs",
+      "items": [
+        {
+          "title": "Web Development",
+          "description": "Building responsive, performant web applications using modern technologies"
+        },
+        {
+          "title": "UX/UI Design",
+          "description": "Creating intuitive user interfaces that delight users and achieve business goals"
+        },
+        {
+          "title": "DevOps & Deployment",
+          "description": "Setting up CI/CD pipelines and cloud infrastructure for seamless deployment"
+        },
+        {
+          "title": "Technical Consultation",
+          "description": "Providing expert advice on architecture, technology selection, and implementation"
+        }
+      ]
+    },
+    "techStack": {
+      "title": "Tech Stack",
+      "subtitle": "Modern technologies I specialize in to build powerful, scalable web applications"
+    },
+    "projects": {
+      "title": "Featured Projects",
+      "subtitle": "A selection of my recent work that demonstrates my skills and experience",
+      "viewAll": "View All Projects",
+      "items": [
+        {
+          "title": "IPRally - Patents Search",
+          "description": "A patents search engine for IPRally. Built with Clojure and ClojureScript. Deployed on Google Cloud."
+        },
+        {
+          "title": "Crossbeam - Partnerbase",
+          "description": "A database of partners and their products. Built with NuxtJS and Clojure. Deployed on AWS."
+        },
+        {
+          "title": "Newsroom AI - Stories Editor",
+          "description": "A modern stories editor for Newsroom AI. Built with ClojureScript and Django Python. Deployed on AWS."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Client Testimonials",
+      "subtitle": "What clients say about working with me"
+    },
+    "cta": {
+      "title": "Ready to bring your ideas to life?",
+      "description": "Let's collaborate to transform your vision into a reality. From concept to completion, I'm here to guide you through every step of the development process.",
+      "button": "Get in Touch"
+    }
+  },
+  "about": {
+    "seo": {
+      "title": "About | Sandu Dorogan",
+      "description": "Learn more about Sandu Dorogan - Full Stack Developer specializing in Clojure, ClojureScript, React, and Vue."
+    },
+    "og": {
+      "title": "About Sandu Dorogan",
+      "description": "Full Stack Developer at IPRally. Based in Bucharest, Romania."
+    },
+    "hero": {
+      "name": "Sandu Dorogan",
+      "title": "Full Stack Developer at IPRally",
+      "bio": "Focused, driven and creative. Will bring your ideas to life. Tell me the what and I'll show you the how.",
+      "location": "Bucharest, Romania"
+    },
+    "skills": {
+      "title": "Professional Skills"
+    },
+    "languages": {
+      "title": "Languages",
+      "items": [
+        { "name": "Romanian", "level": "Native / Bilingual" },
+        { "name": "Russian", "level": "Native / Bilingual" },
+        { "name": "English", "level": "Full Professional" },
+        { "name": "Ukrainian", "level": "Professional Working" }
+      ]
+    },
+    "experience": {
+      "title": "Work Experience",
+      "items": [
+        {
+          "date": "May 2025 - Present",
+          "title": "Full Stack Developer",
+          "subtitle": "IPRally",
+          "description": "Using Clojure & ClojureScript to connect AI with users. Front-end stack: Reagent (ReactJS) + re-frame. Notable achievements: MCP server implementation, 50% improved performance score."
+        },
+        {
+          "date": "Aug 2024 - Jul 2025",
+          "title": "Full Stack Engineer",
+          "subtitle": "Crossbeam",
+          "description": "Senior full stack developer for the Crossbeam platform. Working with a Clojure backend and VueJS frontend."
+        },
+        {
+          "date": "Mar 2022 - Jan 2025",
+          "title": "Lead Developer - Partnerbase Platform",
+          "subtitle": "Flexiana (for Crossbeam)",
+          "description": "Spearheaded Nuxt 2 to Nuxt 3 migration, engineered ~30% performance improvement, redesigned UI/UX for accessibility, built notification system from scratch, implemented OneTrust cookies compliance, set up E2E testing with Docker Compose & Cypress, and achieved ~15% increase in new monthly users via SEO updates."
+        },
+        {
+          "date": "Sep 2021 - Jul 2025",
+          "title": "Full Stack Developer",
+          "subtitle": "Flexiana",
+          "description": "Full-stack web development with Clojure backend and ClojureScript frontend using Reagent & re-frame."
+        },
+        {
+          "date": "Sep 2019 - Aug 2021",
+          "title": "Web Development Engineer",
+          "subtitle": "Newsroom AI",
+          "description": "Built a sophisticated WYSIWYG editor for web stories (like Instagram stories for web). Engineered dynamic elements with 9 anchor points for consistent cross-device alignment, developed complex stacking algorithm, and led performance optimizations. Tech: ClojureScript, Re-Frame, Reagent, Django, NodeJS."
+        },
+        {
+          "date": "Apr 2019 - Jul 2019",
+          "title": "Junior Programmer",
+          "subtitle": "Ubisoft",
+          "description": "Developed UI for a code editor using C# and WPF. Implemented global find & replace and VSCode-like highlight all occurrences of selected text."
+        },
+        {
+          "date": "Jun 2018 - Mar 2019",
+          "title": "Ubisoft Coding Campus",
+          "subtitle": "Ubisoft",
+          "description": "Game Development & Online Dev. Built a local multiplayer top-down 2D shooter in C++ with Client-Server model and Lockstep synchronization. Implemented Matchmaking, LeaderBoard, and Authentication services using Redis, MySQL, MongoDB on Docker Swarm/AWS."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Interested in working together?",
+      "description": "Let's discuss how I can help bring your project to life. I'm always open to new opportunities and challenges.",
+      "button": "Contact Me"
+    }
+  },
+  "contact": {
+    "seo": {
+      "title": "Contact | Sandu Dorogan",
+      "description": "Get in touch with Sandu Dorogan - Full Stack Developer. Let's discuss your project or collaboration opportunities."
+    },
+    "og": {
+      "title": "Get In Touch",
+      "description": "Have a project in mind? Let's collaborate and build something amazing together."
+    },
+    "hero": {
+      "title": "Get In Touch",
+      "subtitle": "Have a project in mind or want to discuss a potential collaboration? Feel free to reach out through the form below or via any of my contact details."
+    },
+    "info": {
+      "title": "Contact Information",
+      "email": "Email",
+      "phone": "Phone",
+      "location": "Location",
+      "locationValue": "Bucharest, Romania"
+    },
+    "social": {
+      "title": "Follow Me",
+      "visitProfile": "Visit my {name} profile (opens in new tab)"
+    },
+    "form": {
+      "title": "Send a Message",
+      "name": "Your Name",
+      "namePlaceholder": "John Doe",
+      "email": "Your Email",
+      "emailPlaceholder": "john{'@'}example.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "Project Inquiry",
+      "message": "Message",
+      "messagePlaceholder": "Tell me about your project...",
+      "sending": "Sending...",
+      "send": "Send Message"
+    },
+    "success": {
+      "title": "Message Sent!",
+      "description": "Thanks for reaching out. I'll get back to you soon."
+    },
+    "error": {
+      "title": "Error",
+      "description": "Something went wrong. Please try again later."
+    }
+  },
+  "reveal": {
+    "clickToReveal": "Click to reveal",
+    "clickToRevealAria": "Click to reveal contact info",
+    "revealing": "Revealing…",
+    "retry": "Click to retry",
+    "failed": "Failed – click to retry"
+  }
+}

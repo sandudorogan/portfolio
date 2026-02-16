@@ -1,17 +1,20 @@
 <script setup lang="ts">
 import { usePreferredReducedMotion } from '@vueuse/core'
 
+const { t, tm, rt, locale } = useI18n()
+const localePath = useLocalePath()
+
 usePageSeo({
-  title: 'Sandu Dorogan | Full Stack Developer',
-  description: 'Full Stack Developer specializing in Clojure, ClojureScript, Vue.js, and React. Building beautiful, scalable web experiences.'
+  title: () => t('home.seo.title'),
+  description: () => t('home.seo.description')
 })
 
 // OG image must be defined at page level for static generation
 defineOgImage({
   component: 'Default',
   props: {
-    title: 'Sandu Dorogan — Full Stack Developer',
-    description: "Focused, driven and creative. Will bring your ideas to life. Tell me the what and I'll show you the how."
+    title: t('home.og.title'),
+    description: t('home.og.description')
   }
 })
 
@@ -30,29 +33,20 @@ interface Testimonial {
   image: string
 }
 
-const projects: Project[] = [
-  {
-    title: 'IPRally - Patents Search',
-    url: 'https://iprally.com',
-    image: '/images/iprally.png',
-    description: 'A patents search engine for IPRally. Built with Clojure and ClojureScript. Deployed on Google Cloud.',
-    tags: ['Clojure', 'ClojureScript', 'Google Cloud'],
-  },
-  {
-    title: 'Crossbeam - Partnerbase',
-    url: 'https://partnerbase.com',
-    image: '/images/partnerbase.png',
-    description: 'A database of partners and their products. Built with NuxtJS and Clojure. Deployed on AWS.',
-    tags: ['NuxtJS', 'Clojure', 'AWS'],
-  },
-  {
-    title: 'Newsroom AI - Stories Editor',
-    url: 'https://nws.ai',
-    image: '/images/nws-studio.png',
-    description: 'A modern stories editor for Newsroom AI. Built with ClojureScript and Django Python. Deployed on AWS.',
-    tags: ['ClojureScripe', 'Django Python', 'AWS'],
-  }
+const projectMeta = [
+  { url: 'https://iprally.com', image: '/images/iprally.png', tags: ['Clojure', 'ClojureScript', 'Google Cloud'] },
+  { url: 'https://partnerbase.com', image: '/images/partnerbase.png', tags: ['NuxtJS', 'Clojure', 'AWS'] },
+  { url: 'https://nws.ai', image: '/images/nws-studio.png', tags: ['ClojureScripe', 'Django Python', 'AWS'] },
 ];
+
+const projects = computed<Project[]>(() => {
+  const items = tm('home.projects.items') as Array<{ title: string; description: string }>;
+  return items.map((item, i) => ({
+    title: rt(item.title),
+    description: rt(item.description),
+    ...projectMeta[i],
+  }));
+});
 
 const testimonials: Testimonial[] = [
   {
@@ -89,28 +83,21 @@ const techStack = [
   { name: 'LLMs', icon: 'i-logos-openai-icon' },
 ];
 
-const services = [
-  {
-    title: 'Web Development',
-    description: 'Building responsive, performant web applications using modern technologies',
-    icon: 'i-heroicons-code-bracket'
-  },
-  {
-    title: 'UX/UI Design',
-    description: 'Creating intuitive user interfaces that delight users and achieve business goals',
-    icon: 'i-heroicons-paint-brush'
-  },
-  {
-    title: 'DevOps & Deployment',
-    description: 'Setting up CI/CD pipelines and cloud infrastructure for seamless deployment',
-    icon: 'i-heroicons-server'
-  },
-  {
-    title: 'Technical Consultation',
-    description: 'Providing expert advice on architecture, technology selection, and implementation',
-    icon: 'i-heroicons-light-bulb'
-  },
+const serviceIcons = [
+  'i-heroicons-code-bracket',
+  'i-heroicons-paint-brush',
+  'i-heroicons-server',
+  'i-heroicons-light-bulb',
 ];
+
+const services = computed(() => {
+  const items = tm('home.services.items') as Array<{ title: string; description: string }>;
+  return items.map((item, i) => ({
+    title: rt(item.title),
+    description: rt(item.description),
+    icon: serviceIcons[i],
+  }));
+});
 
 const reducedMotion = usePreferredReducedMotion();
 
@@ -156,35 +143,35 @@ const scrollToElement = (elementId: string) => {
         <!-- Main Heading -->
         <h1
           class="flex flex-col justify-center items-center bg-clip-text bg-linear-to-b from-text-950 via-text-800 to-text-500 dark:from-white dark:via-neutral-200 dark:to-neutral-400 font-bold text-transparent text-5xl md:text-7xl text-center leading-tight">
-          Building
+          {{ $t('home.hero.building') }}
           <UiTextHighlight class="bg-linear-to-r from-primary-500 py-2 rounded-xl to-accent-500">
-            <UiFlipWords :words="['beautiful', 'stunning', 'immersive', 'scalable']" :duration="3000"
+            <UiFlipWords :key="locale" :words="(tm('home.hero.flipWords') as string[]).map(rt)" :duration="3000"
               class="text-white" />
           </UiTextHighlight>
-          web experiences
+          {{ $t('home.hero.webExperiences') }}
         </h1>
 
         <!-- Subtitle -->
         <p class="max-w-2xl text-muted text-xl md:text-2xl text-center">
-          Together, let's create something extraordinary!
+          {{ $t('home.hero.subtitle') }}
         </p>
 
         <!-- CTA Buttons -->
         <div class="flex flex-row flex-wrap justify-center items-center gap-4 mt-4">
-          <NuxtLink to="/about"
+          <NuxtLink :to="localePath('/about')"
             class="group bg-linear-to-r from-primary-500 hover:opacity-90 px-5 py-2 rounded-full focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ui-bg)] font-medium text-white text-sm hover:scale-105 transition-all duration-300 to-accent-500">
             <span class="flex items-center gap-1.5">
               <UIcon name="i-heroicons-user" class="w-3.5 h-3.5" aria-hidden="true" />
-              About Me
+              {{ $t('home.hero.aboutMe') }}
             </span>
           </NuxtLink>
 
           <UiGlowBorder :border-radius="9999" :color="['var(--color-primary-500)', 'var(--color-accent-500)']"
             :border-width="2" :duration="15"
             class="!bg-transparent !p-0 !min-w-fit !min-h-fit hover:scale-105 transition-transform duration-300">
-            <NuxtLink to="/contact"
+            <NuxtLink :to="localePath('/contact')"
               class="flex items-center gap-2 bg-default/80 px-8 py-3 rounded-full focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 font-semibold text-highlighted">
-              Get in Touch
+              {{ $t('home.hero.getInTouch') }}
               <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" aria-hidden="true" />
             </NuxtLink>
           </UiGlowBorder>
@@ -210,7 +197,7 @@ const scrollToElement = (elementId: string) => {
 
     <!-- Scroll Indicator -->
     <div class="hidden md:block bottom-8 z-3 absolute animate-bounce">
-      <UiShimmerButton class="!px-4 !py-2 !rounded-full" aria-label="Scroll down to services section"
+      <UiShimmerButton class="!px-4 !py-2 !rounded-full" :aria-label="$t('home.hero.scrollDown')"
         @click="() => scrollToElement('services')">
         <UIcon name="i-heroicons-chevron-down" class="w-5 h-5" aria-hidden="true" />
       </UiShimmerButton>
@@ -226,11 +213,11 @@ const scrollToElement = (elementId: string) => {
         <div class="mb-16 text-center">
           <h2 class="mb-4 font-bold text-4xl md:text-5xl">
             <span class="bg-clip-text bg-linear-to-r from-primary-400 text-transparent to-accent-400">
-              Services
+              {{ $t('home.services.title') }}
             </span>
           </h2>
           <p class="mx-auto max-w-2xl text-dimmed text-lg">
-            From concept to deployment, I offer comprehensive web development services tailored to your specific needs
+            {{ $t('home.services.subtitle') }}
           </p>
         </div>
       </UiBlurReveal>
@@ -262,11 +249,11 @@ const scrollToElement = (elementId: string) => {
         <div class="mb-16 text-center">
           <h2 class="mb-4 font-bold text-4xl md:text-5xl">
             <span class="bg-clip-text bg-linear-to-r from-primary-400 text-transparent to-accent-400">
-              Tech Stack
+              {{ $t('home.techStack.title') }}
             </span>
           </h2>
           <p class="mx-auto max-w-2xl text-dimmed text-lg">
-            Modern technologies I specialize in to build powerful, scalable web applications
+            {{ $t('home.techStack.subtitle') }}
           </p>
         </div>
       </UiBlurReveal>
@@ -313,11 +300,11 @@ const scrollToElement = (elementId: string) => {
         <div class="mb-16 text-center">
           <h2 class="mb-4 font-bold text-4xl md:text-5xl">
             <span class="bg-clip-text bg-linear-to-r from-primary-400 text-transparent to-accent-400">
-              Featured Projects
+              {{ $t('home.projects.title') }}
             </span>
           </h2>
           <p class="mx-auto max-w-2xl text-dimmed text-lg">
-            A selection of my recent work that demonstrates my skills and experience
+            {{ $t('home.projects.subtitle') }}
           </p>
         </div>
       </UiBlurReveal>
@@ -359,10 +346,10 @@ const scrollToElement = (elementId: string) => {
       </div>
 
       <div class="flex justify-center mt-12">
-        <UiGradientButton as="NuxtLink" to="/about#work-experience" variant="outline"
+        <UiGradientButton as="NuxtLink" :to="localePath('/about') + '#work-experience'" variant="outline"
           from-color="var(--color-primary-500)" via-color="var(--color-accent-500)" to-color="var(--color-primary-500)">
           <span class="flex items-center gap-2">
-            View All Projects
+            {{ $t('home.projects.viewAll') }}
             <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" aria-hidden="true" />
           </span>
         </UiGradientButton>
@@ -379,11 +366,11 @@ const scrollToElement = (elementId: string) => {
         <div class="mb-16 text-center">
           <h2 class="mb-4 font-bold text-4xl md:text-5xl">
             <span class="bg-clip-text bg-linear-to-r from-primary-400 text-transparent to-accent-400">
-              Client Testimonials
+              {{ $t('home.testimonials.title') }}
             </span>
           </h2>
           <p class="mx-auto max-w-2xl text-dimmed text-lg">
-            What clients say about working with me
+            {{ $t('home.testimonials.subtitle') }}
           </p>
         </div>
       </UiBlurReveal>
@@ -401,9 +388,10 @@ const scrollToElement = (elementId: string) => {
 
     <div class="z-10 relative mx-auto px-4 container">
       <UiBlurReveal :delay="0.3">
-        <AppContactCta title="Ready to bring your ideas to life?"
-          description="Let's collaborate to transform your vision into a reality. From concept to completion, I'm here to guide you through every step of the development process."
-          button-label="Get in Touch" />
+        <AppContactCta :title="$t('home.cta.title')"
+          :description="$t('home.cta.description')"
+          :button-label="$t('home.cta.button')"
+          :to="localePath('/contact')" />
       </UiBlurReveal>
     </div>
   </section>

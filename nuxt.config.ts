@@ -45,8 +45,19 @@ export default defineNuxtConfig({
     ],
   },
   i18n: {
-    bundle: {
-      optimizeTranslationDirective: false,
+    locales: [
+      { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
+      { code: 'ro', language: 'ro-RO', name: 'Română', file: 'ro.json' },
+    ],
+    defaultLocale: 'en',
+    strategy: 'prefix_except_default',
+    lazy: true,
+    langDir: '../i18n/locales',
+    bundle: { optimizeTranslationDirective: false },
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
     },
   },
   nitro: {

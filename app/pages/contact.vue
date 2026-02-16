@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { t } = useI18n()
+
 const form = reactive({
     name: '',
     email: '',
@@ -11,10 +13,10 @@ const form = reactive({
 
 const showConfetti = ref(false);
 
-const contactInfo = [
+const contactInfo = computed(() => [
     {
         icon: 'i-heroicons-envelope',
-        title: 'Email',
+        title: t('contact.info.email'),
         // Fetched on user interaction to avoid scraping
         revealEndpoint: '/api/reveal/email',
         placeholder: 'email@example.com',
@@ -22,7 +24,7 @@ const contactInfo = [
     },
     {
         icon: 'i-heroicons-phone',
-        title: 'Phone',
+        title: t('contact.info.phone'),
         // Fetched on user interaction to avoid scraping
         revealEndpoint: '/api/reveal/phone',
         placeholder: '+00 000 000 000',
@@ -30,11 +32,11 @@ const contactInfo = [
     },
     {
         icon: 'i-heroicons-map-pin',
-        title: 'Location',
-        value: 'Bucharest, Romania',
+        title: t('contact.info.location'),
+        value: t('contact.info.locationValue'),
         color: 'secondary'
     }
-];
+]);
 
 const socialLinks = [
     {
@@ -86,16 +88,16 @@ const handleSubmit = async () => {
 };
 
 usePageSeo({
-    title: 'Contact | Sandu Dorogan',
-    description: "Get in touch with Sandu Dorogan - Full Stack Developer. Let's discuss your project or collaboration opportunities."
+    title: () => t('contact.seo.title'),
+    description: () => t('contact.seo.description')
 })
 
 // OG image must be defined at page level for static generation
 defineOgImage({
     component: 'Default',
     props: {
-        title: 'Get In Touch',
-        description: "Have a project in mind? Let's collaborate and build something amazing together."
+        title: t('contact.og.title'),
+        description: t('contact.og.description')
     }
 })
 </script>
@@ -119,11 +121,10 @@ defineOgImage({
                 <div class="mx-auto max-w-3xl text-center">
                     <h1
                         class="bg-clip-text bg-linear-to-r from-text-950 via-text-800 to-text-500 dark:from-white dark:via-neutral-200 dark:to-neutral-400 mb-4 font-bold text-transparent text-4xl md:text-5xl">
-                        Get In Touch
+                        {{ $t('contact.hero.title') }}
                     </h1>
                     <p class="mx-auto max-w-xl text-muted text-lg">
-                        Have a project in mind or want to discuss a potential collaboration? Feel free to reach out
-                        through the form below or via any of my contact details.
+                        {{ $t('contact.hero.subtitle') }}
                     </p>
                 </div>
             </UiBlurReveal>
@@ -141,7 +142,7 @@ defineOgImage({
                     <UiBlurReveal :delay="0.3">
                         <h2 class="mb-6 font-semibold text-xl md:text-left text-center">
                             <span class="bg-clip-text bg-linear-to-r from-primary-400 text-transparent to-accent-400">
-                                Contact Information
+                                {{ $t('contact.info.title') }}
                             </span>
                         </h2>
 
@@ -182,7 +183,7 @@ defineOgImage({
                     <UiBlurReveal :delay="0.4">
                         <h2 class="mb-6 font-semibold text-xl md:text-left text-center">
                             <span class="bg-clip-text bg-linear-to-r from-primary-400 text-transparent to-accent-400">
-                                Follow Me
+                                {{ $t('contact.social.title') }}
                             </span>
                         </h2>
 
@@ -190,7 +191,7 @@ defineOgImage({
                             <UiGlareCard v-for="link in socialLinks" :key="link.name" :glare-opacity="0.2"
                                 class="group">
                                 <a :href="link.url" target="_blank" rel="noopener noreferrer"
-                                    :aria-label="`Visit my ${link.name} profile (opens in new tab)`"
+                                    :aria-label="$t('contact.social.visitProfile', { name: link.name })"
                                     class="flex justify-center items-center bg-elevated/80 border border-muted hover:border-primary-500/50 rounded-xl focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset w-12 h-12 transition-all duration-300">
                                     <UIcon :name="link.icon"
                                         class="w-5 h-5 text-dimmed group-hover:text-primary-400 transition-colors"
@@ -207,30 +208,30 @@ defineOgImage({
                         <UiNeonBorder color="var(--color-primary-500)" :glow-intensity="10" class="relative">
                             <div class="bg-elevated/50 backdrop-blur-xs p-6 md:p-8 rounded-xl">
                                 <h2 class="mb-6 font-semibold text-xl">
-                                    <span class="text-highlighted">Send a Message</span>
+                                    <span class="text-highlighted">{{ $t('contact.form.title') }}</span>
                                 </h2>
 
                                 <form @submit.prevent="handleSubmit" class="space-y-6">
                                     <div class="gap-6 grid grid-cols-1 md:grid-cols-2">
-                                        <UFormField label="Your Name" name="name">
-                                            <UInput v-model="form.name" placeholder="John Doe" required class="w-full"
+                                        <UFormField :label="$t('contact.form.name')" name="name">
+                                            <UInput v-model="form.name" :placeholder="$t('contact.form.namePlaceholder')" required class="w-full"
                                                 :ui="{ base: 'bg-accented/50 border-muted focus:border-primary-500 transition-colors' }" />
                                         </UFormField>
 
-                                        <UFormField label="Your Email" name="email">
-                                            <UInput v-model="form.email" type="email" placeholder="john@example.com"
+                                        <UFormField :label="$t('contact.form.email')" name="email">
+                                            <UInput v-model="form.email" type="email" :placeholder="$t('contact.form.emailPlaceholder')"
                                                 required class="w-full"
                                                 :ui="{ base: 'bg-accented/50 border-muted focus:border-primary-500 transition-colors' }" />
                                         </UFormField>
                                     </div>
 
-                                    <UFormField label="Subject" name="subject">
-                                        <UInput v-model="form.subject" placeholder="Project Inquiry" class="w-full"
+                                    <UFormField :label="$t('contact.form.subject')" name="subject">
+                                        <UInput v-model="form.subject" :placeholder="$t('contact.form.subjectPlaceholder')" class="w-full"
                                             :ui="{ base: 'bg-accented/50 border-muted focus:border-primary-500 transition-colors' }" />
                                     </UFormField>
 
-                                    <UFormField label="Message" name="message">
-                                        <UTextarea v-model="form.message" placeholder="Tell me about your project..."
+                                    <UFormField :label="$t('contact.form.message')" name="message">
+                                        <UTextarea v-model="form.message" :placeholder="$t('contact.form.messagePlaceholder')"
                                             :rows="5" required class="w-full"
                                             :ui="{ base: 'bg-accented/50 border-muted focus:border-primary-500 transition-colors' }" />
                                     </UFormField>
@@ -242,12 +243,12 @@ defineOgImage({
                                             <span v-if="form.loading" class="flex items-center gap-2">
                                                 <UIcon name="i-heroicons-arrow-path" class="w-4 h-4 animate-spin"
                                                     aria-hidden="true" />
-                                                Sending...
+                                                {{ $t('contact.form.sending') }}
                                             </span>
                                             <span v-else class="flex items-center gap-2">
                                                 <UIcon name="i-heroicons-paper-airplane" class="w-4 h-4"
                                                     aria-hidden="true" />
-                                                Send Message
+                                                {{ $t('contact.form.send') }}
                                             </span>
                                         </UiShimmerButton>
 
@@ -258,14 +259,13 @@ defineOgImage({
                                                 :exit="{ opacity: 0, y: -10 }"
                                                 class="bg-emerald-500/10 mt-4 p-4 border border-emerald-500/30 rounded-lg">
                                                 <div class="flex items-center gap-3">
-                                                    <div class="bg-emerald-500/20 p-2 rounded-full" aria-hidden="true">
+                                                    <div class="flex items-center justify-center bg-emerald-500/20 p-2 rounded-full" aria-hidden="true">
                                                         <UIcon name="i-heroicons-check-circle"
                                                             class="w-5 h-5 text-emerald-400" />
                                                     </div>
                                                     <div>
-                                                        <h4 class="font-medium text-emerald-400">Message Sent!</h4>
-                                                        <p class="text-dimmed text-sm">Thanks for reaching out.
-                                                            I'll get back to you soon.</p>
+                                                        <h4 class="font-medium text-emerald-400">{{ $t('contact.success.title') }}</h4>
+                                                        <p class="text-dimmed text-sm">{{ $t('contact.success.description') }}</p>
                                                     </div>
                                                 </div>
                                             </Motion>
@@ -275,14 +275,13 @@ defineOgImage({
                                                 :exit="{ opacity: 0, y: -10 }"
                                                 class="bg-red-500/10 mt-4 p-4 border border-red-500/30 rounded-lg">
                                                 <div class="flex items-center gap-3">
-                                                    <div class="bg-red-500/20 p-2 rounded-full" aria-hidden="true">
+                                                    <div class="flex items-center justify-center bg-red-500/20 p-2 rounded-full" aria-hidden="true">
                                                         <UIcon name="i-heroicons-exclamation-circle"
                                                             class="w-5 h-5 text-red-400" />
                                                     </div>
                                                     <div>
-                                                        <h4 class="font-medium text-red-400">Error</h4>
-                                                        <p class="text-dimmed text-sm">Something went wrong.
-                                                            Please try again later.</p>
+                                                        <h4 class="font-medium text-red-400">{{ $t('contact.error.title') }}</h4>
+                                                        <p class="text-dimmed text-sm">{{ $t('contact.error.description') }}</p>
                                                     </div>
                                                 </div>
                                             </Motion>

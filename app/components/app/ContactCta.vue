@@ -7,11 +7,13 @@ interface ContactCtaProps {
   buttonIcon?: string;
 }
 
-withDefaults(defineProps<ContactCtaProps>(), {
-  to: '/contact',
+const props = withDefaults(defineProps<ContactCtaProps>(), {
   buttonLabel: 'Contact Me',
   buttonIcon: 'i-heroicons-envelope',
 });
+
+const localePath = useLocalePath();
+const resolvedTo = computed(() => props.to ?? localePath('/contact'));
 </script>
 
 <template>
@@ -30,7 +32,7 @@ withDefaults(defineProps<ContactCtaProps>(), {
           {{ description }}
         </p>
 
-        <UiGradientButton as="NuxtLink" :to="to" from-color="var(--color-primary-500)"
+        <UiGradientButton as="NuxtLink" :to="resolvedTo" from-color="var(--color-primary-500)"
           via-color="var(--color-accent-500)" to-color="var(--color-primary-500)">
           <span class="flex items-center gap-2">
             <UIcon :name="buttonIcon" class="w-5 h-5" />
