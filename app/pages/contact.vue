@@ -62,7 +62,10 @@ const handleSubmit = async () => {
     form.loading = true;
 
     try {
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        await $fetch('/api/contact', {
+            method: 'POST',
+            body: { name: form.name, email: form.email, subject: form.subject, message: form.message },
+        });
         form.success = true;
         showConfetti.value = true;
         form.name = '';
@@ -108,17 +111,17 @@ defineOgImage({
     <!-- Hero Section -->
     <section class="relative py-24 overflow-hidden">
         <UiAuroraBg class="absolute inset-0" :show-radial-gradient="true" />
-        <div class="absolute inset-0 bg-black/30" />
+        <div class="absolute inset-0 bg-white/30 dark:bg-black/30" />
         <UiMeteorEffect :count="10" color="var(--color-primary-500)" class="z-1 absolute inset-0" />
 
         <div class="z-10 relative mx-auto px-4 container">
             <UiBlurReveal :delay="0.2">
                 <div class="mx-auto max-w-3xl text-center">
                     <h1
-                        class="bg-clip-text bg-linear-to-r from-white via-neutral-200 to-neutral-400 mb-4 font-bold text-transparent text-4xl md:text-5xl">
+                        class="bg-clip-text bg-linear-to-r from-text-950 via-text-800 to-text-500 dark:from-white dark:via-neutral-200 dark:to-neutral-400 mb-4 font-bold text-transparent text-4xl md:text-5xl">
                         Get In Touch
                     </h1>
-                    <p class="mx-auto max-w-xl text-neutral-300 text-lg">
+                    <p class="mx-auto max-w-xl text-muted text-lg">
                         Have a project in mind or want to discuss a potential collaboration? Feel free to reach out
                         through the form below or via any of my contact details.
                     </p>
@@ -129,7 +132,7 @@ defineOgImage({
 
     <!-- Contact Section -->
     <section class="relative py-24 overflow-hidden">
-        <div class="absolute inset-0 bg-linear-to-b from-background via-neutral-900/50 to-background" />
+        <div class="absolute inset-0 bg-linear-to-b from-background via-background-200/50 dark:via-neutral-900/50 to-background" />
 
         <div class="z-10 relative mx-auto px-4 container">
             <div class="gap-10 grid grid-cols-1 md:grid-cols-3">
@@ -161,13 +164,13 @@ defineOgImage({
                                             }" aria-hidden="true" />
                                         </div>
                                         <div>
-                                            <h3 class="font-medium text-neutral-400 text-sm">{{ item.title }}</h3>
+                                            <h3 class="font-medium text-dimmed text-sm">{{ item.title }}</h3>
                                             <p class="mt-1">
                                                 <!-- Reveal-on-click for email/phone (anti-scraper) -->
                                                 <AppRevealContactValue v-if="item.revealEndpoint"
                                                     :endpoint="item.revealEndpoint" :placeholder="item.placeholder" />
                                                 <!-- Static value for location -->
-                                                <span v-else class="text-white">{{ item.value }}</span>
+                                                <span v-else class="text-highlighted">{{ item.value }}</span>
                                             </p>
                                         </div>
                                     </div>
@@ -188,9 +191,9 @@ defineOgImage({
                                 class="group">
                                 <a :href="link.url" target="_blank" rel="noopener noreferrer"
                                     :aria-label="`Visit my ${link.name} profile (opens in new tab)`"
-                                    class="flex justify-center items-center bg-neutral-900/80 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset w-12 h-12 transition-all duration-300">
+                                    class="flex justify-center items-center bg-elevated/80 border border-muted hover:border-primary-500/50 rounded-xl focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset w-12 h-12 transition-all duration-300">
                                     <UIcon :name="link.icon"
-                                        class="w-5 h-5 text-neutral-400 group-hover:text-primary-400 transition-colors"
+                                        class="w-5 h-5 text-dimmed group-hover:text-primary-400 transition-colors"
                                         aria-hidden="true" />
                                 </a>
                             </UiGlareCard>
@@ -202,34 +205,34 @@ defineOgImage({
                 <div class="relative md:col-span-2">
                     <UiBlurReveal :delay="0.3">
                         <UiNeonBorder color="var(--color-primary-500)" :glow-intensity="10" class="relative">
-                            <div class="bg-neutral-900/50 backdrop-blur-xs p-6 md:p-8 rounded-xl">
+                            <div class="bg-elevated/50 backdrop-blur-xs p-6 md:p-8 rounded-xl">
                                 <h2 class="mb-6 font-semibold text-xl">
-                                    <span class="text-white">Send a Message</span>
+                                    <span class="text-highlighted">Send a Message</span>
                                 </h2>
 
                                 <form @submit.prevent="handleSubmit" class="space-y-6">
                                     <div class="gap-6 grid grid-cols-1 md:grid-cols-2">
                                         <UFormField label="Your Name" name="name">
                                             <UInput v-model="form.name" placeholder="John Doe" required class="w-full"
-                                                :ui="{ base: 'bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors' }" />
+                                                :ui="{ base: 'bg-accented/50 border-muted focus:border-primary-500 transition-colors' }" />
                                         </UFormField>
 
                                         <UFormField label="Your Email" name="email">
                                             <UInput v-model="form.email" type="email" placeholder="john@example.com"
                                                 required class="w-full"
-                                                :ui="{ base: 'bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors' }" />
+                                                :ui="{ base: 'bg-accented/50 border-muted focus:border-primary-500 transition-colors' }" />
                                         </UFormField>
                                     </div>
 
                                     <UFormField label="Subject" name="subject">
                                         <UInput v-model="form.subject" placeholder="Project Inquiry" class="w-full"
-                                            :ui="{ base: 'bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors' }" />
+                                            :ui="{ base: 'bg-accented/50 border-muted focus:border-primary-500 transition-colors' }" />
                                     </UFormField>
 
                                     <UFormField label="Message" name="message">
                                         <UTextarea v-model="form.message" placeholder="Tell me about your project..."
                                             :rows="5" required class="w-full"
-                                            :ui="{ base: 'bg-neutral-800/50 border-neutral-700 focus:border-primary-500 transition-colors' }" />
+                                            :ui="{ base: 'bg-accented/50 border-muted focus:border-primary-500 transition-colors' }" />
                                     </UFormField>
 
                                     <div>
@@ -261,7 +264,7 @@ defineOgImage({
                                                     </div>
                                                     <div>
                                                         <h4 class="font-medium text-emerald-400">Message Sent!</h4>
-                                                        <p class="text-neutral-400 text-sm">Thanks for reaching out.
+                                                        <p class="text-dimmed text-sm">Thanks for reaching out.
                                                             I'll get back to you soon.</p>
                                                     </div>
                                                 </div>
@@ -278,7 +281,7 @@ defineOgImage({
                                                     </div>
                                                     <div>
                                                         <h4 class="font-medium text-red-400">Error</h4>
-                                                        <p class="text-neutral-400 text-sm">Something went wrong.
+                                                        <p class="text-dimmed text-sm">Something went wrong.
                                                             Please try again later.</p>
                                                     </div>
                                                 </div>
@@ -301,7 +304,7 @@ defineOgImage({
         <div class="z-10 relative mx-auto px-4 container">
             <UiBlurReveal :delay="0.3">
                 <UiCard3D :rotation-factor="0" :show-glare="true" :glare-opacity="0.1">
-                    <div class="border border-neutral-700/50 rounded-xl h-80 overflow-hidden">
+                    <div class="border border-muted rounded-xl h-80 overflow-hidden">
                         <AppBucharestMap />
                     </div>
                 </UiCard3D>

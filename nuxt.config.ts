@@ -27,9 +27,10 @@ export default defineNuxtConfig({
     name: 'Sandu Dorogan',
   },
   runtimeConfig: {
-    // Private keys (server-only) - auto-populated from NUXT_CONTACT_* env vars
+    // Private keys (server-only) - auto-populated from NUXT_ env vars
     contactEmail: '',
     contactPhone: '',
+    resendApiKey: '',
     public: {
       siteUrl: defaultSiteUrl,
     },
