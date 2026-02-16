@@ -21,12 +21,12 @@ withDefaults(defineProps<ContactCtaProps>(), {
 
       <div class="z-10 relative text-center">
         <UiSparklesText :sparkle-count="10" :colors="['var(--color-primary-500)', 'var(--color-accent-500)']">
-          <h2 class="mb-4 font-bold text-white text-2xl md:text-3xl">
+          <h2 class="mb-4 font-bold text-highlighted text-2xl md:text-3xl">
             {{ title }}
           </h2>
         </UiSparklesText>
 
-        <p class="mx-auto mb-8 max-w-2xl text-neutral-400">
+        <p class="mx-auto mb-8 max-w-2xl text-dimmed">
           {{ description }}
         </p>
 

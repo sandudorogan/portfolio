@@ -1,6 +1,6 @@
 <template>
   <div ref="cardRef" :class="cn(
-    'card-spotlight relative overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/50 py-4 md:p-8',
+    'card-spotlight relative overflow-hidden rounded-xl border border-muted bg-elevated/50 py-4 md:p-8',
     props.class
   )" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
     <!-- Decorative spotlight effect -->

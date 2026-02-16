@@ -44,12 +44,12 @@ function handleKeydown(e: KeyboardEvent) {
     <Transition name="reveal" mode="out-in">
       <!-- Revealed state: normal link -->
       <a v-if="revealed && data" key="revealed" :href="data.link"
-        class="rounded focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 text-white hover:text-primary-400 transition-colors">
+        class="rounded focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 text-highlighted hover:text-primary-400 transition-colors">
         {{ data.value }}
       </a>
 
       <!-- Loading state -->
-      <span v-else-if="loading" key="loading" class="inline-flex items-center gap-1.5 text-neutral-400"
+      <span v-else-if="loading" key="loading" class="inline-flex items-center gap-1.5 text-dimmed"
         aria-live="polite">
         <UIcon name="i-heroicons-arrow-path" class="w-3.5 h-3.5 animate-spin" aria-hidden="true" />
         <span class="text-sm">Revealing…</span>
@@ -64,7 +64,7 @@ function handleKeydown(e: KeyboardEvent) {
 
       <!-- Blurred placeholder (initial state) -->
       <button v-else key="placeholder" type="button" title="Click to reveal"
-        class="blur-xs hover:blur-[3px] rounded focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 text-white transition-all duration-200 cursor-pointer select-none"
+        class="blur-xs hover:blur-[3px] rounded focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 text-highlighted transition-all duration-200 cursor-pointer select-none"
         :aria-label="'Click to reveal contact info'" @click="reveal" @keydown="handleKeydown">
         {{ placeholder }}
       </button>

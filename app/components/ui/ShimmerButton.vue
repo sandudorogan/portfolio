@@ -1,8 +1,8 @@
 <template>
   <component :is="props.as" :class="cn(
-    'shimmer-button group relative z-0 inline-flex cursor-pointer items-center justify-center overflow-hidden whitespace-nowrap rounded-lg border border-white/10 px-6 py-3 text-white',
+    'shimmer-button group relative z-0 inline-flex cursor-pointer items-center justify-center overflow-hidden whitespace-nowrap rounded-lg border border-accented px-6 py-3 text-highlighted',
     'transform-gpu transition-transform duration-300 ease-in-out active:translate-y-px',
-    'focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900',
+    'focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ui-bg)]',
     props.class
   )" v-bind="$attrs">
     <span class="z-0 absolute inset-0 rounded-lg overflow-hidden" :style="{ background: props.background }">
@@ -30,7 +30,7 @@ interface ShimmerButtonProps {
 
 const props = withDefaults(defineProps<ShimmerButtonProps>(), {
   as: 'button',
-  background: 'linear-gradient(110deg, #000103 45%, #1e2631 55%, #000103)',
+  background: 'linear-gradient(110deg, var(--ui-bg-accented) 45%, var(--ui-bg-elevated) 55%, var(--ui-bg-accented))',
   shimmerColor: 'rgba(255, 255, 255, 0.1)',
   shimmerDuration: '2s',
 })

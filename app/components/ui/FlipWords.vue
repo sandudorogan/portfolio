@@ -2,7 +2,7 @@
   <div class="inline-grid relative px-2 ease-in-out">
     <Transition @after-enter="$emit('animationStart')" @after-leave="$emit('animationComplete')">
       <div v-show="isVisible" :class="[
-        'relative z-10 inline-block text-left text-neutral-900 dark:text-neutral-100 whitespace-nowrap',
+        'relative z-10 inline-block text-left whitespace-nowrap',
         props.class,
       ]">
         <template v-for="(wordObj, wordIndex) in splitWords" :key="wordObj.word + wordIndex">

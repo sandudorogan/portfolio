@@ -15,13 +15,13 @@
           index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left'
         )">
           <div
-            class="bg-neutral-900/50 hover:shadow-lg hover:shadow-primary/10 p-6 border border-neutral-800 hover:border-primary/50 rounded-lg transition-all duration-300">
+            class="bg-elevated/50 hover:shadow-lg hover:shadow-primary/10 p-6 border border-muted hover:border-primary/50 rounded-lg transition-all duration-300">
             <span class="inline-block bg-primary/20 mb-2 px-3 py-1 rounded-full text-primary text-xs">
               {{ item.date }}
             </span>
             <h3 class="mb-2 font-semibold text-lg">{{ item.title }}</h3>
             <p v-if="item.subtitle" class="mb-2 text-primary text-sm">{{ item.subtitle }}</p>
-            <p class="text-neutral-400 text-sm">{{ item.description }}</p>
+            <p class="text-dimmed text-sm">{{ item.description }}</p>
             <slot :name="`item-${index}`" :item="item" />
           </div>
         </div>

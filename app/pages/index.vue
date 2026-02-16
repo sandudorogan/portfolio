@@ -148,31 +148,31 @@ const scrollToElement = (elementId: string) => {
     </ClientOnly>
 
     <!-- Overlay for better text readability -->
-    <div class="z-2 absolute inset-0 bg-black/40" />
+    <div class="z-2 absolute inset-0 bg-white/40 dark:bg-black/40" />
 
     <!-- Hero Content -->
     <div class="z-3 flex flex-col items-center gap-4 px-4 max-w-4xl">
       <UiBlurReveal :delay="0.3" class="flex flex-col justify-center items-center gap-16 md:gap-6">
         <!-- Main Heading -->
         <h1
-          class="flex flex-col justify-center items-center bg-clip-text bg-linear-to-b from-white via-neutral-200 to-neutral-400 font-bold text-transparent text-5xl md:text-7xl text-center leading-tight">
+          class="flex flex-col justify-center items-center bg-clip-text bg-linear-to-b from-text-950 via-text-800 to-text-500 dark:from-white dark:via-neutral-200 dark:to-neutral-400 font-bold text-transparent text-5xl md:text-7xl text-center leading-tight">
           Building
           <UiTextHighlight class="bg-linear-to-r from-primary-500 py-2 rounded-xl to-accent-500">
             <UiFlipWords :words="['beautiful', 'stunning', 'immersive', 'scalable']" :duration="3000"
-              class="bg-clip-text bg-linear-to-b from-white to-neutral-200 text-transparent" />
+              class="text-white" />
           </UiTextHighlight>
           web experiences
         </h1>
 
         <!-- Subtitle -->
-        <p class="max-w-2xl text-neutral-300 text-xl md:text-2xl text-center">
+        <p class="max-w-2xl text-muted text-xl md:text-2xl text-center">
           Together, let's create something extraordinary!
         </p>
 
         <!-- CTA Buttons -->
         <div class="flex flex-row flex-wrap justify-center items-center gap-4 mt-4">
           <NuxtLink to="/about"
-            class="group bg-linear-to-r from-primary-500 hover:opacity-90 px-5 py-2 rounded-full focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 font-medium text-white text-sm hover:scale-105 transition-all duration-300 to-accent-500">
+            class="group bg-linear-to-r from-primary-500 hover:opacity-90 px-5 py-2 rounded-full focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ui-bg)] font-medium text-white text-sm hover:scale-105 transition-all duration-300 to-accent-500">
             <span class="flex items-center gap-1.5">
               <UIcon name="i-heroicons-user" class="w-3.5 h-3.5" aria-hidden="true" />
               About Me
@@ -183,7 +183,7 @@ const scrollToElement = (elementId: string) => {
             :border-width="2" :duration="15"
             class="!bg-transparent !p-0 !min-w-fit !min-h-fit hover:scale-105 transition-transform duration-300">
             <NuxtLink to="/contact"
-              class="flex items-center gap-2 bg-neutral-900/80 px-8 py-3 rounded-full focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 font-semibold text-white">
+              class="flex items-center gap-2 bg-default/80 px-8 py-3 rounded-full focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 font-semibold text-highlighted">
               Get in Touch
               <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" aria-hidden="true" />
             </NuxtLink>
@@ -229,7 +229,7 @@ const scrollToElement = (elementId: string) => {
               Services
             </span>
           </h2>
-          <p class="mx-auto max-w-2xl text-neutral-400 text-lg">
+          <p class="mx-auto max-w-2xl text-dimmed text-lg">
             From concept to deployment, I offer comprehensive web development services tailored to your specific needs
           </p>
         </div>
@@ -244,8 +244,8 @@ const scrollToElement = (elementId: string) => {
               <div class="bg-linear-to-br from-primary-500/20 mb-4 p-4 rounded-xl to-accent-500/20" aria-hidden="true">
                 <UIcon :name="service.icon" class="w-8 h-8 text-primary-400" />
               </div>
-              <h3 class="mb-3 font-semibold text-white text-xl">{{ service.title }}</h3>
-              <p class="text-neutral-400 grow">{{ service.description }}</p>
+              <h3 class="mb-3 font-semibold text-highlighted text-xl">{{ service.title }}</h3>
+              <p class="text-dimmed grow">{{ service.description }}</p>
             </div>
           </UiCardSpotlight>
         </UiBlurReveal>
@@ -255,7 +255,7 @@ const scrollToElement = (elementId: string) => {
 
   <!-- Tech Stack Section with Marquee -->
   <section class="relative py-24 overflow-hidden">
-    <div class="absolute inset-0 bg-linear-to-b from-background/95 via-neutral-900/50 to-background" />
+    <div class="absolute inset-0 bg-linear-to-b from-background/95 via-background-200/50 dark:via-neutral-900/50 to-background" />
 
     <div class="z-10 relative mx-auto px-4 container">
       <UiBlurReveal :delay="0.3">
@@ -265,7 +265,7 @@ const scrollToElement = (elementId: string) => {
               Tech Stack
             </span>
           </h2>
-          <p class="mx-auto max-w-2xl text-neutral-400 text-lg">
+          <p class="mx-auto max-w-2xl text-dimmed text-lg">
             Modern technologies I specialize in to build powerful, scalable web applications
           </p>
         </div>
@@ -277,11 +277,11 @@ const scrollToElement = (elementId: string) => {
           <UiGlareCard class="group" :glare-opacity="0.3"
             glare-color="color-mix(in oklch, var(--color-primary-500) 40%, transparent)">
             <div
-              class="flex flex-col items-center bg-neutral-900/80 p-6 border border-neutral-700/50 hover:border-primary-500/50 rounded-xl transition-colors duration-300">
+              class="flex flex-col items-center bg-elevated/80 p-6 border border-muted hover:border-primary-500/50 rounded-xl transition-colors duration-300">
               <div class="flex justify-center items-center mb-3 w-24 h-24" aria-hidden="true">
                 <UIcon :name="tech.icon" class="group-hover:scale-110 transition-transform duration-300" :size="24" />
               </div>
-              <span class="font-medium text-neutral-300 text-sm">{{ tech.name }}</span>
+              <span class="font-medium text-muted text-sm">{{ tech.name }}</span>
             </div>
           </UiGlareCard>
         </div>
@@ -292,11 +292,11 @@ const scrollToElement = (elementId: string) => {
           <UiGlareCard class="group" :glare-opacity="0.3"
             glare-color="color-mix(in oklch, var(--color-accent-500) 40%, transparent)">
             <div
-              class="flex flex-col items-center bg-neutral-900/80 p-6 border border-neutral-700/50 hover:border-accent-500/50 rounded-xl transition-colors duration-300">
+              class="flex flex-col items-center bg-elevated/80 p-6 border border-muted hover:border-accent-500/50 rounded-xl transition-colors duration-300">
               <div class="flex justify-center items-center mb-3 w-24 h-24" aria-hidden="true">
                 <UIcon :name="tech.icon" class="group-hover:scale-110 transition-transform duration-300" :size="24" />
               </div>
-              <span class="font-medium text-neutral-300 text-sm">{{ tech.name }}</span>
+              <span class="font-medium text-muted text-sm">{{ tech.name }}</span>
             </div>
           </UiGlareCard>
         </div>
@@ -316,7 +316,7 @@ const scrollToElement = (elementId: string) => {
               Featured Projects
             </span>
           </h2>
-          <p class="mx-auto max-w-2xl text-neutral-400 text-lg">
+          <p class="mx-auto max-w-2xl text-dimmed text-lg">
             A selection of my recent work that demonstrates my skills and experience
           </p>
         </div>
@@ -327,7 +327,7 @@ const scrollToElement = (elementId: string) => {
           <NuxtLink :to="project.url" target="_blank" external>
             <UiCard3D :rotation-factor="10" :show-glare="false" class="group">
               <div
-                class="flex flex-col bg-neutral-900/80 backdrop-blur-xs border border-neutral-700/50 rounded-xl h-full overflow-hidden">
+                class="flex flex-col bg-elevated/80 backdrop-blur-xs border border-muted rounded-xl h-full overflow-hidden">
                 <!-- Project Image Placeholder -->
                 <div class="relative h-52 overflow-hidden shrink-0">
                   <div
@@ -337,14 +337,14 @@ const scrollToElement = (elementId: string) => {
                       class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <!-- Glow effect on hover -->
-                  <div class="absolute inset-0 bg-linear-to-t from-neutral-900 via-transparent to-transparent" />
+                  <div class="absolute inset-0 bg-linear-to-t from-white dark:from-neutral-900 via-transparent to-transparent" />
                 </div>
 
                 <div class="flex flex-col p-6 grow">
-                  <h3 class="mb-3 font-semibold text-white group-hover:text-primary-400 text-xl transition-colors">
+                  <h3 class="mb-3 font-semibold text-highlighted group-hover:text-primary-400 text-xl transition-colors">
                     {{ project.title }}
                   </h3>
-                  <p class="mb-4 text-neutral-400 grow">{{ project.description }}</p>
+                  <p class="mb-4 text-dimmed grow">{{ project.description }}</p>
                   <div class="flex flex-wrap gap-2">
                     <span v-for="tag in project.tags" :key="tag"
                       class="bg-linear-to-r from-secondary-500/10 to-secondary-400/10 px-3 py-1 border border-secondary-500/20 rounded-full font-medium text-secondary-400 text-xs">
@@ -372,7 +372,7 @@ const scrollToElement = (elementId: string) => {
 
   <!-- Testimonials Section -->
   <section class="hidden relative py-24 overflow-hidden">
-    <div class="absolute inset-0 bg-linear-to-b from-background/95 via-neutral-900/50 to-background" />
+    <div class="absolute inset-0 bg-linear-to-b from-background/95 via-background-200/50 dark:via-neutral-900/50 to-background" />
 
     <div class="z-10 relative mx-auto px-4 container">
       <UiBlurReveal :delay="0.3">
@@ -382,7 +382,7 @@ const scrollToElement = (elementId: string) => {
               Client Testimonials
             </span>
           </h2>
-          <p class="mx-auto max-w-2xl text-neutral-400 text-lg">
+          <p class="mx-auto max-w-2xl text-dimmed text-lg">
             What clients say about working with me
           </p>
         </div>

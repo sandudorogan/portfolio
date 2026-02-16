@@ -6,7 +6,7 @@
     )"
     :style="borderStyle"
   >
-    <div class="relative z-10 rounded-[inherit] bg-neutral-900">
+    <div class="relative z-10 rounded-[inherit] bg-default">
       <slot />
     </div>
   </div>

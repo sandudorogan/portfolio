@@ -30,7 +30,7 @@ const props = withDefaults(defineProps<AnimatedCircularProgressBarProps>(), {
   class: undefined,
   size: 120,
   strokeWidth: 8,
-  trackColor: 'rgba(255, 255, 255, 0.1)',
+  trackColor: 'var(--ui-border-muted)',
   progressColor: 'var(--color-primary-500)',
   startDelayMs: 0,
 })

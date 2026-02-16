@@ -84,7 +84,7 @@ defineOgImage({
     <!-- Hero Section with Aurora Background -->
     <section class="relative py-24 overflow-hidden">
         <UiAuroraBg class="absolute inset-0" :show-radial-gradient="true" />
-        <div class="absolute inset-0 bg-black/30" />
+        <div class="absolute inset-0 bg-white/30 dark:bg-black/30" />
 
         <div class="z-10 relative mx-auto px-4 container">
             <div class="flex md:flex-row flex-col items-center md:items-start gap-8">
@@ -92,7 +92,7 @@ defineOgImage({
                 <UiBlurReveal :delay="0.2">
                     <UiCard3D :rotation-factor="12" :show-glare="true">
                         <div class="relative">
-                            <div class="flex justify-center items-center bg-linear-to-br from-primary-500/20 border border-neutral-700/50 rounded-2xl w-48 h-48 overflow-hidden to-accent-500/20"
+                            <div class="flex justify-center items-center bg-linear-to-br from-primary-500/20 border border-muted rounded-2xl w-48 h-48 overflow-hidden to-accent-500/20"
                                 aria-hidden="true">
                                 <img src="/images/sandu-dorogan.jpg" alt="Sandu Dorogan"
                                     class="w-full h-full object-cover" />
@@ -104,7 +104,7 @@ defineOgImage({
                 <div class="flex-1 md:text-left text-center">
                     <UiBlurReveal :delay="0.3">
                         <h1
-                            class="bg-clip-text bg-linear-to-r from-white to-neutral-300 mb-2 font-bold text-transparent text-4xl md:text-5xl">
+                            class="bg-clip-text bg-linear-to-r from-text-950 to-text-700 dark:from-white dark:to-neutral-300 mb-2 font-bold text-transparent text-4xl md:text-5xl">
                             {{ developerInfo.name }}
                         </h1>
 
@@ -113,22 +113,22 @@ defineOgImage({
                             {{ developerInfo.title }}
                         </p>
 
-                        <p class="mb-6 max-w-2xl text-neutral-300 text-lg">
+                        <p class="mb-6 max-w-2xl text-muted text-lg">
                             {{ developerInfo.bio }}
                         </p>
 
                         <div class="flex flex-wrap justify-center md:justify-start gap-4">
                             <UiGlareCard :glare-opacity="0.2"
-                                class="group bg-neutral-900/80 border border-neutral-700/50 !rounded-lg">
+                                class="group bg-elevated/80 border border-muted !rounded-lg">
                                 <div class="flex items-center gap-2 px-4 py-2">
                                     <UIcon name="i-heroicons-map-pin" class="w-4 h-4 text-primary-400"
                                         aria-hidden="true" />
-                                    <span class="text-neutral-300">{{ developerInfo.location }}</span>
+                                    <span class="text-muted">{{ developerInfo.location }}</span>
                                 </div>
                             </UiGlareCard>
 
                             <UiGlareCard :glare-opacity="0.2"
-                                class="group bg-neutral-900/80 border border-neutral-700/50 !rounded-lg">
+                                class="group bg-elevated/80 border border-muted !rounded-lg">
                                 <div class="flex items-center gap-2 px-4 py-2">
                                     <UIcon name="i-heroicons-envelope" class="w-4 h-4 text-accent-400"
                                         aria-hidden="true" />
@@ -145,7 +145,7 @@ defineOgImage({
 
     <!-- Skills Section with Animated Progress Bars -->
     <section class="relative py-24 overflow-hidden">
-        <div class="absolute inset-0 bg-linear-to-b from-background via-neutral-900/50 to-background" />
+        <div class="absolute inset-0 bg-linear-to-b from-background via-background-200/50 dark:via-neutral-900/50 to-background" />
 
         <div class="z-10 relative mx-auto px-4 container">
             <UiBlurReveal :delay="0.3">
@@ -165,9 +165,9 @@ defineOgImage({
                                 spotlight-color="color-mix(in oklch, var(--color-primary-500) 15%, transparent)">
                                 <div class="flex flex-col items-center h-full">
                                     <UiAnimatedCircularProgressBar :value="skill.level" :size="100" :stroke-width="6"
-                                        track-color="rgba(255, 255, 255, 0.1)" progress-color="var(--color-primary-500)"
+                                        progress-color="var(--color-primary-500)"
                                         :start-delay-ms="1000" />
-                                    <span class="mt-auto pt-4 font-medium text-neutral-300 text-sm text-center">{{
+                                    <span class="mt-auto pt-4 font-medium text-muted text-sm text-center">{{
                                         skill.name }}</span>
                                 </div>
                             </UiCardSpotlight>
@@ -201,8 +201,8 @@ defineOgImage({
                                     aria-hidden="true">
                                     <UIcon name="i-heroicons-language" class="text-primary-400" :size="22" />
                                 </div>
-                                <h3 class="mb-1 font-semibold text-white text-lg">{{ lang.name }}</h3>
-                                <p class="text-neutral-400 text-sm text-center">{{ lang.level }}</p>
+                                <h3 class="mb-1 font-semibold text-highlighted text-lg">{{ lang.name }}</h3>
+                                <p class="text-dimmed text-sm text-center">{{ lang.level }}</p>
                             </div>
                         </UiCardSpotlight>
                     </UiBlurReveal>
