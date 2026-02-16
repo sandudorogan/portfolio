@@ -14,7 +14,8 @@ RUN bun install --frozen-lockfile
 # Copy source files
 COPY . .
 
-# Build the application
+# Build the application with bun preset for standalone server
+ENV NITRO_PRESET=bun
 RUN bun run build
 
 # =============================================================================

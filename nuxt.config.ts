@@ -49,7 +49,7 @@ export default defineNuxtConfig({
     },
   },
   nitro: {
-    preset: 'bun',
+    preset: process.env.NITRO_PRESET || undefined,
   },
   vite: {
     server: {

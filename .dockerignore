@@ -30,3 +30,9 @@ Thumbs.db
 
 # Claude plans
 .claude
+
+# nginx and scripts (used via volume mounts, not in app image)
+nginx
+scripts
+letsencrypt
+certbot
