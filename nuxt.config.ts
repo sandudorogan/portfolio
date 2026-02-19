@@ -20,8 +20,13 @@ export default defineNuxtConfig({
     'nuxt-schema-org',
     'nuxt-og-image',
     'motion-v/nuxt',
+    '@nuxtjs/plausible',
     '@nuxt/ui', // Automatically registers @nuxt/fonts
   ],
+  plausible: {
+    autoOutboundTracking: true,
+    proxy: true,
+  },
   site: {
     url: defaultSiteUrl,
     name: 'Sandu Dorogan',

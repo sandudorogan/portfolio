@@ -69,6 +69,7 @@ const handleSubmit = async () => {
             body: { name: form.name, email: form.email, subject: form.subject, message: form.message },
         });
         form.success = true;
+        useTrackEvent('Contact Form Submission');
         showConfetti.value = true;
         form.name = '';
         form.email = '';
