@@ -24,9 +24,19 @@
         </NuxtLink>
       </nav>
 
-      <div class="absolute right-4 flex items-center gap-1">
+      <div class="absolute left-4 flex items-center md:hidden">
         <button
           class="cursor-pointer p-2 rounded-lg text-muted hover:text-highlighted hover:bg-elevated/50 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 transition-colors duration-300 font-medium text-sm"
+          :aria-label="$t('lang.switchTo')"
+          @click="switchLocale"
+        >
+          {{ $t('lang.switchTo') }}
+        </button>
+      </div>
+
+      <div class="absolute right-4 flex items-center gap-1">
+        <button
+          class="hidden md:inline-flex cursor-pointer p-2 rounded-lg text-muted hover:text-highlighted hover:bg-elevated/50 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 transition-colors duration-300 font-medium text-sm"
           :aria-label="$t('lang.switchTo')"
           @click="switchLocale"
         >
