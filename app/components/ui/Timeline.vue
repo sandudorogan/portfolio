@@ -4,8 +4,10 @@
       class="top-0 left-4 md:left-1/2 absolute bg-linear-to-b from-transparent via-primary/50 to-transparent md:-ml-[1px] w-[2px] h-full" />
     <div class="relative space-y-12">
       <!-- tabindex="-1" prevents animation wrapper from being a tab stop -->
-      <Motion v-for="(item, index) in items" :key="index" as="div" tabindex="-1" :initial="{ opacity: 0, y: 50 }"
-        :while-in-view="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: index * 0.1 }" :class="cn(
+      <Motion v-for="(item, index) in items" :key="index" as="div" tabindex="-1"
+        :initial="shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }"
+        :while-in-view="{ opacity: 1, y: 0 }"
+        :transition="shouldReduceMotion ? { duration: 0 } : { duration: 0.5, delay: index * 0.1 }" :class="cn(
           'timeline-item relative flex items-start',
           index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
         )">
@@ -32,6 +34,10 @@
 
 <script setup lang="ts">
 import { Motion } from 'motion-v'
+import { usePreferredReducedMotion } from '@vueuse/core'
+
+const reducedMotion = usePreferredReducedMotion()
+const shouldReduceMotion = computed(() => reducedMotion.value === 'reduce')
 
 interface TimelineItem {
   date: string;

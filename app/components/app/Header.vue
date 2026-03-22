@@ -3,7 +3,7 @@
     <div class="relative flex justify-center items-center mx-auto px-4 h-16 container">
       <nav aria-label="Main navigation" class="flex items-center space-x-2">
         <NuxtLink v-for="item in navigation" :key="item.name" :to="item.path"
-          class="group relative px-4 py-2 rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 font-medium text-sm transition-all duration-300"
+          class="group relative px-4 py-2 rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 font-medium text-sm transition-colors duration-300"
           :class="[
             isActive(item.path)
               ? 'text-highlighted'

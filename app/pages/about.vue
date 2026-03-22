@@ -57,9 +57,8 @@ defineOgImage({
                 <UiBlurReveal :delay="0.2">
                     <UiCard3D :rotation-factor="12" :show-glare="true">
                         <div class="relative">
-                            <div class="flex justify-center items-center bg-linear-to-br from-primary-500/20 border border-muted rounded-2xl w-48 h-48 overflow-hidden to-accent-500/20"
-                                aria-hidden="true">
-                                <img src="/images/sandu-dorogan.jpg" alt="Sandu Dorogan"
+                            <div class="flex justify-center items-center bg-linear-to-br from-primary-500/20 border border-muted rounded-2xl w-48 h-48 overflow-hidden to-accent-500/20">
+                                <img src="/images/sandu-dorogan.jpg" alt="Sandu Dorogan" width="192" height="192"
                                     class="w-full h-full object-cover" />
                             </div>
                         </div>
@@ -177,7 +176,7 @@ defineOgImage({
     </section>
 
     <!-- Experience Section with Timeline -->
-    <section id="work-experience" class="relative py-24 overflow-hidden">
+    <section id="work-experience" class="relative py-24 overflow-hidden scroll-mt-24">
         <div class="absolute inset-0 bg-linear-to-b from-background via-background/95 to-background" />
         <UiMeteorEffect :count="10" color="var(--color-primary-500)" class="absolute inset-0" />
 

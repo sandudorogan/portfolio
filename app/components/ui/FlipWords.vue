@@ -26,6 +26,8 @@
 </template>
 
 <script setup lang="ts">
+import { usePreferredReducedMotion } from '@vueuse/core'
+
 interface Props {
   words: string[];
   duration?: number;
@@ -39,11 +41,16 @@ const props = withDefaults(defineProps<Props>(), {
 
 defineEmits(['animationStart', 'animationComplete'])
 
+const reducedMotion = usePreferredReducedMotion()
+const shouldReduceMotion = computed(() => reducedMotion.value === 'reduce')
+
 const currentWord = ref(props.words[0])
 const isVisible = ref(true)
 const timeoutId = ref<number | null>(null)
 
 function startAnimation() {
+  if (shouldReduceMotion.value) return
+
   isVisible.value = false
 
   setTimeout(() => {
@@ -60,6 +67,7 @@ const splitWords = computed(() => currentWord.value.split(' ').map((word) => ({
 })))
 
 function startTimeout() {
+  if (shouldReduceMotion.value) return
   timeoutId.value = window.setTimeout(() => {
     startAnimation()
   }, props.duration)
@@ -77,6 +85,16 @@ onBeforeUnmount(() => {
 
 watch(isVisible, (newValue) => {
   if (newValue) {
+    startTimeout()
+  }
+})
+
+watch(shouldReduceMotion, (newValue) => {
+  if (newValue && timeoutId.value) {
+    clearTimeout(timeoutId.value)
+    timeoutId.value = null
+    isVisible.value = true
+  } else if (!newValue) {
     startTimeout()
   }
 })

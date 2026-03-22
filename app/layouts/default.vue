@@ -5,11 +5,15 @@ const ogLocale = computed(() => locale.value === 'ro' ? 'ro_RO' : 'en_US')
 const ogLocaleAlternate = computed(() => locale.value === 'ro' ? 'en_US' : 'ro_RO')
 
 // Global SEO metadata applied to all pages
+const colorMode = useColorMode()
+const themeColor = computed(() => colorMode.value === 'dark' ? '#1a1625' : '#f3f0f7')
+
 useHead({
   link: [
     { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
   ],
   meta: [
+    { name: 'theme-color', content: themeColor },
     // Location metadata for SEO (Bucharest, Romania)
     { name: 'geo.region', content: 'RO-B' },
     { name: 'geo.placename', content: 'Bucharest' },
@@ -44,7 +48,7 @@ useSchemaOrg([
   <div class="flex flex-col bg-background min-h-screen text-foreground">
     <!-- Skip to main content link for keyboard/screen reader users -->
     <a href="#main-content"
-      class="sr-only focus:not-sr-only focus:top-4 focus:left-4 focus:z-200 focus:fixed focus:bg-primary-500 focus:px-4 focus:py-2 focus:rounded-lg focus:outline-hidden focus:ring-2 focus:ring-white focus:text-white">
+      class="sr-only focus-visible:not-sr-only focus-visible:top-4 focus-visible:left-4 focus-visible:z-200 focus-visible:fixed focus-visible:bg-primary-500 focus-visible:px-4 focus-visible:py-2 focus-visible:rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:text-white">
       {{ $t('layout.skipToContent') }}
     </a>
 

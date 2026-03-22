@@ -35,7 +35,7 @@ const resolvedTo = computed(() => props.to ?? localePath('/contact'));
         <UiGradientButton as="NuxtLink" :to="resolvedTo" from-color="var(--color-primary-500)"
           via-color="var(--color-accent-500)" to-color="var(--color-primary-500)">
           <span class="flex items-center gap-2">
-            <UIcon :name="buttonIcon" class="w-5 h-5" />
+            <UIcon :name="buttonIcon" class="w-5 h-5" aria-hidden="true" />
             {{ buttonLabel }}
           </span>
         </UiGradientButton>

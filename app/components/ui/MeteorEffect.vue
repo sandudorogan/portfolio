@@ -86,5 +86,12 @@ const meteors = computed<Meteor[]>(() => {
     transform: translate(200px, 200px) rotate(215deg);
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .meteor {
+    animation: none;
+    display: none;
+  }
+}
 </style>
 

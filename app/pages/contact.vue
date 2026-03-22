@@ -216,24 +216,26 @@ defineOgImage({
                                     <div class="gap-6 grid grid-cols-1 md:grid-cols-2">
                                         <UFormField :label="$t('contact.form.name')" name="name">
                                             <UInput v-model="form.name" :placeholder="$t('contact.form.namePlaceholder')" required class="w-full"
+                                                autocomplete="name"
                                                 :ui="{ base: 'bg-accented/50 border-muted focus:border-primary-500 transition-colors' }" />
                                         </UFormField>
 
                                         <UFormField :label="$t('contact.form.email')" name="email">
                                             <UInput v-model="form.email" type="email" :placeholder="$t('contact.form.emailPlaceholder')"
-                                                required class="w-full"
+                                                required class="w-full" autocomplete="email"
                                                 :ui="{ base: 'bg-accented/50 border-muted focus:border-primary-500 transition-colors' }" />
                                         </UFormField>
                                     </div>
 
                                     <UFormField :label="$t('contact.form.subject')" name="subject">
                                         <UInput v-model="form.subject" :placeholder="$t('contact.form.subjectPlaceholder')" class="w-full"
+                                            autocomplete="off"
                                             :ui="{ base: 'bg-accented/50 border-muted focus:border-primary-500 transition-colors' }" />
                                     </UFormField>
 
                                     <UFormField :label="$t('contact.form.message')" name="message">
                                         <UTextarea v-model="form.message" :placeholder="$t('contact.form.messagePlaceholder')"
-                                            :rows="5" required class="w-full"
+                                            :rows="5" required class="w-full" autocomplete="off"
                                             :ui="{ base: 'bg-accented/50 border-muted focus:border-primary-500 transition-colors' }" />
                                     </UFormField>
 
@@ -255,7 +257,7 @@ defineOgImage({
 
                                         <!-- Success Message -->
                                         <ClientOnly>
-                                            <Motion v-if="form.success" tabindex="-1" role="status"
+                                            <Motion v-if="form.success" tabindex="-1" role="status" aria-live="polite"
                                                 :initial="{ opacity: 0, y: -10 }" :animate="{ opacity: 1, y: 0 }"
                                                 :exit="{ opacity: 0, y: -10 }"
                                                 class="bg-emerald-500/10 mt-4 p-4 border border-emerald-500/30 rounded-lg">

@@ -159,7 +159,7 @@ const scrollToElement = (elementId: string) => {
         <!-- CTA Buttons -->
         <div class="flex flex-row flex-wrap justify-center items-center gap-4 mt-4">
           <NuxtLink :to="localePath('/about')"
-            class="group bg-linear-to-r from-primary-500 hover:opacity-90 px-5 py-2 rounded-full focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ui-bg)] font-medium text-white text-sm hover:scale-105 transition-all duration-300 to-accent-500">
+            class="group bg-linear-to-r from-primary-500 hover:opacity-90 px-5 py-2 rounded-full focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ui-bg)] font-medium text-white text-sm hover:scale-105 transition-[opacity,transform] duration-300 to-accent-500">
             <span class="flex items-center gap-1.5">
               <UIcon name="i-heroicons-user" class="w-3.5 h-3.5" aria-hidden="true" />
               {{ $t('home.hero.aboutMe') }}
@@ -320,7 +320,7 @@ const scrollToElement = (elementId: string) => {
                   <div
                     class="absolute inset-0 bg-linear-to-br from-primary-500/20 to-secondary-500/20 via-accent-500/20" />
                   <div class="absolute inset-0 flex justify-center items-center">
-                    <img :src="project.image" alt="Project Image"
+                    <img :src="project.image" :alt="project.title" width="400" height="208" loading="lazy"
                       class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <!-- Glow effect on hover -->

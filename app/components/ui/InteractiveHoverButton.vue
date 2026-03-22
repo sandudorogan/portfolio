@@ -11,7 +11,7 @@
       class="z-20 absolute inset-0 flex justify-center items-center gap-2 opacity-0 group-hover:opacity-100 text-primary-foreground transition-all translate-x-12 group-hover:translate-x-0 duration-300 ease-in-out">
       <slot name="hover">
         <span>Let's Go</span>
-        <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" />
+        <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" aria-hidden="true" />
       </slot>
     </div>
     <div

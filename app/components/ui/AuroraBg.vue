@@ -72,4 +72,11 @@ const props = withDefaults(defineProps<AuroraBgProps>(), {
 .dark .aurora-gradient::after {
   background-image: var(--dark-gradient), var(--aurora);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-aurora,
+  .aurora-gradient::after {
+    animation: none;
+  }
+}
 </style>
