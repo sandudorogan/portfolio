@@ -68,7 +68,7 @@ function handleKeydown(e: KeyboardEvent) {
       <button v-else key="placeholder" type="button" :title="t('reveal.clickToReveal')"
         class="blur-xs hover:blur-[3px] rounded focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 text-highlighted transition-all duration-200 cursor-pointer select-none"
         :aria-label="t('reveal.clickToRevealAria')" @click="reveal" @keydown="handleKeydown">
-        {{ placeholder }}
+        <span aria-hidden="true">{{ placeholder }}</span>
       </button>
     </Transition>
   </span>

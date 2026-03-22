@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 
 // Bucharest coordinates (same as in layouts/default.vue meta tags)

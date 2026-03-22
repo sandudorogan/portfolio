@@ -58,8 +58,8 @@ defineOgImage({
                     <UiCard3D :rotation-factor="12" :show-glare="true">
                         <div class="relative">
                             <div class="flex justify-center items-center bg-linear-to-br from-primary-500/20 border border-muted rounded-2xl w-48 h-48 overflow-hidden to-accent-500/20">
-                                <img src="/images/sandu-dorogan.jpg" alt="Sandu Dorogan" width="192" height="192"
-                                    class="w-full h-full object-cover" />
+                                <NuxtImg src="/images/sandu-dorogan.webp" alt="Sandu Dorogan" width="192" height="192"
+                                    format="webp" quality="80" class="w-full h-full object-cover" />
                             </div>
                         </div>
                     </UiCard3D>
@@ -121,8 +121,8 @@ defineOgImage({
                 </div>
 
                 <!-- Skills with Circular Progress -->
-                <div class="gap-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 mb-12">
-                    <ClientOnly>
+                <ClientOnly>
+                    <div class="gap-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 mb-12">
                         <UiBlurReveal v-for="(skill, index) in skills" :key="index"
                             :delay="0.2 + index * 0.1" :duration="1" class="h-full">
                             <UiCardSpotlight class="!p-4 h-full"
@@ -136,8 +136,15 @@ defineOgImage({
                                 </div>
                             </UiCardSpotlight>
                         </UiBlurReveal>
-                    </ClientOnly>
-                </div>
+                    </div>
+                    <template #fallback>
+                        <div class="gap-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 mb-12">
+                            <div v-for="i in 6" :key="i" class="h-full">
+                                <div class="flex flex-col items-center p-4 h-[168px] rounded-xl bg-elevated/80 border border-muted" />
+                            </div>
+                        </div>
+                    </template>
+                </ClientOnly>
             </UiBlurReveal>
         </div>
     </section>

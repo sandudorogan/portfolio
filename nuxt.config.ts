@@ -8,7 +8,6 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-01-26',
   devtools: { enabled: true },
   css: [
-    'leaflet/dist/leaflet.css',
     '~/assets/css/main.css',
   ],
   modules: [
@@ -17,6 +16,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/eslint',
     '@nuxt/icon',
+    '@nuxtjs/sitemap',
     'nuxt-schema-org',
     'nuxt-og-image',
     'motion-v/nuxt',
@@ -65,12 +65,17 @@ export default defineNuxtConfig({
       redirectOn: 'root',
     },
   },
+  routeRules: {
+    '/**': {
+      headers: {
+        'X-Frame-Options': 'DENY',
+        'X-Content-Type-Options': 'nosniff',
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+        'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+      },
+    },
+  },
   nitro: {
     preset: process.env.NITRO_PRESET || undefined,
-  },
-  vite: {
-    server: {
-      allowedHosts: ['e5f1-2a02-2f0a-4201-5e00-c11-7494-d5f9-4e24.ngrok-free.app', '192.168.1.234'],
-    },
   },
 })

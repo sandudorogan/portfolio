@@ -34,9 +34,9 @@ interface Testimonial {
 }
 
 const projectMeta = [
-  { url: 'https://iprally.com', image: '/images/iprally.png', tags: ['Clojure', 'ClojureScript', 'Google Cloud'] },
-  { url: 'https://partnerbase.com', image: '/images/partnerbase.png', tags: ['NuxtJS', 'Clojure', 'AWS'] },
-  { url: 'https://nws.ai', image: '/images/nws-studio.png', tags: ['ClojureScripe', 'Django Python', 'AWS'] },
+  { url: 'https://iprally.com', image: '/images/iprally.webp', tags: ['Clojure', 'ClojureScript', 'Google Cloud'] },
+  { url: 'https://partnerbase.com', image: '/images/partnerbase.webp', tags: ['NuxtJS', 'Clojure', 'AWS'] },
+  { url: 'https://nws.ai', image: '/images/nws-studio.webp', tags: ['ClojureScripe', 'Django Python', 'AWS'] },
 ];
 
 const projects = computed<Project[]>(() => {
@@ -183,11 +183,11 @@ const scrollToElement = (elementId: string) => {
             <UiCard3D :rotation-factor="8" :show-glare="false">
               <!-- iPhone mockup for mobile devices -->
               <div v-if="isMobileDevice" class="relative flex justify-center">
-                <UiIPhone15ProMockup src="/images/pb-mobile.png" :width="280" :height="570" />
+                <UiIPhone15ProMockup src="/images/pb-mobile.webp" :width="280" :height="570" />
               </div>
               <!-- Safari mockup for desktop -->
               <div v-else class="relative">
-                <UiSafariMockup url="app.iprally.com" src="/images/iprally.png" class="block w-full h-auto" />
+                <UiSafariMockup url="app.iprally.com" src="/images/iprally.webp" class="block w-full h-auto" />
               </div>
             </UiCard3D>
           </div>
@@ -320,7 +320,8 @@ const scrollToElement = (elementId: string) => {
                   <div
                     class="absolute inset-0 bg-linear-to-br from-primary-500/20 to-secondary-500/20 via-accent-500/20" />
                   <div class="absolute inset-0 flex justify-center items-center">
-                    <img :src="project.image" :alt="project.title" width="400" height="208" loading="lazy"
+                    <NuxtImg :src="project.image" :alt="project.title" width="400" height="208" loading="lazy"
+                      format="webp" quality="80"
                       class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <!-- Glow effect on hover -->
