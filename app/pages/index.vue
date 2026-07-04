@@ -89,11 +89,13 @@ useHead(() => ({
             'name': 'Sandu Dorogan',
             'jobTitle': t('seo.jobTitle'),
             'url': siteUrl,
+            'image': `${siteUrl}/images/sandu-dorogan.webp`,
             'address': {
               '@type': 'PostalAddress',
               'addressLocality': 'Bucharest',
               'addressCountry': 'RO',
             },
+            'knowsAbout': ['Clojure', 'ClojureScript', 'TypeScript', 'Vue', 'Nuxt', 'React', 'Python', 'AWS', 'Google Cloud'],
             'sameAs': socialLinks.map(link => link.url),
           },
           {
@@ -101,6 +103,7 @@ useHead(() => ({
             '@id': `${siteUrl}/#website`,
             'url': siteUrl,
             'name': 'Sandu Dorogan',
+            'inLanguage': locale.value === 'ro' ? 'ro-RO' : 'en-US',
             'publisher': { '@id': `${siteUrl}/#person` },
           },
         ],
@@ -114,7 +117,7 @@ useHead(() => ({
   <div class="v1">
     <a href="#main" class="v1-skip">{{ t('skipToContent') }}</a>
 
-    <nav class="v1-nav" aria-label="Main navigation">
+    <nav class="v1-nav" :aria-label="t('nav.ariaLabel')">
       <a href="#top" class="v1-nav-brand">SD.</a>
       <div class="v1-nav-right">
         <div class="v1-nav-links">
@@ -250,6 +253,17 @@ useHead(() => ({
   min-height: 100vh;
 }
 
+/* Paper grain over the whole page, including the inverted sections */
+.v1::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.28;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 .v1 ::selection {
   background: var(--shock);
   color: var(--paper);
@@ -368,6 +382,7 @@ useHead(() => ({
   padding: 0.35rem 0.75rem;
   background: var(--shock);
   color: var(--paper);
+  box-shadow: 5px 5px 0 var(--ink);
 }
 
 .v1-hero-title {
@@ -391,6 +406,11 @@ useHead(() => ({
 .v1-line-outline {
   color: var(--paper);
   -webkit-text-stroke: 3px var(--ink);
+}
+
+/* Thick strokes swallow small glyphs, thin them alongside the type scale */
+@media (max-width: 640px) {
+  .v1-line-outline { -webkit-text-stroke-width: 2px; }
 }
 
 @keyframes v1-slam {
@@ -467,6 +487,8 @@ useHead(() => ({
   width: max-content;
   animation: v1-scroll 24s linear infinite;
 }
+
+.v1-marquee:hover .v1-marquee-track { animation-play-state: paused; }
 
 .v1-marquee-content { display: flex; }
 

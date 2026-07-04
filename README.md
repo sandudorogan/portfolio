@@ -1,23 +1,13 @@
 # Personal Portfolio
 
-A modern, interactive portfolio website built with Nuxt 3, Vue.js, and Tailwind CSS.
+Single-page brutalist portfolio at [dorogans.com](https://dorogans.com) — paper, ink, and shock orange. Built with Nuxt 4, bilingual English/Romanian.
 
-## Overview
+## Stack
 
-This project is a personal portfolio website that showcases interactive elements and modern web development practices. It features:
-
-- Nuxt 3 framework for Vue.js
-- Tailwind CSS for styling
-- Interactive UI components
-- Responsive design
-
-## Technologies Used
-
-- [Nuxt 3](https://nuxt.com/) - The Vue.js framework
-- [Vue.js](https://vuejs.org/) - Progressive JavaScript framework
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
-- [Nuxt UI](https://ui.nuxt.com/) - UI components for Nuxt
-- [VueUse](https://vueuse.org/) - Collection of Vue composition utilities
+- [Nuxt 4](https://nuxt.com/) with [Nuxt UI](https://ui.nuxt.com/) and Tailwind CSS v4
+- [@nuxtjs/i18n](https://i18n.nuxtjs.org/) — English at `/`, Romanian at `/ro`, copy in `i18n/locales/`
+- [nuxt-og-image](https://nuxtseo.com/og-image) + [@nuxtjs/sitemap](https://nuxtseo.com/sitemap) for SEO
+- [Vitest](https://vitest.dev/) with unit, Nuxt runtime, and e2e projects
 
 ## Prerequisites
 
@@ -25,51 +15,38 @@ This project is a personal portfolio website that showcases interactive elements
 
 ## Setup
 
-1. Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/portfolio.git
-cd portfolio
-```
-
-1. Install dependencies:
-
 ```bash
 bun install
 ```
 
+Contact details are never shipped in the bundle — the reveal-on-click endpoints read them from server env vars:
+
+```bash
+NUXT_CONTACT_EMAIL=you@example.com
+NUXT_CONTACT_PHONE=+40700000000
+```
+
 ## Development
 
-Start the development server on `http://localhost:3000`:
-
 ```bash
-bun run dev
-```
-
-## Building for Production
-
-Build the project for production:
-
-```bash
-bun run build
-```
-
-Preview the production build:
-
-```bash
-bun run preview
+bun run dev        # dev server on http://localhost:3000
+bun run test       # full test suite (unit + nuxt + e2e)
+bun run build      # production build
+bun run preview    # preview the production build
 ```
 
 ## Deployment
 
-The site is deployed on [Vercel](https://vercel.com). Pushes to `main` trigger automatic deployments.
+Deployed on [Vercel](https://vercel.com). Pushes to `main` trigger automatic deployments; CI runs the test suite on every push.
 
 ## Project Structure
 
-- `app/` - Application source (components, pages, composables, assets)
-- `i18n/` - Internationalization locale files
-- `public/` - Public static files
-- `nuxt.config.ts` - Nuxt configuration
+- `app/pages/index.vue` — the entire page (layout, sections, scoped styles)
+- `app/components/app/` — feature components (contact reveal)
+- `app/components/ui/` — Inspira UI component catalog
+- `i18n/locales/` — EN/RO translations
+- `server/api/reveal/` — anti-scraping contact endpoints
+- `test/` — unit, Nuxt runtime, and e2e suites
 
 ## License
 

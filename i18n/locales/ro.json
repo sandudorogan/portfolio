@@ -1,6 +1,7 @@
 {
   "skipToContent": "Sari la conținut",
   "nav": {
+    "ariaLabel": "Navigație principală",
     "services": "SERVICII",
     "work": "PROIECTE",
     "experience": "EXPERIENȚĂ",
@@ -38,7 +39,7 @@
     "title": "PROIECTE SELECTATE",
     "items": [
       { "title": "IPRally — Căutare Brevete", "description": "Un motor de căutare de brevete. Clojure + ClojureScript pe Google Cloud." },
-      { "title": "Crossbeam — Partnerbase", "description": "O bază de date de parteneri și produsele lor. NuxtJS + Clojure pe AWS." },
+      { "title": "Crossbeam — Partnerbase", "description": "O bază de date de parteneri și produsele lor. Nuxt + Clojure pe AWS." },
       { "title": "Newsroom AI — Editor de Stories", "description": "Un editor modern de stories. ClojureScript + Django pe AWS." }
     ]
   },
@@ -70,6 +71,6 @@
     "clickToRevealAria": "Apasă pentru a afișa datele de contact",
     "revealing": "Se afișează…",
     "retry": "Apasă pentru a reîncerca",
-    "failed": "Eroare – apasă pentru a reîncerca"
+    "failed": "Eroare — apasă pentru a reîncerca"
   }
 }

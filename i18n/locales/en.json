@@ -1,6 +1,7 @@
 {
   "skipToContent": "Skip to content",
   "nav": {
+    "ariaLabel": "Main navigation",
     "services": "SERVICES",
     "work": "WORK",
     "experience": "EXPERIENCE",
@@ -37,8 +38,8 @@
   "work": {
     "title": "SELECTED WORK",
     "items": [
-      { "title": "IPRally — Patents Search", "description": "A patents search engine. Clojure + ClojureScript on Google Cloud." },
-      { "title": "Crossbeam — Partnerbase", "description": "A database of partners and their products. NuxtJS + Clojure on AWS." },
+      { "title": "IPRally — Patent Search", "description": "A patent search engine. Clojure + ClojureScript on Google Cloud." },
+      { "title": "Crossbeam — Partnerbase", "description": "A database of partners and their products. Nuxt + Clojure on AWS." },
       { "title": "Newsroom AI — Stories Editor", "description": "A modern stories editor. ClojureScript + Django on AWS." }
     ]
   },
@@ -70,6 +71,6 @@
     "clickToRevealAria": "Click to reveal contact info",
     "revealing": "Revealing…",
     "retry": "Click to retry",
-    "failed": "Failed - click to retry"
+    "failed": "Failed — click to retry"
   }
 }
