@@ -37,7 +37,7 @@ describe('AppRevealContactValue', () => {
 
     useI18nMock.mockReturnValue({
       t: (key: string) => ({
-        'reveal.revealing': 'Revealing...',
+        'reveal.revealing': 'Revealing…',
         'reveal.retry': 'Click to retry',
         'reveal.failed': 'Failed - click to retry',
         'reveal.clickToReveal': 'Click to reveal',
@@ -73,11 +73,11 @@ describe('AppRevealContactValue', () => {
 
   it('blocks duplicate requests while a reveal is already loading', async () => {
     let calls = 0
-    let resolveFetch: ((value: { value: string; link: string }) => void) | undefined
+    let resolveFetch: ((_value: { value: string, link: string }) => void) | undefined
     cleanupFns.push(registerEndpoint('/api/reveal/email', async () => {
       calls += 1
       return await new Promise((resolve) => {
-        resolveFetch = resolve as (value: { value: string; link: string }) => void
+        resolveFetch = resolve as (_value: { value: string, link: string }) => void
       })
     }))
 
@@ -106,9 +106,9 @@ describe('AppRevealContactValue', () => {
 
   it('shows retry UI and can recover after retrying', async () => {
     cleanupFns.push(registerEndpoint('/api/reveal/phone', () => ({
-        value: '+40 700 000 000',
-        link: 'tel:+40700000000',
-      })))
+      value: '+40 700 000 000',
+      link: 'tel:+40700000000',
+    })))
 
     const wrapper = await mountSuspended(AppRevealContactValue, {
       props: {

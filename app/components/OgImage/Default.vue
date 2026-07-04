@@ -2,26 +2,32 @@
 withDefaults(defineProps<{
   title?: string
   description?: string
-  emoji?: string
 }>(), {
   title: 'Sandu Dorogan — Full Stack Developer',
-  description: "Focused, driven and creative. Will bring your ideas to life. Tell me the what and I'll show you the how.",
-  emoji: '👨‍💻⚡💻'
+  description: 'Focused, driven and creative. Tell me the what and I\'ll show you the how.',
 })
 </script>
 
 <template>
   <div
-    class="flex flex-col justify-center items-center p-[60px] w-full h-full"
-    style="background: linear-gradient(135deg, #5569DD 0%, #3654FC 100%)"
+    class="flex flex-col justify-between p-[70px] w-full h-full"
+    style="background: #f3efe6; border: 16px solid #111111; font-family: 'Space Mono', monospace;"
   >
-    <div class="mb-6 text-[72px]">
-      {{ emoji }}
+    <div
+      class="self-start px-5 py-2 text-[24px] text-white"
+      style="background: #ff4d00; letter-spacing: 4px;"
+    >
+      SANDU DOROGAN / BUCHAREST, RO
     </div>
-    <div class="font-bold text-[52px] text-white text-center leading-tight">
+
+    <div
+      class="text-[88px] text-[#111111] uppercase"
+      style="font-family: 'Archivo Black', sans-serif; line-height: 0.9;"
+    >
       {{ title }}
     </div>
-    <div class="mt-5 max-w-[1000px] text-[26px] text-white/85 text-center">
+
+    <div class="max-w-[900px] text-[30px] text-[#333029]">
       {{ description }}
     </div>
   </div>

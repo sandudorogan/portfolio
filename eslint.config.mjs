@@ -14,6 +14,7 @@ export default withNuxt([
 
       // Best practices
       'vue/multi-word-component-names': 'off', // Allow single-word component names
+      'vue/no-multiple-template-root': 'off', // Vue 3 supports fragment roots; pages use them
       'vue/no-v-html': 'warn', // Warn about potential XSS vulnerabilities
       'vue/require-default-prop': 'error', // Require default values for props
       'vue/require-prop-types': 'error', // Require type definitions for props

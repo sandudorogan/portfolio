@@ -2,211 +2,90 @@
 @import "@nuxt/ui";
 
 /*
- * Tailwind v4 CSS-first configuration
- * Class-based dark mode variant (matches .dark class on html/body)
+ * Tailwind v4 CSS-first configuration.
+ * Single-page brutalist portfolio — light only, sharp corners, ink on paper.
  */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/*
- * Legacy JS plugins loaded via @plugin directive
- */
 @plugin "tailwindcss-animate";
 @plugin "./inspira-ui.plugin.js";
 
-/* 
- * Font configuration
- * Nuxt UI v4 uses @theme to define --font-sans which @nuxt/fonts auto-loads
- */
 @theme {
-  --font-sans: 'Mukta Mahee', sans-serif;
-
-  /* Custom font sizes for typography scale (migrated from tailwind.config.js) */
-  --text-sm: 0.750rem;
-  --text-base: 1rem;
-  --text-xl: 1.333rem;
-  --text-2xl: 1.777rem;
-  --text-3xl: 2.369rem;
-  --text-4xl: 3.158rem;
-  --text-5xl: 4.210rem;
+  --font-sans: 'Space Mono', monospace;
+  --font-display: 'Archivo Black', sans-serif;
 }
 
-/*
- * Theme color tokens
- * Space-separated OKLCH components (lightness chroma hue) that flip between light/dark.
- * These are the canonical source for the theme and used by --color-foreground/--color-background.
- */
+/* Brutalist palette shared by the page and any Nuxt UI primitives */
 :root {
-  --text: 16.50% 0.084 285.43;
-  --background: 96.42% 0.018 296.64;
-  --primary: 29.85% 0.174 277.33;
-  --secondary: 85.23% 0.133 87.81;
-  --accent: 79.38% 0.230 135.35;
+  --paper: #f3efe6;
+  --ink: #111111;
+  --shock: #ff4d00;
+
+  --ui-primary: var(--shock);
+  --ui-secondary: var(--ink);
+
+  --ui-bg: var(--paper);
+  --ui-bg-muted: #eae5d9;
+  --ui-bg-elevated: #eae5d9;
+  --ui-bg-accented: #e0dacb;
+  --ui-bg-inverted: var(--ink);
+
+  --ui-text: var(--ink);
+  --ui-text-muted: #555049;
+  --ui-text-dimmed: #6d6860;
+  --ui-text-toned: #333029;
+  --ui-text-highlighted: var(--ink);
+  --ui-text-inverted: var(--paper);
+
+  --ui-border: var(--ink);
+  --ui-border-muted: #cfc8b8;
+  --ui-border-accented: var(--ink);
+  --ui-border-inverted: var(--paper);
+
+  --ui-radius: 0rem;
 }
 
-.dark {
-  --text: 87.97% 0.061 295.54;
-  --background: 10.11% 0.043 298.59;
-  --primary: 67.21% 0.173 291.41;
-  --secondary: 59.65% 0.120 82.48;
-  --accent: 85.54% 0.238 134.42;
-}
-
-/*
- * Tailwind color palettes
- * Static palettes generate utilities like bg-primary-500, text-secondary-400, etc.
- * Shades interpolated from light (50) to dark (950) around each base hue.
- */
 @theme static {
-  /* Primary palette (violet/purple, hue ~284 - midpoint of 277.33 and 291.41) */
-  --color-primary-50: oklch(0.97 0.025 284);
-  --color-primary-100: oklch(0.93 0.045 284);
-  --color-primary-200: oklch(0.86 0.080 284);
-  --color-primary-300: oklch(0.75 0.120 284);
-  --color-primary-400: oklch(0.67 0.173 284);
-  --color-primary-500: oklch(0.48 0.174 284);
-  --color-primary-600: oklch(0.40 0.160 284);
-  --color-primary-700: oklch(0.32 0.140 284);
-  --color-primary-800: oklch(0.25 0.110 284);
-  --color-primary-900: oklch(0.18 0.080 284);
-  --color-primary-950: oklch(0.12 0.050 284);
-  --color-primary-foreground: white;
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-shock: var(--shock);
 
-  /* Secondary palette (yellow/gold, hue ~85 - midpoint of 87.81 and 82.48) */
-  --color-secondary-50: oklch(0.97 0.030 85);
-  --color-secondary-100: oklch(0.93 0.055 85);
-  --color-secondary-200: oklch(0.88 0.085 85);
-  --color-secondary-300: oklch(0.85 0.133 85);
-  --color-secondary-400: oklch(0.75 0.130 85);
-  --color-secondary-500: oklch(0.65 0.125 85);
-  --color-secondary-600: oklch(0.60 0.120 85);
-  --color-secondary-700: oklch(0.50 0.100 85);
-  --color-secondary-800: oklch(0.40 0.080 85);
-  --color-secondary-900: oklch(0.30 0.060 85);
-  --color-secondary-950: oklch(0.18 0.040 85);
-  --color-secondary-foreground: oklch(0.15 0.030 85);
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
 
-  /* Accent palette (vivid green, hue ~135) */
-  --color-accent-50: oklch(0.97 0.035 135);
-  --color-accent-100: oklch(0.93 0.070 135);
-  --color-accent-200: oklch(0.88 0.120 135);
-  --color-accent-300: oklch(0.85 0.180 135);
-  --color-accent-400: oklch(0.82 0.230 135);
-  --color-accent-500: oklch(0.79 0.230 135);
-  --color-accent-600: oklch(0.68 0.200 135);
-  --color-accent-700: oklch(0.55 0.170 135);
-  --color-accent-800: oklch(0.42 0.130 135);
-  --color-accent-900: oklch(0.30 0.090 135);
-  --color-accent-950: oklch(0.18 0.055 135);
-  --color-accent-foreground: oklch(0.15 0.030 135);
-
-  /* Text palette (purple tones, hue ~290) */
-  --color-text-50: oklch(0.97 0.015 290);
-  --color-text-100: oklch(0.93 0.025 290);
-  --color-text-200: oklch(0.88 0.040 290);
-  --color-text-300: oklch(0.78 0.055 290);
-  --color-text-400: oklch(0.65 0.065 290);
-  --color-text-500: oklch(0.52 0.070 290);
-  --color-text-600: oklch(0.42 0.070 290);
-  --color-text-700: oklch(0.32 0.065 290);
-  --color-text-800: oklch(0.24 0.060 290);
-  --color-text-900: oklch(0.17 0.050 290);
-  --color-text-950: oklch(0.12 0.040 290);
-
-  /* Background palette (purple-pink tones, hue ~297) */
-  --color-background-50: oklch(0.97 0.012 297);
-  --color-background-100: oklch(0.94 0.018 297);
-  --color-background-200: oklch(0.88 0.025 297);
-  --color-background-300: oklch(0.78 0.032 297);
-  --color-background-400: oklch(0.65 0.038 297);
-  --color-background-500: oklch(0.52 0.042 297);
-  --color-background-600: oklch(0.42 0.043 297);
-  --color-background-700: oklch(0.32 0.043 297);
-  --color-background-800: oklch(0.22 0.043 297);
-  --color-background-900: oklch(0.14 0.043 297);
-  --color-background-950: oklch(0.10 0.043 297);
-
-  /* Dynamic foreground/background - reference theme tokens so they flip with light/dark */
-  --color-foreground: oklch(var(--text));
-  --color-background: oklch(var(--background));
-
-  /* Border radius - ensure rounded utilities work properly */
-  --radius-sm: calc(var(--ui-radius) - 4px);
-  --radius-md: calc(var(--ui-radius) - 2px);
-  --radius-lg: var(--ui-radius);
-  --radius-xl: calc(var(--ui-radius) + 4px);
+  --color-foreground: var(--ink);
+  --color-background: var(--paper);
+  --color-border: var(--ink);
+  --color-ring: var(--shock);
+  --radius: 0rem;
 }
 
-/*
- * Nuxt UI v4 semantic CSS variables
- * Override the default Nuxt UI theme to use our custom palette.
- * Uses color-mix() to derive shades from the theme tokens automatically.
- */
-:root {
-  /* Semantic colors point to our custom palette */
-  --ui-primary: var(--color-primary-500);
-  --ui-secondary: var(--color-secondary-500);
-
-  /* Background colors - derived from theme tokens */
-  --ui-bg: oklch(var(--background));
-  --ui-bg-muted: color-mix(in oklch, oklch(var(--background)) 94%, oklch(var(--text)));
-  --ui-bg-elevated: color-mix(in oklch, oklch(var(--background)) 92%, oklch(var(--text)));
-  --ui-bg-accented: color-mix(in oklch, oklch(var(--background)) 88%, oklch(var(--text)));
-  --ui-bg-inverted: oklch(var(--text));
-
-  /* Text colors - derived from theme tokens */
-  --ui-text: oklch(var(--text));
-  --ui-text-muted: color-mix(in oklch, oklch(var(--text)) 65%, oklch(var(--background)));
-  --ui-text-dimmed: color-mix(in oklch, oklch(var(--text)) 45%, oklch(var(--background)));
-  --ui-text-toned: color-mix(in oklch, oklch(var(--text)) 80%, oklch(var(--background)));
-  --ui-text-highlighted: oklch(var(--text));
-  --ui-text-inverted: oklch(var(--background));
-
-  /* Border colors - derived from theme tokens */
-  --ui-border: color-mix(in oklch, oklch(var(--background)) 82%, oklch(var(--text)));
-  --ui-border-muted: color-mix(in oklch, oklch(var(--background)) 88%, oklch(var(--text)));
-  --ui-border-accented: color-mix(in oklch, oklch(var(--background)) 75%, oklch(var(--text)));
-  --ui-border-inverted: oklch(var(--text));
-
-  /* Radius */
-  --ui-radius: 0.5rem;
+html {
+  scroll-behavior: smooth;
 }
 
-.dark {
-  /* Use lighter shades in dark mode for better visibility on dark backgrounds */
-  --ui-primary: var(--color-primary-400);
-  --ui-secondary: var(--color-secondary-400);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
-/*
- * Compatibility aliases for custom UI components
- * Maps old-style CSS vars to new Nuxt UI system.
- */
-@theme static {
-  --color-card: var(--ui-bg-elevated);
-  --color-card-foreground: var(--ui-text);
-
-  --color-popover: var(--ui-bg-elevated);
-  --color-popover-foreground: var(--ui-text);
-
-  --color-muted: var(--ui-bg-muted);
-  --color-muted-foreground: var(--ui-text-muted);
-
-  --color-border: var(--ui-border);
-  --color-input: var(--ui-border);
-
-  --color-ring: var(--ui-primary);
-  --radius: var(--ui-radius);
-}
-
-/*
- * Base typography styles
- * Applies font-sans (Mukta Mahee) to body and ensures proper background/text colors.
- */
 body {
-  @apply font-sans bg-default text-default antialiased;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-sans font-bold;
+  font-family: var(--font-display);
+  font-weight: 400;
   text-wrap: balance;
+}
+
+::selection {
+  background: var(--shock);
+  color: var(--paper);
 }

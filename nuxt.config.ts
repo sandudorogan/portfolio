@@ -17,9 +17,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/icon',
     '@nuxtjs/sitemap',
-    'nuxt-schema-org',
     'nuxt-og-image',
-    'motion-v/nuxt',
     '@nuxtjs/plausible',
     '@nuxt/ui', // Automatically registers @nuxt/fonts
   ],
@@ -27,26 +25,29 @@ export default defineNuxtConfig({
     autoOutboundTracking: true,
     proxy: true,
   },
+  // Single-page brutalist portfolio: force the light palette, no theme toggle
+  colorMode: {
+    preference: 'light',
+    fallback: 'light',
+  },
   site: {
     url: defaultSiteUrl,
     name: 'Sandu Dorogan',
   },
   runtimeConfig: {
-    // Private keys (server-only) - auto-populated from NUXT_ env vars
+    // Private keys (server-only) - auto-populated from NUXT_ env vars.
+    // Consumed by the /api/reveal/* endpoints for anti-scraping contact reveal.
     contactEmail: '',
     contactPhone: '',
-    resendApiKey: '',
     public: {
       siteUrl: defaultSiteUrl,
     },
   },
   fonts: {
     families: [
-      {
-        name: 'Mukta Mahee',
-        provider: 'google',
-        weights: [400, 700],
-      },
+      // Brutalist pairing: Archivo Black display, Space Mono body
+      { name: 'Archivo Black', provider: 'google', weights: [400] },
+      { name: 'Space Mono', provider: 'google', weights: [400, 700] },
     ],
   },
   i18n: {
@@ -58,6 +59,8 @@ export default defineNuxtConfig({
     strategy: 'prefix_except_default',
     lazy: true,
     langDir: '../i18n/locales',
+    // baseUrl enables absolute hreflang/canonical links for multilingual SEO
+    baseUrl: defaultSiteUrl,
     bundle: { optimizeTranslationDirective: false },
     detectBrowserLanguage: {
       useCookie: true,

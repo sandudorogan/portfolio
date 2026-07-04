@@ -7,7 +7,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  placeholder: '••••••••••••'
+  placeholder: '••••••••••••',
 })
 
 const { t } = useI18n()
@@ -15,7 +15,7 @@ const { t } = useI18n()
 const revealed = ref(false)
 const loading = ref(false)
 const error = ref(false)
-const data = ref<{ value: string; link: string } | null>(null)
+const data = ref<{ value: string, link: string } | null>(null)
 
 async function reveal() {
   if (revealed.value || loading.value) return
@@ -24,11 +24,13 @@ async function reveal() {
   error.value = false
 
   try {
-    data.value = await $fetch<{ value: string; link: string }>(props.endpoint)
+    data.value = await $fetch<{ value: string, link: string }>(props.endpoint)
     revealed.value = true
-  } catch {
+  }
+  catch {
     error.value = true
-  } finally {
+  }
+  finally {
     loading.value = false
   }
 }
@@ -42,32 +44,53 @@ function handleKeydown(e: KeyboardEvent) {
 </script>
 
 <template>
-  <span class="inline-block">
+  <span class="reveal-wrap">
     <Transition name="reveal" mode="out-in">
       <!-- Revealed state: normal link -->
-      <a v-if="revealed && data" key="revealed" :href="data.link"
-        class="rounded focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 text-highlighted hover:text-primary-400 transition-colors">
+      <a
+        v-if="revealed && data"
+        key="revealed"
+        :href="data.link"
+        class="reveal-link"
+      >
         {{ data.value }}
       </a>
 
       <!-- Loading state -->
-      <span v-else-if="loading" key="loading" class="inline-flex items-center gap-1.5 text-dimmed"
-        aria-live="polite">
+      <span
+        v-else-if="loading"
+        key="loading"
+        class="reveal-loading"
+        aria-live="polite"
+      >
         <UIcon name="i-heroicons-arrow-path" class="w-3.5 h-3.5 animate-spin" aria-hidden="true" />
-        <span class="text-sm">{{ t('reveal.revealing') }}</span>
+        {{ t('reveal.revealing') }}
       </span>
 
       <!-- Error state -->
-      <button v-else-if="error" key="error" type="button"
-        class="rounded focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-red-500 text-red-400 hover:text-red-300 transition-colors cursor-pointer"
-        :title="t('reveal.retry')" @click="reveal" @keydown="handleKeydown">
+      <button
+        v-else-if="error"
+        key="error"
+        type="button"
+        class="reveal-error"
+        :title="t('reveal.retry')"
+        @click="reveal"
+        @keydown="handleKeydown"
+      >
         {{ t('reveal.failed') }}
       </button>
 
       <!-- Blurred placeholder (initial state) -->
-      <button v-else key="placeholder" type="button" :title="t('reveal.clickToReveal')"
-        class="blur-xs hover:blur-[3px] rounded focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 text-highlighted transition-all duration-200 cursor-pointer select-none"
-        :aria-label="t('reveal.clickToRevealAria')" @click="reveal" @keydown="handleKeydown">
+      <button
+        v-else
+        key="placeholder"
+        type="button"
+        :title="t('reveal.clickToReveal')"
+        class="reveal-placeholder"
+        :aria-label="t('reveal.clickToRevealAria')"
+        @click="reveal"
+        @keydown="handleKeydown"
+      >
         <span aria-hidden="true">{{ placeholder }}</span>
       </button>
     </Transition>
@@ -75,6 +98,62 @@ function handleKeydown(e: KeyboardEvent) {
 </template>
 
 <style scoped>
+.reveal-wrap {
+  display: inline-block;
+}
+
+.reveal-link {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--shock);
+  transition: color 0.1s;
+}
+
+.reveal-link:hover {
+  color: var(--shock);
+}
+
+.reveal-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #6d6860;
+  font-size: 0.85rem;
+}
+
+.reveal-error {
+  color: var(--shock);
+  font-weight: 700;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.reveal-placeholder {
+  filter: blur(4px);
+  color: var(--ink);
+  cursor: pointer;
+  user-select: none;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: filter 0.2s;
+}
+
+.reveal-placeholder:hover {
+  filter: blur(3px);
+}
+
+.reveal-link:focus-visible,
+.reveal-error:focus-visible,
+.reveal-placeholder:focus-visible {
+  outline: 3px solid var(--shock);
+  outline-offset: 3px;
+}
+
 .reveal-enter-active,
 .reveal-leave-active {
   transition: transform 0.2s ease, filter 0.2s ease;

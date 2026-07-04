@@ -1,414 +1,734 @@
 <script setup lang="ts">
-import { usePreferredReducedMotion } from '@vueuse/core'
+definePageMeta({ layout: false })
 
 const { t, tm, rt, locale } = useI18n()
-const localePath = useLocalePath()
+const switchLocalePath = useSwitchLocalePath()
 
 usePageSeo({
-  title: () => t('home.seo.title'),
-  description: () => t('home.seo.description')
+  title: () => t('seo.title'),
+  description: () => t('seo.description'),
 })
 
-// OG image must be defined at page level for static generation
+// OG image (nuxt-og-image) — defined at page level for static generation
 defineOgImage({
   component: 'Default',
   props: {
-    title: t('home.og.title'),
-    description: t('home.og.description')
-  }
+    title: t('seo.ogTitle'),
+    description: t('seo.ogDescription'),
+  },
 })
 
-interface Project {
-  title: string;
-  description: string;
-  tags: string[];
-  image: string;
-  url: string;
-}
+const otherLocale = computed(() => (locale.value === 'en' ? 'ro' : 'en'))
 
-interface Testimonial {
-  name: string
-  designation: string
-  quote: string
-  image: string
-}
-
+// Non-translated project metadata (URLs + tech tags are proper nouns)
 const projectMeta = [
-  { url: 'https://iprally.com', image: '/images/iprally.webp', tags: ['Clojure', 'ClojureScript', 'Google Cloud'] },
-  { url: 'https://partnerbase.com', image: '/images/partnerbase.webp', tags: ['NuxtJS', 'Clojure', 'AWS'] },
-  { url: 'https://nws.ai', image: '/images/nws-studio.webp', tags: ['ClojureScripe', 'Django Python', 'AWS'] },
-];
-
-const projects = computed<Project[]>(() => {
-  const items = tm('home.projects.items') as Array<{ title: string; description: string }>;
-  return items.map((item, i) => ({
-    title: rt(item.title),
-    description: rt(item.description),
-    ...projectMeta[i],
-  }));
-});
-
-const testimonials: Testimonial[] = [
-  {
-    name: 'Jane Smith',
-    designation: 'CEO at TechSolutions Inc.',
-    quote: 'Working with this developer was a game-changer for our company. They transformed our initial idea into a polished product that exceeded our expectations.',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=500&fit=crop',
-  },
-  {
-    name: 'Mark Johnson',
-    designation: 'CTO at InnovateCorp',
-    quote: 'Exceptional communication skills combined with technical expertise. Our project was delivered on time and with outstanding quality.',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&h=500&fit=crop',
-  },
-  {
-    name: 'Sarah Wilson',
-    designation: 'Product Manager at Nexus Systems',
-    quote: 'The ability to take our vague concepts and turn them into functional, beautiful web applications is truly remarkable. Highly recommended!',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&h=500&fit=crop',
-  },
+  { url: 'https://iprally.com', tags: ['CLOJURE', 'CLJS', 'GCP'] },
+  { url: 'https://partnerbase.com', tags: ['NUXT', 'CLOJURE', 'AWS'] },
+  { url: 'https://nws.ai', tags: ['CLJS', 'DJANGO', 'AWS'] },
 ]
 
-const techStack = [
-  { name: 'JavaScript', icon: 'i-logos-javascript' },
-  { name: 'TypeScript', icon: 'i-logos-typescript-icon' },
-  { name: 'NuxtJS', icon: 'i-logos-nuxt-icon' },
-  { name: 'VueJS', icon: 'i-logos-vue' },
-  { name: 'React', icon: 'i-logos-react' },
-  { name: 'Python', icon: 'i-logos-python' },
-  { name: 'Clojure', icon: 'i-logos-clojure' },
-  { name: 'ClojureScript', icon: 'i-logos-clojure' },
-  { name: 'Docker', icon: 'i-logos-docker-icon' },
-  { name: 'AWS', icon: 'i-logos-aws' },
-  { name: 'LLMs', icon: 'i-logos-openai-icon' },
-];
-
-const serviceIcons = [
-  'i-heroicons-code-bracket',
-  'i-heroicons-paint-brush',
-  'i-heroicons-server',
-  'i-heroicons-light-bulb',
-];
-
 const services = computed(() => {
-  const items = tm('home.services.items') as Array<{ title: string; description: string }>;
+  const items = tm('services.items') as Array<{ title: string, description: string }>
+  return items.map((item, i) => ({
+    num: String(i + 1).padStart(2, '0'),
+    title: rt(item.title),
+    description: rt(item.description),
+  }))
+})
+
+const projects = computed(() => {
+  const items = tm('work.items') as Array<{ title: string, description: string }>
   return items.map((item, i) => ({
     title: rt(item.title),
     description: rt(item.description),
-    icon: serviceIcons[i],
-  }));
-});
+    url: projectMeta[i]?.url ?? '#',
+    tags: projectMeta[i]?.tags ?? [],
+  }))
+})
 
-const reducedMotion = usePreferredReducedMotion();
+const experience = computed(() => {
+  const items = tm('experience.items') as Array<{ date: string, role: string, company: string }>
+  return items.map(item => ({
+    date: rt(item.date),
+    role: rt(item.role),
+    company: rt(item.company),
+  }))
+})
 
-// UA-based mobile detection (client-only)
-const isMobileDevice = ref(false);
-if (import.meta.client) {
-  const ua = navigator.userAgent;
-  // Detect mobile phones (not tablets like iPad)
-  isMobileDevice.value = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
-}
+// Tech stack marquee — proper nouns, not translated
+const stack = ['JAVASCRIPT', 'TYPESCRIPT', 'NUXT', 'VUE', 'REACT', 'PYTHON', 'CLOJURE', 'CLOJURESCRIPT', 'DOCKER', 'AWS', 'LLMS']
 
-const scrollToElement = (elementId: string) => {
-  const element = document.getElementById(elementId);
-  if (element) {
-    // Respect reduced motion preference
-    const behavior = reducedMotion.value === 'reduce' ? 'instant' : 'smooth';
-    element.scrollIntoView({ behavior });
-    // Move focus to the section for keyboard/screen reader users
-    element.setAttribute('tabindex', '-1');
-    element.focus({ preventScroll: true });
-  }
-};
+const socialLinks = [
+  { name: 'GITHUB', url: 'https://github.com/sandudorogan' },
+  { name: 'GITLAB', url: 'https://gitlab.com/sdorogan-flexiana' },
+  { name: 'LINKEDIN', url: 'https://www.linkedin.com/in/sandu-dorogan' },
+]
+
+const navLinks = computed(() => [
+  { label: t('nav.services'), href: '#services' },
+  { label: t('nav.work'), href: '#work' },
+  { label: t('nav.experience'), href: '#experience' },
+  { label: t('nav.contact'), href: '#contact' },
+])
+
+// Person + WebSite structured data for Google (JSON-LD).
+// Email intentionally omitted to prevent scraping; sameAs links the public profiles.
+const runtimeConfig = useRuntimeConfig()
+const siteUrl = ((runtimeConfig.public.siteUrl as string) || 'https://dorogans.com').replace(/\/$/, '')
+
+useHead(() => ({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Person',
+            '@id': `${siteUrl}/#person`,
+            'name': 'Sandu Dorogan',
+            'jobTitle': t('seo.jobTitle'),
+            'url': siteUrl,
+            'address': {
+              '@type': 'PostalAddress',
+              'addressLocality': 'Bucharest',
+              'addressCountry': 'RO',
+            },
+            'sameAs': socialLinks.map(link => link.url),
+          },
+          {
+            '@type': 'WebSite',
+            '@id': `${siteUrl}/#website`,
+            'url': siteUrl,
+            'name': 'Sandu Dorogan',
+            'publisher': { '@id': `${siteUrl}/#person` },
+          },
+        ],
+      }),
+    },
+  ],
+}))
 </script>
 
 <template>
-  <!-- Hero Section with Aurora Background -->
-  <section
-    class="relative flex flex-col justify-center items-center pt-24 md:pt-48 w-full min-h-screen overflow-hidden">
-    <!-- Aurora Background -->
-    <UiAuroraBg class="absolute inset-0 w-full h-full" :show-radial-gradient="true" />
+  <div class="v1">
+    <a href="#main" class="v1-skip">{{ t('skipToContent') }}</a>
 
-    <!-- Meteor Effect -->
-    <ClientOnly>
-      <UiMeteorEffect :count="15" color="var(--color-primary-500)" class="z-1" />
-    </ClientOnly>
+    <nav class="v1-nav" aria-label="Main navigation">
+      <a href="#top" class="v1-nav-brand">SD.</a>
+      <div class="v1-nav-right">
+        <div class="v1-nav-links">
+          <a
+            v-for="link in navLinks"
+            :key="link.href"
+            :href="link.href"
+            class="v1-nav-link"
+          >{{ link.label }}</a>
+        </div>
+        <NuxtLink :to="switchLocalePath(otherLocale)" class="v1-nav-lang" :aria-label="t('lang.switchAria')">
+          {{ t('lang.switchTo') }}
+        </NuxtLink>
+      </div>
+    </nav>
 
-    <!-- Overlay for better text readability -->
-    <div class="z-2 absolute inset-0 bg-white/40 dark:bg-black/40" />
-
-    <!-- Hero Content -->
-    <div class="z-3 flex flex-col items-center gap-4 px-4 max-w-4xl">
-      <UiBlurReveal :delay="0.3" class="flex flex-col justify-center items-center gap-16 md:gap-6">
-        <!-- Main Heading -->
-        <h1
-          class="flex flex-col justify-center items-center bg-clip-text bg-linear-to-b from-text-950 via-text-800 to-text-500 dark:from-white dark:via-neutral-200 dark:to-neutral-400 font-bold text-transparent text-5xl md:text-7xl text-center leading-tight">
-          {{ $t('home.hero.building') }}
-          <UiTextHighlight class="bg-linear-to-r from-primary-500 py-2 rounded-xl to-accent-500">
-            <UiFlipWords :key="locale" :words="(tm('home.hero.flipWords') as string[]).map(rt)" :duration="3000"
-              class="text-white" />
-          </UiTextHighlight>
-          {{ $t('home.hero.webExperiences') }}
+    <main id="main">
+      <header id="top" class="v1-hero">
+        <p class="v1-hero-kicker">{{ t('hero.kicker') }}</p>
+        <h1 class="v1-hero-title">
+          <span class="v1-line">{{ t('hero.line1') }}</span>
+          <span class="v1-line v1-line-offset">{{ t('hero.line2') }}</span>
+          <span class="v1-line v1-line-outline">{{ t('hero.line3') }}</span>
         </h1>
-
-        <!-- Subtitle -->
-        <p class="max-w-2xl text-muted text-xl md:text-2xl text-center">
-          {{ $t('home.hero.subtitle') }}
-        </p>
-
-        <!-- CTA Buttons -->
-        <div class="flex flex-row flex-wrap justify-center items-center gap-4 mt-4">
-          <NuxtLink :to="localePath('/about')"
-            class="group bg-linear-to-r from-primary-500 hover:opacity-90 px-5 py-2 rounded-full focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ui-bg)] font-medium text-white text-sm hover:scale-105 transition-[opacity,transform] duration-300 to-accent-500">
-            <span class="flex items-center gap-1.5">
-              <UIcon name="i-heroicons-user" class="w-3.5 h-3.5" aria-hidden="true" />
-              {{ $t('home.hero.aboutMe') }}
-            </span>
-          </NuxtLink>
-
-          <UiGlowBorder :border-radius="9999" :color="['var(--color-primary-500)', 'var(--color-accent-500)']"
-            :border-width="2" :duration="15"
-            class="!bg-transparent !p-0 !min-w-fit !min-h-fit hover:scale-105 transition-transform duration-300">
-            <NuxtLink :to="localePath('/contact')"
-              class="flex items-center gap-2 bg-default/80 px-8 py-3 rounded-full focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 font-semibold text-highlighted">
-              {{ $t('home.hero.getInTouch') }}
-              <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" aria-hidden="true" />
-            </NuxtLink>
-          </UiGlowBorder>
+        <div class="v1-hero-bottom">
+          <p class="v1-hero-sub">{{ t('hero.sub') }}</p>
+          <a href="#contact" class="v1-btn">{{ t('hero.cta') }}</a>
         </div>
+      </header>
 
-        <!-- Device Mockup with Border Beam -->
-        <ClientOnly>
-          <div class="relative mt-16 md:mb-32 w-full">
-            <UiCard3D :rotation-factor="8" :show-glare="false">
-              <!-- iPhone mockup for mobile devices -->
-              <div v-if="isMobileDevice" class="relative flex justify-center">
-                <UiIPhone15ProMockup src="/images/pb-mobile.webp" :width="280" :height="570" />
-              </div>
-              <!-- Safari mockup for desktop -->
-              <div v-else class="relative">
-                <UiSafariMockup url="app.iprally.com" src="/images/iprally.webp" class="block w-full h-auto" />
-              </div>
-            </UiCard3D>
-          </div>
-        </ClientOnly>
-      </UiBlurReveal>
-    </div>
-
-    <!-- Scroll Indicator -->
-    <div class="hidden md:block bottom-8 z-3 absolute animate-bounce">
-      <UiShimmerButton class="!px-4 !py-2 !rounded-full" :aria-label="$t('home.hero.scrollDown')"
-        @click="() => scrollToElement('services')">
-        <UIcon name="i-heroicons-chevron-down" class="w-5 h-5" aria-hidden="true" />
-      </UiShimmerButton>
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section id="services" class="relative py-24 overflow-hidden">
-    <div class="absolute inset-0 bg-linear-to-b from-background via-background/95 to-background" />
-
-    <div class="z-10 relative mx-auto px-4 container">
-      <UiBlurReveal :delay="0.3">
-        <div class="mb-16 text-center">
-          <h2 class="mb-4 font-bold text-4xl md:text-5xl">
-            <span class="bg-clip-text bg-linear-to-r from-primary-400 text-transparent to-accent-400">
-              {{ $t('home.services.title') }}
-            </span>
-          </h2>
-          <p class="mx-auto max-w-2xl text-dimmed text-lg">
-            {{ $t('home.services.subtitle') }}
-          </p>
-        </div>
-      </UiBlurReveal>
-
-      <div class="flex flex-col justify-center items-center gap-6 md:grid md:grid-cols-2 lg:grid-cols-4">
-        <UiBlurReveal v-for="(service, index) in services" :key="index" :delay="0.3 + index * 0.1"
-          class="w-full md:max-w-none max-w-md h-full">
-          <UiCardSpotlight class="h-full min-h-[220px]"
-            spotlight-color="color-mix(in oklch, var(--color-accent-500) 15%, transparent)" :spotlight-size="350">
-            <div class="flex flex-col items-center p-4 h-full text-center">
-              <div class="bg-linear-to-br from-primary-500/20 mb-4 p-4 rounded-xl to-accent-500/20" aria-hidden="true">
-                <UIcon :name="service.icon" class="w-8 h-8 text-primary-400" />
-              </div>
-              <h3 class="mb-3 font-semibold text-highlighted text-xl">{{ service.title }}</h3>
-              <p class="text-dimmed grow">{{ service.description }}</p>
-            </div>
-          </UiCardSpotlight>
-        </UiBlurReveal>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tech Stack Section with Marquee -->
-  <section class="relative py-24 overflow-hidden">
-    <div class="absolute inset-0 bg-linear-to-b from-background/95 via-background-200/50 dark:via-neutral-900/50 to-background" />
-
-    <div class="z-10 relative mx-auto px-4 container">
-      <UiBlurReveal :delay="0.3">
-        <div class="mb-16 text-center">
-          <h2 class="mb-4 font-bold text-4xl md:text-5xl">
-            <span class="bg-clip-text bg-linear-to-r from-primary-400 text-transparent to-accent-400">
-              {{ $t('home.techStack.title') }}
-            </span>
-          </h2>
-          <p class="mx-auto max-w-2xl text-dimmed text-lg">
-            {{ $t('home.techStack.subtitle') }}
-          </p>
-        </div>
-      </UiBlurReveal>
-
-      <!-- Marquee for tech icons -->
-      <UiMarquee :duration="25" pause-on-hover class="py-8">
-        <div v-for="(tech, index) in [...techStack, ...techStack]" :key="index" class="mx-6">
-          <UiGlareCard class="group" :glare-opacity="0.3"
-            glare-color="color-mix(in oklch, var(--color-primary-500) 40%, transparent)">
-            <div
-              class="flex flex-col items-center bg-elevated/80 p-6 border border-muted hover:border-primary-500/50 rounded-xl transition-colors duration-300">
-              <div class="flex justify-center items-center mb-3 w-24 h-24" aria-hidden="true">
-                <UIcon :name="tech.icon" class="group-hover:scale-110 transition-transform duration-300" :size="24" />
-              </div>
-              <span class="font-medium text-muted text-sm">{{ tech.name }}</span>
-            </div>
-          </UiGlareCard>
-        </div>
-      </UiMarquee>
-
-      <UiMarquee :duration="30" reverse pause-on-hover class="py-8">
-        <div v-for="(tech, index) in [...techStack, ...techStack].reverse()" :key="index" class="mx-6">
-          <UiGlareCard class="group" :glare-opacity="0.3"
-            glare-color="color-mix(in oklch, var(--color-accent-500) 40%, transparent)">
-            <div
-              class="flex flex-col items-center bg-elevated/80 p-6 border border-muted hover:border-accent-500/50 rounded-xl transition-colors duration-300">
-              <div class="flex justify-center items-center mb-3 w-24 h-24" aria-hidden="true">
-                <UIcon :name="tech.icon" class="group-hover:scale-110 transition-transform duration-300" :size="24" />
-              </div>
-              <span class="font-medium text-muted text-sm">{{ tech.name }}</span>
-            </div>
-          </UiGlareCard>
-        </div>
-      </UiMarquee>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section class="relative py-24 overflow-hidden">
-    <div class="absolute inset-0 bg-linear-to-b from-background via-background/95 to-background" />
-
-    <div class="z-10 relative mx-auto px-4 container">
-      <UiBlurReveal :delay="0.3">
-        <div class="mb-16 text-center">
-          <h2 class="mb-4 font-bold text-4xl md:text-5xl">
-            <span class="bg-clip-text bg-linear-to-r from-primary-400 text-transparent to-accent-400">
-              {{ $t('home.projects.title') }}
-            </span>
-          </h2>
-          <p class="mx-auto max-w-2xl text-dimmed text-lg">
-            {{ $t('home.projects.subtitle') }}
-          </p>
-        </div>
-      </UiBlurReveal>
-
-      <div class="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <UiBlurReveal v-for="(project, index) in projects" :key="index" :delay="0.3 + index * 0.15" class="h-full">
-          <NuxtLink :to="project.url" target="_blank" external>
-            <UiCard3D :rotation-factor="10" :show-glare="false" class="group">
-              <div
-                class="flex flex-col bg-elevated/80 backdrop-blur-xs border border-muted rounded-xl h-full overflow-hidden">
-                <!-- Project Image Placeholder -->
-                <div class="relative h-52 overflow-hidden shrink-0">
-                  <div
-                    class="absolute inset-0 bg-linear-to-br from-primary-500/20 to-secondary-500/20 via-accent-500/20" />
-                  <div class="absolute inset-0 flex justify-center items-center">
-                    <NuxtImg :src="project.image" :alt="project.title" width="400" height="208" loading="lazy"
-                      format="webp" quality="80"
-                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <!-- Glow effect on hover -->
-                  <div class="absolute inset-0 bg-linear-to-t from-white dark:from-neutral-900 via-transparent to-transparent" />
-                </div>
-
-                <div class="flex flex-col p-6 grow">
-                  <h3 class="mb-3 font-semibold text-highlighted group-hover:text-primary-400 text-xl transition-colors">
-                    {{ project.title }}
-                  </h3>
-                  <p class="mb-4 text-dimmed grow">{{ project.description }}</p>
-                  <div class="flex flex-wrap gap-2">
-                    <span v-for="tag in project.tags" :key="tag"
-                      class="bg-linear-to-r from-secondary-500/10 to-secondary-400/10 px-3 py-1 border border-secondary-500/20 rounded-full font-medium text-secondary-400 text-xs">
-                      {{ tag }}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </UiCard3D>
-          </NuxtLink>
-        </UiBlurReveal>
-      </div>
-
-      <div class="flex justify-center mt-12">
-        <UiGradientButton as="NuxtLink" :to="localePath('/about') + '#work-experience'" variant="outline"
-          from-color="var(--color-primary-500)" via-color="var(--color-accent-500)" to-color="var(--color-primary-500)">
-          <span class="flex items-center gap-2">
-            {{ $t('home.projects.viewAll') }}
-            <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" aria-hidden="true" />
+      <div class="v1-marquee" aria-hidden="true">
+        <div class="v1-marquee-track">
+          <span v-for="i in 2" :key="i" class="v1-marquee-content">
+            <span v-for="tech in stack" :key="tech" class="v1-marquee-item">{{ tech }} ✦</span>
           </span>
-        </UiGradientButton>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials Section -->
-  <section class="hidden relative py-24 overflow-hidden">
-    <div class="absolute inset-0 bg-linear-to-b from-background/95 via-background-200/50 dark:via-neutral-900/50 to-background" />
-
-    <div class="z-10 relative mx-auto px-4 container">
-      <UiBlurReveal :delay="0.3">
-        <div class="mb-16 text-center">
-          <h2 class="mb-4 font-bold text-4xl md:text-5xl">
-            <span class="bg-clip-text bg-linear-to-r from-primary-400 text-transparent to-accent-400">
-              {{ $t('home.testimonials.title') }}
-            </span>
-          </h2>
-          <p class="mx-auto max-w-2xl text-dimmed text-lg">
-            {{ $t('home.testimonials.subtitle') }}
-          </p>
         </div>
-      </UiBlurReveal>
+      </div>
 
-      <ClientOnly>
-        <UiAnimatedTestimonials :testimonials="testimonials" :autoplay="true" :duration="5000"
-          class="mx-auto max-w-5xl" />
-      </ClientOnly>
-    </div>
-  </section>
+      <section id="services" class="v1-section">
+        <h2 class="v1-section-title">{{ t('services.title') }}</h2>
+        <div class="v1-services">
+          <article v-for="s in services" :key="s.num" class="v1-service">
+            <span class="v1-service-num">{{ s.num }}</span>
+            <h3>{{ s.title }}</h3>
+            <p>{{ s.description }}</p>
+          </article>
+        </div>
+      </section>
 
-  <!-- Contact CTA Section -->
-  <section class="relative py-24 overflow-hidden">
-    <div class="absolute inset-0 bg-linear-to-t from-background via-background/95 to-background" />
+      <section id="work" class="v1-section v1-section-inverted">
+        <h2 class="v1-section-title">{{ t('work.title') }}</h2>
+        <div class="v1-projects">
+          <a
+            v-for="p in projects"
+            :key="p.title"
+            :href="p.url"
+            target="_blank"
+            rel="noopener"
+            class="v1-project"
+          >
+            <div class="v1-project-head">
+              <h3>{{ p.title }}</h3>
+              <span class="v1-project-arrow">↗</span>
+            </div>
+            <p>{{ p.description }}</p>
+            <div class="v1-project-tags">
+              <span v-for="tag in p.tags" :key="tag">{{ tag }}</span>
+            </div>
+          </a>
+        </div>
+      </section>
 
-    <div class="z-10 relative mx-auto px-4 container">
-      <UiBlurReveal :delay="0.3">
-        <AppContactCta :title="$t('home.cta.title')"
-          :description="$t('home.cta.description')"
-          :button-label="$t('home.cta.button')"
-          :to="localePath('/contact')" />
-      </UiBlurReveal>
-    </div>
-  </section>
+      <section id="experience" class="v1-section">
+        <h2 class="v1-section-title">{{ t('experience.title') }}</h2>
+        <ul class="v1-exp">
+          <li v-for="e in experience" :key="e.company" class="v1-exp-row">
+            <span class="v1-exp-date">{{ e.date }}</span>
+            <span class="v1-exp-role">{{ e.role }}</span>
+            <span class="v1-exp-company">@ {{ e.company }}</span>
+          </li>
+        </ul>
+      </section>
+
+      <section id="contact" class="v1-section">
+        <h2 class="v1-section-title">{{ t('contact.title') }}</h2>
+        <div class="v1-contact">
+          <div class="v1-contact-info">
+            <div class="v1-contact-row">
+              <span class="v1-contact-label">{{ t('contact.email') }}</span>
+              <AppRevealContactValue endpoint="/api/reveal/email" placeholder="email@example.com" />
+            </div>
+            <div class="v1-contact-row">
+              <span class="v1-contact-label">{{ t('contact.phone') }}</span>
+              <AppRevealContactValue endpoint="/api/reveal/phone" placeholder="+00 000 000 000" />
+            </div>
+            <div class="v1-contact-row">
+              <span class="v1-contact-label">{{ t('contact.location') }}</span>
+              <span class="v1-contact-value">{{ t('contact.locationValue') }}</span>
+            </div>
+          </div>
+          <div class="v1-socials">
+            <a
+              v-for="link in socialLinks"
+              :key="link.name"
+              :href="link.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="v1-social"
+            >{{ link.name }} ↗</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="v1-footer">
+      <h2 class="v1-footer-title">{{ t('footer.line1') }}<br>{{ t('footer.line2') }}</h2>
+      <div class="v1-footer-links">
+        <a href="#contact" class="v1-btn v1-btn-invert">{{ t('footer.cta') }}</a>
+        <p>{{ t('footer.rights', { year: new Date().getFullYear() }) }}</p>
+      </div>
+    </footer>
+  </div>
 </template>
 
 <style scoped>
-/* Custom animations */
-@keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
+.v1 {
+  --paper: #f3efe6;
+  --ink: #111111;
+  --shock: #ff4d00;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Space Mono', monospace;
+  min-height: 100vh;
 }
+
+.v1 ::selection {
+  background: var(--shock);
+  color: var(--paper);
+}
+
+/* ---- Skip link ---- */
+.v1-skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.75rem 1.25rem;
+  font-family: 'Archivo Black', sans-serif;
+  text-decoration: none;
+}
+
+.v1-skip:focus {
+  left: 0;
+}
+
+/* ---- Nav ---- */
+.v1-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 4px solid var(--ink);
+  position: sticky;
+  top: 0;
+  background: var(--paper);
+  z-index: 50;
+}
+
+.v1-nav-brand {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.v1-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.v1-nav-links {
+  display: flex;
+  gap: 0;
+}
+
+.v1-nav-link {
+  padding: 0.5rem 0.9rem;
+  border: 2px solid var(--ink);
+  margin-left: -2px;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: background 0.1s, color 0.1s;
+}
+
+.v1-nav-link:hover { background: var(--shock); color: var(--paper); }
+
+.v1-nav-lang {
+  padding: 0.5rem 0.8rem;
+  border: 2px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  text-decoration: none;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  transition: background 0.1s, color 0.1s;
+}
+
+.v1-nav-lang:hover { background: var(--shock); color: var(--paper); }
+
+.v1-nav-link:focus-visible,
+.v1-nav-lang:focus-visible,
+.v1-nav-brand:focus-visible {
+  outline: 3px solid var(--shock);
+  outline-offset: 2px;
+}
+
+@media (max-width: 720px) {
+  .v1-nav-link { padding: 0.4rem 0.55rem; font-size: 0.6rem; }
+}
+
+/* Single-page site: sections are reachable by scroll, so drop the
+   in-page anchor links on small screens and keep the bar to brand + lang. */
+@media (max-width: 640px) {
+  .v1-nav-links { display: none; }
+}
+
+/* ---- Hero ---- */
+.v1-hero {
+  padding: 4rem 1.5rem 3rem;
+  border-bottom: 4px solid var(--ink);
+}
+
+@media (max-width: 480px) {
+  .v1-hero { padding: 3rem 1rem 2.5rem; }
+}
+
+.v1-hero-kicker {
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  margin-bottom: 2rem;
+  border: 2px solid var(--ink);
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  background: var(--shock);
+  color: var(--paper);
+}
+
+.v1-hero-title {
+  font-family: 'Archivo Black', sans-serif;
+  /* 10vw keeps the longest single word (RO "DEZVOLTATOR", 11 chars, can't
+     wrap) inside the viewport at every width; 13vw overflowed below ~1560px. */
+  font-size: clamp(2rem, 10vw, 8.5rem);
+  line-height: 0.88;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.v1-line { animation: v1-slam 0.5s cubic-bezier(0.2, 0.9, 0.3, 1) both; }
+.v1-line:nth-child(2) { animation-delay: 0.12s; }
+.v1-line:nth-child(3) { animation-delay: 0.24s; }
+
+.v1-line-offset { margin-left: clamp(2rem, 10vw, 9rem); color: var(--shock); }
+
+.v1-line-outline {
+  color: var(--paper);
+  -webkit-text-stroke: 3px var(--ink);
+}
+
+@keyframes v1-slam {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.v1-hero-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.v1-hero-sub {
+  max-width: 32ch;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  border-left: 6px solid var(--ink);
+  padding-left: 1rem;
+}
+
+/* ---- Buttons ---- */
+.v1-btn {
+  display: inline-block;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  padding: 0.85rem 1.75rem;
+  box-shadow: 8px 8px 0 var(--ink);
+  transition: transform 0.1s, box-shadow 0.1s, background 0.1s, color 0.1s;
+}
+
+.v1-btn:hover {
+  transform: translate(4px, 4px);
+  box-shadow: 2px 2px 0 var(--ink);
+  background: var(--shock);
+  color: var(--paper);
+}
+
+.v1-btn:focus-visible {
+  outline: 3px solid var(--shock);
+  outline-offset: 4px;
+}
+
+.v1-btn-invert {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--paper);
+  box-shadow: 8px 8px 0 var(--shock);
+}
+
+.v1-btn-invert:hover {
+  box-shadow: 2px 2px 0 var(--shock);
+  background: var(--shock);
+}
+
+/* ---- Marquee ---- */
+.v1-marquee {
+  border-bottom: 4px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  overflow: hidden;
+  padding: 0.85rem 0;
+}
+
+.v1-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: v1-scroll 24s linear infinite;
+}
+
+.v1-marquee-content { display: flex; }
+
+.v1-marquee-item {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  padding: 0 1rem;
+}
+
+@keyframes v1-scroll {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v1-marquee-track { animation: none; }
+  .v1-line { animation: none; }
+}
+
+/* ---- Sections ---- */
+.v1-section {
+  padding: 4rem 1.5rem;
+  border-bottom: 4px solid var(--ink);
+  scroll-margin-top: 5rem;
+}
+
+.v1-section-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(2rem, 6vw, 4rem);
+  margin: 0 0 2.5rem;
+  text-decoration: underline;
+  text-decoration-thickness: 8px;
+  text-underline-offset: 10px;
+  text-decoration-color: var(--shock);
+}
+
+/* ---- Services ---- */
+.v1-services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 0;
+}
+
+.v1-service {
+  border: 3px solid var(--ink);
+  margin: 0 -3px -3px 0;
+  padding: 1.75rem;
+  position: relative;
+  transition: background 0.1s, color 0.1s;
+}
+
+.v1-service:hover { background: var(--ink); color: var(--paper); }
+.v1-service:hover .v1-service-num { color: var(--shock); }
+
+.v1-service-num {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.v1-service h3 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  margin: 0 0 0.75rem;
+}
+
+.v1-service p { margin: 0; line-height: 1.55; font-size: 0.95rem; }
+
+/* ---- Projects (inverted section) ---- */
+.v1-section-inverted {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.v1-section-inverted .v1-section-title { text-decoration-color: var(--shock); }
+
+.v1-projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 1.5rem;
+}
+
+.v1-project {
+  border: 3px solid var(--paper);
+  padding: 1.75rem;
+  text-decoration: none;
+  color: var(--paper);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: background 0.1s, color 0.1s, transform 0.1s;
+}
+
+.v1-project:hover {
+  background: var(--shock);
+  transform: translate(-4px, -4px);
+  box-shadow: 8px 8px 0 var(--paper);
+}
+
+.v1-project-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.v1-project h3 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.v1-project-arrow { font-size: 1.5rem; }
+
+.v1-project p { margin: 0; line-height: 1.55; font-size: 0.95rem; flex-grow: 1; }
+
+.v1-project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+.v1-project-tags span {
+  border: 2px solid currentColor;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+/* ---- Experience ---- */
+.v1-exp {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.v1-exp-row {
+  display: grid;
+  grid-template-columns: 160px 1fr auto;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-bottom: 3px solid var(--ink);
+  transition: padding-left 0.15s;
+}
+
+.v1-exp-row:hover { padding-left: 1rem; background: linear-gradient(to right, var(--shock) 6px, transparent 6px); }
+
+.v1-exp-date { font-size: 0.85rem; }
+
+.v1-exp-role {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(1rem, 3vw, 1.6rem);
+}
+
+.v1-exp-company { font-weight: 700; color: var(--shock); }
+
+@media (max-width: 640px) {
+  .v1-exp-row { grid-template-columns: 1fr; gap: 0.25rem; }
+}
+
+/* ---- Contact ---- */
+.v1-contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.v1-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+  min-width: min(280px, 100%);
+}
+
+.v1-contact-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 1.1rem 0;
+  border-bottom: 3px solid var(--ink);
+}
+
+.v1-contact-row:first-child { border-top: 3px solid var(--ink); }
+
+@media (max-width: 640px) {
+  .v1-contact-row { grid-template-columns: 1fr; gap: 0.35rem; }
+}
+
+.v1-contact-label {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.v1-contact-value { font-size: 1.1rem; }
+
+.v1-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.v1-social {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1rem;
+  text-decoration: none;
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  padding: 0.7rem 1.5rem;
+  box-shadow: 6px 6px 0 var(--ink);
+  transition: transform 0.1s, box-shadow 0.1s, background 0.1s, color 0.1s;
+}
+
+.v1-social:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 var(--ink);
+  background: var(--shock);
+  color: var(--paper);
+}
+
+.v1-social:focus-visible {
+  outline: 3px solid var(--shock);
+  outline-offset: 4px;
+}
+
+/* ---- Footer ---- */
+.v1-footer {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 4rem 1.5rem;
+  overflow-wrap: anywhere;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+.v1-footer-title {
+  font-family: 'Archivo Black', sans-serif;
+  /* 2rem floor keeps the longest RO word ("CONSTRUIM.") inside narrow viewports */
+  font-size: clamp(2rem, 10vw, 7rem);
+  line-height: 0.9;
+  margin: 0;
+  -webkit-text-stroke: 2px var(--paper);
+  color: transparent;
+}
+
+@media (max-width: 480px) {
+  .v1-footer { padding: 3rem 1rem; }
+}
+
+.v1-footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.v1-footer-links p { font-size: 0.75rem; margin: 0; opacity: 0.7; }
 </style>
