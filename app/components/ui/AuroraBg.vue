@@ -1,12 +1,16 @@
 <template>
-  <div :class="cn(
-    'relative flex flex-col items-center justify-center transition-bg overflow-hidden',
-    props.class
-  )">
+  <div
+    :class="cn(
+      'relative flex flex-col items-center justify-center transition-bg overflow-hidden',
+      props.class
+    )"
+  >
     <!-- Decorative background gradient - hidden from accessibility tree -->
     <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
-      <div class="aurora-gradient" :class="cn(
-        `
+      <div
+        class="aurora-gradient"
+        :class="cn(
+          `
             [background-size:300%,_200%]
             [background-position:50%_50%,50%_50%]
             filter blur-[10px] invert dark:invert-0
@@ -16,8 +20,9 @@
             pointer-events-none
             absolute -inset-[10px] opacity-50 will-change-transform
           `,
-        showRadialGradient && `[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,transparent_70%)]`
-      )" />
+          showRadialGradient && `[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,transparent_70%)]`
+        )"
+      />
     </div>
     <slot />
   </div>

@@ -4,7 +4,7 @@ export default defineEventHandler((event) => {
   if (!config.contactPhone) {
     throw createError({
       statusCode: 500,
-      statusMessage: 'Contact phone not configured'
+      statusMessage: 'Contact phone not configured',
     })
   }
 
@@ -13,6 +13,6 @@ export default defineEventHandler((event) => {
 
   return {
     value: config.contactPhone,
-    link: `tel:${config.contactPhone.replace(/\s/g, '')}`
+    link: `tel:${config.contactPhone.replace(/\s/g, '')}`,
   }
 })

@@ -1,9 +1,17 @@
 <template>
   <div ref="container" :class="props.class">
     <!-- tabindex="-1" prevents animation wrapper from being a tab stop -->
-    <Motion v-for="(child, index) in children" :key="index" ref="childElements" as="div" tabindex="-1"
-      :initial="getInitial()" :while-in-view="getAnimate()" :in-view-options="{ once: true }"
-      :transition="getTransition(Number(index))">
+    <Motion
+      v-for="(child, index) in children"
+      :key="index"
+      ref="childElements"
+      as="div"
+      tabindex="-1"
+      :initial="getInitial()"
+      :while-in-view="getAnimate()"
+      :in-view-options="{ once: true }"
+      :transition="getTransition(Number(index))"
+    >
       <component :is="child" />
     </Motion>
   </div>

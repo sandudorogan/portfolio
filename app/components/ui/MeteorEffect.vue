@@ -34,16 +34,14 @@ interface Meteor {
   };
 }
 
-const meteors = computed<Meteor[]>(() => {
-  return Array.from({ length: props.count }, () => ({
-    style: {
-      top: `${Math.random() * 100}%`,
-      left: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 2}s`,
-      animationDuration: `${Math.random() * 3 + 2}s`,
-    },
-  }))
-})
+const meteors = computed<Meteor[]>(() => Array.from({ length: props.count }, () => ({
+  style: {
+    top: `${Math.random() * 100}%`,
+    left: `${Math.random() * 100}%`,
+    animationDelay: `${Math.random() * 2}s`,
+    animationDuration: `${Math.random() * 3 + 2}s`,
+  },
+})))
 </script>
 
 <style scoped>

@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
 declare global {
-  // eslint-disable-next-line no-var
   var __PORTFOLIO_NUXT_SETUP__: boolean | undefined
 }
 

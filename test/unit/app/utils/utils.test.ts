@@ -6,6 +6,7 @@ import { cn } from '../../../../app/utils/utils'
 
 describe('cn', () => {
   it('merges conflicting Tailwind classes predictably', () => {
-    expect(cn('px-2 text-sm', 'px-4', false && 'hidden', ['font-bold'])).toBe('text-sm px-4 font-bold')
+    const isHidden = false
+    expect(cn('px-2 text-sm', 'px-4', isHidden && 'hidden', ['font-bold'])).toBe('text-sm px-4 font-bold')
   })
 })

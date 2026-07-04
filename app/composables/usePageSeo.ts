@@ -41,12 +41,12 @@ export function usePageSeo(options: PageSeoOptions) {
     ogUrl: canonicalUrl,
     twitterCard: 'summary_large_image',
     twitterTitle: options.title,
-    twitterDescription: options.description
+    twitterDescription: options.description,
   })
 
   useHead({
     link: [
-      { rel: 'canonical', href: canonicalUrl }
-    ]
+      { rel: 'canonical', href: canonicalUrl },
+    ],
   })
 }

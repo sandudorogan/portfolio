@@ -37,6 +37,16 @@ export default withNuxt([
     },
   },
   {
+    // Vendored Inspira UI catalog — kept as-is from upstream, exempt from
+    // our stricter prop/unused-var rules
+    files: ['app/components/ui/**'],
+    rules: {
+      'vue/require-default-prop': 'off',
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
+    },
+  },
+  {
     plugins: {
       stylistic,
     },

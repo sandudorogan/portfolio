@@ -52,18 +52,16 @@ interface Sparkle {
   };
 }
 
-const sparkles = computed<Sparkle[]>(() => {
-  return Array.from({ length: props.sparkleCount }, () => ({
-    size: Math.random() * 12 + 8,
-    color: props.colors[Math.floor(Math.random() * props.colors.length)],
-    style: {
-      top: `${Math.random() * 100}%`,
-      left: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 2}s`,
-      animationDuration: `${Math.random() * 1 + 0.5}s`,
-    },
-  }))
-})
+const sparkles = computed<Sparkle[]>(() => Array.from({ length: props.sparkleCount }, () => ({
+  size: Math.random() * 12 + 8,
+  color: props.colors[Math.floor(Math.random() * props.colors.length)],
+  style: {
+    top: `${Math.random() * 100}%`,
+    left: `${Math.random() * 100}%`,
+    animationDelay: `${Math.random() * 2}s`,
+    animationDuration: `${Math.random() * 1 + 0.5}s`,
+  },
+})))
 </script>
 
 <style scoped>

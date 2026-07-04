@@ -1,20 +1,30 @@
 <template>
   <div class="inline-grid relative px-2 ease-in-out">
     <Transition @after-enter="$emit('animationStart')" @after-leave="$emit('animationComplete')">
-      <div v-show="isVisible" :class="[
-        'relative z-10 inline-block text-left whitespace-nowrap',
-        props.class,
-      ]">
+      <div
+        v-show="isVisible"
+        :class="[
+          'relative z-10 inline-block text-left whitespace-nowrap',
+          props.class,
+        ]"
+      >
         <template v-for="(wordObj, wordIndex) in splitWords" :key="wordObj.word + wordIndex">
-          <span class="inline-block opacity-0 whitespace-nowrap" :style="{
-            animation: `fadeInWord 0.3s ease forwards`,
-            animationDelay: `${wordIndex * 0.3}s`,
-          }">
-            <span v-for="(letter, letterIndex) in wordObj.letters" :key="wordObj.word + letterIndex"
-              class="inline-block opacity-0" :style="{
+          <span
+            class="inline-block opacity-0 whitespace-nowrap"
+            :style="{
+              animation: `fadeInWord 0.3s ease forwards`,
+              animationDelay: `${wordIndex * 0.3}s`,
+            }"
+          >
+            <span
+              v-for="(letter, letterIndex) in wordObj.letters"
+              :key="wordObj.word + letterIndex"
+              class="inline-block opacity-0"
+              :style="{
                 animation: `fadeInLetter 0.2s ease forwards`,
                 animationDelay: `${wordIndex * 0.3 + letterIndex * 0.05}s`,
-              }">
+              }"
+            >
               {{ letter }}
             </span>
             <span class="inline-block">&nbsp;</span>

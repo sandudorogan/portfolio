@@ -4,7 +4,7 @@ export default defineEventHandler((event) => {
   if (!config.contactEmail) {
     throw createError({
       statusCode: 500,
-      statusMessage: 'Contact email not configured'
+      statusMessage: 'Contact email not configured',
     })
   }
 
@@ -13,6 +13,6 @@ export default defineEventHandler((event) => {
 
   return {
     value: config.contactEmail,
-    link: `mailto:${config.contactEmail}`
+    link: `mailto:${config.contactEmail}`,
   }
 })

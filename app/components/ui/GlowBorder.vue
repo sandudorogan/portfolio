@@ -1,14 +1,22 @@
 <template>
-  <div :style="parentStyles" :class="cn(
-    'relative grid min-h-[60px] w-fit min-w-[300px] place-items-center rounded-[var(--border-radius)] bg-white p-3 text-black dark:bg-black dark:text-white glow-border',
-    $props.class,
-  )
-    ">
+  <div
+    :style="parentStyles"
+    :class="cn(
+      'relative grid min-h-[60px] w-fit min-w-[300px] place-items-center rounded-[var(--border-radius)] bg-white p-3 text-black dark:bg-black dark:text-white glow-border',
+      $props.class,
+    )
+    "
+  >
     <!-- Decorative glow effect - not keyboard accessible -->
-    <div :style="childStyles" :class="cn(
-      `pointer-events-none glow-border before:absolute before:inset-0 before:aspect-square before:size-full before:rounded-[var(--border-radius)] before:bg-[length:300%_300%] before:p-[var(--border-width)] before:opacity-50 before:will-change-[background-position] before:content-['']`,
-      'before:![-webkit-mask-composite:xor] before:![mask-composite:exclude] before:[mask:var(--mask-linear-gradient)]',
-    )" aria-hidden="true" tabindex="-1" />
+    <div
+      :style="childStyles"
+      :class="cn(
+        `pointer-events-none glow-border before:absolute before:inset-0 before:aspect-square before:size-full before:rounded-[var(--border-radius)] before:bg-[length:300%_300%] before:p-[var(--border-width)] before:opacity-50 before:will-change-[background-position] before:content-['']`,
+        'before:![-webkit-mask-composite:xor] before:![mask-composite:exclude] before:[mask:var(--mask-linear-gradient)]',
+      )"
+      aria-hidden="true"
+      tabindex="-1"
+    />
     <slot />
   </div>
 </template>
@@ -24,23 +32,21 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   borderRadius: 10,
-  color: "#FFF",
+  color: '#FFF',
   borderWidth: 2,
   duration: 10,
-});
+})
 
-const parentStyles = computed(() => {
-  return { "--border-radius": `${props.borderRadius}px` };
-});
+const parentStyles = computed(() => ({ '--border-radius': `${props.borderRadius}px` }))
 
 const childStyles = computed(() => ({
-  "--border-width": `${props.borderWidth}px`,
-  "--border-radius": `${props.borderRadius}px`,
-  "--glow-pulse-duration": `${props.duration}s`,
-  "--mask-linear-gradient": `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`,
-  "--background-radial-gradient": `radial-gradient(circle, transparent, ${props.color instanceof Array ? props.color.join(",") : props.color
-    }, transparent)`,
-}));
+  '--border-width': `${props.borderWidth}px`,
+  '--border-radius': `${props.borderRadius}px`,
+  '--glow-pulse-duration': `${props.duration}s`,
+  '--mask-linear-gradient': 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+  '--background-radial-gradient': `radial-gradient(circle, transparent, ${props.color instanceof Array ? props.color.join(',') : props.color
+  }, transparent)`,
+}))
 </script>
 
 <style scoped>

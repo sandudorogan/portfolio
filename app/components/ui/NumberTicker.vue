@@ -23,9 +23,7 @@ const displayValue = ref(0)
 const isInView = ref(false)
 const hasAnimated = ref(false)
 
-const formattedDisplayValue = computed(() => {
-  return displayValue.value.toFixed(props.decimalPlaces)
-})
+const formattedDisplayValue = computed(() => displayValue.value.toFixed(props.decimalPlaces))
 
 function animateValue() {
   if (hasAnimated.value) return
@@ -62,7 +60,7 @@ const { stop } = useIntersectionObserver(
       animateValue()
     }
   },
-  { threshold: 0.5 }
+  { threshold: 0.5 },
 )
 
 onUnmounted(() => {

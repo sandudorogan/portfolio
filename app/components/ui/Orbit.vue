@@ -1,25 +1,36 @@
 <template>
-  <div :class="cn('orbit relative flex items-center justify-center', props.class)"
-    :style="{ width: `${size}px`, height: `${size}px` }">
+  <div
+    :class="cn('orbit relative flex items-center justify-center', props.class)"
+    :style="{ width: `${size}px`, height: `${size}px` }"
+  >
     <div class="absolute inset-0 flex justify-center items-center">
       <slot name="center" />
     </div>
 
-    <div v-for="(ring, ringIndex) in rings" :key="ringIndex"
-      class="absolute border border-neutral-700/30 rounded-full orbit-ring" :style="{
+    <div
+      v-for="(ring, ringIndex) in rings"
+      :key="ringIndex"
+      class="absolute border border-neutral-700/30 rounded-full orbit-ring"
+      :style="{
         width: `${ring.radius * 2}px`,
         height: `${ring.radius * 2}px`,
         animationDuration: `${ring.duration}s`,
         animationDirection: ring.reverse ? 'reverse' : 'normal',
-      }">
-      <div v-for="(item, itemIndex) in ring.items" :key="itemIndex" class="absolute orbit-item"
-        :style="getItemStyle(ring, itemIndex)">
+      }"
+    >
+      <div
+        v-for="(item, itemIndex) in ring.items"
+        :key="itemIndex"
+        class="absolute orbit-item"
+        :style="getItemStyle(ring, itemIndex)"
+      >
         <div
           class="flex justify-center items-center bg-neutral-800/80 backdrop-blur-xs rounded-full w-10 h-10 hover:scale-125 transition-transform duration-300"
           :style="{
             animationDuration: `${ring.duration}s`,
             animationDirection: ring.reverse ? 'normal' : 'reverse',
-          }">
+          }"
+        >
           <UIcon v-if="typeof item === 'string'" :name="item" class="w-5 h-5" />
           <component :is="item" v-else />
         </div>
