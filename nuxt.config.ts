@@ -77,6 +77,12 @@ export default defineNuxtConfig({
         'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
       },
     },
+    // Routes from the pre-2026 multi-page site are still in search indexes;
+    // send them to the matching one-pager sections
+    '/about': { redirect: { to: '/#experience', statusCode: 301 } },
+    '/contact': { redirect: { to: '/#contact', statusCode: 301 } },
+    '/ro/about': { redirect: { to: '/ro#experience', statusCode: 301 } },
+    '/ro/contact': { redirect: { to: '/ro#contact', statusCode: 301 } },
   },
   nitro: {
     preset: process.env.NITRO_PRESET || undefined,

@@ -25,11 +25,15 @@ describe('single-page i18n smoke tests', () => {
     expect(html).toContain('hreflang="ro-RO"')
   })
 
-  it('no longer serves the old multi-page routes', async () => {
-    const about = await fetch('/about')
-    expect(about.status).toBe(404)
+  it.each([
+    ['/about', '/#experience'],
+    ['/contact', '/#contact'],
+    ['/ro/about', '/ro#experience'],
+    ['/ro/contact', '/ro#contact'],
+  ])('permanently redirects the old multi-page route %s to %s', async (path, target) => {
+    const response = await fetch(path, { redirect: 'manual' })
 
-    const contact = await fetch('/contact')
-    expect(contact.status).toBe(404)
+    expect(response.status).toBe(301)
+    expect(response.headers.get('location')).toBe(target)
   })
 })
