@@ -247,6 +247,7 @@ useHead(() => ({
   --paper: #f3efe6;
   --ink: #111111;
   --shock: #ff4d00;
+  --pad-x: clamp(1.25rem, 6vw, 5rem);
   background: var(--paper);
   color: var(--ink);
   font-family: 'Space Mono', monospace;
@@ -260,7 +261,7 @@ useHead(() => ({
   inset: 0;
   z-index: 60;
   pointer-events: none;
-  opacity: 0.28;
+  opacity: 0.16;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -292,7 +293,7 @@ useHead(() => ({
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  padding: 1rem 1.5rem;
+  padding: 1rem var(--pad-x);
   border-bottom: 4px solid var(--ink);
   position: sticky;
   top: 0;
@@ -365,18 +366,14 @@ useHead(() => ({
 
 /* ---- Hero ---- */
 .v1-hero {
-  padding: 4rem 1.5rem 3rem;
+  padding: clamp(4rem, 9vw, 7rem) var(--pad-x) clamp(3rem, 7vw, 5.5rem);
   border-bottom: 4px solid var(--ink);
-}
-
-@media (max-width: 480px) {
-  .v1-hero { padding: 3rem 1rem 2.5rem; }
 }
 
 .v1-hero-kicker {
   font-size: 0.8rem;
   letter-spacing: 0.2em;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   border: 2px solid var(--ink);
   display: inline-block;
   padding: 0.35rem 0.75rem;
@@ -423,14 +420,14 @@ useHead(() => ({
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 2rem;
-  margin-top: 3rem;
+  gap: 2.5rem;
+  margin-top: clamp(3rem, 6vw, 4.5rem);
 }
 
 .v1-hero-sub {
   max-width: 32ch;
   font-size: 1.1rem;
-  line-height: 1.5;
+  line-height: 1.65;
   border-left: 6px solid var(--ink);
   padding-left: 1rem;
 }
@@ -479,7 +476,7 @@ useHead(() => ({
   background: var(--ink);
   color: var(--paper);
   overflow: hidden;
-  padding: 0.85rem 0;
+  padding: 1rem 0;
 }
 
 .v1-marquee-track {
@@ -510,7 +507,7 @@ useHead(() => ({
 
 /* ---- Sections ---- */
 .v1-section {
-  padding: 4rem 1.5rem;
+  padding: clamp(4rem, 9vw, 7rem) var(--pad-x);
   border-bottom: 4px solid var(--ink);
   scroll-margin-top: 5rem;
 }
@@ -518,7 +515,7 @@ useHead(() => ({
 .v1-section-title {
   font-family: 'Archivo Black', sans-serif;
   font-size: clamp(2rem, 6vw, 4rem);
-  margin: 0 0 2.5rem;
+  margin: 0 0 clamp(2.5rem, 6vw, 4rem);
   text-decoration: underline;
   text-decoration-thickness: 8px;
   text-underline-offset: 10px;
@@ -529,13 +526,12 @@ useHead(() => ({
 .v1-services {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
-  gap: 0;
+  gap: 2rem;
 }
 
 .v1-service {
   border: 3px solid var(--ink);
-  margin: 0 -3px -3px 0;
-  padding: 1.75rem;
+  padding: 2rem;
   position: relative;
   transition: background 0.1s, color 0.1s;
 }
@@ -570,12 +566,12 @@ useHead(() => ({
 .v1-projects {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .v1-project {
   border: 3px solid var(--paper);
-  padding: 1.75rem;
+  padding: 2rem;
   text-decoration: none;
   color: var(--paper);
   display: flex;
@@ -629,7 +625,7 @@ useHead(() => ({
   grid-template-columns: 160px 1fr auto;
   gap: 1rem;
   align-items: baseline;
-  padding: 1.25rem 0;
+  padding: 1.6rem 0;
   border-bottom: 3px solid var(--ink);
   transition: padding-left 0.15s;
 }
@@ -654,7 +650,7 @@ useHead(() => ({
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 2.5rem;
+  gap: 4rem;
 }
 
 .v1-contact-info {
@@ -670,7 +666,7 @@ useHead(() => ({
   grid-template-columns: 140px 1fr;
   gap: 1rem;
   align-items: baseline;
-  padding: 1.1rem 0;
+  padding: 1.4rem 0;
   border-bottom: 3px solid var(--ink);
 }
 
@@ -722,13 +718,13 @@ useHead(() => ({
 .v1-footer {
   background: var(--ink);
   color: var(--paper);
-  padding: 4rem 1.5rem;
+  padding: clamp(3.5rem, 9vw, 6.5rem) var(--pad-x);
   overflow-wrap: anywhere;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .v1-footer-title {
@@ -739,10 +735,6 @@ useHead(() => ({
   margin: 0;
   -webkit-text-stroke: 2px var(--paper);
   color: transparent;
-}
-
-@media (max-width: 480px) {
-  .v1-footer { padding: 3rem 1rem; }
 }
 
 .v1-footer-links {
