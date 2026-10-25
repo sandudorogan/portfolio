@@ -14,7 +14,7 @@ useHead(() => ({
   ],
   meta: [
     ...(localeHead.value.meta ?? []),
-    { name: 'theme-color', content: '#f3efe6' },
+    { name: 'theme-color', content: '#b7b7c7' },
     // Location metadata for SEO (Bucharest, Romania)
     { name: 'geo.region', content: 'RO-B' },
     { name: 'geo.placename', content: 'Bucharest' },

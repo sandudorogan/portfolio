@@ -10,8 +10,8 @@ await setup({
 
 describe('single-page i18n smoke tests', () => {
   it.each([
-    ['/', 'en-US', 'Full Stack Developer', 'SELECTED WORK'],
-    ['/ro', 'ro-RO', 'Dezvoltator Full Stack', 'PROIECTE SELECTATE'],
+    ['/', 'en-US', 'Full Stack Developer', 'Selected Work'],
+    ['/ro', 'ro-RO', 'Dezvoltator Full Stack', 'Proiecte selectate'],
   ])('renders %s in the right language', async (path, language, title, bodyText) => {
     const response = await fetch(path)
     const html = await response.text()
@@ -23,6 +23,19 @@ describe('single-page i18n smoke tests', () => {
     // multilingual SEO: canonical + hreflang alternates
     expect(html).toContain('rel="canonical"')
     expect(html).toContain('hreflang="ro-RO"')
+  })
+
+  it.each([
+    ['/ai', 'en-US', 'AI, in practice'],
+    ['/ro/ai', 'ro-RO', 'AI, în practică'],
+  ])('renders the AI page %s in the right language', async (path, language, heading) => {
+    const response = await fetch(path)
+    const html = await response.text()
+
+    expect(response.status).toBe(200)
+    expect(html).toContain(`lang="${language}"`)
+    expect(html).toContain(heading)
+    expect(html).toContain('rel="canonical"')
   })
 
   it.each([

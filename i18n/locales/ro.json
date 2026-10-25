@@ -2,10 +2,11 @@
   "skipToContent": "Sari la conținut",
   "nav": {
     "ariaLabel": "Navigație principală",
-    "services": "SERVICII",
-    "work": "PROIECTE",
-    "experience": "EXPERIENȚĂ",
-    "contact": "CONTACT"
+    "services": "Servicii",
+    "work": "Proiecte",
+    "experience": "Experiență",
+    "contact": "Contact",
+    "ai": "AI"
   },
   "lang": {
     "switchTo": "EN",
@@ -15,56 +16,267 @@
     "title": "Sandu Dorogan — Dezvoltator Full Stack",
     "description": "Dezvoltator Full Stack din București. Dezvoltare web, design UX/UI, DevOps și consultanță tehnică. Tu îmi spui ce vrei, eu îți arăt cum se face.",
     "ogTitle": "Sandu Dorogan — Dezvoltator Full Stack",
-    "ogDescription": "Tu îmi spui CE vrei, eu îți arăt CUM se face. Fără vorbe goale — software care funcționează.",
-    "jobTitle": "Dezvoltator Full Stack"
+    "ogDescription": "Tu îmi spui ce vrei, eu îți arăt cum se face. Fără vorbe goale — software care funcționează.",
+    "jobTitle": "Dezvoltator Full Stack",
+    "ai": {
+      "title": "AI, în practică — Sandu Dorogan",
+      "description": "Cum livrează Sandu Dorogan funcții AI pentru specialiștii în brevete, cu o echipă de agenți de programare: fluxul, regulile casei, ritmul și uneltele.",
+      "ogTitle": "AI, în practică",
+      "ogDescription": "Agenții scriu codul. Eu iau deciziile."
+    }
   },
-  "hero": {
-    "kicker": "SANDU DOROGAN / BUCUREȘTI, RO / DIN 2018",
-    "line1": "DEZVOLTATOR",
-    "line2": "FULL",
-    "line3": "STACK",
-    "sub": "Tu îmi spui CE vrei, eu îți arăt CUM se face. Fără vorbe goale — software care funcționează.",
-    "cta": "SCRIE-MI →"
+  "desktop": {
+    "home": "Sandu Dorogan, înapoi sus",
+    "shortcuts": "Scurtături de pe desktop",
+    "disk": "Disc Sandu",
+    "lab": "Laborator AI",
+    "city": "București",
+    "rights": "© {year} Sandu Dorogan"
+  },
+  "window": {
+    "collapse": "Restrânge fereastra {title}",
+    "items": "{n} elemente",
+    "newTab": "(se deschide într-o filă nouă)",
+    "tags": "Etichete"
+  },
+  "about": {
+    "title": "Despre Sandu",
+    "kicker": "Sandu OS {version} · instalat în {year}",
+    "role": "Dezvoltator Full Stack",
+    "location": "București, România",
+    "tagline": "Tu îmi spui ce vrei, eu îți arăt cum se face. Fără vorbe goale — software care funcționează.",
+    "intro": "Opt ani de produse web construite cap-coadă — de la migrarea de bază de date pe care n-o vrea nimeni până la interfața pe care o vede toată lumea.",
+    "start": "Începe un proiect",
+    "projects": "Vezi proiectele"
+  },
+  "info": {
+    "title": "Informații Sandu",
+    "kind": "Tip:",
+    "where": "Locație:",
+    "created": "Creat:",
+    "stats": [
+      "Ani de livrat software",
+      "Echipe de produs",
+      "Tehnologii de bază"
+    ]
   },
   "services": {
-    "title": "SERVICII",
+    "title": "Panou de control: Servicii",
+    "on": "Pornit",
+    "off": "Oprit",
     "items": [
-      { "title": "Dezvoltare Web", "description": "Aplicații web rapide, responsive și scalabile, cu tehnologii moderne. Fără balast." },
-      { "title": "Design UX/UI", "description": "Interfețe care încântă utilizatorii și ating obiectivele de business. Funcționalitate în primul rând." },
-      { "title": "DevOps & Deployment", "description": "Pipeline-uri CI/CD și infrastructură cloud. Livrare fără ceremonii." },
-      { "title": "Consultanță Tehnică", "description": "Arhitectură, alegerea tehnologiilor, implementare. Răspunsuri directe." }
+      {
+        "title": "Dezvoltare web",
+        "description": "Aplicații web rapide și responsive, construite cu tehnologii moderne. Fără balast."
+      },
+      {
+        "title": "Design UX/UI",
+        "description": "Interfețe care încântă utilizatorii și ating obiectivele de business. Funcționalitatea întâi."
+      },
+      {
+        "title": "DevOps și deployment",
+        "description": "Pipeline-uri CI/CD și infrastructură cloud. Livrare fără ceremonii."
+      },
+      {
+        "title": "Consultanță tehnică",
+        "description": "Arhitectură, alegerea tehnologiilor, implementare. Răspunsuri directe."
+      }
     ]
+  },
+  "stack": {
+    "title": "Extensii",
+    "label": "Tehnologii",
+    "enabled": "{n} din {n} active"
   },
   "work": {
-    "title": "PROIECTE SELECTATE",
+    "window": "Proiecte",
+    "title": "Proiecte selectate",
     "items": [
-      { "title": "IPRally — Căutare Brevete", "description": "Un motor de căutare de brevete. Clojure + ClojureScript pe Google Cloud." },
-      { "title": "Crossbeam — Partnerbase", "description": "O bază de date de parteneri și produsele lor. Nuxt + Clojure pe AWS." },
-      { "title": "Newsroom AI — Editor de Stories", "description": "Un editor modern de stories. ClojureScript + Django pe AWS." }
+      {
+        "subtitle": "Căutare de brevete",
+        "description": "Un motor de căutare pentru brevete. Clojure + ClojureScript pe Google Cloud."
+      },
+      {
+        "subtitle": "Partnerbase",
+        "description": "O bază de date cu parteneri și produsele lor. Nuxt + Clojure pe AWS."
+      },
+      {
+        "subtitle": "Editor de stories",
+        "description": "Un editor modern de stories. ClojureScript + Django pe AWS."
+      }
     ]
   },
+  "lab": {
+    "title": "Laborator AI",
+    "open": "Deschide laboratorul"
+  },
   "experience": {
-    "title": "EXPERIENȚĂ",
+    "title": "Experiență",
+    "since": "Din {year}",
+    "caption": "Istoric profesional, cele mai recente primele",
+    "name": "Nume",
+    "date": "Perioadă",
+    "kind": "Rol",
     "items": [
-      { "date": "2025 —", "role": "DEZVOLTATOR FULL STACK", "company": "IPRALLY" },
-      { "date": "2024 — 2025", "role": "INGINER FULL STACK", "company": "CROSSBEAM" },
-      { "date": "2022 — 2025", "role": "DEZVOLTATOR PRINCIPAL", "company": "FLEXIANA" },
-      { "date": "2019 — 2021", "role": "INGINER WEB", "company": "NEWSROOM AI" },
-      { "date": "2018 — 2019", "role": "PROGRAMATOR JUNIOR", "company": "UBISOFT" }
+      {
+        "date": "2025 — prezent",
+        "role": "Dezvoltator Full Stack"
+      },
+      {
+        "date": "2024 — 2025",
+        "role": "Inginer Full Stack"
+      },
+      {
+        "date": "2022 — 2025",
+        "role": "Dezvoltator principal"
+      },
+      {
+        "date": "2019 — 2021",
+        "role": "Inginer web"
+      },
+      {
+        "date": "2018 — 2019",
+        "role": "Programator junior"
+      }
     ]
   },
   "contact": {
-    "title": "HAI SĂ VORBIM",
-    "email": "EMAIL",
-    "phone": "TELEFON",
-    "location": "LOCAȚIE",
-    "locationValue": "București, România"
+    "kicker": "Contact",
+    "title": "Hai să construim ceva care merită livrat.",
+    "text": "Apasă pe un câmp ca să-l afișezi. Îți răspund din {place}.",
+    "email": "E-mail:",
+    "phone": "Telefon:"
   },
-  "footer": {
-    "line1": "HAI SĂ",
-    "line2": "CONSTRUIM.",
-    "cta": "SCRIE-MI →",
-    "rights": "© {year} SANDU DOROGAN. NICIUN DREPT REZERVAT PENTRU IDEI PROASTE."
+  "ai": {
+    "readme": "Citește-mă",
+    "document": "Document SimpleText",
+    "title": "AI, în practică",
+    "motto": "Agenții scriu codul. Eu iau deciziile.",
+    "lede": "Construiesc funcții AI pentru specialiștii în brevete și le construiesc alături de o echipă de agenți de programare. Agenții scriu primele variante, se verifică între ei și repară ce găsesc. Eu stabilesc direcția, citesc diff-urile și răspund pentru tot ce ajunge în producție.",
+    "stats": [
+      "PR-uri integrate în ultimele 3 luni",
+      "Linii într-un PR median",
+      "Revieweri AI pentru fiecare PR"
+    ],
+    "pace": {
+      "title": "Ritm",
+      "axis": "PR-uri integrate pe lună",
+      "bar": "{month} {year}: {n} PR-uri",
+      "caption": "PR-urile pe care le-am integrat în fiecare lună la IPRally. Curba se arcuiește când pipeline-ul de agenți intră în funcțiune.",
+      "note": "Octombrie, numărat până pe 23.",
+      "months": [
+        "ian",
+        "feb",
+        "mar",
+        "apr",
+        "mai",
+        "iun",
+        "iul",
+        "aug",
+        "sep",
+        "oct",
+        "nov",
+        "dec"
+      ]
+    },
+    "shipped": {
+      "title": "Livrat la IPRally",
+      "items": [
+        {
+          "title": "Ask AI",
+          "description": "Stai de vorbă cu un brevet. Răspunsurile citează exact revendicarea, paragraful sau figura — treci cu mouse-ul pentru previzualizare, dai clic ca să ajungi acolo. Rulează pe workflow-uri durabile, așa că răspunsurile lungi rezistă la reporniri."
+        },
+        {
+          "title": "Redactare cu AI",
+          "description": "Planifică și scrie o cerere de brevet secțiune cu secțiune, începând cu revendicările. Fiecare modificare făcută de AI vine ca o propunere pe care o accepți sau o respingi, cu istoric complet al versiunilor și undo."
+        },
+        {
+          "title": "Revizuire cu AI",
+          "description": "Verifică o ciornă: claritate, susținerea revendicărilor, goluri în descriere. Compară revendicările cu stadiul tehnicii. Un singur clic aplică remedierea propusă."
+        },
+        {
+          "title": "Figuri și fișiere",
+          "description": "Generează și editează desene de brevet cu numere de referință. Citește PDF-uri, documente Word și imagini încărcate și spune cât de mult a înțeles din ele."
+        },
+        {
+          "title": "LLM-uri în producție",
+          "description": "Un buget de timp pentru fiecare încercare, ca reîncercările să mai încapă, metrici de tokeni și latență pentru fiecare apel, iar fiecare pas primește doar sursele de care are nevoie."
+        },
+        {
+          "title": "Căutare de brevete pentru agenți",
+          "description": "Un server MCP prin care Claude rulează căutarea semantică IPRally și citește textul integral al brevetelor."
+        }
+      ]
+    },
+    "pipeline": {
+      "title": "Drumul unui tichet",
+      "steps": [
+        {
+          "title": "Planificare",
+          "description": "Un agent principal citește tichetul și îl împarte în unități mici. Nu atinge niciodată codul."
+        },
+        {
+          "title": "Implementare",
+          "description": "Fiecare unitate ajunge la un agent executant, în propriul git worktree. Haiku pentru treburi mărunte, Sonnet pentru specificații clare, Opus pentru probleme deschise."
+        },
+        {
+          "title": "Revizuire",
+          "description": "Fiecare PR trece prin trei revieweri AI: unul pentru buguri și riscuri, unul adversarial, unul pentru convențiile casei."
+        },
+        {
+          "title": "Corectare",
+          "description": "Un agent de corectare răspunde la observații, repară CI-ul picat și face push. Bucla se oprește după 8 runde."
+        },
+        {
+          "title": "Integrare",
+          "description": "Citesc diff-ul și fac merge. PR-urile rămân sub ~700 de linii, ca să le pot citi cu adevărat."
+        }
+      ]
+    },
+    "rules": {
+      "title": "Regulile casei pentru agenți",
+      "items": [
+        "Întâi investighează. Nu ghici niciodată cauza.",
+        "PR-uri mici. Împarte tot ce trece de ~700 de linii.",
+        "Rulează doar testele pentru ce ai atins. Buclele rămân rapide.",
+        "Un git worktree pentru fiecare sarcină. Fără force push.",
+        "Scrie „de ce”-ul în mesajul de commit."
+      ]
+    },
+    "arsenal": {
+      "title": "Arsenal",
+      "caption": "160 de commituri în 9 repo-uri personale, în ultimele 6 luni.",
+      "items": [
+        {
+          "status": "Open source · v0.4",
+          "description": "O bară laterală tmux cu starea live a fiecărei sesiuni de agent AI — lucrează, așteaptă, gata. Merge cu Claude Code, Codex, Cursor, OpenCode, Pi și Kiro."
+        },
+        {
+          "status": "Privat · folosit zilnic",
+          "description": "Face review la fiecare PR pe care îl deschid cu trei modele, apoi pune un agent să repare observațiile și să facă push — rundă după rundă, până iese curat."
+        },
+        {
+          "status": "Privat",
+          "description": "Un agent principal împarte un tichet în PR-uri mici, între sub-agenți Claude Code și Codex."
+        },
+        {
+          "status": "Privat",
+          "description": "Rezumă ce schimbă cu adevărat un PR înainte să-i citească descrierea, apoi semnalează când scopul se umflă."
+        },
+        {
+          "status": "Open source",
+          "description": "Rulezi și verifici sesiuni de agenți AI de programare — aprobări și diff-uri — fără să ieși din Neovim."
+        },
+        {
+          "status": "Open source · online",
+          "description": "Un generator gratuit de orare școlare care rulează complet în browser. Offline, fără conturi, în engleză și română."
+        },
+        {
+          "status": "npm",
+          "description": "O componentă Vue 3 pentru grafuri de rețea, cu zoom, pan și drag. Construită într-o zi, în tandem cu un agent."
+        }
+      ]
+    }
   },
   "reveal": {
     "clickToReveal": "Apasă pentru a afișa",

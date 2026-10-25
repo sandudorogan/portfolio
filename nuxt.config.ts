@@ -25,7 +25,7 @@ export default defineNuxtConfig({
     autoOutboundTracking: true,
     proxy: true,
   },
-  // Single-page brutalist portfolio: force the light palette, no theme toggle
+  // Retro OS desktop is a light, platinum UI: force the light palette, no theme toggle
   colorMode: {
     preference: 'light',
     fallback: 'light',
@@ -45,10 +45,14 @@ export default defineNuxtConfig({
   },
   fonts: {
     families: [
-      // Brutalist pairing: Archivo Black display, Space Mono body
-      { name: 'Archivo Black', provider: 'google', weights: [400] },
-      { name: 'Space Mono', provider: 'google', weights: [400, 700] },
+      // Retro OS pairing: Pixelify Sans for chrome and headings, Atkinson Hyperlegible for reading
+      { name: 'Pixelify Sans', provider: 'google', weights: [400, 500, 600, 700] },
+      { name: 'Atkinson Hyperlegible', provider: 'google', weights: [400, 700] },
     ],
+  },
+  // Satori needs the OG image fonts loaded explicitly; it can't reuse @nuxt/fonts
+  ogImage: {
+    fonts: ['Pixelify+Sans:400', 'Pixelify+Sans:700', 'Atkinson+Hyperlegible:400'],
   },
   i18n: {
     locales: [

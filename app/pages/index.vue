@@ -2,7 +2,7 @@
 definePageMeta({ layout: false })
 
 const { t, tm, rt, locale } = useI18n()
-const switchLocalePath = useSwitchLocalePath()
+const localePath = useLocalePath()
 
 usePageSeo({
   title: () => t('seo.title'),
@@ -18,58 +18,73 @@ defineOgImage({
   },
 })
 
-const otherLocale = computed(() => (locale.value === 'en' ? 'ro' : 'en'))
+const since = 2018
 
-// Non-translated project metadata (URLs + tech tags are proper nouns)
-const projectMeta = [
-  { url: 'https://iprally.com', tags: ['CLOJURE', 'CLJS', 'GCP'] },
-  { url: 'https://partnerbase.com', tags: ['NUXT', 'CLOJURE', 'AWS'] },
-  { url: 'https://nws.ai', tags: ['CLJS', 'DJANGO', 'AWS'] },
+const glyphs = [
+  { d: 'M5.5 4.5 2.5 8l3 3.5M10.5 4.5l3 3.5-3 3.5', fill: 'none' },
+  { d: 'M4.5 2.5v10l2.5-2.5 2 4 1.5-.5-2-4h3.5z', fill: 'var(--lav)' },
+  { d: 'M8 2.5 12.5 7H10v4.5H6V7H3.5zM3.5 13.5h9', fill: 'var(--lav)' },
+  { d: 'M1.5 3.5h13v7h-7l-3 3v-3h-3z', fill: 'var(--lav)' },
 ]
+
+// Proper nouns and numbers stay in code; their labels and copy come from i18n
+const stack = ['JavaScript', 'TypeScript', 'Nuxt', 'Vue', 'React', 'Python', 'Clojure', 'ClojureScript', 'Docker', 'AWS', 'LLMs']
+
+const projectMeta = [
+  { title: 'IPRally', url: 'https://iprally.com', tags: ['Clojure', 'CLJS', 'GCP'] },
+  { title: 'Crossbeam', url: 'https://partnerbase.com', tags: ['Nuxt', 'Clojure', 'AWS'] },
+  { title: 'Newsroom AI', url: 'https://nws.ai', tags: ['CLJS', 'Django', 'AWS'] },
+]
+
+const companies = ['IPRally', 'Crossbeam', 'Flexiana', 'Newsroom AI', 'Ubisoft']
+
+const socialLinks = [
+  { name: 'GitHub', url: 'https://github.com/sandudorogan' },
+  { name: 'GitLab', url: 'https://gitlab.com/sdorogan-flexiana' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/sandu-dorogan' },
+]
+
+const statValues = [8, 5, 11]
+const peak = Math.max(...statValues)
+const labValues = [{ i: 0, value: '406' }, { i: 2, value: '3' }]
+
+const stats = computed(() => {
+  const labels = tm('info.stats') as string[]
+  return statValues.map((value, i) => ({ value, label: rt(labels[i] ?? '') }))
+})
+
+const labStats = computed(() => {
+  const labels = tm('ai.stats') as string[]
+  return labValues.map(({ i, value }) => ({ value, label: rt(labels[i] ?? '') }))
+})
 
 const services = computed(() => {
   const items = tm('services.items') as Array<{ title: string, description: string }>
-  return items.map((item, i) => ({
-    num: String(i + 1).padStart(2, '0'),
+  return items.map(item => ({
     title: rt(item.title),
     description: rt(item.description),
   }))
 })
 
 const projects = computed(() => {
-  const items = tm('work.items') as Array<{ title: string, description: string }>
-  return items.map((item, i) => ({
-    title: rt(item.title),
-    description: rt(item.description),
-    url: projectMeta[i]?.url ?? '#',
-    tags: projectMeta[i]?.tags ?? [],
+  const items = tm('work.items') as Array<{ subtitle: string, description: string }>
+  return projectMeta.map((meta, i) => ({
+    ...meta,
+    subtitle: rt(items[i]?.subtitle ?? ''),
+    description: rt(items[i]?.description ?? ''),
   }))
 })
 
 const experience = computed(() => {
-  const items = tm('experience.items') as Array<{ date: string, role: string, company: string }>
-  return items.map(item => ({
-    date: rt(item.date),
-    role: rt(item.role),
-    company: rt(item.company),
+  const items = tm('experience.items') as Array<{ date: string, role: string }>
+  return companies.map((company, i) => ({
+    company,
+    date: rt(items[i]?.date ?? ''),
+    role: rt(items[i]?.role ?? ''),
   }))
 })
 
-// Tech stack marquee — proper nouns, not translated
-const stack = ['JAVASCRIPT', 'TYPESCRIPT', 'NUXT', 'VUE', 'REACT', 'PYTHON', 'CLOJURE', 'CLOJURESCRIPT', 'DOCKER', 'AWS', 'LLMS']
-
-const socialLinks = [
-  { name: 'GITHUB', url: 'https://github.com/sandudorogan' },
-  { name: 'GITLAB', url: 'https://gitlab.com/sdorogan-flexiana' },
-  { name: 'LINKEDIN', url: 'https://www.linkedin.com/in/sandu-dorogan' },
-]
-
-const navLinks = computed(() => [
-  { label: t('nav.services'), href: '#services' },
-  { label: t('nav.work'), href: '#work' },
-  { label: t('nav.experience'), href: '#experience' },
-  { label: t('nav.contact'), href: '#contact' },
-])
+const picked = ref('')
 
 // Person + WebSite structured data for Google (JSON-LD).
 // Email intentionally omitted to prevent scraping; sameAs links the public profiles.
@@ -114,635 +129,927 @@ useHead(() => ({
 </script>
 
 <template>
-  <div class="v1">
-    <a href="#main" class="v1-skip">{{ t('skipToContent') }}</a>
-
-    <nav class="v1-nav" :aria-label="t('nav.ariaLabel')">
-      <a href="#top" class="v1-nav-brand">SD.</a>
-      <div class="v1-nav-right">
-        <div class="v1-nav-links">
-          <a
-            v-for="link in navLinks"
-            :key="link.href"
-            :href="link.href"
-            class="v1-nav-link"
-          >{{ link.label }}</a>
+  <AppDesktop>
+    <AppWindow
+      win="about"
+      :title="t('about.title')"
+      :heading="false"
+      class="os-w-about"
+      aria-labelledby="os-name"
+    >
+      <div class="os-pane os-about">
+        <svg
+          class="os-about-icon"
+          viewBox="0 0 32 32"
+          shape-rendering="crispEdges"
+          aria-hidden="true"
+        >
+          <path d="M3.5 1.5h25v21h-25z" fill="#ddd" stroke="#000" />
+          <path d="M4.5 2.5h23" stroke="#fff" />
+          <path d="M6.5 4.5h19v14h-19z" fill="var(--lav)" stroke="#000" />
+          <path d="M9.5 7.5h13v8h-13z" fill="#fff" stroke="#000" />
+          <path d="M10 9.5h12" stroke="#888" />
+          <path d="M11.5 12.5h5M11.5 14.5h8" stroke="var(--accent)" />
+          <path d="M7.5 20.5h4" stroke="var(--accent)" />
+          <path d="M8.5 22.5h15v3h-15z" fill="#bbb" stroke="#000" />
+          <path d="M2.5 26.5h27v4h-27z" fill="#ddd" stroke="#000" />
+          <path d="M4.5 28.5h1M7.5 28.5h1M10.5 28.5h11M23.5 28.5h1M26.5 28.5h1" stroke="#555" />
+        </svg>
+        <div class="os-about-main">
+          <p class="os-kicker">
+            {{ t('about.kicker', { version: statValues[0], year: since }) }}
+          </p>
+          <h1 id="os-name" class="os-name">
+            Sandu Dorogan
+          </h1>
+          <p class="os-role">
+            {{ t('about.role') }} <span aria-hidden="true">—</span> {{ t('about.location') }}
+          </p>
+          <p class="os-tagline">
+            {{ t('about.tagline') }}
+          </p>
+          <p class="os-intro">
+            {{ t('about.intro') }}
+          </p>
+          <div class="os-actions">
+            <a href="#contact" class="os-btn os-btn-default">{{ t('about.start') }}</a>
+            <a href="#work" class="os-btn">{{ t('about.projects') }}</a>
+          </div>
         </div>
-        <NuxtLink :to="switchLocalePath(otherLocale)" class="v1-nav-lang" :aria-label="t('lang.switchAria')">
-          {{ t('lang.switchTo') }}
-        </NuxtLink>
       </div>
-    </nav>
+    </AppWindow>
 
-    <main id="main">
-      <header id="top" class="v1-hero">
-        <p class="v1-hero-kicker">{{ t('hero.kicker') }}</p>
-        <h1 class="v1-hero-title">
-          <span class="v1-line">{{ t('hero.line1') }}</span>
-          <span class="v1-line v1-line-offset">{{ t('hero.line2') }}</span>
-          <span class="v1-line v1-line-outline">{{ t('hero.line3') }}</span>
-        </h1>
-        <div class="v1-hero-bottom">
-          <p class="v1-hero-sub">{{ t('hero.sub') }}</p>
-          <a href="#contact" class="v1-btn">{{ t('hero.cta') }}</a>
+    <AppWindow
+      win="info"
+      :title="t('info.title')"
+      flat
+      :zoom="false"
+      class="os-w-info"
+    >
+      <div class="os-pane os-info">
+        <div class="os-info-head">
+          <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+            <path d="M1.5 .5h13v10h-13z" fill="#ddd" stroke="#000" />
+            <path d="M3.5 2.5h9v6h-9z" fill="var(--lav)" stroke="#000" />
+            <path d="M3.5 11.5h9v2h-9z" fill="#bbb" stroke="#000" />
+            <path d="M.5 13.5h15v2H.5z" fill="#ddd" stroke="#000" />
+          </svg>
+          <p><strong>Sandu Dorogan</strong></p>
         </div>
-      </header>
-
-      <div class="v1-marquee" aria-hidden="true">
-        <div class="v1-marquee-track">
-          <span v-for="i in 2" :key="i" class="v1-marquee-content">
-            <span v-for="tech in stack" :key="tech" class="v1-marquee-item">{{ tech }} ✦</span>
-          </span>
-        </div>
-      </div>
-
-      <section id="services" class="v1-section">
-        <h2 class="v1-section-title">{{ t('services.title') }}</h2>
-        <div class="v1-services">
-          <article v-for="s in services" :key="s.num" class="v1-service">
-            <span class="v1-service-num">{{ s.num }}</span>
-            <h3>{{ s.title }}</h3>
-            <p>{{ s.description }}</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="work" class="v1-section v1-section-inverted">
-        <h2 class="v1-section-title">{{ t('work.title') }}</h2>
-        <div class="v1-projects">
-          <a
-            v-for="p in projects"
-            :key="p.title"
-            :href="p.url"
-            target="_blank"
-            rel="noopener"
-            class="v1-project"
-          >
-            <div class="v1-project-head">
-              <h3>{{ p.title }}</h3>
-              <span class="v1-project-arrow">↗</span>
-            </div>
-            <p>{{ p.description }}</p>
-            <div class="v1-project-tags">
-              <span v-for="tag in p.tags" :key="tag">{{ tag }}</span>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <section id="experience" class="v1-section">
-        <h2 class="v1-section-title">{{ t('experience.title') }}</h2>
-        <ul class="v1-exp">
-          <li v-for="e in experience" :key="e.company" class="v1-exp-row">
-            <span class="v1-exp-date">{{ e.date }}</span>
-            <span class="v1-exp-role">{{ e.role }}</span>
-            <span class="v1-exp-company">@ {{ e.company }}</span>
+        <dl class="os-info-list">
+          <div>
+            <dt>{{ t('info.kind') }}</dt>
+            <dd>{{ t('about.role') }}</dd>
+          </div>
+          <div>
+            <dt>{{ t('info.where') }}</dt>
+            <dd>{{ t('about.location') }}</dd>
+          </div>
+          <div>
+            <dt>{{ t('info.created') }}</dt>
+            <dd>{{ since }}</dd>
+          </div>
+        </dl>
+        <ul class="os-meters">
+          <li v-for="stat in stats" :key="stat.label" class="os-meter">
+            <span class="os-meter-label">{{ stat.label }}</span>
+            <span class="os-meter-bar" aria-hidden="true"><span :style="{ width: `${(stat.value / peak) * 100}%` }" /></span>
+            <span class="os-meter-value">{{ stat.value }}</span>
           </li>
         </ul>
-      </section>
+      </div>
+    </AppWindow>
 
-      <section id="contact" class="v1-section">
-        <h2 class="v1-section-title">{{ t('contact.title') }}</h2>
-        <div class="v1-contact">
-          <div class="v1-contact-info">
-            <div class="v1-contact-row">
-              <span class="v1-contact-label">{{ t('contact.email') }}</span>
-              <AppRevealContactValue endpoint="/api/reveal/email" placeholder="email@example.com" />
-            </div>
-            <div class="v1-contact-row">
-              <span class="v1-contact-label">{{ t('contact.phone') }}</span>
-              <AppRevealContactValue endpoint="/api/reveal/phone" placeholder="+00 000 000 000" />
-            </div>
-            <div class="v1-contact-row">
-              <span class="v1-contact-label">{{ t('contact.location') }}</span>
-              <span class="v1-contact-value">{{ t('contact.locationValue') }}</span>
-            </div>
+    <AppWindow
+      id="services"
+      win="services"
+      :title="t('services.title')"
+      flat
+      class="os-w-services"
+    >
+      <div class="os-pane os-panels">
+        <div v-for="(service, i) in services" :key="service.title" class="os-group">
+          <h3 class="os-group-label">
+            {{ service.title }}
+          </h3>
+          <div class="os-group-row">
+            <span class="os-tile" aria-hidden="true">
+              <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+                <path :d="glyphs[i]?.d" :fill="glyphs[i]?.fill" stroke="#000" />
+              </svg>
+            </span>
+            <p>{{ service.description }}</p>
           </div>
-          <div class="v1-socials">
-            <a
-              v-for="link in socialLinks"
-              :key="link.name"
-              :href="link.url"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="v1-social"
-            >{{ link.name }} ↗</a>
+          <div class="os-radios" aria-hidden="true">
+            <span class="os-radio is-on" />{{ t('services.on') }}
+            <span class="os-radio" />{{ t('services.off') }}
           </div>
         </div>
-      </section>
-    </main>
-
-    <footer class="v1-footer">
-      <h2 class="v1-footer-title">{{ t('footer.line1') }}<br>{{ t('footer.line2') }}</h2>
-      <div class="v1-footer-links">
-        <a href="#contact" class="v1-btn v1-btn-invert">{{ t('footer.cta') }}</a>
-        <p>{{ t('footer.rights', { year: new Date().getFullYear() }) }}</p>
       </div>
-    </footer>
-  </div>
+    </AppWindow>
+
+    <AppWindow
+      win="ext"
+      :title="t('stack.title')"
+      :zoom="false"
+      class="os-w-ext"
+    >
+      <p class="os-strip-head">
+        <span>{{ t('stack.label') }}</span><span>{{ t('stack.enabled', { n: stack.length }) }}</span>
+      </p>
+      <ul class="os-ext-list">
+        <li v-for="item in stack" :key="item">
+          <span class="os-check" aria-hidden="true">
+            <svg viewBox="0 0 8 8" shape-rendering="crispEdges"><path d="M1 4h1v1H1zM2 5h1v1H2zM3 6h1v1H3zM4 4h1v2H4zM5 2h1v2H5zM6 1h1v1H6z" /></svg>
+          </span>
+          <svg
+            class="os-puzzle"
+            viewBox="0 0 14 14"
+            shape-rendering="crispEdges"
+            aria-hidden="true"
+          >
+            <path d="M1.5 4.5h3v-2h2v2h4v3h2v2h-2v3h-9z" fill="var(--lav)" stroke="#000" />
+          </svg>
+          {{ item }}
+        </li>
+      </ul>
+    </AppWindow>
+
+    <AppWindow
+      id="work"
+      win="work"
+      :title="t('work.window')"
+      class="os-w-work"
+    >
+      <p class="os-strip-head">
+        <span>{{ t('window.items', { n: projects.length }) }}</span><span>{{ t('work.title') }}</span>
+      </p>
+      <ul class="os-files">
+        <li v-for="project in projects" :key="project.title" class="os-file">
+          <a
+            :href="project.url"
+            target="_blank"
+            rel="noopener"
+            class="os-file-link"
+            :class="{ 'is-picked': picked === project.title }"
+            @click="picked = project.title"
+          >
+            <svg
+              class="os-file-icon"
+              viewBox="0 0 16 16"
+              shape-rendering="crispEdges"
+              aria-hidden="true"
+            >
+              <path d="M2.5 .5h8l3 3v12h-11z" fill="#fff" stroke="#000" />
+              <path d="M10.5 .5v3h3" fill="var(--lav)" stroke="#000" />
+              <path d="M4.5 12.5h7" stroke="#888" />
+              <text
+                x="8"
+                y="10"
+                text-anchor="middle"
+                class="os-file-letter"
+              >{{ project.title.charAt(0) }}</text>
+            </svg>
+            <span class="os-file-name">{{ project.title }}</span>
+            <span class="os-sr">{{ t('window.newTab') }}</span>
+          </a>
+          <p class="os-file-kind">
+            {{ project.subtitle }}
+          </p>
+          <p class="os-file-desc">
+            {{ project.description }}
+          </p>
+          <ul class="os-tags" :aria-label="t('window.tags')">
+            <li v-for="tag in project.tags" :key="tag">
+              {{ tag }}
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </AppWindow>
+
+    <AppWindow
+      win="lab"
+      :title="t('lab.title')"
+      flat
+      :zoom="false"
+      class="os-w-lab"
+    >
+      <div class="os-pane os-lab">
+        <p class="os-kicker">
+          {{ t('ai.title') }}
+        </p>
+        <p class="os-lab-motto">
+          {{ t('ai.motto') }}
+        </p>
+        <dl class="os-lab-stats">
+          <div v-for="stat in labStats" :key="stat.label">
+            <dt>{{ stat.label }}</dt>
+            <dd>{{ stat.value }}</dd>
+          </div>
+        </dl>
+        <NuxtLink :to="localePath('/ai')" class="os-btn os-btn-default os-lab-btn">
+          {{ t('lab.open') }}
+        </NuxtLink>
+      </div>
+    </AppWindow>
+
+    <AppWindow
+      id="experience"
+      win="exp"
+      :title="t('experience.title')"
+      class="os-w-exp"
+    >
+      <p class="os-strip-head">
+        <span>{{ t('window.items', { n: experience.length }) }}</span><span>{{ t('experience.since', { year: since }) }}</span>
+      </p>
+      <table class="os-list">
+        <caption class="os-sr">
+          {{ t('experience.caption') }}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">
+              {{ t('experience.name') }}
+            </th>
+            <th scope="col" class="is-sorted">
+              {{ t('experience.date') }}
+            </th>
+            <th scope="col">
+              {{ t('experience.kind') }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="entry in experience" :key="entry.company">
+            <td class="os-list-name">
+              <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                <path d="M.5 3.5h5l1 1h8v9H.5z" fill="var(--lav)" stroke="#000" />
+                <path d="M.5 5.5h15" stroke="#000" />
+              </svg>
+              {{ entry.company }}
+            </td>
+            <td class="os-list-date">
+              {{ entry.date }}
+            </td>
+            <td>{{ entry.role }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </AppWindow>
+
+    <section id="contact" class="os-dialog" aria-labelledby="os-t-contact">
+      <div class="os-dialog-inner">
+        <svg
+          class="os-dialog-icon"
+          viewBox="0 0 32 32"
+          shape-rendering="crispEdges"
+          aria-hidden="true"
+        >
+          <path d="M2.5 7.5h27v19h-27z" fill="#fff" stroke="#000" />
+          <path d="M2.5 7.5 16 18 29.5 7.5" fill="var(--lav)" stroke="#000" />
+          <path d="M2.5 26.5l10-9M29.5 26.5l-10-9" fill="none" stroke="#000" />
+        </svg>
+        <div class="os-dialog-main">
+          <p class="os-kicker">
+            {{ t('contact.kicker') }}
+          </p>
+          <h2 id="os-t-contact" class="os-dialog-title">
+            {{ t('contact.title') }}
+          </h2>
+          <p class="os-dialog-text">
+            {{ t('contact.text', { place: t('about.location') }) }}
+          </p>
+          <dl class="os-fields">
+            <div class="os-field-row">
+              <dt>{{ t('contact.email') }}</dt>
+              <dd class="os-field">
+                <AppRevealContactValue endpoint="/api/reveal/email" placeholder="email@example.com" />
+              </dd>
+            </div>
+            <div class="os-field-row">
+              <dt>{{ t('contact.phone') }}</dt>
+              <dd class="os-field">
+                <AppRevealContactValue endpoint="/api/reveal/phone" placeholder="+00 000 000 000" />
+              </dd>
+            </div>
+          </dl>
+          <ul class="os-dialog-buttons">
+            <li v-for="(social, i) in socialLinks" :key="social.name">
+              <a
+                :href="social.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="os-btn"
+                :class="{ 'os-btn-default': i === socialLinks.length - 1 }"
+              >{{ social.name }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </AppDesktop>
 </template>
 
+<style src="~/assets/css/os.css"></style>
+
 <style scoped>
-.v1 {
-  --paper: #f3efe6;
-  --ink: #111111;
-  --shock: #ff4d00;
-  --pad-x: clamp(1.25rem, 6vw, 5rem);
-  background: var(--paper);
-  color: var(--ink);
-  font-family: 'Space Mono', monospace;
-  min-height: 100vh;
+/* About */
+
+.os-about {
+  display: grid;
+  gap: 1.25rem;
 }
 
-/* Paper grain over the whole page, including the inverted sections */
-.v1::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  pointer-events: none;
-  opacity: 0.16;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+.os-about-icon {
+  width: 64px;
+  height: 64px;
 }
 
-.v1 ::selection {
-  background: var(--shock);
-  color: var(--paper);
+
+.os-name {
+  margin-top: 0.35rem;
+  font-family: 'Pixelify Sans', monospace;
+  font-size: clamp(2.6rem, 9vw, 5.5rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  text-shadow: 4px 4px 0 var(--lav);
 }
 
-/* ---- Skip link ---- */
-.v1-skip {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  z-index: 100;
-  background: var(--ink);
-  color: var(--paper);
-  padding: 0.75rem 1.25rem;
-  font-family: 'Archivo Black', sans-serif;
-  text-decoration: none;
+.os-role {
+  margin-top: 0.9rem;
+  font-family: 'Pixelify Sans', monospace;
+  font-size: 1.05rem;
 }
 
-.v1-skip:focus {
-  left: 0;
+.os-tagline {
+  max-width: 34ch;
+  margin-top: 1.25rem;
+  font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.35;
 }
 
-/* ---- Nav ---- */
-.v1-nav {
+.os-intro {
+  max-width: 52ch;
+  margin-top: 0.75rem;
+  color: #333;
+}
+
+.os-actions {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem var(--pad-x);
-  border-bottom: 4px solid var(--ink);
-  position: sticky;
-  top: 0;
-  background: var(--paper);
-  z-index: 50;
+  flex-wrap: wrap;
+  gap: 1rem 1.25rem;
+  margin-top: 1.75rem;
+  padding: 5px;
 }
 
-.v1-nav-brand {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 1.5rem;
-  text-decoration: none;
-  color: var(--ink);
-}
+/* Get Info */
 
-.v1-nav-right {
+.os-info-head {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--plat-4);
+  box-shadow: 0 1px 0 #fff;
 }
 
-.v1-nav-links {
-  display: flex;
-  gap: 0;
+.os-info-head svg {
+  width: 32px;
+  height: 32px;
 }
 
-.v1-nav-link {
-  padding: 0.5rem 0.9rem;
-  border: 2px solid var(--ink);
-  margin-left: -2px;
-  text-decoration: none;
-  color: var(--ink);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  transition: background 0.1s, color 0.1s;
-}
-
-.v1-nav-link:hover { background: var(--shock); color: var(--paper); }
-
-.v1-nav-lang {
-  padding: 0.5rem 0.8rem;
-  border: 2px solid var(--ink);
-  background: var(--ink);
-  color: var(--paper);
-  text-decoration: none;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  transition: background 0.1s, color 0.1s;
-}
-
-.v1-nav-lang:hover { background: var(--shock); color: var(--paper); }
-
-.v1-nav-link:focus-visible,
-.v1-nav-lang:focus-visible,
-.v1-nav-brand:focus-visible {
-  outline: 3px solid var(--shock);
-  outline-offset: 2px;
-}
-
-@media (max-width: 720px) {
-  .v1-nav-link { padding: 0.4rem 0.55rem; font-size: 0.6rem; }
-}
-
-/* Single-page site: sections are reachable by scroll, so drop the
-   in-page anchor links on small screens and keep the bar to brand + lang. */
-@media (max-width: 640px) {
-  .v1-nav-links { display: none; }
-}
-
-/* ---- Hero ---- */
-.v1-hero {
-  padding: clamp(4rem, 9vw, 7rem) var(--pad-x) clamp(3rem, 7vw, 5.5rem);
-  border-bottom: 4px solid var(--ink);
-}
-
-.v1-hero-kicker {
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
-  margin-bottom: 3rem;
-  border: 2px solid var(--ink);
-  display: inline-block;
-  padding: 0.35rem 0.75rem;
-  background: var(--shock);
-  color: var(--paper);
-  box-shadow: 5px 5px 0 var(--ink);
-}
-
-.v1-hero-title {
-  font-family: 'Archivo Black', sans-serif;
-  /* 10vw keeps the longest single word (RO "DEZVOLTATOR", 11 chars, can't
-     wrap) inside the viewport at every width; 13vw overflowed below ~1560px. */
-  font-size: clamp(2rem, 10vw, 8.5rem);
-  line-height: 0.88;
-  text-transform: uppercase;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-}
-
-.v1-line { animation: v1-slam 0.5s cubic-bezier(0.2, 0.9, 0.3, 1) both; }
-.v1-line:nth-child(2) { animation-delay: 0.12s; }
-.v1-line:nth-child(3) { animation-delay: 0.24s; }
-
-.v1-line-offset { margin-left: clamp(2rem, 10vw, 9rem); color: var(--shock); }
-
-.v1-line-outline {
-  color: var(--paper);
-  -webkit-text-stroke: 3px var(--ink);
-}
-
-/* Thick strokes swallow small glyphs, thin them alongside the type scale */
-@media (max-width: 640px) {
-  .v1-line-outline { -webkit-text-stroke-width: 2px; }
-}
-
-@keyframes v1-slam {
-  from { transform: translateY(40px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-.v1-hero-bottom {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 2.5rem;
-  margin-top: clamp(3rem, 6vw, 4.5rem);
-}
-
-.v1-hero-sub {
-  max-width: 32ch;
-  font-size: 1.1rem;
-  line-height: 1.65;
-  border-left: 6px solid var(--ink);
-  padding-left: 1rem;
-}
-
-/* ---- Buttons ---- */
-.v1-btn {
-  display: inline-block;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 1.1rem;
-  text-decoration: none;
-  color: var(--ink);
-  background: var(--paper);
-  border: 3px solid var(--ink);
-  padding: 0.85rem 1.75rem;
-  box-shadow: 8px 8px 0 var(--ink);
-  transition: transform 0.1s, box-shadow 0.1s, background 0.1s, color 0.1s;
-}
-
-.v1-btn:hover {
-  transform: translate(4px, 4px);
-  box-shadow: 2px 2px 0 var(--ink);
-  background: var(--shock);
-  color: var(--paper);
-}
-
-.v1-btn:focus-visible {
-  outline: 3px solid var(--shock);
-  outline-offset: 4px;
-}
-
-.v1-btn-invert {
-  background: var(--ink);
-  color: var(--paper);
-  border-color: var(--paper);
-  box-shadow: 8px 8px 0 var(--shock);
-}
-
-.v1-btn-invert:hover {
-  box-shadow: 2px 2px 0 var(--shock);
-  background: var(--shock);
-}
-
-/* ---- Marquee ---- */
-.v1-marquee {
-  border-bottom: 4px solid var(--ink);
-  background: var(--ink);
-  color: var(--paper);
-  overflow: hidden;
-  padding: 1rem 0;
-}
-
-.v1-marquee-track {
-  display: flex;
-  width: max-content;
-  animation: v1-scroll 24s linear infinite;
-}
-
-.v1-marquee:hover .v1-marquee-track { animation-play-state: paused; }
-
-.v1-marquee-content { display: flex; }
-
-.v1-marquee-item {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 1.2rem;
-  white-space: nowrap;
-  padding: 0 1rem;
-}
-
-@keyframes v1-scroll {
-  to { transform: translateX(-50%); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .v1-marquee-track { animation: none; }
-  .v1-line { animation: none; }
-}
-
-/* ---- Sections ---- */
-.v1-section {
-  padding: clamp(4rem, 9vw, 7rem) var(--pad-x);
-  border-bottom: 4px solid var(--ink);
-  scroll-margin-top: 5rem;
-}
-
-.v1-section-title {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(2rem, 6vw, 4rem);
-  margin: 0 0 clamp(2.5rem, 6vw, 4rem);
-  text-decoration: underline;
-  text-decoration-thickness: 8px;
-  text-underline-offset: 10px;
-  text-decoration-color: var(--shock);
-}
-
-/* ---- Services ---- */
-.v1-services {
+.os-info-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
-  gap: 2rem;
+  gap: 0.35rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--plat-4);
+  box-shadow: 0 1px 0 #fff;
 }
 
-.v1-service {
-  border: 3px solid var(--ink);
-  padding: 2rem;
-  position: relative;
-  transition: background 0.1s, color 0.1s;
+.os-info-list div {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.6rem;
 }
 
-.v1-service:hover { background: var(--ink); color: var(--paper); }
-.v1-service:hover .v1-service-num { color: var(--shock); }
+.os-info-list dt {
+  font-weight: 700;
+  text-align: right;
+}
 
-.v1-service-num {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 3rem;
+.os-meters {
+  display: grid;
+  gap: 0.75rem;
+  padding-top: 1rem;
+}
+
+.os-meter {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.2rem 0.75rem;
+  align-items: center;
+}
+
+.os-meter-label {
+  font-size: 0.95rem;
+}
+
+.os-meter-bar {
+  grid-area: 2 / 1;
+}
+
+.os-meter-value {
+  grid-area: 1 / 2 / 3 / 3;
+  min-width: 2ch;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: right;
+}
+
+.os-meter-bar {
   display: block;
-  margin-bottom: 1rem;
+  height: 12px;
+  border: 1px solid #000;
+  background: #fff;
 }
 
-.v1-service h3 {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  margin: 0 0 0.75rem;
+.os-meter-bar span {
+  display: block;
+  height: 100%;
+  background: repeating-linear-gradient(90deg, var(--accent-hi) 0 2px, var(--lav) 2px 4px);
+  border-right: 1px solid #000;
 }
 
-.v1-service p { margin: 0; line-height: 1.55; font-size: 0.95rem; }
+/* Services */
 
-/* ---- Projects (inverted section) ---- */
-.v1-section-inverted {
-  background: var(--ink);
-  color: var(--paper);
-}
-
-.v1-section-inverted .v1-section-title { text-decoration-color: var(--shock); }
-
-.v1-projects {
+.os-panels {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-  gap: 2rem;
+  gap: 1.5rem 1.25rem;
+  padding-top: 1.75rem;
 }
 
-.v1-project {
-  border: 3px solid var(--paper);
-  padding: 2rem;
-  text-decoration: none;
-  color: var(--paper);
+.os-group {
+  position: relative;
+  padding: 1.25rem 1rem 0.9rem;
+  border: 1px solid var(--plat-4);
+  box-shadow: 1px 1px 0 #fff, inset 1px 1px 0 #fff;
+}
+
+.os-group-label {
+  position: absolute;
+  top: -0.7rem;
+  left: 0.75rem;
+  padding: 0 0.4rem;
+  background: var(--plat-1);
+  font-family: 'Pixelify Sans', monospace;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.os-group-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.9rem;
+  align-items: start;
+}
+
+.os-tile {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #000;
+  background: #fff;
+  box-shadow: var(--bevel-in);
+}
+
+.os-tile svg {
+  width: 32px;
+  height: 32px;
+}
+
+.os-radios {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.8rem;
+  padding-left: calc(44px + 0.9rem);
+  font-family: 'Pixelify Sans', monospace;
+  font-size: 0.8rem;
+}
+
+.os-radio {
+  width: 12px;
+  height: 12px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: inset 1px 1px 0 var(--plat-3);
+}
+
+.os-radio + .os-radio,
+.os-radio.is-on ~ .os-radio {
+  margin-left: 0.6rem;
+}
+
+.os-radio.is-on {
+  background: radial-gradient(circle, #000 0 2.5px, #fff 3px);
+}
+
+/* Extensions */
+
+.os-ext-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  padding: 0.5rem 0;
+}
+
+.os-ext-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.9rem;
+}
+
+.os-ext-list li:hover {
+  background: var(--lav);
+}
+
+.os-check {
+  display: grid;
+  place-items: center;
+  width: 13px;
+  height: 13px;
+  border: 1px solid #000;
+  background: #fff;
+}
+
+.os-check svg {
+  width: 9px;
+  height: 9px;
+}
+
+.os-puzzle {
+  width: 18px;
+  height: 18px;
+}
+
+/* Projects */
+
+.os-files {
+  display: grid;
+  gap: 1.75rem 1.5rem;
+  padding: 1.5rem 1.25rem 1.75rem;
+}
+
+.os-file {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  transition: background 0.1s, color 0.1s, transform 0.1s;
+  align-items: center;
+  text-align: center;
 }
 
-.v1-project:hover {
-  background: var(--shock);
-  transform: translate(-4px, -4px);
-  box-shadow: 8px 8px 0 var(--paper);
-}
-
-.v1-project-head {
+.os-file-link {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
 }
 
-.v1-project h3 {
-  font-family: 'Archivo Black', sans-serif;
+.os-file-icon {
+  width: 64px;
+  height: 64px;
+}
+
+.os-file-letter {
+  font-family: 'Pixelify Sans', monospace;
+  font-size: 6px;
+  font-weight: 700;
+  fill: var(--accent);
+}
+
+.os-file-name {
+  padding: 0 0.35rem;
+  font-family: 'Pixelify Sans', monospace;
   font-size: 1.15rem;
-  text-transform: uppercase;
-  margin: 0;
+  font-weight: 600;
 }
 
-.v1-project-arrow { font-size: 1.5rem; }
+.os-file-link:hover .os-file-name {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 
-.v1-project p { margin: 0; line-height: 1.55; font-size: 0.95rem; flex-grow: 1; }
+.os-file-kind {
+  margin-top: 0.15rem;
+  font-family: 'Pixelify Sans', monospace;
+  font-size: 0.85rem;
+  color: var(--accent);
+}
 
-.v1-project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.os-file-desc {
+  max-width: 26ch;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: #333;
+}
 
-.v1-project-tags span {
-  border: 2px solid currentColor;
-  padding: 0.15rem 0.5rem;
-  font-size: 0.7rem;
+
+
+/* Experience */
+
+.os-list {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.os-list th {
+  padding: 0.3rem 0.75rem;
+  border-right: 1px solid var(--plat-4);
+  border-bottom: 1px solid #000;
+  background: var(--plat-2);
+  box-shadow: var(--bevel-out);
+  font-family: 'Pixelify Sans', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+.os-list th.is-sorted {
+  background: var(--plat-3);
+}
+
+.os-list td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px dotted var(--plat-3);
+  vertical-align: top;
+}
+
+.os-list td.os-list-date,
+.os-list tbody td:last-child {
+  color: #333;
+}
+
+.os-list-date {
+  background: #f1f1f1;
+  white-space: nowrap;
+}
+
+.os-list-name {
   font-weight: 700;
 }
 
-/* ---- Experience ---- */
-.v1-exp {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.os-list-name svg {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 0.4rem;
+  vertical-align: -2px;
 }
 
-.v1-exp-row {
+.os-list tbody tr:hover td {
+  background: var(--lav);
+}
+
+/* Contact dialog */
+
+.os-dialog {
+  position: relative;
+  z-index: 1;
+  padding: 3px;
+  border: 1px solid #000;
+  background: var(--plat-2);
+  box-shadow: var(--bevel-out), 0 0 0 1px var(--plat-2), var(--shadow), 6px 6px 0 rgb(0 0 0 / 0.25);
+  animation: os-open 0.32s steps(4, end) both;
+}
+
+.os-dialog-inner {
   display: grid;
-  grid-template-columns: 160px 1fr auto;
   gap: 1rem;
-  align-items: baseline;
-  padding: 1.6rem 0;
-  border-bottom: 3px solid var(--ink);
-  transition: padding-left 0.15s;
+  padding: 1.25rem;
+  border: 3px solid var(--plat-3);
+  box-shadow: inset 0 0 0 1px var(--plat-4), 0 0 0 1px #fff;
+  background: var(--plat-1);
 }
 
-.v1-exp-row:hover { padding-left: 1rem; background: linear-gradient(to right, var(--shock) 6px, transparent 6px); }
-
-.v1-exp-date { font-size: 0.85rem; }
-
-.v1-exp-role {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(1rem, 3vw, 1.6rem);
+.os-dialog-icon {
+  width: 48px;
+  height: 48px;
 }
 
-.v1-exp-company { font-weight: 700; color: var(--shock); }
-
-@media (max-width: 640px) {
-  .v1-exp-row { grid-template-columns: 1fr; gap: 0.25rem; }
+.os-dialog-title {
+  margin-top: 0.3rem;
+  font-family: 'Pixelify Sans', monospace;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.05;
 }
 
-/* ---- Contact ---- */
-.v1-contact {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 4rem;
+.os-dialog-text {
+  margin-top: 0.6rem;
+  color: #333;
 }
 
-.v1-contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  flex: 1;
-  min-width: min(280px, 100%);
-}
-
-.v1-contact-row {
+.os-fields {
   display: grid;
-  grid-template-columns: 140px 1fr;
-  gap: 1rem;
-  align-items: baseline;
-  padding: 1.4rem 0;
-  border-bottom: 3px solid var(--ink);
+  gap: 0.75rem;
+  margin-top: 1.25rem;
 }
 
-.v1-contact-row:first-child { border-top: 3px solid var(--ink); }
-
-@media (max-width: 640px) {
-  .v1-contact-row { grid-template-columns: 1fr; gap: 0.35rem; }
+.os-field-row {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: center;
 }
 
-.v1-contact-label {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
+.os-field-row dt {
+  font-weight: 700;
+  text-align: right;
 }
 
-.v1-contact-value { font-size: 1.1rem; }
-
-.v1-socials {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: flex-start;
-}
-
-.v1-social {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 1rem;
-  text-decoration: none;
-  color: var(--ink);
-  border: 3px solid var(--ink);
-  padding: 0.7rem 1.5rem;
-  box-shadow: 6px 6px 0 var(--ink);
-  transition: transform 0.1s, box-shadow 0.1s, background 0.1s, color 0.1s;
-}
-
-.v1-social:hover {
-  transform: translate(3px, 3px);
-  box-shadow: 2px 2px 0 var(--ink);
-  background: var(--shock);
-  color: var(--paper);
-}
-
-.v1-social:focus-visible {
-  outline: 3px solid var(--shock);
-  outline-offset: 4px;
-}
-
-/* ---- Footer ---- */
-.v1-footer {
-  background: var(--ink);
-  color: var(--paper);
-  padding: clamp(3.5rem, 9vw, 6.5rem) var(--pad-x);
+.os-field {
+  min-width: 0;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid #000;
+  background: #fff;
+  box-shadow: inset 1px 1px 0 var(--plat-4);
   overflow-wrap: anywhere;
+}
+
+.os-dialog-buttons {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 2.5rem;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.75rem;
+  padding: 5px;
 }
 
-.v1-footer-title {
-  font-family: 'Archivo Black', sans-serif;
-  /* 2rem floor keeps the longest RO word ("CONSTRUIM.") inside narrow viewports */
-  font-size: clamp(2rem, 10vw, 7rem);
-  line-height: 0.9;
-  margin: 0;
-  -webkit-text-stroke: 2px var(--paper);
-  color: transparent;
+.os-dialog-buttons .os-btn {
+  --gap: var(--plat-1);
 }
 
-.v1-footer-links {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  align-items: flex-start;
+@media (min-width: 640px) {
+  .os-about {
+    grid-template-columns: auto 1fr;
+    gap: 1.75rem;
+    padding: 2rem 2rem 2.25rem;
+  }
+
+  .os-about-icon {
+    width: 96px;
+    height: 96px;
+  }
+
+  .os-panels {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .os-files {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .os-dialog-inner {
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    padding: 1.75rem 2rem;
+  }
 }
 
-.v1-footer-links p { font-size: 0.75rem; margin: 0; opacity: 0.7; }
+@media (min-width: 1024px) {
+  .os-w-about {
+    grid-area: 1 / 1 / 2 / 9;
+  }
+
+  .os-w-about .os-about {
+    padding-right: 5rem;
+  }
+
+  .os-w-info {
+    grid-area: 1 / 8 / 2 / 13;
+    align-self: start;
+    margin-top: 8.5rem;
+  }
+
+  .os-w-services {
+    grid-area: 2 / 1 / 3 / 9;
+    margin-left: 3rem;
+  }
+
+  .os-w-ext {
+    grid-area: 2 / 9 / 3 / 13;
+    align-self: start;
+    margin-top: 4rem;
+  }
+
+  .os-w-work {
+    grid-area: 3 / 1 / 4 / 9;
+    align-self: start;
+  }
+
+  .os-w-lab {
+    grid-area: 3 / 9 / 4 / 13;
+    align-self: start;
+    margin-top: 3.5rem;
+  }
+
+  .os-w-exp {
+    grid-area: 4 / 1 / 5 / 8;
+    align-self: start;
+  }
+
+  .os-dialog {
+    grid-area: 4 / 8 / 5 / 13;
+    align-self: start;
+    margin-top: 3rem;
+  }
+
+  .os-dialog-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 639px) {
+  .os-list th,
+  .os-list td {
+    padding-inline: 0.5rem;
+  }
+
+  .os-list-date {
+    white-space: normal;
+  }
+
+  .os-list-name svg {
+    display: none;
+  }
+
+  .os-dialog-buttons {
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .os-dialog-buttons .os-btn {
+    min-width: 5.25rem;
+    padding-inline: 0.75rem;
+  }
+}
+
+/* AI Lab teaser */
+
+.os-lab {
+  display: grid;
+  gap: 0.9rem;
+  justify-items: start;
+}
+
+.os-lab-motto {
+  font-family: 'Pixelify Sans', monospace;
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.os-lab-stats {
+  display: grid;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.75rem 0;
+  border-block: 1px solid var(--plat-4);
+  box-shadow: inset 0 1px 0 #fff, 0 1px 0 #fff;
+}
+
+.os-lab-stats div {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.os-lab-stats dt {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+.os-lab-stats dd {
+  grid-column: 1;
+  grid-row: 1;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: right;
+}
+
+.os-lab-btn {
+  --gap: var(--plat-1);
+
+  margin: 0.4rem 5px 5px;
+}
 </style>

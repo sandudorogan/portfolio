@@ -1,6 +1,6 @@
 # Personal Portfolio
 
-Single-page brutalist portfolio at [dorogans.com](https://dorogans.com) — paper, ink, and shock orange. Built with Nuxt 4, bilingual English/Romanian.
+Retro OS portfolio at [dorogans.com](https://dorogans.com) — every section is a draggable Mac OS 8 window on a dithered desktop. Built with Nuxt 4, bilingual English/Romanian.
 
 ## Stack
 
@@ -41,8 +41,10 @@ Deployed on [Vercel](https://vercel.com). Pushes to `main` trigger automatic dep
 
 ## Project Structure
 
-- `app/pages/index.vue` — the entire page (layout, sections, scoped styles)
-- `app/components/app/` — feature components (contact reveal)
+- `app/pages/index.vue` — the home desktop (about, services, work, experience, contact)
+- `app/pages/ai.vue` — the AI page (how I build with agents, what I shipped, side projects)
+- `app/components/app/` — desktop shell (`Desktop.vue`), window chrome (`Window.vue`), contact reveal
+- `app/assets/css/os.css` — shared Retro OS styles (unscoped, `os-` prefixed)
 - `app/components/ui/` — Inspira UI component catalog
 - `i18n/locales/` — EN/RO translations
 - `server/api/reveal/` — anti-scraping contact endpoints

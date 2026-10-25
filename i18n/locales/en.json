@@ -2,10 +2,11 @@
   "skipToContent": "Skip to content",
   "nav": {
     "ariaLabel": "Main navigation",
-    "services": "SERVICES",
-    "work": "WORK",
-    "experience": "EXPERIENCE",
-    "contact": "CONTACT"
+    "services": "Services",
+    "work": "Work",
+    "experience": "Experience",
+    "contact": "Contact",
+    "ai": "AI"
   },
   "lang": {
     "switchTo": "RO",
@@ -15,56 +16,267 @@
     "title": "Sandu Dorogan — Full Stack Developer",
     "description": "Full Stack Developer in Bucharest. Web development, UX/UI design, DevOps and technical consultation. Tell me the what and I'll show you the how.",
     "ogTitle": "Sandu Dorogan — Full Stack Developer",
-    "ogDescription": "Tell me the WHAT and I'll show you the HOW. No fluff, no filler — working software.",
-    "jobTitle": "Full Stack Developer"
+    "ogDescription": "Tell me the what and I'll show you the how. No fluff, no filler — working software.",
+    "jobTitle": "Full Stack Developer",
+    "ai": {
+      "title": "AI, in practice — Sandu Dorogan",
+      "description": "How Sandu Dorogan ships AI features for patent professionals with a crew of coding agents: the pipeline, the house rules, the pace and the tools.",
+      "ogTitle": "AI, in practice",
+      "ogDescription": "Agents do the typing. I do the deciding."
+    }
   },
-  "hero": {
-    "kicker": "SANDU DOROGAN / BUCHAREST, RO / EST. 2018",
-    "line1": "FULL",
-    "line2": "STACK",
-    "line3": "DEVELOPER",
-    "sub": "Tell me the WHAT and I'll show you the HOW. No fluff, no filler — working software.",
-    "cta": "GET IN TOUCH →"
+  "desktop": {
+    "home": "Sandu Dorogan, back to top",
+    "shortcuts": "Desktop shortcuts",
+    "disk": "Sandu HD",
+    "lab": "AI Lab",
+    "city": "Bucharest",
+    "rights": "© {year} Sandu Dorogan"
+  },
+  "window": {
+    "collapse": "Collapse the {title} window",
+    "items": "{n} items",
+    "newTab": "(opens in a new tab)",
+    "tags": "Tags"
+  },
+  "about": {
+    "title": "About Sandu",
+    "kicker": "Sandu OS {version} · installed {year}",
+    "role": "Full Stack Developer",
+    "location": "Bucharest, Romania",
+    "tagline": "Tell me the what and I'll show you the how. No fluff, no filler — working software.",
+    "intro": "Eight years building web products end to end — from the database migration nobody wants to write to the interface everybody sees.",
+    "start": "Start a project",
+    "projects": "Open Projects"
+  },
+  "info": {
+    "title": "Sandu Info",
+    "kind": "Kind:",
+    "where": "Where:",
+    "created": "Created:",
+    "stats": [
+      "Years shipping",
+      "Product teams",
+      "Core technologies"
+    ]
   },
   "services": {
-    "title": "SERVICES",
+    "title": "Services Control Panel",
+    "on": "On",
+    "off": "Off",
     "items": [
-      { "title": "Web Development", "description": "Responsive, performant web applications built with modern technologies. No bloat." },
-      { "title": "UX/UI Design", "description": "Interfaces that delight users and hit business goals. Function first." },
-      { "title": "DevOps & Deployment", "description": "CI/CD pipelines and cloud infrastructure. Ship without ceremony." },
-      { "title": "Technical Consultation", "description": "Architecture, technology selection, implementation. Straight answers." }
+      {
+        "title": "Web Development",
+        "description": "Responsive, performant web applications built with modern technologies. No bloat."
+      },
+      {
+        "title": "UX/UI Design",
+        "description": "Interfaces that delight users and hit business goals. Function first."
+      },
+      {
+        "title": "DevOps & Deployment",
+        "description": "CI/CD pipelines and cloud infrastructure. Ship without ceremony."
+      },
+      {
+        "title": "Technical Consultation",
+        "description": "Architecture, technology selection, implementation. Straight answers."
+      }
     ]
+  },
+  "stack": {
+    "title": "Extensions",
+    "label": "Stack",
+    "enabled": "{n} of {n} on"
   },
   "work": {
-    "title": "SELECTED WORK",
+    "window": "Projects",
+    "title": "Selected Work",
     "items": [
-      { "title": "IPRally — Patent Search", "description": "A patent search engine. Clojure + ClojureScript on Google Cloud." },
-      { "title": "Crossbeam — Partnerbase", "description": "A database of partners and their products. Nuxt + Clojure on AWS." },
-      { "title": "Newsroom AI — Stories Editor", "description": "A modern stories editor. ClojureScript + Django on AWS." }
+      {
+        "subtitle": "Patent Search",
+        "description": "A patent search engine. Clojure + ClojureScript on Google Cloud."
+      },
+      {
+        "subtitle": "Partnerbase",
+        "description": "A database of partners and their products. Nuxt + Clojure on AWS."
+      },
+      {
+        "subtitle": "Stories Editor",
+        "description": "A modern stories editor. ClojureScript + Django on AWS."
+      }
     ]
   },
+  "lab": {
+    "title": "AI Lab",
+    "open": "Open AI Lab"
+  },
   "experience": {
-    "title": "EXPERIENCE",
+    "title": "Experience",
+    "since": "Since {year}",
+    "caption": "Work history, newest first",
+    "name": "Name",
+    "date": "Date",
+    "kind": "Kind",
     "items": [
-      { "date": "2025 —", "role": "FULL STACK DEVELOPER", "company": "IPRALLY" },
-      { "date": "2024 — 2025", "role": "FULL STACK ENGINEER", "company": "CROSSBEAM" },
-      { "date": "2022 — 2025", "role": "LEAD DEVELOPER", "company": "FLEXIANA" },
-      { "date": "2019 — 2021", "role": "WEB DEV ENGINEER", "company": "NEWSROOM AI" },
-      { "date": "2018 — 2019", "role": "JUNIOR PROGRAMMER", "company": "UBISOFT" }
+      {
+        "date": "2025 — present",
+        "role": "Full Stack Developer"
+      },
+      {
+        "date": "2024 — 2025",
+        "role": "Full Stack Engineer"
+      },
+      {
+        "date": "2022 — 2025",
+        "role": "Lead Developer"
+      },
+      {
+        "date": "2019 — 2021",
+        "role": "Web Dev Engineer"
+      },
+      {
+        "date": "2018 — 2019",
+        "role": "Junior Programmer"
+      }
     ]
   },
   "contact": {
-    "title": "GET IN TOUCH",
-    "email": "EMAIL",
-    "phone": "PHONE",
-    "location": "LOCATION",
-    "locationValue": "Bucharest, Romania"
+    "kicker": "Contact",
+    "title": "Let’s make something worth shipping.",
+    "text": "Click a field to reveal it. I answer from {place}.",
+    "email": "Email:",
+    "phone": "Phone:"
   },
-  "footer": {
-    "line1": "LET'S",
-    "line2": "BUILD.",
-    "cta": "CONTACT ME →",
-    "rights": "© {year} SANDU DOROGAN. NO RIGHTS RESERVED FOR BAD IDEAS."
+  "ai": {
+    "readme": "Read Me",
+    "document": "SimpleText document",
+    "title": "AI, in practice",
+    "motto": "Agents do the typing. I do the deciding.",
+    "lede": "I build AI features for patent professionals, and I build them with a crew of coding agents. The agents write first drafts, review each other and fix their findings. I set the direction, read the diffs and own what ships.",
+    "stats": [
+      "PRs merged in the last 3 months",
+      "Lines in a median PR",
+      "AI reviewers on every PR"
+    ],
+    "pace": {
+      "title": "Pace",
+      "axis": "PRs merged per month",
+      "bar": "{month} {year}: {n} PRs",
+      "caption": "PRs I merged at IPRally each month. The curve bends when the agent pipeline came online.",
+      "note": "October counted to the 23rd.",
+      "months": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ]
+    },
+    "shipped": {
+      "title": "Shipped at IPRally",
+      "items": [
+        {
+          "title": "Ask AI",
+          "description": "Chat with a patent. Answers cite the exact claim, paragraph or figure — hover to preview, click to jump there. Runs on durable workflows, so long answers survive restarts."
+        },
+        {
+          "title": "AI drafting",
+          "description": "Plans and writes a patent application section by section, claims first. Every AI edit arrives as a change you accept or reject, with full version history and undo."
+        },
+        {
+          "title": "AI review",
+          "description": "Checks a draft for clarity, claim support and disclosure gaps, and compares claims with prior art. One click applies the suggested fix."
+        },
+        {
+          "title": "Figures & files",
+          "description": "Generates and edits patent drawings with reference numbers. Reads uploaded PDFs, Word files and images, and says how much it understood."
+        },
+        {
+          "title": "LLMs in production",
+          "description": "A time budget per attempt so retries still fit, token and latency metrics per call, and each step gets only the sources it needs."
+        },
+        {
+          "title": "Patent search for agents",
+          "description": "An MCP server that lets Claude run IPRally semantic search and read full patent text."
+        }
+      ]
+    },
+    "pipeline": {
+      "title": "How a ticket ships",
+      "steps": [
+        {
+          "title": "Plan",
+          "description": "A lead agent reads the ticket and splits it into small units. It never edits code."
+        },
+        {
+          "title": "Build",
+          "description": "Each unit goes to a worker in its own git worktree. Haiku for chores, Sonnet for clear specs, Opus for open problems."
+        },
+        {
+          "title": "Review",
+          "description": "Every PR meets three AI reviewers: one for bugs and risk, one adversarial, one for house conventions."
+        },
+        {
+          "title": "Fix",
+          "description": "A fixer agent answers the findings, repairs red CI and pushes. The loop stops after 8 rounds."
+        },
+        {
+          "title": "Merge",
+          "description": "I read the diff and merge. PRs stay under ~700 lines, so reading them stays honest."
+        }
+      ]
+    },
+    "rules": {
+      "title": "House rules for agents",
+      "items": [
+        "Investigate first. Never guess a root cause.",
+        "Small PRs. Split anything over ~700 lines.",
+        "Run only the tests you touched. Keep loops fast.",
+        "One git worktree per task. No force pushes.",
+        "Write the why in the commit message."
+      ]
+    },
+    "arsenal": {
+      "title": "Arsenal",
+      "caption": "160 commits across 9 personal repos in the last 6 months.",
+      "items": [
+        {
+          "status": "Open source · v0.4",
+          "description": "A tmux sidebar with live status for every AI agent session — working, waiting, done. Speaks Claude Code, Codex, Cursor, OpenCode, Pi and Kiro."
+        },
+        {
+          "status": "Private · daily driver",
+          "description": "Reviews every PR I open with three models, then has an agent fix the findings and push — round after round, until it is clean."
+        },
+        {
+          "status": "Private",
+          "description": "One lead agent fans a ticket out into small PRs across Claude Code and Codex sub-agents."
+        },
+        {
+          "status": "Private",
+          "description": "Summarises what a PR really changes before it reads the description, then flags scope creep."
+        },
+        {
+          "status": "Open source",
+          "description": "Run and review AI coding-agent sessions — approvals and diffs — without leaving Neovim."
+        },
+        {
+          "status": "Open source · live",
+          "description": "A free school timetable builder that runs fully in the browser. Offline, no accounts, English and Romanian."
+        },
+        {
+          "status": "npm",
+          "description": "A Vue 3 network-graph component with zoom, pan and drag. Built in a day with an agent pair."
+        }
+      ]
+    }
   },
   "reveal": {
     "clickToReveal": "Click to reveal",
