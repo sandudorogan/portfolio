@@ -20,7 +20,8 @@
 </template>
 
 <script setup lang="ts">
-import {createNoise3D} from 'simplex-noise'
+import { Motion } from 'motion-v'
+import { createNoise3D } from 'simplex-noise'
 
 const TAU = 2 * Math.PI
 const BASE_TTL = 50

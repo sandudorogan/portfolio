@@ -1,6 +1,6 @@
 <template>
-  <span :class="cn('number-ticker tabular-nums', props.class)">
-    {{ displayValue }}{{ suffix }}
+  <span ref="el" :class="cn('number-ticker tabular-nums', props.class)">
+    {{ formattedDisplayValue }}{{ suffix }}
   </span>
 </template>
 
@@ -19,6 +19,9 @@ const props = withDefaults(defineProps<NumberTickerProps>(), {
   decimalPlaces: 0,
 })
 
+// Upstream observed `document.querySelector('.number-ticker')`, so with several
+// tickers on one page every instance watched the first one. Use a local ref.
+const el = ref<HTMLElement | null>(null)
 const displayValue = ref(0)
 const isInView = ref(false)
 const hasAnimated = ref(false)
@@ -53,7 +56,7 @@ function animateValue() {
 }
 
 const { stop } = useIntersectionObserver(
-  () => document.querySelector('.number-ticker'),
+  el,
   ([{ isIntersecting }]) => {
     if (isIntersecting && !hasAnimated.value) {
       isInView.value = true
