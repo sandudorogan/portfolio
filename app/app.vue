@@ -8,7 +8,7 @@ const localeHead = useLocaleHead({ seo: true })
 useHead(() => ({
   htmlAttrs: localeHead.value.htmlAttrs,
   link: [
-    { rel: 'icon', href: '/favicon.ico', sizes: '48x48' },
+    { rel: 'icon', href: '/favicon.ico', sizes: '16x16 32x32' },
     { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
     { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
     // hreflang alternates only; canonical is owned by usePageSeo
