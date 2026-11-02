@@ -16,6 +16,7 @@
   --bevel-out: inset 1px 1px 0 #fff, inset -1px -1px 0 var(--plat-4);
   --bevel-in: inset 1px 1px 0 var(--plat-4), inset -1px -1px 0 #fff;
   --shadow: 3px 3px 0 #111;
+  --bar: 1.875rem;
 
   /* AppRevealContactValue inherits its palette from these */
   --shock: var(--accent);
@@ -66,7 +67,7 @@
 
 .os-skip {
   position: fixed;
-  top: 2.4rem;
+  top: calc(var(--bar) + 0.525rem);
   left: 0.75rem;
   z-index: 1100;
   padding: 0.4rem 0.9rem;
@@ -91,7 +92,7 @@
   z-index: 1000;
   display: flex;
   align-items: center;
-  height: 1.875rem;
+  height: var(--bar);
   padding: 0 0.5rem;
   border-bottom: 1px solid #000;
   background: var(--plat-2);
@@ -219,7 +220,7 @@
 .os-desk {
   display: grid;
   gap: 1.5rem;
-  padding: 3.25rem 0.75rem 2.5rem;
+  padding: calc(var(--bar) + 1.375rem) 0.75rem 2.5rem;
   outline: none;
 }
 
@@ -229,7 +230,7 @@
 }
 
 .os-desk > * {
-  scroll-margin-top: 3rem;
+  scroll-margin-top: calc(var(--bar) + 1.125rem);
 }
 
 /* Window chrome */
@@ -410,7 +411,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.15rem 1rem;
   padding: 0.35rem 0.9rem;
   border-bottom: 1px solid #000;
   box-shadow: 0 1px 0 var(--plat-3);
@@ -523,7 +524,7 @@
 @media (min-width: 640px) {
   .os-desk {
     gap: 2rem;
-    padding: 4rem 1.5rem 3rem;
+    padding: calc(var(--bar) + 2.125rem) 1.5rem 3rem;
   }
 
   .os-foot {
@@ -539,7 +540,7 @@
     gap: 2.75rem 1.5rem;
     max-width: 1360px;
     margin: 0 auto;
-    padding: 4.5rem 9rem 4rem 2.5rem;
+    padding: calc(var(--bar) + 2.625rem) 9rem 4rem 2.5rem;
   }
 
   .os-foot {
@@ -550,7 +551,7 @@
 
   .os-icons {
     position: fixed;
-    top: 3.25rem;
+    top: calc(var(--bar) + 1.375rem);
     right: max(1rem, calc((100vw - 1360px) / 2 + 1rem));
     z-index: 0;
     display: flex;
@@ -611,6 +612,22 @@
 
   .os-strip-cell {
     flex: 1 1 auto;
+  }
+}
+
+@media (pointer: coarse) {
+  .os {
+    --bar: 2.75rem;
+  }
+
+  .os-btn {
+    min-height: 2.75rem;
+  }
+
+  .os-box-shade::before {
+    content: '';
+    position: absolute;
+    inset: -16px;
   }
 }
 

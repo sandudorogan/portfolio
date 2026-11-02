@@ -140,7 +140,7 @@
   "contact": {
     "kicker": "Contact",
     "title": "Hai să construim ceva care merită livrat.",
-    "text": "Apasă pe un câmp ca să-l afișezi. Îți răspund din {place}.",
+    "text": "Apasă sau dă clic pe un câmp ca să-l afișezi. Îți răspund din {place}.",
     "email": "E-mail:",
     "phone": "Telefon:"
   },

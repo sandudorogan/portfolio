@@ -879,11 +879,23 @@ useHead(() => ({
 
 .os-field {
   min-width: 0;
-  padding: 0.35rem 0.6rem;
   border: 1px solid #000;
   background: #fff;
   box-shadow: inset 1px 1px 0 var(--plat-4);
   overflow-wrap: anywhere;
+}
+
+.os-field :deep(.reveal-wrap) {
+  display: block;
+}
+
+.os-field :deep(.reveal-wrap > *) {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  text-align: left;
 }
 
 .os-dialog-buttons {

@@ -140,7 +140,7 @@
   "contact": {
     "kicker": "Contact",
     "title": "Let’s make something worth shipping.",
-    "text": "Click a field to reveal it. I answer from {place}.",
+    "text": "Tap or click a field to reveal it. I answer from {place}.",
     "email": "Email:",
     "phone": "Phone:"
   },
