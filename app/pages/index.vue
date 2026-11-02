@@ -37,7 +37,7 @@ const socialLinks = [
 
 const statValues = [8, 5, 11]
 const peak = Math.max(...statValues)
-const labValues = [{ i: 0, value: '406' }, { i: 2, value: '3' }]
+const labValues = [0, 2]
 
 const stats = computed(() => {
   const labels = tm('info.stats') as string[]
@@ -59,7 +59,7 @@ defineOgImage({
 
 const labStats = computed(() => {
   const labels = tm('ai.stats') as string[]
-  return labValues.map(({ i, value }) => ({ value, label: rt(labels[i] ?? '') }))
+  return labValues.map(i => ({ value: aiStatValues[i], label: rt(labels[i] ?? '') }))
 })
 
 const services = computed(() => {

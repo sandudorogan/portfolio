@@ -8,16 +8,6 @@ usePageSeo({
   description: () => t('seo.ai.description'),
 })
 
-defineOgImage({
-  component: 'Default',
-  props: {
-    title: t('seo.ai.ogTitle'),
-    description: t('seo.ai.ogDescription'),
-  },
-})
-
-const statValues = ['406', '~400', '3']
-
 // month is 1-based; labels come from ai.pace.months so server and client agree
 const pace = [
   { month: 11, year: 2025, value: 18 },
@@ -53,13 +43,26 @@ const entries = (key: string) =>
   (tm(key) as Array<Record<string, string>>).map(item =>
     Object.fromEntries(Object.entries(item).map(([k, v]) => [k, rt(v)])) as Record<string, string>)
 
-const stats = computed(() => texts('ai.stats').map((label, i) => ({ label, value: statValues[i] })))
+const stats = computed(() => texts('ai.stats').map((label, i) => ({ label, value: aiStatValues[i] })))
 const months = computed(() => texts('ai.pace.months'))
 const bars = computed(() => pace.map((m, i) => ({
   ...m,
   label: months.value[m.month - 1] ?? '',
   newYear: i === 0 || pace[i - 1]?.year !== m.year,
 })))
+defineOgImage({
+  component: 'Ai',
+  props: {
+    window: t('ai.readme'),
+    paceWindow: t('ai.pace.title'),
+    title: t('ai.title'),
+    motto: t('ai.motto'),
+    stat: stats.value[0],
+    bars: bars.value.map(({ label, value }) => ({ label, value })),
+    menus: ['services', 'work', 'experience', 'contact', 'ai'].map(key => t(`nav.${key}`)),
+  },
+})
+
 const first = computed(() => bars.value[0])
 const last = computed(() => bars.value.at(-1))
 const shipped = computed(() => entries('ai.shipped.items'))
@@ -145,7 +148,7 @@ const flowGlyphs = [
 
     <AppWindow win="shipped" :title="t('ai.shipped.title')" class="os-w-shipped">
       <p class="os-strip-head">
-        <span>{{ t('window.items', { n: shipped.length }) }}</span><span>IPRally</span>
+        <span>{{ t('window.items', { n: shipped.length }) }}</span>
       </p>
       <ul class="os-ship">
         <li v-for="item in shipped" :key="item.title" class="os-ship-item">
@@ -702,6 +705,11 @@ const flowGlyphs = [
 
   .os-ship-item:nth-child(odd) {
     border-right: 1px dotted var(--plat-3);
+  }
+
+  .os-ship-item:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    border-right: 0;
   }
 
   .os-plot {

@@ -15,14 +15,11 @@
   "seo": {
     "title": "Sandu Dorogan — Dezvoltator Full Stack",
     "description": "Dezvoltator Full Stack din București. Dezvoltare web, design UX/UI, DevOps și consultanță tehnică. Tu îmi spui ce vrei, eu îți arăt cum se face.",
-    "ogTitle": "Sandu Dorogan — Dezvoltator Full Stack",
     "ogDescription": "Tu îmi spui ce vrei, eu îți arăt cum se face. Fără vorbe goale — software care funcționează.",
     "jobTitle": "Dezvoltator Full Stack",
     "ai": {
       "title": "AI, în practică — Sandu Dorogan",
-      "description": "Cum livrează Sandu Dorogan funcții AI pentru specialiștii în brevete, cu o echipă de agenți de programare: fluxul, regulile casei, ritmul și uneltele.",
-      "ogTitle": "AI, în practică",
-      "ogDescription": "Agenții scriu codul. Eu iau deciziile."
+      "description": "Cum livrează Sandu Dorogan funcții AI pentru specialiștii în brevete, cu o echipă de agenți de programare: fluxul, regulile casei, ritmul și uneltele."
     }
   },
   "desktop": {
@@ -152,17 +149,17 @@
     "document": "Document SimpleText",
     "title": "AI, în practică",
     "motto": "Agenții scriu codul. Eu iau deciziile.",
-    "lede": "Construiesc funcții AI pentru specialiștii în brevete și le construiesc alături de o echipă de agenți de programare. Agenții scriu primele variante, se verifică între ei și repară ce găsesc. Eu stabilesc direcția, citesc diff-urile și răspund pentru tot ce ajunge în producție.",
+    "lede": "Agenții scriu primele variante, se verifică între ei și repară ce găsesc. Eu stabilesc direcția, citesc diff-urile și răspund pentru tot ce ajunge în producție.",
     "stats": [
-      "PR-uri integrate în ultimele 3 luni",
-      "Linii într-un PR median",
-      "Revieweri AI pentru fiecare PR"
+      "de 10 ori mai multe PR-uri integrate pe lună față de acum un an",
+      "linii într-un PR median, sub plafonul de 700",
+      "revieweri AI + 1 om la fiecare PR"
     ],
     "pace": {
       "title": "Ritm",
       "axis": "PR-uri integrate pe lună",
       "bar": "{month} {year}: {n} PR-uri",
-      "caption": "PR-urile pe care le-am integrat în fiecare lună la IPRally. Curba se arcuiește când pipeline-ul de agenți intră în funcțiune.",
+      "caption": "PR-uri integrate lunar la IPRally. 18 în nov 2025, 182 în oct 2026: de 10 ori mai multe într-un an, mai ales după ce a pornit pipeline-ul de agenți.",
       "note": "Octombrie, numărat până pe 23.",
       "months": [
         "ian",
@@ -199,10 +196,6 @@
           "description": "Generează și editează desene de brevet cu numere de referință. Citește PDF-uri, documente Word și imagini încărcate și spune cât de mult a înțeles din ele."
         },
         {
-          "title": "LLM-uri în producție",
-          "description": "Un buget de timp pentru fiecare încercare, ca reîncercările să mai încapă, metrici de tokeni și latență pentru fiecare apel, iar fiecare pas primește doar sursele de care are nevoie."
-        },
-        {
           "title": "Căutare de brevete pentru agenți",
           "description": "Un server MCP prin care Claude rulează căutarea semantică IPRally și citește textul integral al brevetelor."
         }
@@ -229,7 +222,7 @@
         },
         {
           "title": "Integrare",
-          "description": "Citesc diff-ul și fac merge. PR-urile rămân sub ~700 de linii, ca să le pot citi cu adevărat."
+          "description": "Citesc diff-ul și fac merge. Niciun PR nu intră necitit."
         }
       ]
     },
@@ -245,35 +238,35 @@
     },
     "arsenal": {
       "title": "Arsenal",
-      "caption": "160 de commituri în 9 repo-uri personale, în ultimele 6 luni.",
+      "caption": "7 unelte · 4 open source",
       "items": [
         {
           "status": "Open source · v0.4",
-          "description": "O bară laterală tmux cu starea live a fiecărei sesiuni de agent AI — lucrează, așteaptă, gata. Merge cu Claude Code, Codex, Cursor, OpenCode, Pi și Kiro."
+          "description": "O bară laterală tmux cu starea live a fiecărei sesiuni de agent AI."
         },
         {
           "status": "Privat · folosit zilnic",
-          "description": "Face review la fiecare PR pe care îl deschid cu trei modele, apoi pune un agent să repare observațiile și să facă push — rundă după rundă, până iese curat."
+          "description": "Un serviciu în fundal care face review și repară fiecare PR pe care îl deschid."
         },
         {
           "status": "Privat",
-          "description": "Un agent principal împarte un tichet în PR-uri mici, între sub-agenți Claude Code și Codex."
+          "description": "Un orchestrator pentru sub-agenți Claude Code și Codex."
         },
         {
           "status": "Privat",
-          "description": "Rezumă ce schimbă cu adevărat un PR înainte să-i citească descrierea, apoi semnalează când scopul se umflă."
+          "description": "Rezumă ce schimbă cu adevărat un PR și semnalează când scopul se umflă."
         },
         {
           "status": "Open source",
-          "description": "Rulezi și verifici sesiuni de agenți AI de programare — aprobări și diff-uri — fără să ieși din Neovim."
+          "description": "Rulezi și verifici sesiuni de agenți AI de programare fără să ieși din Neovim."
         },
         {
           "status": "Open source · online",
-          "description": "Un generator gratuit de orare școlare care rulează complet în browser. Offline, fără conturi, în engleză și română."
+          "description": "Un generator gratuit de orare școlare care rulează offline, în browser."
         },
         {
           "status": "npm",
-          "description": "O componentă Vue 3 pentru grafuri de rețea, cu zoom, pan și drag. Construită într-o zi, în tandem cu un agent."
+          "description": "O componentă Vue 3 pentru grafuri de rețea, cu zoom, pan și drag."
         }
       ]
     }

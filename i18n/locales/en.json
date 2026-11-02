@@ -15,14 +15,11 @@
   "seo": {
     "title": "Sandu Dorogan — Full Stack Developer",
     "description": "Full Stack Developer in Bucharest. Web development, UX/UI design, DevOps and technical consultation. Tell me the what and I'll show you the how.",
-    "ogTitle": "Sandu Dorogan — Full Stack Developer",
     "ogDescription": "Tell me the what and I'll show you the how. No fluff, no filler — working software.",
     "jobTitle": "Full Stack Developer",
     "ai": {
       "title": "AI, in practice — Sandu Dorogan",
-      "description": "How Sandu Dorogan ships AI features for patent professionals with a crew of coding agents: the pipeline, the house rules, the pace and the tools.",
-      "ogTitle": "AI, in practice",
-      "ogDescription": "Agents do the typing. I do the deciding."
+      "description": "How Sandu Dorogan ships AI features for patent professionals with a crew of coding agents: the pipeline, the house rules, the pace and the tools."
     }
   },
   "desktop": {
@@ -152,17 +149,17 @@
     "document": "SimpleText document",
     "title": "AI, in practice",
     "motto": "Agents do the typing. I do the deciding.",
-    "lede": "I build AI features for patent professionals, and I build them with a crew of coding agents. The agents write first drafts, review each other and fix their findings. I set the direction, read the diffs and own what ships.",
+    "lede": "The agents write first drafts, review each other and fix their findings. I set the direction, read the diffs and own what ships.",
     "stats": [
-      "PRs merged in the last 3 months",
-      "Lines in a median PR",
-      "AI reviewers on every PR"
+      "more PRs merged per month than a year ago",
+      "lines in a median PR, under the 700-line cap",
+      "AI reviewers + 1 human on every PR"
     ],
     "pace": {
       "title": "Pace",
       "axis": "PRs merged per month",
       "bar": "{month} {year}: {n} PRs",
-      "caption": "PRs I merged at IPRally each month. The curve bends when the agent pipeline came online.",
+      "caption": "PRs I merged at IPRally each month. 18 in Nov 2025, 182 in Oct 2026: 10× in a year, most of it after the agent pipeline came online.",
       "note": "October counted to the 23rd.",
       "months": [
         "Jan",
@@ -199,10 +196,6 @@
           "description": "Generates and edits patent drawings with reference numbers. Reads uploaded PDFs, Word files and images, and says how much it understood."
         },
         {
-          "title": "LLMs in production",
-          "description": "A time budget per attempt so retries still fit, token and latency metrics per call, and each step gets only the sources it needs."
-        },
-        {
           "title": "Patent search for agents",
           "description": "An MCP server that lets Claude run IPRally semantic search and read full patent text."
         }
@@ -229,7 +222,7 @@
         },
         {
           "title": "Merge",
-          "description": "I read the diff and merge. PRs stay under ~700 lines, so reading them stays honest."
+          "description": "I read the diff and merge. No PR goes in unread."
         }
       ]
     },
@@ -245,35 +238,35 @@
     },
     "arsenal": {
       "title": "Arsenal",
-      "caption": "160 commits across 9 personal repos in the last 6 months.",
+      "caption": "7 tools · 4 open source",
       "items": [
         {
           "status": "Open source · v0.4",
-          "description": "A tmux sidebar with live status for every AI agent session — working, waiting, done. Speaks Claude Code, Codex, Cursor, OpenCode, Pi and Kiro."
+          "description": "A tmux sidebar with live status for every AI agent session."
         },
         {
           "status": "Private · daily driver",
-          "description": "Reviews every PR I open with three models, then has an agent fix the findings and push — round after round, until it is clean."
+          "description": "A background service that reviews and fixes every PR I open."
         },
         {
           "status": "Private",
-          "description": "One lead agent fans a ticket out into small PRs across Claude Code and Codex sub-agents."
+          "description": "An orchestrator for Claude Code and Codex sub-agents."
         },
         {
           "status": "Private",
-          "description": "Summarises what a PR really changes before it reads the description, then flags scope creep."
+          "description": "Summarises what a PR really changes and flags scope creep."
         },
         {
           "status": "Open source",
-          "description": "Run and review AI coding-agent sessions — approvals and diffs — without leaving Neovim."
+          "description": "Run and review AI coding-agent sessions without leaving Neovim."
         },
         {
           "status": "Open source · live",
-          "description": "A free school timetable builder that runs fully in the browser. Offline, no accounts, English and Romanian."
+          "description": "A free school timetable builder that runs offline in the browser."
         },
         {
           "status": "npm",
-          "description": "A Vue 3 network-graph component with zoom, pan and drag. Built in a day with an agent pair."
+          "description": "A Vue 3 network-graph component with zoom, pan and drag."
         }
       ]
     }
