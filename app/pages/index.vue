@@ -9,15 +9,6 @@ usePageSeo({
   description: () => t('seo.description'),
 })
 
-// OG image (nuxt-og-image) — defined at page level for static generation
-defineOgImage({
-  component: 'Default',
-  props: {
-    title: t('seo.ogTitle'),
-    description: t('seo.ogDescription'),
-  },
-})
-
 const since = 2018
 
 const glyphs = [
@@ -51,6 +42,19 @@ const labValues = [{ i: 0, value: '406' }, { i: 2, value: '3' }]
 const stats = computed(() => {
   const labels = tm('info.stats') as string[]
   return statValues.map((value, i) => ({ value, label: rt(labels[i] ?? '') }))
+})
+
+// OG image (nuxt-og-image) — defined at page level for static generation
+defineOgImage({
+  component: 'Default',
+  props: {
+    window: t('about.title'),
+    infoWindow: t('info.title'),
+    role: `${t('about.role')} — ${t('about.location')}`,
+    description: t('seo.ogDescription'),
+    stats: stats.value,
+    menus: ['services', 'work', 'experience', 'contact', 'ai'].map(key => t(`nav.${key}`)),
+  },
 })
 
 const labStats = computed(() => {

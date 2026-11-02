@@ -1,85 +1,80 @@
 <script setup lang="ts">
+// Home card: the "About" window in front of a "Get Info" window, as on the desktop.
 withDefaults(defineProps<{
-  title?: string
+  window?: string
+  infoWindow?: string
+  role?: string
   description?: string
+  stats?: Array<{ value: number, label: string }>
+  menus?: string[]
 }>(), {
-  title: 'Sandu Dorogan — Full Stack Developer',
-  description: 'Tell me the what and I\'ll show you the how.',
+  window: 'About Sandu',
+  infoWindow: 'Sandu Info',
+  role: 'Full Stack Developer — Bucharest, Romania',
+  description: 'Tell me the what and I\'ll show you the how. No fluff, no filler — working software.',
+  stats: () => [],
+  menus: () => [],
 })
 
-const stripes = 'repeating-linear-gradient(180deg, #888888 0px, #888888 2px, #ffffff 2px, #ffffff 4px)'
+const pixel = '\'Pixelify Sans\', \'Pixelify+Sans\''
+const reading = '\'Atkinson Hyperlegible\', \'Atkinson+Hyperlegible\''
+const meter = 'repeating-linear-gradient(0deg, #6b63d4 0px, #6b63d4 2px, #ccccff 2px, #ccccff 4px)'
 </script>
 
 <template>
-  <div
-    class="flex flex-col w-full h-full"
-    style="position: relative; background-color: #b7b7c7;"
-  >
-    <svg
-      width="1200"
-      height="630"
-      style="position: absolute; top: 0; left: 0;"
-    >
-      <defs>
-        <pattern
-          id="dither"
-          width="8"
-          height="8"
-          patternUnits="userSpaceOnUse"
-        >
-          <path d="M0 0h2v2H0zM4 4h2v2H4z" fill="#9595ad" />
-        </pattern>
-      </defs>
-      <rect width="1200" height="630" fill="url(#dither)" />
-    </svg>
-    <div
-      class="flex flex-row items-center w-full h-[44px] px-[22px] text-[24px]"
-      style="background-color: #dddddd; border-bottom: 2px solid #111111; font-family: 'Pixelify Sans', 'Pixelify+Sans'; font-weight: 700; color: #111111;"
-    >
-      <div
-        class="flex items-center justify-center w-[26px] h-[26px] mr-[14px] text-[20px]"
-        style="background-color: #4a3fb5; color: #ffffff;"
-      >
-        S
-      </div>
-      <div class="flex">
-        Sandu
-      </div>
-    </div>
-
-    <div class="flex flex-row flex-1 w-full px-[80px] pt-[48px] pb-[64px]">
-      <div
-        class="flex flex-col w-full h-full"
-        style="background-color: #dddddd; border: 2px solid #111111; box-shadow: 12px 12px 0 #111111;"
-      >
-        <div class="flex flex-row items-center w-full h-[48px] px-[14px]">
-          <div class="flex w-[22px] h-[22px]" style="background-color: #eeeeee; border: 2px solid #111111;" />
-          <div class="flex flex-1 h-[22px] mx-[14px]" :style="{ backgroundImage: stripes }" />
-          <div class="flex text-[24px]" style="font-family: 'Pixelify Sans', 'Pixelify+Sans'; color: #111111;">
-            dorogans.com
-          </div>
-          <div class="flex flex-1 h-[22px] mx-[14px]" :style="{ backgroundImage: stripes }" />
-          <div class="flex w-[22px] h-[22px]" style="background-color: #eeeeee; border: 2px solid #111111;" />
-        </div>
-
+  <OgDesk :menus="menus">
+    <OgWindow :title="infoWindow" :style="{ left: '690px', top: '196px', width: '462px', height: '330px' }">
+      <div :style="{ display: 'flex', flexDirection: 'column', justifyContent: 'center', flexGrow: 1, padding: '0 34px 0 96px' }">
         <div
-          class="flex flex-col justify-center flex-1 mx-[6px] mb-[6px] px-[56px]"
-          style="background-color: #ffffff; border: 2px solid #111111;"
+          v-for="stat in stats"
+          :key="stat.label"
+          class="flex flex-row"
+          :style="{ display: 'flex', flexDirection: 'row', alignItems: 'flex-end', margin: '12px 0' }"
         >
-          <div
-            class="flex text-[68px]"
-            style="font-family: 'Pixelify Sans', 'Pixelify+Sans'; font-weight: 700; line-height: 1.05; color: #111111; text-shadow: 5px 5px 0 #ccccff;"
-          >
-            {{ title }}
+          <div :style="{ display: 'flex', flexDirection: 'column', width: '236px' }">
+            <div :style="{ display: 'flex', fontFamily: reading, fontSize: '20px', color: '#333333' }">
+              {{ stat.label }}
+            </div>
+            <div class="flex flex-row" :style="{ display: 'flex', flexDirection: 'row', height: '18px', marginTop: '6px', border: '2px solid #111111', backgroundColor: '#ffffff' }">
+              <div :style="{ display: 'flex', width: `${(stat.value / Math.max(...stats.map(s => s.value))) * 100}%`, backgroundImage: meter }" />
+            </div>
           </div>
-          <div
-            class="flex max-w-[900px] mt-[28px] text-[30px]"
-            style="font-family: 'Atkinson Hyperlegible', 'Atkinson+Hyperlegible'; line-height: 1.4; color: #333333;"
-          >
-            {{ description }}
+          <div :style="{ display: 'flex', flexShrink: 0, width: '64px', marginLeft: '12px', justifyContent: 'flex-end', fontFamily: reading, fontWeight: 700, fontSize: '36px', lineHeight: 1, color: '#111111' }">
+            {{ stat.value }}
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </OgWindow>
+
+    <OgWindow
+      :title="window"
+      active
+      :style="{ left: '48px', top: '82px', width: '700px', height: '500px' }"
+    >
+      <div :style="{ display: 'flex', flexDirection: 'column', justifyContent: 'center', flexGrow: 1, padding: '0 48px' }">
+        <div :style="{ display: 'flex', fontFamily: pixel, fontSize: '24px', color: '#4a3fb5' }">
+          {{ role }}
+        </div>
+        <div
+          :style="{
+            display: 'flex',
+            flexDirection: 'column',
+            marginTop: '14px',
+            fontFamily: pixel,
+            fontWeight: 700,
+            fontSize: '96px',
+            lineHeight: 1.02,
+            color: '#111111',
+            textShadow: '6px 6px 0 #ccccff',
+          }"
+        >
+          <span>Sandu</span>
+          <span>Dorogan</span>
+        </div>
+        <div :style="{ display: 'flex', marginTop: '26px', fontFamily: reading, fontSize: '26px', lineHeight: 1.4, color: '#222222' }">
+          {{ description }}
+        </div>
+      </div>
+    </OgWindow>
+  </OgDesk>
 </template>
