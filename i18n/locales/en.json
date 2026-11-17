@@ -226,6 +226,33 @@
         }
       ]
     },
+    "loop": {
+      "title": "PR Loop",
+      "head": "macOS daemon · Claude Code · Codex",
+      "length": "73 s tour",
+      "kicker": "Newest · open source",
+      "lede": "The review and fix steps above run in PR Loop, my newest tool. It is a macOS daemon. It watches every PR that needs me, in every repo, and keeps each one moving until a human must decide.",
+      "facts": [
+        {
+          "term": "Watch",
+          "text": "PRs I opened, PRs that ask for my review and PRs assigned to me."
+        },
+        {
+          "term": "Review",
+          "text": "Claude Opus, Codex and Claude Haiku post inline comments. Each round reads only the new commits."
+        },
+        {
+          "term": "Fix",
+          "text": "On my PRs, Codex fixes findings, red CI and base conflicts, runs the gates and pushes. The push starts the next round."
+        },
+        {
+          "term": "Scope",
+          "text": "PR Lens checks if each PR does what its title says."
+        }
+      ],
+      "cta": "Source on GitHub",
+      "video": "PR Loop overview, 73 seconds, no sound"
+    },
     "rules": {
       "title": "House rules for agents",
       "items": [
@@ -238,15 +265,15 @@
     },
     "arsenal": {
       "title": "Arsenal",
-      "caption": "7 tools · 4 open source",
+      "caption": "7 tools · 5 open source",
       "items": [
+        {
+          "status": "Open source · v2 · daily driver",
+          "description": "Reviews and fixes every PR I open, with Claude Code and Codex."
+        },
         {
           "status": "Open source · v0.4",
           "description": "A tmux sidebar with live status for every AI agent session."
-        },
-        {
-          "status": "Private · daily driver",
-          "description": "A background service that reviews and fixes every PR I open."
         },
         {
           "status": "Private",
@@ -254,7 +281,7 @@
         },
         {
           "status": "Private",
-          "description": "Summarises what a PR really changes and flags scope creep."
+          "description": "Summarises what a PR really changes and flags scope creep. Runs as a lane in PR Loop."
         },
         {
           "status": "Open source",

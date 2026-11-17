@@ -29,8 +29,8 @@ const ticks = Array.from({ length: scale / 50 + 1 }, (_, i) => i * 50)
 const pct = (value: number) => `${(value / scale) * 100}%`
 
 const arsenalMeta = [
+  { name: 'pr-loop', tags: ['Python', 'Swift', 'launchd'], url: 'https://github.com/sandudorogan/pr-loop' },
   { name: 'tmux-pane-tree', tags: ['Python', 'tmux'], url: 'https://github.com/sandudorogan/tmux-pane-tree' },
-  { name: 'review-queue', tags: ['Python', 'launchd'], url: '' },
   { name: 'agent-delegator', tags: ['Claude Code', 'Codex'], url: '' },
   { name: 'pr-lens', tags: ['Bun', 'SQLite'], url: '' },
   { name: 'harness.nvim', tags: ['Lua', 'Bun', 'SQLite'], url: 'https://github.com/sandudorogan/harness.nvim' },
@@ -68,6 +68,7 @@ const last = computed(() => bars.value.at(-1))
 const shipped = computed(() => entries('ai.shipped.items'))
 const steps = computed(() => entries('ai.pipeline.steps'))
 const rules = computed(() => texts('ai.rules.items'))
+const loopFacts = computed(() => entries('ai.loop.facts'))
 const arsenal = computed(() => {
   const items = entries('ai.arsenal.items')
   return arsenalMeta.map((meta, i) => ({ ...meta, ...items[i] }))
@@ -198,6 +199,46 @@ const flowGlyphs = [
           </p>
         </li>
       </ol>
+    </AppWindow>
+
+    <AppWindow win="loop" :title="t('ai.loop.title')" class="os-w-loop">
+      <p class="os-strip-head">
+        <span>{{ t('ai.loop.head') }}</span><span>{{ t('ai.loop.length') }}</span>
+      </p>
+      <div class="os-pane os-loop">
+        <video
+          class="os-loop-video"
+          src="/videos/pr-loop.mp4"
+          poster="/videos/pr-loop.webp"
+          width="1920"
+          height="1080"
+          preload="none"
+          controls
+          muted
+          playsinline
+          :aria-label="t('ai.loop.video')"
+        />
+        <div class="os-loop-info">
+          <p class="os-kicker">
+            {{ t('ai.loop.kicker') }}
+          </p>
+          <p class="os-loop-lede">
+            {{ t('ai.loop.lede') }}
+          </p>
+          <dl class="os-loop-facts">
+            <div v-for="fact in loopFacts" :key="fact.term">
+              <dt>{{ fact.term }}</dt>
+              <dd>{{ fact.text }}</dd>
+            </div>
+          </dl>
+          <a
+            class="os-btn os-btn-default os-loop-cta"
+            href="https://github.com/sandudorogan/pr-loop"
+            target="_blank"
+            rel="noopener"
+          >{{ t('ai.loop.cta') }}<span aria-hidden="true">&nbsp;↗</span><span class="os-sr"> {{ t('window.newTab') }}</span></a>
+        </div>
+      </div>
     </AppWindow>
 
     <AppWindow
@@ -685,6 +726,56 @@ const flowGlyphs = [
   justify-content: flex-start;
 }
 
+/* PR Loop */
+
+.os-loop {
+  display: grid;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.os-loop-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #000;
+  background: #0b0b10;
+  box-shadow: 3px 3px 0 #000;
+}
+
+.os-loop-lede {
+  margin-top: 0.4rem;
+  color: #333;
+}
+
+.os-loop-facts {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.os-loop-facts div {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px dotted var(--plat-3);
+}
+
+.os-loop-facts dt {
+  font-family: 'Pixelify Sans', monospace;
+  font-weight: 600;
+}
+
+.os-loop-facts dd {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.os-loop-cta {
+  margin: 1.5rem 0 0.4rem 0.4rem;
+}
+
 @media (min-width: 640px) {
   .os-readme {
     padding: 2rem 2.25rem 2.25rem;
@@ -751,12 +842,22 @@ const flowGlyphs = [
     clip-path: polygon(0 40%, 60% 40%, 60% 10%, 100% 50%, 60% 90%, 60% 60%, 0 60%);
   }
 
+  .os-w-loop {
+    grid-area: 4 / 2 / 5 / 13;
+  }
+
+  .os-loop {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 1.75rem;
+    padding: 1.75rem;
+  }
+
   .os-w-shipped {
-    grid-area: 4 / 1 / 5 / 11;
+    grid-area: 5 / 1 / 6 / 11;
   }
 
   .os-w-arsenal {
-    grid-area: 5 / 2 / 6 / 13;
+    grid-area: 6 / 2 / 7 / 13;
   }
 }
 

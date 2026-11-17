@@ -226,6 +226,33 @@
         }
       ]
     },
+    "loop": {
+      "title": "PR Loop",
+      "head": "Daemon macOS · Claude Code · Codex",
+      "length": "Tur de 73 s",
+      "kicker": "Cel mai nou · open source",
+      "lede": "Pașii de revizuire și corectare de mai sus rulează în PR Loop, cel mai nou instrument al meu. Este un daemon macOS. Urmărește fiecare PR care are nevoie de mine, în orice repo, și îl duce mai departe până când trebuie să decidă un om.",
+      "facts": [
+        {
+          "term": "Urmărește",
+          "text": "PR-urile deschise de mine, cele care îmi cer review și cele atribuite mie."
+        },
+        {
+          "term": "Revizuire",
+          "text": "Claude Opus, Codex și Claude Haiku lasă comentarii inline. Fiecare rundă citește doar commit-urile noi."
+        },
+        {
+          "term": "Corectare",
+          "text": "Pe PR-urile mele, Codex rezolvă observațiile, CI-ul picat și conflictele cu baza, rulează verificările și face push. Push-ul pornește runda următoare."
+        },
+        {
+          "term": "Scop",
+          "text": "PR Lens verifică dacă fiecare PR face ce spune titlul."
+        }
+      ],
+      "cta": "Codul pe GitHub",
+      "video": "Prezentare PR Loop, 73 de secunde, fără sunet"
+    },
     "rules": {
       "title": "Regulile casei pentru agenți",
       "items": [
@@ -238,15 +265,15 @@
     },
     "arsenal": {
       "title": "Arsenal",
-      "caption": "7 unelte · 4 open source",
+      "caption": "7 unelte · 5 open source",
       "items": [
+        {
+          "status": "Open source · v2 · folosit zilnic",
+          "description": "Face review și repară fiecare PR pe care îl deschid, cu Claude Code și Codex."
+        },
         {
           "status": "Open source · v0.4",
           "description": "O bară laterală tmux cu starea live a fiecărei sesiuni de agent AI."
-        },
-        {
-          "status": "Privat · folosit zilnic",
-          "description": "Un serviciu în fundal care face review și repară fiecare PR pe care îl deschid."
         },
         {
           "status": "Privat",
@@ -254,7 +281,7 @@
         },
         {
           "status": "Privat",
-          "description": "Rezumă ce schimbă cu adevărat un PR și semnalează când scopul se umflă."
+          "description": "Rezumă ce schimbă cu adevărat un PR și semnalează când scopul se umflă. Rulează ca o bandă în PR Loop."
         },
         {
           "status": "Open source",
