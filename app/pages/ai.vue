@@ -206,18 +206,20 @@ const flowGlyphs = [
         <span>{{ t('ai.loop.head') }}</span><span>{{ t('ai.loop.length') }}</span>
       </p>
       <div class="os-pane os-loop">
-        <video
-          class="os-loop-video"
-          src="/videos/pr-loop.mp4"
-          poster="/videos/pr-loop.webp"
-          width="1920"
-          height="1080"
-          preload="none"
-          controls
-          muted
-          playsinline
-          :aria-label="t('ai.loop.video')"
-        />
+        <div class="os-loop-media">
+          <video
+            class="os-loop-video"
+            src="/videos/pr-loop.mp4"
+            poster="/videos/pr-loop.webp"
+            width="1920"
+            height="1080"
+            preload="none"
+            controls
+            muted
+            playsinline
+            :aria-label="t('ai.loop.video')"
+          />
+        </div>
         <div class="os-loop-info">
           <p class="os-kicker">
             {{ t('ai.loop.kicker') }}
@@ -732,6 +734,10 @@ const flowGlyphs = [
   display: grid;
   gap: 1.25rem;
   align-items: start;
+}
+
+.os-loop-media {
+  position: relative;
 }
 
 .os-loop-video {
